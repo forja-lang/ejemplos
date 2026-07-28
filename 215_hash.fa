@@ -121,3 +121,5 @@ funcion main() {
     escribir_linea("")
     escribir_linea("=== ¡Todas las pruebas completadas! ===")
 }
+
+main()

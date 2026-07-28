@@ -275,7 +275,7 @@ funcion main() {
             etiqueta("================================================================"),
             etiqueta("                                                                  "),
             etiqueta("     Forja v0.7  -  GUI Nativa Xilem 0.4  -  Rust + GPU (Vello)"),
-            etiqueta("     Copyright (c) 2026 - Language designed by lococoi"),
+            etiqueta("     Copyright (c) 2026 - Language designed by forja-lang"),
             etiqueta("                                                                  "),
             etiqueta("================================================================"),
             espacio(20)

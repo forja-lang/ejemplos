@@ -1,0 +1,2 @@
+importar "std/matematica"
+escribir(mcd(12, 8))

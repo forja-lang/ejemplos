@@ -1,5 +1,5 @@
 /// Ejemplo 216: Concurrencia de alto nivel
-/// Conceptos: pool_workers, paralelo_for, mapa_paralelo, con_timeout, reintentar
+/// Conceptos: pool_trabajadores, paralelo_for, mapa_paralelo, con_timeout, reintentar
 /// Nivel: avanzado
 ///
 /// Demostración de la API de patrones de concurrencia.
@@ -44,7 +44,7 @@ funcion main() {
     // --------------------------------------------------
     escribir("\n── 1. Pool de Workers (API) ──\n")
 
-    variable pool = pool_workers(3, duplicar)
+    variable pool = pool_trabajadores(3, duplicar)
     variable tx_tareas = pool[0]
     variable rx_resultados = pool[1]
     escribir("Pool creado con 3 workers")
