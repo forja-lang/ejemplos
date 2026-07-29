@@ -1,0 +1,109 @@
+/// Ejemplo de comunicación entre hilos con canales en Forja
+/// Conceptos: canal, enviar, recibir, try_recibir, hilo, seleccionar
+/// Nivel: intermedio
+///
+/// Para probar: forja run examples/async_await/canales.fa
+
+importar "std/io"
+
+/// Productor: envía números por el canal
+funcion productor(emisor: CanalEmisor) {
+    variable i = 0
+    mientras (i < 5) {
+        emisor.enviar(i * 10)
+        i = i + 1
+    }
+}
+
+/// Productor de mensajes de texto
+funcion productor_texto(emisor: CanalEmisor) {
+    emisor.enviar("Mensaje 1")
+    emisor.enviar("Mensaje 2")
+    emisor.enviar("Mensaje 3")
+}
+
+funcion main() {
+    escribir("=== Ejemplo de Canales y Comunicación entre Hilos ===")
+    escribir("")
+
+    // ── 1. Canal básico: un productor, un consumidor ──
+    escribir("--- 1. Canal básico ---")
+
+    variable e1, r1 = canal()
+
+    hilo {
+        productor(e1)
+    }
+
+    variable total = 0
+    variable i = 0
+    mientras (i < 5) {
+        variable valor = r1.recibir()
+        escribir("  Recibido: " + valor)
+        total = total + valor
+        i = i + 1
+    }
+    escribir("  Total: " + total)
+
+    // ── 2. Canal con strings ──
+    escribir("")
+    escribir("--- 2. Canal con strings ---")
+
+    variable e2, r2 = canal()
+
+    hilo {
+        productor_texto(e2)
+    }
+
+    variable j = 0
+    mientras (j < 3) {
+        variable msg = r2.recibir()
+        escribir("  Recibido: " + msg)
+        j = j + 1
+    }
+
+    // ── 3. try_recibir (no bloqueante) ──
+    escribir("")
+    escribir("--- 3. try_recibir no bloqueante ---")
+
+    variable e3, r3 = canal()
+
+    variable dato = r3.try_recibir()
+    si (dato == nulo) {
+        escribir("  Canal vacío (try_recibir retorna nulo)")
+    }
+
+    hilo {
+        e3.enviar("dato tardío")
+    }
+
+    esperar(100)
+    variable dato2 = r3.try_recibir()
+    escribir("  Después de enviar: " + dato2)
+
+    // ── 4. Múltiples canales ──
+    escribir("")
+    escribir("--- 4. Múltiples canales ---")
+
+    variable ea, ra = canal()
+    variable eb, rb = canal()
+
+    hilo {
+        ea.enviar(100)
+    }
+
+    hilo {
+        eb.enviar(200)
+    }
+
+    variable a = ra.recibir()
+    variable b = rb.recibir()
+    escribir("  Canal A: " + a)
+    escribir("  Canal B: " + b)
+    escribir("  Suma: " + (a + b))
+
+    escribir("")
+    escribir("=== Fin del ejemplo ===")
+}
+
+main()

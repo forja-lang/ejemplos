@@ -1,0 +1,88 @@
+/// Ejemplo de tareas async en paralelo con Forja
+/// Conceptos: hilo, unir, paralelismo, múltiples tareas
+/// Nivel: intermedio
+///
+/// Para probar: forja run examples/async_await/paralelo.fa
+
+importar "std/io"
+importar "std/concurrencia"
+
+/// Función asincrónica simulando una tarea
+funcion asincrona tarea(id: Entero) -> Texto {
+    retornar "Tarea " + id + " completada"
+}
+
+/// Función costosa para ejecutar en paralelo
+funcion fibonacci(n: Entero) -> Entero {
+    si (n <= 1) {
+        retornar n
+    }
+    retornar fibonacci(n - 1) + fibonacci(n - 2)
+}
+
+funcion main() {
+    escribir("=== Ejemplo de Paralelismo con Async/Await ===")
+    escribir("")
+
+    // ── 1. Tareas simples en paralelo ──
+    escribir("--- 1. Tareas paralelas simples ---")
+
+    variable tareas = []
+    tareas[0] = tarea(1)
+    tareas[1] = tarea(2)
+    tareas[2] = tarea(3)
+    tareas[3] = tarea(4)
+    tareas[4] = tarea(5)
+
+    variable r1 = tareas[0].unir()
+    variable r2 = tareas[1].unir()
+    variable r3 = tareas[2].unir()
+    variable r4 = tareas[3].unir()
+    variable r5 = tareas[4].unir()
+
+    escribir(r1)
+    escribir(r2)
+    escribir(r3)
+    escribir(r4)
+    escribir(r5)
+
+    // ── 2. Cómputo intensivo en paralelo ──
+    escribir("")
+    escribir("--- 2. Fibonacci en paralelo ---")
+
+    variable h1 = hilo {
+        retornar fibonacci(30)
+    }
+    variable h2 = hilo {
+        retornar fibonacci(32)
+    }
+    variable h3 = hilo {
+        retornar fibonacci(35)
+    }
+
+    escribir("fib(30) = " + h1.unir())
+    escribir("fib(32) = " + h2.unir())
+    escribir("fib(35) = " + h3.unir())
+
+    // ── 3. Usando mapa_async de stdlib ──
+    escribir("")
+    escribir("--- 3. Usando mapa_async de stdlib ---")
+
+    funcion duplicar(x) {
+        retornar x * 2
+    }
+
+    variable lista = [1, 2, 3, 4, 5]
+    variable resultados = mapa_async(lista, duplicar)
+
+    variable i = 0
+    mientras (i < longitud(resultados)) {
+        escribir("  [" + i + "] " + lista[i] + " * 2 = " + resultados[i])
+        i = i + 1
+    }
+
+    escribir("")
+    escribir("=== Fin del ejemplo ===")
+}
+
+main()

@@ -11,12 +11,12 @@ importar "std/io"
 clase Sujeto {
     estado
     observadores
-    canal_tx
+    canal_emisor
 
     constructor() {
         este.estado = 0
         este.observadores = []
-        este.canal_tx = nulo
+        este.canal_emisor = nulo
     }
 
     funcion agregar_observador(obs) {
@@ -30,7 +30,7 @@ clase Sujeto {
         variable i = 0
         mientras (i < longitud(este.observadores)) {
             variable obs = este.observadores[i]
-            obs.tx.enviar(este.estado)
+            obs.emisor.enviar(este.estado)
             i = i + 1
         }
     }
@@ -44,26 +44,26 @@ clase Sujeto {
 
 clase Observador {
     nombre
-    rx
-    tx
+    receptor
+    emisor
 
     constructor() {
         este.nombre = ""
-        este.rx = nulo
-        este.tx = nulo
+        este.receptor = nulo
+        este.emisor = nulo
     }
 
     funcion init(n) {
         este.nombre = n
         variable t, r = canal()
-        este.tx = t
-        este.rx = r
+        este.emisor = t
+        este.receptor = r
     }
 
     funcion empezar_escuchar() {
         variable h = hilo {
             mientras (verdadero) {
-                variable mensaje = este.rx.recibir()
+                variable mensaje = este.receptor.recibir()
                 escribir("  📬 ${este.nombre} recibió: estado = ${mensaje}")
             }
             retornar 0

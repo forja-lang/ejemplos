@@ -1,0 +1,66 @@
+/// Ejemplo básico de async/await en Forja
+/// Conceptos: funcion asincrona, await, unir, future
+/// Nivel: básico
+///
+/// Para probar: forja run examples/async_await/basico.fa
+
+importar "std/io"
+
+/// Función asincrónica que calcula una suma
+funcion asincrona calcular() -> Entero {
+    variable resultado = 0
+    variable i = 0
+    mientras (i < 10) {
+        resultado = resultado + i
+        i = i + 1
+    }
+    retornar resultado
+}
+
+/// Función asincrónica con parámetros
+funcion asincrona suma(a: Entero, b: Entero) -> Entero {
+    retornar a + b
+}
+
+/// Función asincrónica que retorna texto
+funcion asincrona saludar(nombre: Texto) -> Texto {
+    retornar "Hola, " + nombre + "!"
+}
+
+funcion main() {
+    escribir("=== Ejemplo Básico de Async/Await ===")
+    escribir("")
+
+    // ── 1. Llamar a función async y esperar con .unir() ──
+    escribir("--- 1. Future + unir() ---")
+    variable future = calcular()
+    variable r = future.unir()
+    escribir("Resultado de calcular(): " + r)
+
+    // ── 2. Llamar a función async y esperar directamente ──
+    escribir("")
+    escribir("--- 2. Llamada directa con .unir() ---")
+    variable r2 = suma(10, 20).unir()
+    escribir("suma(10, 20) = " + r2)
+
+    // ── 3. Función async con strings ──
+    escribir("")
+    escribir("--- 3. Async con strings ---")
+    variable r3 = saludar("Mundo").unir()
+    escribir(r3)
+
+    // ── 4. Múltiples llamadas async ──
+    escribir("")
+    escribir("--- 4. Múltiples futures en paralelo ---")
+    variable f1 = suma(1, 2)
+    variable f2 = suma(3, 4)
+    variable f3 = suma(5, 6)
+
+    variable total = f1.unir() + f2.unir() + f3.unir()
+    escribir("Total (1+2 + 3+4 + 5+6) = " + total)
+
+    escribir("")
+    escribir("=== Fin del ejemplo ===")
+}
+
+main()
