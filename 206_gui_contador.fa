@@ -1,6 +1,6 @@
 // GUI Nativa — Contador interactivo
 // Demuestra: boton con callback, variable de estado, label dinámico
-// Ejecutar: forja ejecutar --native examples/206_gui_contador.fa
+// Ejecutar: forja ejecutar --native ejemplos/206_gui_contador.fa
 
 importar "gui"
 

@@ -1,6 +1,6 @@
 /// 🧪 Ejemplo 211: Operaciones funcionales sobre colecciones
 /// Demostración del módulo std/colecciones con map, filter, reduce, etc.
-/// Ejecutar con: forja run examples/211_colecciones.fa
+/// Ejecutar con: forja run ejemplos/211_colecciones.fa
 
 importar "std/io"
 importar "std/colecciones"

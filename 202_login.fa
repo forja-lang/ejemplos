@@ -3,7 +3,7 @@
 // Formulario de login con modo oscuro, campos de texto,
 // validacion y boton de ingreso.
 //
-// Ejecutar: forja ejecutar examples/202_login.fa
+// Ejecutar: forja ejecutar ejemplos/202_login.fa
 // (auto-transpila, compila con cargo y abre la ventana)
 
 importar "gui"

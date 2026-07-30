@@ -2,7 +2,7 @@
 /// Conceptos: canal, enviar, recibir, try_recibir, hilo, seleccionar
 /// Nivel: intermedio
 ///
-/// Para probar: forja run examples/async_await/canales.fa
+/// Para probar: forja run ejemplos/async_await/canales.fa
 
 importar "std/io"
 

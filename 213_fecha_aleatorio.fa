@@ -7,7 +7,7 @@
 /// limitación actual en la resolución de nombres con prefijo.
 ///
 /// Ejecutar:
-///   cargo run --bin forja -- ejecutar examples\213_fecha_aleatorio.fa
+///   cargo run --bin forja -- ejecutar ejemplos\213_fecha_aleatorio.fa
 
 importar "std/fecha"
 importar "std/aleatorio"

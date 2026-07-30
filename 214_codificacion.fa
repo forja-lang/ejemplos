@@ -8,7 +8,7 @@
 ///   - Caracteres especiales y UTF-8
 ///
 /// Ejecutar:
-///   cargo run --bin forja -- ejecutar examples\214_codificacion.fa
+///   cargo run --bin forja -- ejecutar ejemplos\214_codificacion.fa
 
 importar "std/codificacion"
 importar "std/resultado"

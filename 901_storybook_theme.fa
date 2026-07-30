@@ -7,8 +7,8 @@
 // ═══════════════════════════════════════════════════════════════════
 //
 //  Ejecutar:
-//    forja-gui examples/901_storybook_theme.fa
-//    forja-gui --dark --tema #004D40 examples/901_storybook_theme.fa
+//    forja-gui ejemplos/901_storybook_theme.fa
+//    forja-gui --dark --tema #004D40 ejemplos/901_storybook_theme.fa
 //
 // ═══════════════════════════════════════════════════════════════════
 

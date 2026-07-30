@@ -4,7 +4,7 @@
 //             caja_relativa, flex_layout
 // ═══════════════════════════════════════════════════════════════════
 //
-//  Ejecutar (nativo): forja ejecutar --native examples/301_layout_responsive.fa
+//  Ejecutar (nativo): forja ejecutar --native ejemplos/301_layout_responsive.fa
 //
 //  Requiere: cargo build --features gui
 //

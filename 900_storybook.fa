@@ -5,13 +5,13 @@
 // ═══════════════════════════════════════════════════════════════════
 #
 //  Ejecutar (nativo):
-//    forja-gui examples/900_storybook.fa
-//    forja-gui --dark examples/900_storybook.fa
-//    forja-gui --tema #FF5722 examples/900_storybook.fa
+//    forja-gui ejemplos/900_storybook.fa
+//    forja-gui --dark ejemplos/900_storybook.fa
+//    forja-gui --tema #FF5722 ejemplos/900_storybook.fa
 #
 //  Compilar y ejecutar:
 //    cargo build --features gui
-//    cargo run --bin forja --features gui -- ejemplo examples/900_storybook.fa
+//    cargo run --bin forja --features gui -- ejemplo ejemplos/900_storybook.fa
 #
 // ═══════════════════════════════════════════════════════════════════
 

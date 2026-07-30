@@ -4,7 +4,7 @@
 /// Escribi la hora y presiona VERIFICAR.
 ///
 /// Ejecutar:
-///   cargo run --bin forja --features gui -- ejecutar examples\212_alarma.fa --native
+///   cargo run --bin forja --features gui -- ejecutar ejemplos\212_alarma.fa --native
 
 importar "gui"
 

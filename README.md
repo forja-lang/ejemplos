@@ -1,4 +1,4 @@
-# Forja Examples
+# Ejemplos de Forja
 
 Más de 250 ejemplos del lenguaje **Forja** (.fa), organizados por tema y dificultad.
 
@@ -54,19 +54,19 @@ Más de 250 ejemplos del lenguaje **Forja** (.fa), organizados por tema y dificu
 
 ```bash
 # Con ForjaFast VM (por defecto)
-forja run examples/01_hola.fa
+forja run ejemplos/01_hola.fa
 
 # Con VM original
-forja run examples/01_hola.fa --vm vm
+forja run ejemplos/01_hola.fa --vm vm
 
 # Con JIT nativo
-forja run examples/01_hola.fa --vm jit
+forja run ejemplos/01_hola.fa --vm jit
 
 # Compilar a nativo y ejecutar
-forja run examples/01_hola.fa --asm
+forja run ejemplos/01_hola.fa --asm
 
 # Tests
-forja test examples/124_atributo_test.fa
+forja test ejemplos/124_atributo_test.fa
 ```
 
 ## Repositorios relacionados

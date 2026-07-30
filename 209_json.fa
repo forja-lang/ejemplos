@@ -1,7 +1,7 @@
 // Ejemplo: Módulo JSON
 // Muestra parseo y generación de JSON con std/json
 #
-// Uso: forja ejecutar examples/209_json.fa
+// Uso: forja ejecutar ejemplos/209_json.fa
 
 importar "std/json"
 importar "std/archivo"

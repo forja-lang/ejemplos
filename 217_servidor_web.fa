@@ -1,5 +1,5 @@
 // Ejemplo: Servidor Web HTTP
-// Uso: forja ejecutar examples/217_servidor_web.fa
+// Uso: forja ejecutar ejemplos/217_servidor_web.fa
 #
 // NOTA: Para probar el servidor real, descomentar iniciar(servidor) al final.
 // El servidor se ejecuta en un bucle infinito esperando conexiones.

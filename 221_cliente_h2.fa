@@ -1,6 +1,6 @@
 // Ejemplo 221: Cliente HTTP/2 (h2c)
 #
-// Uso: forja run examples/221_cliente_h2.fa
+// Uso: forja run ejemplos/221_cliente_h2.fa
 // Requiere: un servidor HTTP/2 corriendo en http://localhost:9500/
 // (ver example 220)
 

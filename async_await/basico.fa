@@ -2,7 +2,7 @@
 /// Conceptos: funcion asincrona, await, unir, future
 /// Nivel: básico
 ///
-/// Para probar: forja run examples/async_await/basico.fa
+/// Para probar: forja run ejemplos/async_await/basico.fa
 
 importar "std/io"
 

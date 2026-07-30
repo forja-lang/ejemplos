@@ -1,5 +1,5 @@
 // 🎓 Lección 11: Mapas (diccionarios)
-// Ejecutar con: forja run examples/11_mapas.fa --vm vm
+// Ejecutar con: forja run ejemplos/11_mapas.fa --vm vm
 // Los mapas guardan pares clave→valor
 
 variable persona = {"nombre": "Ana", "edad": 25, "ciudad": "Lima"}

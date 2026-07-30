@@ -8,7 +8,7 @@
 ///   - Verificación de integridad (mismo input → mismo hash)
 ///
 /// Ejecutar:
-///   cargo run --bin forja -- ejecutar examples\215_hash.fa
+///   cargo run --bin forja -- ejecutar ejemplos\215_hash.fa
 
 importar "std/hash"
 importar "std/resultado"

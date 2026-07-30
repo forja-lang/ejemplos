@@ -1,5 +1,5 @@
 // GUI Nativa — Hola Mundo
-// Ejecutar: forja ejecutar --native examples/205_gui_hola.fa
+// Ejecutar: forja ejecutar --native ejemplos/205_gui_hola.fa
 
 importar "gui"
 

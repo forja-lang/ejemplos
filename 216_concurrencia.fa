@@ -11,7 +11,7 @@
 /// Este ejemplo demuestra la API correcta. Cuando la VM madure,
 /// los patrones funcionarán en paralelo sin cambiar el código.
 ///
-/// Para probar: target\release\forja.exe run examples/216_concurrencia.fa
+/// Para probar: target\release\forja.exe run ejemplos/216_concurrencia.fa
 
 importar "std/io"
 importar "std/concurrencia"

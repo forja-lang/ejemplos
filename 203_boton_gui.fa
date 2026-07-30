@@ -1,5 +1,5 @@
 // Ejemplo de boton interactivo con Xilem
-// Ejecutar: forja ejecutar examples/203_boton_gui.fa
+// Ejecutar: forja ejecutar ejemplos/203_boton_gui.fa
 
 importar "gui"
 

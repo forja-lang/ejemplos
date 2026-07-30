@@ -2,7 +2,7 @@
 /// Conceptos: hilo, unir, paralelismo, múltiples tareas
 /// Nivel: intermedio
 ///
-/// Para probar: forja run examples/async_await/paralelo.fa
+/// Para probar: forja run ejemplos/async_await/paralelo.fa
 
 importar "std/io"
 importar "std/concurrencia"

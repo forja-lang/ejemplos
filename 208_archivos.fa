@@ -1,7 +1,7 @@
 // Ejemplo: Sistema de Archivos
 // Muestra todas las operaciones del módulo std/archivo
 #
-// Uso: forja ejecutar examples/208_archivos.fa
+// Uso: forja ejecutar ejemplos/208_archivos.fa
 
 importar "std/archivo"
 

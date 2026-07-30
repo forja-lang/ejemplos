@@ -5,8 +5,8 @@
 //  - Con --native: abre ventana GUI con Xilem
 //
 //  Ejecutar:
-//    forja ejecutar examples/403_login_funcional.fa       ← consola
-//    forja ejecutar --native examples/403_login_funcional.fa  ← ventana GUI
+//    forja ejecutar ejemplos/403_login_funcional.fa       ← consola
+//    forja ejecutar --native ejemplos/403_login_funcional.fa  ← ventana GUI
 // ─────────────────────────────────────────────────
 
 importar "gui"

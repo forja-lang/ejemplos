@@ -1,6 +1,6 @@
 // GUI Nativa — Demostración de Widgets
 // Muestra: label, boton, text_input, progress_bar, slider, checkbox
-// Ejecutar: forja ejecutar --native examples/207_gui_widgets.fa
+// Ejecutar: forja ejecutar --native ejemplos/207_gui_widgets.fa
 
 importar "gui"
 
