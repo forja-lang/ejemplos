@@ -2,7 +2,7 @@
 /// Conceptos: builder, construcción paso a paso, objetos complejos, fluent interface
 /// Nivel: intermedio
 
-importar "std/io"
+importar std/io
 
 // El patrón Builder separa la construcción de un objeto complejo
 // de su representación final, permitiendo crear diferentes
@@ -143,7 +143,7 @@ funcion main() {
     escribir("  ${servidor.describir()}")
 
     escribir("")
-    escribir("Ventajas del Builder:")
+    escribir("Ventajas del compilador:")
     escribir("  • Construcción paso a paso con nombres descriptivos")
     escribir("  • Mismo proceso de construcción produce diferentes representaciones")
     escribir("  • Interfaz fluida (method chaining) para código más legible")
