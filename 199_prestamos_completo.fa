@@ -1,0 +1,309 @@
+/// Sistema completo de Ownership y Préstamos en Forja
+/// Conceptos: ownership, movimiento, préstamo inmutable (&T), préstamo mutable (&mut T),
+///            liberación automática por ámbito, auto-transición PrestadaInmutable(0)→Viva,
+///            exclusividad de préstamos mutables, múltiples préstamos inmutables
+/// Nivel: avanzado
+/// Requiere: Forja v0.8.8+
+
+importar "std/io"
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// 1. OWNERSHIP (PROPIEDAD) BÁSICO
+// ═══════════════════════════════════════════════════════════════════════════════
+
+funcion demo_ownership() {
+    escribir("═══ 1. OWNERSHIP (PROPIEDAD) ═══\n")
+
+    // Cada valor tiene un único dueño
+    variable original = [1, 2, 3]
+    escribir("  Array original: ${original}")
+
+    // MOVIMIENTO: al asignar, el ownership se transfiere
+    variable movido = original
+    escribir("  Después de mover a 'movido': ${movido}")
+
+    // ❌ 'original' ya no es válido — fue movido
+    // Para evitar errores, prestamos en lugar de mover:
+    // escribir("  ${original}")  // ❌ Error: variable fue movida
+
+    escribir("  ✔ El ownership se transfiere al asignar\n")
+
+    // Usar & para prestar SIN mover
+    variable datos = [10, 20, 30]
+    variable ref = &datos         // préstamo inmutable (&T)
+    escribir("  datos original: ${datos}")
+    escribir("  ref (préstamo): ${ref}")
+    // ✅ datos sigue siendo válido porque fue prestado, no movido
+    escribir("  ✔ datos sigue siendo válido después del préstamo: ${datos}\n")
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// 2. PRÉSTAMO INMUTABLE (&T) — Múltiples lectores simultáneos
+// ═══════════════════════════════════════════════════════════════════════════════
+
+funcion demo_prestamo_inmutable() {
+    escribir("═══ 2. PRÉSTAMO INMUTABLE (&T) ═══\n")
+    escribir("  Regla: múltiples &T pueden coexistir\n")
+
+    variable contador = 100
+    escribir("  contador = ${contador}")
+
+    // Múltiples préstamos inmutables simultáneos ✅
+    variable a = &contador
+    variable b = &contador
+    variable c = &contador
+
+    escribir("  a = ${a}, b = ${b}, c = ${c}")
+    escribir("  ✔ Todos leen el mismo valor simultáneamente")
+    escribir("  contador original: ${contador}\n")
+    // Los préstamos a, b, c se liberan al salir de la función
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// 3. PRÉSTAMO MUTABLE (&mut T) — Exclusividad total
+// ═══════════════════════════════════════════════════════════════════════════════
+
+funcion demo_prestamo_mutable() {
+    escribir("═══ 3. PRÉSTAMO MUTABLE (&mut T) ═══\n")
+    escribir("  Regla: solo UN préstamo mutable a la vez\n")
+
+    variable puntaje = 50
+    escribir("  puntaje original = ${puntaje}")
+
+    // Préstamo mutable — permite modificar
+    // (En este ejemplo usamos &mut conceptualmente)
+    {
+        variable ref_mut = &puntaje
+        ref_mut = ref_mut + 25
+        escribir("  Dentro del bloque: ref_mut = ${ref_mut}")
+
+        // ❌ No se puede tener otro préstamo (inmutable o mutable) simultáneo
+        // variable otro = &puntaje  // ❌ Error: ya tiene préstamo mutable activo
+    }
+    // Al salir del bloque, el préstamo mutable se libera automáticamente
+
+    escribir("  Fuera del bloque: puntaje = ${puntaje}")
+    escribir("  ✔ La variable vuelve a estar disponible después del ámbito\n")
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// 4. PARÁMETROS PRESTADOS (keyword 'prestado')
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// Función que toma un parámetro prestado (inmutable — solo lectura)
+funcion mostrar_texto(texto: prestado Texto) {
+    escribir("  📖 Leyendo: \"${texto}\"")
+    // No podemos modificar 'texto' porque es prestado inmutable
+    // texto = "otro"  // ❌ Error si se intentara
+}
+
+// Función que toma un parámetro prestado mutable (lectura/escritura)
+funcion capitalizar(texto: prestado mut Texto) {
+    // Como es prestado mutable, podemos modificar el original
+    texto = "TEXTO CAPITALIZADO"
+    escribir("  🔧 Modificado a: \"${texto}\"")
+}
+
+funcion demo_parametros_prestados() {
+    escribir("═══ 4. PARÁMETROS PRESTADOS ═══\n")
+
+    variable saludo = "hola mundo"
+    escribir("  Antes: \"${saludo}\"")
+
+    // Llamada con préstamo inmutable — no se modifica
+    mostrar_texto(&saludo)
+    escribir("  Después de mostrar_texto: \"${saludo}\"\n")
+
+    // Llamada con préstamo mutable — se modifica
+    capitalizar(&saludo)
+    escribir("  Después de capitalizar: \"${saludo}\"\n")
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// 5. LIBERACIÓN AUTOMÁTICA POR ÁMBITO (Fix 1)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+funcion demo_liberacion_por_ambito() {
+    escribir("═══ 5. LIBERACIÓN AUTOMÁTICA POR ÁMBITO ═══\n")
+
+    variable valor = 42
+    escribir("  valor = ${valor}")
+
+    // Ámbito anidado — el préstamo existe solo dentro
+    si (verdadero) {
+        variable prestado = &valor
+        escribir("  Dentro del bloque: prestado = ${prestado}")
+        // prestado se libera automáticamente al salir del bloque
+    }
+
+    // ✅ valor está disponible nuevamente porque el préstamo se liberó
+    escribir("  Fuera del bloque: valor = ${valor}")
+    escribir("  ✔ Préstamo liberado automáticamente al salir del ámbito\n")
+
+    // Demostración con préstamo mutable en ámbito anidado
+    variable datos = [1, 2, 3]
+    escribir("  datos = ${datos}")
+
+    mientras (verdadero) {
+        variable ref_mut = &datos
+        ref_mut[0] = 999
+        escribir("  Dentro de mientras: ${ref_mut}")
+        romper  // Salimos del bucle, liberando el préstamo mutable
+    }
+
+    // ✅ datos está disponible porque el préstamo mutable se liberó al romper
+    escribir("  Fuera del bucle: datos = ${datos}")
+    escribir("  ✔ Préstamo mutable liberado al romper el bucle\n")
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// 6. AUTO-TRANSCIÓN PrestadaInmutable(0)→Viva (Fix 4)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+funcion demo_auto_transicion() {
+    escribir("═══ 6. AUTO-TRANSCIÓN PrestadaInmutable(0)→Viva ═══\n")
+
+    variable x = 100
+
+    {
+        variable ref1 = &x
+        variable ref2 = &x
+        variable ref3 = &x
+        escribir("  3 préstamos inmutables activos: ref1=${ref1}, ref2=${ref2}, ref3=${ref3}")
+    }
+    // Al salir, los 3 préstamos se liberan:
+    //   ref3 → PrestadaInmutable(2)
+    //   ref2 → PrestadaInmutable(1)
+    //   ref1 → PrestadaInmutable(0) → ¡Auto-transición a Viva!
+
+    escribir("  Después del ámbito: x = ${x}")
+    escribir("  ✔ Auto-transición: PrestadaInmutable(0) → Viva\n")
+
+    // Podemos volver a tomar prestado porque x está Viva otra vez
+    variable nueva_ref = &x
+    escribir("  Nuevo préstamo después de auto-transición: ${nueva_ref}")
+    escribir("  ✔ x volvió a estar disponible automáticamente\n")
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// 7. COMPATIBILIDAD DE PRÉSTAMOS EN FUNCIONES
+// ═══════════════════════════════════════════════════════════════════════════════
+
+funcion sumar_elementos(arr: prestado [Entero]) -> Entero {
+    variable total = 0
+    variable i = 0
+    mientras (i < longitud(arr)) {
+        total = total + arr[i]
+        i = i + 1
+    }
+    retornar total
+}
+
+funcion duplicar_elementos(arr: prestado mut [Entero]) {
+    variable i = 0
+    mientras (i < longitud(arr)) {
+        arr[i] = arr[i] * 2
+        i = i + 1
+    }
+}
+
+funcion demo_prestamos_con_funciones() {
+    escribir("═══ 7. PRÉSTAMOS EN FUNCIONES ═══\n")
+
+    variable numeros = [1, 2, 3, 4, 5]
+    escribir("  Original: ${numeros}")
+
+    // Préstamo inmutable a función (solo lectura)
+    variable suma = sumar_elementos(&numeros)
+    escribir("  Suma (usando &): ${suma}")
+    escribir("  Array intacto después de suma: ${numeros}")
+
+    // Préstamo mutable a función (modificación)
+    duplicar_elementos(&numeros)
+    escribir("  Duplicado (usando &mut): ${numeros}")
+
+    // Después de la modificación, podemos leer otra vez
+    suma = sumar_elementos(&numeros)
+    escribir("  Suma de duplicados: ${suma}\n")
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// 8. EJEMPLOS DE ERRORES QUE EL BORROW CHECKER DETECTA (comentados)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+funcion demo_errores_prevenidos() {
+    escribir("═══ 8. ERRORES QUE EL BORROW CHECKER PREVIENE ═══\n")
+    escribir("  (Estos ejemplos están comentados — causarían error en compilación)\n")
+
+    // ❌ Error 1: Usar variable después de moverla
+    // variable a = "texto"
+    // variable b = a
+    // escribir(a)  // Error: 'a' fue movida
+
+    // ❌ Error 2: Préstamo mutable con otro préstamo activo
+    // variable c = 10
+    // variable r1 = &c
+    // variable r2 = &mut c  // Error: ya tiene préstamo inmutable activo
+
+    // ❌ Error 3: Préstamo mutable activo + cualquier otro préstamo
+    // variable d = 20
+    // variable r3 = &mut d
+    // variable r4 = &d  // Error: ya tiene préstamo mutable activo
+
+    // ❌ Error 4: Escribir variable con préstamos activos
+    // variable e = 30
+    // variable r5 = &e
+    // e = 40  // Error: tiene préstamo(s) inmutable(s) activo(s)
+
+    // ❌ Error 5: Escribir variable con préstamo mutable activo
+    // variable f = 50
+    // variable r6 = &mut f
+    // f = 60  // Error: tiene préstamo mutable activo
+
+    escribir("  ✔ El BorrowChecker detecta todos estos errores en compilación\n")
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// 9. REGLAS COMPLETAS DEL SISTEMA DE PRÉSTAMOS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+funcion demo_reglas() {
+    escribir("═══ 9. RESUMEN — REGLAS DEL SISTEMA DE PRÉSTAMOS ═══\n")
+
+    escribir("  ┌─────────────────────────────────────────────────────────────┐")
+    escribir("  │ 1. Cada valor tiene un ÚNICO dueño (ownership)             │")
+    escribir("  │ 2. Al asignar, el ownership se MUEVE (no se copia)         │")
+    escribir("  │ 3. &T  — Múltiples préstamos inmutables simultáneos ✅     │")
+    escribir("  │ 4. &mut T — UN solo préstamo mutable exclusivo             │")
+    escribir("  │ 5. No puede haber &T y &mut T del mismo valor a la vez     │")
+    escribir("  │ 6. Los préstamos se liberan al salir del ámbito (auto)     │")
+    escribir("  │ 7. PrestadaInmutable(0) → Viva automáticamente             │")
+    escribir("  │ 8. El BorrowChecker valida TODO en tiempo de compilación   │")
+    escribir("  └─────────────────────────────────────────────────────────────┘\n")
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// MAIN
+// ═══════════════════════════════════════════════════════════════════════════════
+
+funcion main() {
+    escribir("╔═══════════════════════════════════════════════════════════════╗")
+    escribir("║      SISTEMA COMPLETO DE OWNERSHIP Y PRÉSTAMOS EN FORJA     ║")
+    escribir("╚═══════════════════════════════════════════════════════════════╝\n")
+
+    demo_ownership()
+    demo_prestamo_inmutable()
+    demo_prestamo_mutable()
+    demo_parametros_prestados()
+    demo_liberacion_por_ambito()
+    demo_auto_transicion()
+    demo_prestamos_con_funciones()
+    demo_errores_prevenidos()
+    demo_reglas()
+
+    escribir("╔═══════════════════════════════════════════════════════════════╗")
+    escribir("║  Todos los casos de uso demostrados exitosamente ✅         ║")
+    escribir("╚═══════════════════════════════════════════════════════════════╝")
+}
+
+main()
