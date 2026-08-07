@@ -22,7 +22,7 @@ funcion validar_edad(edad) -> Resultado<Entero, Texto> {
 funcion validar_email(email) -> Resultado<Texto, Texto> {
     variable tiene_arroba = falso
     variable i = 0
-    mientras (i < email.length()) {
+    mientras (i < email.longitud()) {
         si (email[i] == '@') {
             tiene_arroba = verdadero
         }
@@ -31,7 +31,7 @@ funcion validar_email(email) -> Resultado<Texto, Texto> {
     si (no tiene_arroba) {
         retornar Error("El email debe contener @")
     }
-    si (email.length() < 5) {
+    si (email.longitud() < 5) {
         retornar Error("El email es demasiado corto")
     }
     retornar Ok(email)

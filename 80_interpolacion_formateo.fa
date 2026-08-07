@@ -12,22 +12,22 @@ variable numero = 42
 // Uso de métodos de string dentro de interpolación:
 // Nota: los métodos se llaman con la sintaxis objeto.metodo()
 escribir("Texto original: ${texto}")
-escribir("En mayúsculas: ${texto.to_upper()}")
-escribir("En minúsculas: ${texto.to_lower()}")
-escribir("Longitud: ${texto.length()}")
+escribir("En mayúsculas: ${texto.a_mayusculas()}")
+escribir("En minúsculas: ${texto.a_minusculas()}")
+escribir("Longitud: ${texto.longitud()}")
 
 // Reemplazo de texto:
 variable saludo = "Hola Mundo"
-escribir("Reemplazo: ${saludo.replace('Mundo', 'Forja')}")
+escribir("Reemplazo: ${saludo.reemplazar('Mundo', 'Forja')}")
 
 // Combinaciones:
 variable nombre = "ana"
 variable ciudad = "buenos aires"
-escribir("Nombre formateado: ${nombre.to_upper()}")
-escribir("${nombre.to_upper()} vive en ${ciudad.to_upper()}")
+escribir("Nombre formateado: ${nombre.a_mayusculas()}")
+escribir("${nombre.a_mayusculas()} vive en ${ciudad.a_mayusculas()}")
 
 // Números y texto combinados:
 variable cantidad = 7
 variable item = "manzanas"
 escribir("Tengo ${cantidad} ${item}")
-escribir("Tengo ${cantidad} ${item.to_upper()}")
+escribir("Tengo ${cantidad} ${item.a_mayusculas()}")
