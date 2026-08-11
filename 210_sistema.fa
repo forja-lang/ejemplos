@@ -31,7 +31,7 @@ escribir("🌐 Variables de entorno:")
 // Leer PATH (funciona en Windows, Linux, macOS)
 variable path_val = sistema.variable_entorno("PATH")
 hacer_coincidir(path_val) {
-    caso Some(v) -> {
+    caso Algo(v) -> {
         escribir("  PATH = " + v)
     }
     caso Ninguno -> {
@@ -42,13 +42,13 @@ hacer_coincidir(path_val) {
 // Leer USERNAME (Windows) o USER (Linux/Mac)
 variable user = sistema.variable_entorno("USERNAME")
 hacer_coincidir(user) {
-    caso Some(v) -> {
+    caso Algo(v) -> {
         escribir("  USERNAME = " + v)
     }
     caso Ninguno -> {
         variable user2 = sistema.variable_entorno("USER")
         hacer_coincidir(user2) {
-            caso Some(v) -> {
+            caso Algo(v) -> {
                 escribir("  USER = " + v)
             }
             caso Ninguno -> {
@@ -61,7 +61,7 @@ hacer_coincidir(user) {
 // Variable que no existe (demostración de Ninguno)
 variable inexistente = sistema.variable_entorno("VARIABLE_QUE_NO_EXISTE_12345")
 hacer_coincidir(inexistente) {
-    caso Some(_) -> {
+    caso Algo(_) -> {
         escribir("  (inesperado) variable inexistente tiene valor")
     }
     caso Ninguno -> {

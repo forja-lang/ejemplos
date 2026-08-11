@@ -16,7 +16,7 @@ clase MiOpcion<T> {
         este.valor = nulo
     }
     
-    funcion es_some() -> Booleano {
+    funcion es_algo() -> Booleano {
         retornar este.tiene_valor
     }
     
@@ -26,7 +26,7 @@ clase MiOpcion<T> {
     
     funcion obtener_valor() -> Opcion<T> {
         si (este.tiene_valor) {
-            retornar Some(este.valor)
+            retornar Algo(este.valor)
         }
         retornar Ninguno
     }
@@ -51,24 +51,24 @@ funcion main() {
     variable opt_vacio = ninguno<Entero>()
     
     escribir("MiOpcion con 42:")
-    escribir("  ¿Es Some? ${opt_entero.es_some()}")
+    escribir("  ¿Es algo? ${opt_entero.es_algo()}")
     escribir("  ¿Es Ninguno? ${opt_entero.es_Ninguno()}")
     
     coincidir (opt_entero.obtener_valor()) {
-        caso Some(v) -> escribir("  Valor: ${v}")
+        caso Algo(v) -> escribir("  Valor: ${v}")
         caso Ninguno -> escribir("  Sin valor")
     }
     
     escribir("")
     escribir("MiOpcion con \"Hola\":")
     coincidir (opt_texto.obtener_valor()) {
-        caso Some(v) -> escribir("  Valor: ${v}")
+        caso Algo(v) -> escribir("  Valor: ${v}")
         caso Ninguno -> escribir("  Sin valor")
     }
     
     escribir("")
     escribir("MiOpcion vacío:")
-    escribir("  ¿Es Some? ${opt_vacio.es_some()}")
+    escribir("  ¿Es algo? ${opt_vacio.es_algo()}")
     escribir("  ¿Es Ninguno? ${opt_vacio.es_Ninguno()}")
 }
 

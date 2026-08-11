@@ -28,14 +28,14 @@ clase Pila<T> {
                 i = i + 1
             }
             este.elementos = nueva
-            retornar Some(valor)
+            retornar Algo(valor)
         }
         retornar Ninguno
     }
     
     funcion cima() -> Opcion<T> {
         si (longitud(este.elementos) > 0) {
-            retornar Some(este.elementos[0])
+            retornar Algo(este.elementos[0])
         }
         retornar Ninguno
     }

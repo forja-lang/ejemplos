@@ -1,0 +1,56 @@
+# Ejemplo: Convertir HomeBank XHB a JSON
+# Uso: 
+#   forja run ejemplos/ejemplo_xhb_a_json.fa
+#   forja run ejemplos/ejemplo_xhb_a_json.fa ARCHIVO_XHB=mi_presupuesto.xhb
+
+importar std/xhb
+importar std/archivo
+importar std/env
+
+variable env_opt = obtener("ARCHIVO_XHB")
+variable ruta_archivo = "C:/Users/gaucho/Downloads/celis.xhb"
+
+coincidir (env_opt) {
+    caso Algo(path) -> {
+        ruta_archivo = path
+        escribir("📌 Archivo seleccionado dinámicamente: " + ruta_archivo + "\n")
+    }
+    caso Ninguno() -> {
+        escribir("ℹ️ No se especificó la variable ARCHIVO_XHB.\n")
+        escribir("  Cargando archivo por defecto: 'demo.xhb'...\n")
+
+        variable existe = existe_archivo(ruta_archivo)
+        si (existe == falso) {
+            escribir("📄 Generando 'demo.xhb' de muestra en disco...\n")
+            variable contenido_demo = "<?xml version=\"1.0\"?>\n<homebank v=\"1.3\" d=\"050204\">\n<properties title=\"Mi Presupuesto Familiar\" curr=\"1\"/>\n<cur key=\"1\" flags=\"0\" iso=\"ARS\" name=\"Peso Argentino\" symb=\"$\" syprf=\"1\" dchar=\",\" gchar=\".\" frac=\"2\" rate=\"0\" mdate=\"0\"/>\n<account key=\"1\" pos=\"1\" type=\"1\" curr=\"1\" name=\"Cuenta Corriente BNA\" number=\"00481295\" bankname=\"Banco Nación\" initial=\"150000.00\" minimum=\"0.00\"/>\n<pay key=\"1\" name=\"Supermercado Coto\"/>\n<pay key=\"2\" name=\"Empresa de Luz\"/>\n<cat key=\"1\" flags=\"1\" name=\"Alimentos y Víveres\"/>\n<cat key=\"2\" flags=\"1\" name=\"Servicios Públicos\"/>\n<tag key=\"1\" name=\"hogar\"/>\n<ope date=\"737000\" amount=\"-12500.50\" account=\"1\" paymode=\"6\" payee=\"1\" category=\"1\" wording=\"Compra semanal de alimentos\" tags=\"hogar\"/>\n<ope date=\"737005\" amount=\"-4200.00\" account=\"1\" paymode=\"4\" payee=\"2\" category=\"2\" wording=\"Factura de electricidad\" tags=\"hogar\"/>\n</homebank>\n"
+            escribir_archivo(ruta_archivo, contenido_demo)
+        }
+    }
+}
+
+escribir("\n📂 Analizando archivo XHB: " + ruta_archivo + "\n")
+
+variable resultado = leer_xhb_como_json(ruta_archivo)
+
+coincidir (resultado) {
+    caso Ok(json_texto) -> {
+        escribir("✅ ¡ARCHIVO XHB CONVERTIDO A JSON EXITOSAMENTE!\n")
+        escribir("----------------------------------------------------\n")
+        escribir(json_texto)
+        
+        variable ruta_json = ruta_archivo + ".json"
+        variable res_guardar = escribir_archivo(ruta_json, json_texto)
+        coincidir (res_guardar) {
+            caso Ok(_) -> {
+                escribir("\n💾 JSON guardado en: " + ruta_json + "\n")
+            }
+            caso Error(e) -> {
+                escribir("\n❌ Error guardando JSON: " + e.mensaje + "\n")
+            }
+        }
+    }
+    caso Error(err) -> {
+        escribir("\n❌ ERROR AL CONVERTIR XHB A JSON.\n")
+        escribir("   Detalle: " + err.mensaje + "\n")
+    }
+}

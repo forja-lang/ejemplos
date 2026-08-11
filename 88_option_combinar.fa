@@ -10,7 +10,7 @@ funcion buscar_en_lista(lista, objetivo) -> Opcion<Entero> {
     variable i = 0
     mientras (i < longitud(lista)) {
         si (lista[i] == objetivo) {
-            retornar Some(i)
+            retornar Algo(i)
         }
         i = i + 1
     }
@@ -19,7 +19,7 @@ funcion buscar_en_lista(lista, objetivo) -> Opcion<Entero> {
 
 funcion primer_elem(lista) -> Opcion<Entero> {
     si (longitud(lista) > 0) {
-        retornar Some(lista[0])
+        retornar Algo(lista[0])
     }
     retornar Ninguno
 }
@@ -27,7 +27,7 @@ funcion primer_elem(lista) -> Opcion<Entero> {
 funcion ultimo_elem(lista) -> Opcion<Entero> {
     variable n = longitud(lista)
     si (n > 0) {
-        retornar Some(lista[n - 1])
+        retornar Algo(lista[n - 1])
     }
     retornar Ninguno
 }
@@ -36,9 +36,9 @@ funcion combinar_opciones(a, b) {
     escribir("Combinando opciones:")
     
     coincidir (a) {
-        caso Some(va) -> {
+        caso Algo(va) -> {
             coincidir (b) {
-                caso Some(vb) -> {
+                caso Algo(vb) -> {
                     escribir("  Ambos tienen valor: ${va} y ${vb}")
                 }
                 caso Ninguno -> {
@@ -48,7 +48,7 @@ funcion combinar_opciones(a, b) {
         }
         caso Ninguno -> {
             coincidir (b) {
-                caso Some(vb) -> {
+                caso Algo(vb) -> {
                     escribir("  Solo B tiene valor: ${vb}")
                 }
                 caso Ninguno -> {

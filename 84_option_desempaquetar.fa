@@ -1,5 +1,5 @@
 /// Desempaquetar Opcion con match
-/// Conceptos: coincidir, caso, patrones Some/Ninguno, extraer valores
+/// Conceptos: coincidir, caso, patrones Algo/Ninguno, extraer valores
 /// Nivel: intermedio
 
 importar "std/io"
@@ -11,7 +11,7 @@ funcion buscar_en_lista(lista, objetivo) -> Opcion<Entero> {
     variable i = 0
     mientras (i < longitud(lista)) {
         si (lista[i] == objetivo) {
-            retornar Some(i)
+            retornar Algo(i)
         }
         i = i + 1
     }
@@ -25,7 +25,7 @@ funcion main() {
     escribir("=== Desempaquetar Opcion ===")
     
     coincidir (resultado) {
-        caso Some(valor) -> {
+        caso Algo(valor) -> {
             escribir("Encontrado en índice: ${valor}")
         }
         caso Ninguno -> {
@@ -37,7 +37,7 @@ funcion main() {
     variable busqueda = buscar_en_lista(numeros, 99)
     
     coincidir (busqueda) {
-        caso Some(valor) -> {
+        caso Algo(valor) -> {
             escribir("Encontrado: ${valor}")
         }
         caso Ninguno -> {

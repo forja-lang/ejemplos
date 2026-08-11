@@ -1,0 +1,61 @@
+# Ejemplo Dinámico: Lector y Validador de Archivos HomeBank XHB
+# Uso: 
+#   forja run ejemplos/ejemplo_xhb_dinamico.fa
+
+importar std/xhb
+importar std/archivo
+importar std/env
+
+variable env_opt = obtener("ARCHIVO_XHB")
+variable ruta_archivo = "C:/Users/gaucho/Downloads/celis.xhb"
+
+coincidir (env_opt) {
+    caso Algo(path) -> {
+        ruta_archivo = path
+        escribir("📌 Archivo seleccionado dinámicamente: " + ruta_archivo + "\n")
+    }
+    caso Ninguno() -> {
+        escribir("ℹ️ No se especificó la variable ARCHIVO_XHB.\n")
+        escribir("  Cargando archivo por defecto: 'demo.xhb'...\n")
+
+        variable existe = existe_archivo(ruta_archivo)
+        si (existe == falso) {
+            escribir("📄 Generando 'demo.xhb' de muestra en disco...\n")
+            variable contenido_demo = "<?xml version=\"1.0\"?>\n<homebank v=\"1.3\" d=\"050204\">\n<properties title=\"Mi Presupuesto Familiar\" curr=\"1\"/>\n<cur key=\"1\" flags=\"0\" iso=\"ARS\" name=\"Peso Argentino\" symb=\"$\" syprf=\"1\" dchar=\",\" gchar=\".\" frac=\"2\" rate=\"0\" mdate=\"0\"/>\n<account key=\"1\" pos=\"1\" type=\"1\" curr=\"1\" name=\"Cuenta Corriente BNA\" number=\"00481295\" bankname=\"Banco Nación\" initial=\"150000.00\" minimum=\"0.00\"/>\n<pay key=\"1\" name=\"Supermercado Coto\"/>\n<pay key=\"2\" name=\"Empresa de Luz\"/>\n<cat key=\"1\" flags=\"1\" name=\"Alimentos y Víveres\"/>\n<cat key=\"2\" flags=\"1\" name=\"Servicios Públicos\"/>\n<tag key=\"1\" name=\"hogar\"/>\n<ope date=\"737000\" amount=\"-12500.50\" account=\"1\" paymode=\"6\" payee=\"1\" category=\"1\" wording=\"Compra semanal de alimentos\" tags=\"hogar\"/>\n<ope date=\"737005\" amount=\"-4200.00\" account=\"1\" paymode=\"4\" payee=\"2\" category=\"2\" wording=\"Factura de electricidad\" tags=\"hogar\"/>\n</homebank>\n"
+            escribir_archivo(ruta_archivo, contenido_demo)
+        }
+    }
+}
+
+escribir("\n📂 Analizando archivo XHB: " + ruta_archivo + "\n")
+
+variable resultado = leer_xhb(ruta_archivo)
+
+coincidir (resultado) {
+    caso Ok(doc) -> {
+        escribir("✅ ¡ARCHIVO PARSEADO EXITOSAMENTE!\n")
+        escribir("----------------------------------------------------\n")
+
+        escribir("📌 Formato XHB Versión: " + doc["versiones"]["file"] + "\n")
+        escribir("💱 Moneda [0]: " + doc["currencies"][0]["name"] + "\n")
+        escribir("🏦 Cuenta [0]: " + doc["accounts"][0]["name"] + "\n")
+        escribir("👤 Beneficiario [0]: " + doc["payees"][0]["name"] + "\n")
+        escribir("💸 Operación [0] Concepto: " + doc["operations"][0]["wording"] + "\n")
+        escribir("💸 Operación [0] Monto: " + doc["operations"][0]["amount"] + "\n")
+
+        escribir("\n🔄 Probando Re-serialización Roundtrip...\n")
+        variable res_serializar = serializar(doc)
+        coincidir (res_serializar) {
+            caso Ok(xml_salida) -> {
+                escribir("✨ ¡XML serializado correctamente con fidelidad byte por byte!\n")
+            }
+            caso Error(err) -> {
+                escribir("❌ Error serializando: " + err.mensaje + "\n")
+            }
+        }
+    }
+    caso Error(err) -> {
+        escribir("\n❌ ERROR AL LEER O PARSEAR EL ARCHIVO XHB.\n")
+        escribir("   Detalle: " + err.mensaje + "\n")
+    }
+}

@@ -3,7 +3,7 @@
 #
 // Uso: forja ejecutar ejemplos/208_archivos.fa
 
-importar "std/archivo"
+importar std/archivo
 
 funcion prueba_completa_archivos() {
     imprimir("=== Prueba Completa - Sistema de Archivos ===")

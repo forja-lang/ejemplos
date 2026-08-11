@@ -26,7 +26,7 @@ implementa Iterador<Entero> para IteradorLista {
         si (este.posicion < longitud(este.elementos)) {
             variable valor = este.elementos[este.posicion]
             este.posicion = este.posicion + 1
-            retornar Some(valor)
+            retornar Algo(valor)
         }
         retornar Ninguno
     }
@@ -51,7 +51,7 @@ implementa Iterador<Texto> para IteradorTexto {
         si (este.posicion < longitud(este.elementos)) {
             variable valor = este.elementos[este.posicion]
             este.posicion = este.posicion + 1
-            retornar Some(valor)
+            retornar Algo(valor)
         }
         retornar Ninguno
     }
@@ -72,7 +72,7 @@ funcion main() {
     mientras (iter_num.tiene_siguiente()) {
         variable val = iter_num.siguiente()
         coincidir (val) {
-            caso Some(v) -> escribir("  ${v}")
+            caso Algo(v) -> escribir("  ${v}")
             caso Ninguno -> escribir("  fin")
         }
     }
@@ -87,7 +87,7 @@ funcion main() {
     mientras (iter_txt.tiene_siguiente()) {
         variable val = iter_txt.siguiente()
         coincidir (val) {
-            caso Some(v) -> escribir("  ${v}")
+            caso Algo(v) -> escribir("  ${v}")
             caso Ninguno -> escribir("  fin")
         }
     }
