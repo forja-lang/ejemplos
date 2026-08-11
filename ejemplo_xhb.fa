@@ -1,0 +1,35 @@
+# Ejemplo de uso del módulo HomeBank XHB en Forja (std/xhb)
+
+importar std/xhb
+
+escribir("🏦 Probando parseador y serializador HomeBank XHB en Forja...\n")
+
+variable xml_demo = "<?xml version=\"1.0\"?>\n<homebank v=\"1.3\" d=\"050204\">\n<cur key=\"1\" flags=\"0\" iso=\"GBP\" name=\"Pound Sterling\" symb=\"£\" syprf=\"1\" dchar=\".\" gchar=\",\" frac=\"2\" rate=\"0\" mdate=\"0\"/>\n<account key=\"1\" pos=\"1\" type=\"1\" curr=\"1\" name=\"Cheque Account\" number=\"01548726554\" bankname=\"Amiga Universal Bank\" initial=\"76.21\" minimum=\"-30.48\" cheque1=\"8760951\"/>\n<pay key=\"1\" name=\"Amazon\"/>\n<cat key=\"1\" flags=\"1\" name=\"Food\"/>\n<tag key=\"1\" name=\"groceries\"/>\n<ope date=\"736968\" amount=\"-42.5\" account=\"1\" paymode=\"1\" payee=\"1\" category=\"1\" wording=\"Weekly shop\" tags=\"groceries\"/>\n</homebank>\n"
+
+# 1. Parsear XML XHB con el módulo std/xhb
+variable res_parse = parsear(xml_demo)
+coincidir (res_parse) {
+    caso Ok(doc) -> {
+        escribir("✅ Documento XHB parseado correctamente!\n")
+        escribir("   Versión del archivo: " + doc["versiones"]["file"] + "\n")
+        escribir("   Nombre de la cuenta [0]: " + doc["accounts"][0]["name"] + "\n")
+        escribir("   Beneficiario [0]: " + doc["payees"][0]["name"] + "\n")
+        escribir("   Operación [0] Monto: " + doc["operations"][0]["amount"] + "\n")
+        escribir("   Operación [0] Concepto: " + doc["operations"][0]["wording"] + "\n")
+
+        # 2. Serializar de nuevo a XML
+        variable res_serializar = serializar(doc)
+        coincidir (res_serializar) {
+            caso Ok(xml_salida) -> {
+                escribir("🚀 Serialización XHB exitosa con fidelidad byte a byte:\n")
+                escribir(xml_salida)
+            }
+            caso Error(err) -> {
+                escribir("❌ Error serializando: " + err.mensaje + "\n")
+            }
+        }
+    }
+    caso Error(err) -> {
+        escribir("❌ Error parseando XHB: " + err.mensaje + "\n")
+    }
+}
