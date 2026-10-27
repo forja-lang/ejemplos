@@ -2,16 +2,24 @@
 importar "gui"
 
 funcion buscar_usuario(usr, pass) -> Resultado {
-    si (usr == "admin" && pass == "1234") { retornar Ok("Bienvenido Admin") }
-    si (usr == "user" && pass == "pass") { retornar Ok("Bienvenido User") }
+    si (usr == "admin" && pass == "1234") {
+        retornar Ok("Bienvenido Admin")
+    }
+    si (usr == "user" && pass == "pass") {
+        retornar Ok("Bienvenido User")
+    }
     retornar Error("Usuario o contraseña incorrectos")
 }
 
 funcion probar(usr, pass) {
     variable r = buscar_usuario(usr, pass)
     coincidir (r) {
-        caso Ok(valor) -> { escribir("✅ " + usr + ": " + valor) }
-        caso Error(err) -> { escribir("❌ " + usr + ": " + err) }
+        caso Ok(valor) -> {
+            escribir("✅ " + usr + ": " + valor)
+        }
+        caso Error(err) -> {
+            escribir("❌ " + usr + ": " + err)
+        }
     }
 }
 
@@ -24,3 +32,4 @@ funcion main() {
 }
 
 main()
+
