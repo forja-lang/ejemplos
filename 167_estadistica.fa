@@ -1,12 +1,10 @@
 /// Estadística: Media, Mediana, Moda, Desviación
 /// Conceptos: estadística descriptiva, arrays, ordenamiento, análisis de datos
 /// Nivel: intermedio
-
 importar "std/io"
 
 // Implementación de funciones estadísticas básicas:
 // media, mediana, moda, varianza, desviación estándar.
-
 funcion ordenar_array(arr) {
     variable n = longitud(arr)
     variable i = 0
@@ -26,7 +24,7 @@ funcion ordenar_array(arr) {
 }
 
 funcion media(arr) -> Decimal {
-    variable suma = 0.0
+    variable suma = 0
     variable i = 0
     variable n = longitud(arr)
     mientras (i < n) {
@@ -36,7 +34,7 @@ funcion media(arr) -> Decimal {
     si (n > 0) {
         retornar suma / n
     }
-    retornar 0.0
+    retornar 0
 }
 
 funcion mediana(arr) -> Decimal {
@@ -46,10 +44,10 @@ funcion mediana(arr) -> Decimal {
         si (n % 2 == 1) {
             retornar ordenado[n / 2]
         } sino {
-            retornar (ordenado[n / 2 - 1] + ordenado[n / 2]) / 2.0
+            retornar (ordenado[n / 2 - 1] + ordenado[n / 2]) / 2
         }
     }
-    retornar 0.0
+    retornar 0
 }
 
 funcion moda(arr) {
@@ -87,7 +85,7 @@ funcion moda(arr) {
 
 funcion varianza(arr) -> Decimal {
     variable prom = media(arr)
-    variable suma = 0.0
+    variable suma = 0
     variable i = 0
     variable n = longitud(arr)
     mientras (i < n) {
@@ -98,18 +96,22 @@ funcion varianza(arr) -> Decimal {
     si (n > 1) {
         retornar suma / (n - 1)
     }
-    retornar 0.0
+    retornar 0
 }
 
 funcion desviacion_estandar(arr) -> Decimal {
     variable v = varianza(arr)
     // Raíz cuadrada manual usando el método de Newton
-    si (v <= 0) { retornar 0.0 }
+    si (v <= 0) {
+        retornar 0
+    }
     variable x = v
     variable i = 0
     mientras (i < 20) {
-        si (x == 0) { x = 0.001 }
-        x = (x + v / x) / 2.0
+        si (x == 0) {
+            x = 0.001
+        }
+        x = (x + v / x) / 2
         i = i + 1
     }
     retornar x
@@ -117,18 +119,18 @@ funcion desviacion_estandar(arr) -> Decimal {
 
 funcion main() {
     escribir("=== ESTADÍSTICA DESCRIPTIVA ===\n")
-
     variable datos = [4, 8, 6, 5, 3, 8, 7, 5, 9, 4, 6, 7, 5, 8, 6]
-    escribir("Datos: ${datos}")
-    escribir("Cantidad: ${longitud(datos)}")
-    escribir("Media: ${media(datos)}")
-    escribir("Mediana: ${mediana(datos)}")
-    escribir("Moda: ${moda(datos)}")
-    escribir("Varianza: ${varianza(datos)}")
-    escribir("Desviación Estándar: ${desviacion_estandar(datos)}")
+    escribir("Datos: " + datos + "")
+    escribir("Cantidad: " + longitud(datos) + "")
+    escribir("Media: " + media(datos) + "")
+    escribir("Mediana: " + mediana(datos) + "")
+    escribir("Moda: " + moda(datos) + "")
+    escribir("Varianza: " + varianza(datos) + "")
+    escribir("Desviación Estándar: " + desviacion_estandar(datos) + "")
     escribir("")
     escribir("La desviación estándar mide la dispersión de los datos.")
     escribir("Un valor bajo significa datos cercanos a la media.")
 }
 
 main()
+
