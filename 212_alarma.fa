@@ -5,7 +5,6 @@
 ///
 /// Ejecutar:
 ///   cargo run --bin forja --features gui -- ejecutar ejemplos\212_alarma.fa --native
-
 importar "gui"
 
 funcion verificar(tiempo_str: Texto, a1: Texto, h1: Texto, t1: Texto, a2: Texto, h2: Texto, t2: Texto, a3: Texto, h3: Texto, t3: Texto) -> Texto {
@@ -39,34 +38,6 @@ funcion main() {
     variable h3 = "16:30"
     variable t3 = "Recordatorio"
     variable resultado = "Escribi una hora y presiona VERIFICAR"
-
-    desplazable(
-        columna(
-
-            etiqueta("🔔 Alarmas"),
-
-            etiqueta(""),
-            etiqueta("🕐 Hora:"),
-            fila(
-                entrada_texto("tiempo_str"),
-                etiqueta("  (HH:MM)")
-            ),
-
-            etiqueta(""),
-            etiqueta("--- Alarma 1 ---"),
-            fila(casilla("", "a1"), entrada_texto("h1"), entrada_texto("t1")),
-
-            etiqueta("--- Alarma 2 ---"),
-            fila(casilla("", "a2"), entrada_texto("h2"), entrada_texto("t2")),
-
-            etiqueta("--- Alarma 3 ---"),
-            fila(casilla("", "a3"), entrada_texto("h3"), entrada_texto("t3")),
-
-            etiqueta(""),
-            boton("VERIFICAR", &verificar),
-
-            etiqueta(""),
-            escribir(resultado)
-        )
-    )
+    desplazable(columna(etiqueta("🔔 Alarmas"), etiqueta(""), etiqueta("🕐 Hora:"), fila(entrada_texto("tiempo_str"), etiqueta("  (HH:MM)")), etiqueta(""), etiqueta("--- Alarma 1 ---"), fila(casilla("", "a1"), entrada_texto("h1"), entrada_texto("t1")), etiqueta("--- Alarma 2 ---"), fila(casilla("", "a2"), entrada_texto("h2"), entrada_texto("t2")), etiqueta("--- Alarma 3 ---"), fila(casilla("", "a3"), entrada_texto("h3"), entrada_texto("t3")), etiqueta(""), boton("VERIFICAR", &verificar), etiqueta(""), escribir(resultado)))
 }
+
