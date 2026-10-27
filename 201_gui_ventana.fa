@@ -2,10 +2,10 @@
 //
 // Ejecutar: forja ejecutar ejemplos/201_gui_ventana.fa
 // (automaticamente transpila, compila con cargo y abre la ventana)
-
 importar "gui"
 
 funcion main() {
     escribir("Hola desde Forja con GUI!")
     escribir("Esta ventana usa Xilem con GPU.")
 }
+
