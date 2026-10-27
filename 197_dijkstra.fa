@@ -1,12 +1,10 @@
 /// Algoritmo de Dijkstra (Ruta más Corta)
 /// Conceptos: Dijkstra, ruta más corta, grafos ponderados, algoritmo voraz
 /// Nivel: experto
-
 importar "std/io"
 
 // El algoritmo de Dijkstra encuentra la ruta más corta desde un nodo
 // origen a todos los demás nodos en un grafo ponderado con pesos no negativos.
-
 constante INFINITO = 999999
 
 clase GrafoPonderado {
@@ -14,13 +12,12 @@ clase GrafoPonderado {
     matriz_adyacencia
 
     constructor() {
-        este.num_nodos = 0
-        este.matriz_adyacencia = []
+        self.num_nodos = 0
+        self.matriz_adyacencia = []
     }
-
     funcion init(n) {
-        este.num_nodos = n
-        este.matriz_adyacencia = []
+        self.num_nodos = n
+        self.matriz_adyacencia = []
         variable i = 0
         mientras (i < n) {
             variable fila = []
@@ -29,21 +26,20 @@ clase GrafoPonderado {
                 fila[j] = 0
                 j = j + 1
             }
-            este.matriz_adyacencia[i] = fila
+            self.matriz_adyacencia[i] = fila
             i = i + 1
         }
     }
-
     funcion agregar_arista(origen, destino, peso) {
-        este.matriz_adyacencia[origen][destino] = peso
-        este.matriz_adyacencia[destino][origen] = peso  // No dirigido
+        self.matriz_adyacencia[destino] = peso
+        self.matriz_adyacencia[origen] = peso
+    // No dirigido
     }
-
     funcion encontrar_minimo(distancias, visitados) -> Entero {
         variable min = INFINITO
         variable min_idx = -1
         variable i = 0
-        mientras (i < este.num_nodos) {
+        mientras (i < self.num_nodos) {
             si (!visitados[i] && distancias[i] < min) {
                 min = distancias[i]
                 min_idx = i
@@ -52,47 +48,37 @@ clase GrafoPonderado {
         }
         retornar min_idx
     }
-
     funcion dijkstra(origen) {
         variable distancias = []
         variable visitados = []
         variable previos = []
-
         variable i = 0
-        mientras (i < este.num_nodos) {
+        mientras (i < self.num_nodos) {
             distancias[i] = INFINITO
             visitados[i] = falso
             previos[i] = -1
             i = i + 1
         }
-
         distancias[origen] = 0
-
         variable j = 0
-        mientras (j < este.num_nodos - 1) {
-            variable u = este.encontrar_minimo(distancias, visitados)
-            si (u == -1) { continuar }
-
+        mientras (j < self.num_nodos - 1) {
+            variable u = self.encontrar_minimo(distancias, visitados)
+            si (u == -1) {
+                continuar
+            }
             visitados[u] = verdadero
-
             variable v = 0
-            mientras (v < este.num_nodos) {
-                si (!visitados[v] &&
-                    este.matriz_adyacencia[u][v] > 0 &&
-                    distancias[u] != INFINITO &&
-                    distancias[u] + este.matriz_adyacencia[u][v] < distancias[v]) {
-
-                    distancias[v] = distancias[u] + este.matriz_adyacencia[u][v]
+            mientras (v < self.num_nodos) {
+                si (!visitados[v] && self.matriz_adyacencia[u][v] > 0 && distancias[u] != INFINITO && distancias[u] + self.matriz_adyacencia[u][v] < distancias[v]) {
+                    distancias[v] = distancias[u] + self.matriz_adyacencia[u][v]
                     previos[v] = u
                 }
                 v = v + 1
             }
             j = j + 1
         }
-
         retornar [distancias, previos]
     }
-
     funcion reconstruir_ruta(previos, destino) {
         variable ruta = []
         variable actual = destino
@@ -101,7 +87,6 @@ clase GrafoPonderado {
             ruta[len_ruta] = actual
             actual = previos[actual]
         }
-
         // Invertir ruta
         variable invertida = []
         variable i = longitud(ruta) - 1
@@ -113,15 +98,14 @@ clase GrafoPonderado {
         }
         retornar invertida
     }
-
     funcion mostrar_matriz() {
         escribir("  Matriz de adyacencia:")
         variable i = 0
-        mientras (i < este.num_nodos) {
+        mientras (i < self.num_nodos) {
             escribir("    ", false)
             variable j = 0
-            mientras (j < este.num_nodos) {
-                escribir("${este.matriz_adyacencia[i][j]} ", false)
+            mientras (j < self.num_nodos) {
+                escribir("" + self.matriz_adyacencia[i][j] + " ", false)
                 j = j + 1
             }
             escribir("")
@@ -133,10 +117,8 @@ clase GrafoPonderado {
 funcion main() {
     escribir("=== ALGORITMO DE DIJKSTRA ===\n")
     escribir("Encuentra la ruta más corta en un grafo ponderado.\n")
-
     variable grafo = nuevo GrafoPonderado()
     grafo.init(6)
-
     // Grafo de ejemplo con 6 nodos (0-5)
     grafo.agregar_arista(0, 1, 4)
     grafo.agregar_arista(0, 2, 2)
@@ -147,31 +129,25 @@ funcion main() {
     grafo.agregar_arista(3, 4, 2)
     grafo.agregar_arista(3, 5, 6)
     grafo.agregar_arista(4, 5, 3)
-
     grafo.mostrar_matriz()
-
     escribir("")
     variable origen = 0
-    escribir("Calculando distancias desde el nodo ${origen}...\n")
-
+    escribir("Calculando distancias desde el nodo " + origen + "...\n")
     variable resultados = grafo.dijkstra(origen)
     variable distancias = resultados[0]
     variable previos = resultados[1]
-
-    escribir("Distancias más cortas desde el nodo ${origen}:")
+    escribir("Distancias más cortas desde el nodo " + origen + ":")
     variable i = 0
     mientras (i < grafo.num_nodos) {
-        escribir("  Hasta ${i}: ${distancias[i]}", false)
-
+        escribir("  Hasta " + i + ": " + distancias[i] + "", false)
         si (distancias[i] < INFINITO) {
             variable ruta = grafo.reconstruir_ruta(previos, i)
-            escribir("  (ruta: ${ruta})")
+            escribir("  (ruta: " + ruta + ")")
         } sino {
             escribir("  (sin ruta)")
         }
         i = i + 1
     }
-
     escribir("")
     escribir("Rutas detalladas:")
     variable destinos = [5, 3, 4]
@@ -179,10 +155,9 @@ funcion main() {
     mientras (j < longitud(destinos)) {
         variable dest = destinos[j]
         variable ruta = grafo.reconstruir_ruta(previos, dest)
-        escribir("  ${origen} → ${dest}: ${ruta}, distancia: ${distancias[dest]}")
+        escribir("  " + origen + " → " + dest + ": " + ruta + ", distancia: " + distancias[dest] + "")
         j = j + 1
     }
-
     escribir("")
     escribir("Características de Dijkstra:")
     escribir("  • Encuentra la ruta más corta desde un origen a todos los nodos")
@@ -192,3 +167,4 @@ funcion main() {
 }
 
 main()
+
