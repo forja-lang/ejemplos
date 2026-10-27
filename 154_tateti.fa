@@ -1,12 +1,10 @@
 /// Ta-Te-Ti (Tres en línea)
 /// Conceptos: matrices, arrays bidimensionales, lógica de juego, turnos
 /// Nivel: intermedio
-
 importar "std/io"
 
 // Implementación del clásico juego Ta-Te-Ti (3 en línea).
 // Dos jugadores se turnan para colocar fichas en un tablero 3x3.
-
 funcion crear_tablero() {
     variable t = []
     variable f = 0
@@ -28,7 +26,7 @@ funcion mostrar_tablero(tablero) {
     escribir("  1   2   3")
     variable f = 0
     mientras (f < 3) {
-        escribir("${f + 1} ${tablero[f][0]} | ${tablero[f][1]} | ${tablero[f][2]}")
+        escribir("" + f + 1 + " " + tablero[f][0] + " | " + tablero[f][1] + " | " + tablero[f][2] + "")
         si (f < 2) {
             escribir("  ---+---+---")
         }
@@ -82,36 +80,30 @@ funcion tablero_lleno(tablero) -> Booleano {
 funcion main() {
     escribir("=== TA-TE-TI (Tres en línea) ===\n")
     escribir("Jugador 1: X  |  Jugador 2: O\n")
-
     variable tablero = crear_tablero()
     variable turno = 1
     variable jugando = verdadero
-
     mientras (jugando) {
         mostrar_tablero(tablero)
         variable ficha = "X"
         si (turno == 2) {
             ficha = "O"
         }
-
-        escribir("\nTurno del Jugador ${turno} (${ficha})")
-
+        escribir("\nTurno del Jugador " + turno + " (" + ficha + ")")
         variable fila = pedir_numero("Fila (1-3): ")
         variable col = pedir_numero("Columna (1-3): ")
-
         // Validar entrada
         mientras (fila < 1 || fila > 3 || col < 1 || col > 3 || tablero[fila - 1][col - 1] != " ") {
             escribir("  Casilla inválida u ocupada. Intenta de nuevo.")
             fila = pedir_numero("Fila (1-3): ")
             col = pedir_numero("Columna (1-3): ")
         }
-
-        tablero[fila - 1][col - 1] = ficha
-
+        tablero[fila - 1][col - 1]
+        ficha
         si (verificar_ganador(tablero, ficha)) {
             mostrar_tablero(tablero)
             escribir("")
-            escribir("🎉 ¡Jugador ${turno} (${ficha}) GANA! 🎉")
+            escribir("🎉 ¡Jugador " + turno + " (" + ficha + ") GANA! 🎉")
             jugando = falso
         } sino {
             si (tablero_lleno(tablero)) {
@@ -132,3 +124,4 @@ funcion main() {
 }
 
 main()
+
