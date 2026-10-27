@@ -1,33 +1,35 @@
 /// Compilación con Flags
 /// Conceptos: compilación condicional, flags, debug vs release, configuración
 /// Nivel: experto
-
 importar "std/io"
 
 // La compilación condicional permite incluir o excluir código
 // según flags definidos en tiempo de compilación.
 // Útil para código de debug, características experimentales, etc.
-
 // NOTA: En Forja, la compilación condicional se implementa mediante
 // atributos y variables de entorno. Este ejemplo demuestra el concepto.
+constante MODO_DEBUG = verdadero
 
-constante MODO_DEBUG = verdadero    // Cambiar a falso para modo release
-constante MODO_BENCHMARK = falso    // Activar/desactivar benchmarks
+// Cambiar a falso para modo release
+constante MODO_BENCHMARK = falso
+
+// Activar/desactivar benchmarks
 constante PLATAFORMA_WINDOWS = verdadero
+
 constante PLATAFORMA_LINUX = falso
 
 funcion log_debug(mensaje) {
     si (MODO_DEBUG) {
-        escribir("  [DEBUG] ${mensaje}")
+        escribir("  [DEBUG] " + mensaje + "")
     }
 }
 
 funcion log_info(mensaje) {
-    escribir("  [INFO] ${mensaje}")
+    escribir("  [INFO] " + mensaje + "")
 }
 
 funcion log_error(mensaje) {
-    escribir("  [ERROR] ${mensaje}")
+    escribir("  [ERROR] " + mensaje + "")
 }
 
 funcion ejecutar_benchmark() {
@@ -41,7 +43,7 @@ funcion ejecutar_benchmark() {
             i = i + 1
         }
         variable fin = tiempo_actual()
-        escribir("  [BENCH] Suma completa en ${fin - inicio} ms")
+        escribir("  [BENCH] Suma completa en " + fin - inicio + " ms")
     }
 }
 
@@ -52,37 +54,33 @@ clase ConfiguracionCompilacion {
     features
 
     constructor() {
-        este.debug_mode = falso
-        este.platform = ""
-        este.optimizacion_nivel = 0
-        este.features = []
+        self.debug_mode = falso
+        self.platform = ""
+        self.optimizacion_nivel = 0
+        self.features = []
     }
-
     funcion init(debug, plat, optim) {
-        este.debug_mode = debug
-        este.platform = plat
-        este.optimizacion_nivel = optim
-
+        self.debug_mode = debug
+        self.platform = plat
+        self.optimizacion_nivel = optim
         si (MODO_DEBUG) {
-            este.features[0] = "logging"
-            este.features[1] = "assertions"
-            este.features[2] = "trazas"
+            self.features[0] = "logging"
+            self.features[1] = "assertions"
+            self.features[2] = "trazas"
         } sino {
-            este.features[0] = "optimizado"
-            este.features[1] = "produccion"
+            self.features[0] = "optimizado"
+            self.features[1] = "produccion"
         }
     }
-
     funcion mostrar() {
         escribir("  Configuración de compilación:")
-        escribir("    Debug mode: ${este.debug_mode}")
-        escribir("    Plataforma: ${este.platform}")
-        escribir("    Optimización: nivel ${este.optimizacion_nivel}")
+        escribir("    Debug mode: " + self.debug_mode + "")
+        escribir("    Plataforma: " + self.platform + "")
+        escribir("    Optimización: nivel " + self.optimizacion_nivel + "")
         escribir("    Features activas:")
-
         variable i = 0
-        mientras (i < longitud(este.features)) {
-            escribir("      - ${este.features[i]}")
+        mientras (i < longitud(self.features)) {
+            escribir("      - " + self.features[i] + "")
             i = i + 1
         }
     }
@@ -90,21 +88,16 @@ clase ConfiguracionCompilacion {
 
 funcion main() {
     escribir("=== COMPILACIÓN CONDICIONAL ===\n")
-
     variable config = nuevo ConfiguracionCompilacion()
-
     escribir("--- Configuración actual ---")
     config.init(MODO_DEBUG, "Windows", 2)
     config.mostrar()
-
     escribir("")
     log_info("Iniciando aplicación...")
     log_debug("Variables inicializadas correctamente")
     log_debug("Conectando módulos...")
-
     escribir("")
     ejecutar_benchmark()
-
     escribir("")
     // Compilación condicional por plataforma
     si (PLATAFORMA_WINDOWS) {
@@ -112,17 +105,14 @@ funcion main() {
         escribir("    - Llamada a Win32 API")
         escribir("    - Usando rutas con \\")
     }
-
     si (PLATAFORMA_LINUX) {
         escribir("  🐧 Usando API de POSIX")
         escribir("    - Llamada a system calls")
         escribir("    - Usando rutas con /")
     }
-
     escribir("")
     log_debug("Finalizando ejecución...")
     log_info("Programa completado.")
-
     escribir("")
     escribir("Usos comunes de compilación condicional:")
     escribir("  • #[si(debug)] vs #[si(no(debug))]")
@@ -130,7 +120,6 @@ funcion main() {
     escribir("  • Features experimentales vs estables")
     escribir("  • Diferentes niveles de logging")
     escribir("  • Código de prueba en builds de desarrollo")
-
     si (!MODO_DEBUG) {
         escribir("")
         escribir("⚠️  Compilado en modo RELEASE - sin código de depuración")
@@ -138,3 +127,4 @@ funcion main() {
 }
 
 main()
+
