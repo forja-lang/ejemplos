@@ -1,19 +1,17 @@
 /// Contador de Palabras en Texto
 /// Conceptos: procesamiento de texto, strings, análisis estadístico
 /// Nivel: básico
-
 importar "std/io"
 
 // Analizador de texto que cuenta palabras, caracteres, oraciones
 // y proporciona estadísticas básicas del texto ingresado.
-
 funcion contar_palabras(texto) -> Entero {
     variable contador = 0
     variable en_palabra = falso
     variable i = 0
     mientras (i < longitud(texto)) {
         variable c = texto[i]
-        si (c != ' ' && c != '\n' && c != '\t') {
+        si (c != " " && c != "\\n" && c != "\\t") {
             si (!en_palabra) {
                 contador = contador + 1
                 en_palabra = verdadero
@@ -34,7 +32,7 @@ funcion contar_caracteres_sin_espacios(texto) -> Entero {
     variable contador = 0
     variable i = 0
     mientras (i < longitud(texto)) {
-        si (texto[i] != ' ' && texto[i] != '\n' && texto[i] != '\t') {
+        si (texto[i] != " " && texto[i] != "\\n" && texto[i] != "\\t") {
             contador = contador + 1
         }
         i = i + 1
@@ -47,7 +45,7 @@ funcion contar_oraciones(texto) -> Entero {
     variable i = 0
     mientras (i < longitud(texto)) {
         variable c = texto[i]
-        si (c == '.' || c == '!' || c == '?') {
+        si (c == "." || c == "!" || c == "?") {
             contador = contador + 1
         }
         i = i + 1
@@ -64,7 +62,7 @@ funcion encontrar_palabra_mas_larga(texto) -> Texto {
     variable i = 0
     mientras (i < longitud(texto)) {
         variable c = texto[i]
-        si (c != ' ' && c != '\n' && c != '\t' && c != '.' && c != ',' && c != '!' && c != '?') {
+        si (c != " " && c != "\\n" && c != "\\t" && c != "." && c != "," && c != "!" && c != "?") {
             palabra_actual = palabra_actual + c
         } sino {
             si (longitud(palabra_actual) > longitud(mas_larga)) {
@@ -88,7 +86,6 @@ funcion frecuencia_letras(texto) {
         frecuencias[i] = 0
         i = i + 1
     }
-
     variable total_letras = 0
     variable j = 0
     mientras (j < longitud(texto)) {
@@ -103,13 +100,12 @@ funcion frecuencia_letras(texto) {
         }
         j = j + 1
     }
-
     escribir("\nFrecuencia de letras:")
     variable l = 0
     mientras (l < 26) {
         si (frecuencias[l] > 0) {
             variable pct = (frecuencias[l] * 100) / total_letras
-            escribir("  ${letras[l]}: ${frecuencias[l]} (${pct}%)")
+            escribir("  " + letras[l] + ": " + frecuencias[l] + " (" + pct + "%)")
         }
         l = l + 1
     }
@@ -118,7 +114,6 @@ funcion frecuencia_letras(texto) {
 funcion main() {
     escribir("=== CONTADOR DE PALABRAS ===\n")
     escribir("Ingresa un texto (termina con una línea vacía):\n")
-
     variable texto = ""
     variable linea = leer()
     mientras (longitud(linea) > 0) {
@@ -128,29 +123,26 @@ funcion main() {
         texto = texto + linea
         linea = leer()
     }
-
     si (longitud(texto) == 0) {
         escribir("No ingresaste ningún texto.")
         retornar
     }
-
     variable num_palabras = contar_palabras(texto)
     variable num_caracteres = contar_caracteres(texto)
     variable num_car_sin_esp = contar_caracteres_sin_espacios(texto)
     variable num_oraciones = contar_oraciones(texto)
     variable palabra_larga = encontrar_palabra_mas_larga(texto)
     variable prom_palabra = num_car_sin_esp / num_palabras
-
     escribir("")
     escribir("=== RESULTADOS ===")
-    escribir("Palabras:          ${num_palabras}")
-    escribir("Caracteres:        ${num_caracteres}")
-    escribir("Caracteres (sin espacios): ${num_car_sin_esp}")
-    escribir("Oraciones:         ${num_oraciones}")
-    escribir("Palabra más larga: '${palabra_larga}' (${longitud(palabra_larga)} letras)")
-    escribir("Promedio letras/palabra: ${prom_palabra}")
-
+    escribir("Palabras:          " + num_palabras + "")
+    escribir("Caracteres:        " + num_caracteres + "")
+    escribir("Caracteres (sin espacios): " + num_car_sin_esp + "")
+    escribir("Oraciones:         " + num_oraciones + "")
+    escribir("Palabra más larga: '" + palabra_larga + "' (" + longitud(palabra_larga) + " letras)")
+    escribir("Promedio letras/palabra: " + prom_palabra + "")
     frecuencia_letras(texto)
 }
 
 main()
+
