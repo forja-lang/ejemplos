@@ -5,7 +5,6 @@
 //
 // O transpilar: forja transpilar ejemplos/205_gui_completo.fa
 //               cd .forja_gui_cache && cargo run --release
-
 importar "gui"
 
 // Callbacks
@@ -29,86 +28,16 @@ funcion main() {
     variable activo = verdadero
     variable progreso = 0.75
     variable resultado = ""
-    
-    columna(
-        // ─── Header ───
-        etiqueta("=================================="),
-        etiqueta("      FORJA GUI COMPLETA"),
-        etiqueta("=================================="),
-        espacio(10),
-        
-        // ─── Sección: Texto ───
-        etiqueta("📝 Widgets de Texto:"),
-        etiqueta("Texto estático normal"),
-        etiqueta_dinamica("mensaje"),
-        espacio(5),
-        
-        // ─── Sección: Input ───
-        etiqueta("✏️ Entrada de datos:"),
-        etiqueta("Nombre:"),
-        entrada_texto("nombre"),
-        etiqueta("Mensaje:"),
-        area_texto("mensaje"),
-        espacio(5),
-        
-        // ─── Sección: Datos ───
-        etiqueta("📊 Widgets de datos:"),
-        etiqueta("Volumen:"),
-        deslizante("volumen", 0, 100),
-        etiqueta("Progreso:"),
-        barra_progreso("progreso"),
-        etiqueta("Activo:"),
-        casilla("Activar", "activo"),
-        espacio(5),
-        
-        // ─── Sección: Presentación ───
-        etiqueta("🎨 Widgets de presentación:"),
-        texto_enriquecido("**Texto** en *Markdown*"),
-        separador(),
-        cargando(),
-        espacio(10),
-        
-        // ─── Botones ───
-        etiqueta("=================================="),
-        boton("🎯 Saludar", &al_saludar),
-        boton("📨 Enviar formulario", &al_enviar),
-        espacio(10),
-        
-        // ─── Layout anidado ───
-        etiqueta("📐 Layout anidado (fila dentro de columna):"),
-        fila(
-            etiqueta("[Izquierda]"),
-            espacio(20),
-            etiqueta("[Centro]"),
-            espacio(20),
-            etiqueta("[Derecha]")
-        ),
-        espacio(10),
-        
-        // ─── Layout en pila (ZStack) ───
-        etiqueta("📚 Pila (ZStack) — widgets superpuestos:"),
-        pila(
-            etiqueta("--- Fondo ---"),
-            etiqueta("  *** Encima ***")
-        ),
-        espacio(10),
-        
-        // ─── Desplazable ───
-        etiqueta("📜 Contenedor desplazable:"),
-        desplazable(
-            columna(
-                etiqueta("Línea 1"),
-                etiqueta("Línea 2"),
-                etiqueta("Línea 3"),
-                etiqueta("Línea 4"),
-                etiqueta("Línea 5")
-            )
-        ),
-        espacio(10),
-        
-        // ─── Footer ───
-        separador(),
-        etiqueta("Forja GUI v0.7 — Xilem 0.4"),
-        etiqueta("==================================")
-    )
+    // ─── Header ───
+    // ─── Sección: Texto ───
+    // ─── Sección: Input ───
+    // ─── Sección: Datos ───
+    // ─── Sección: Presentación ───
+    // ─── Botones ───
+    // ─── Layout anidado ───
+    // ─── Layout en pila (ZStack) ───
+    // ─── Desplazable ───
+    // ─── Footer ───
+    columna(etiqueta("=================================="), etiqueta("      FORJA GUI COMPLETA"), etiqueta("=================================="), espacio(10), etiqueta("📝 Widgets de Texto:"), etiqueta("Texto estático normal"), etiqueta_dinamica("mensaje"), espacio(5), etiqueta("✏️ Entrada de datos:"), etiqueta("Nombre:"), entrada_texto("nombre"), etiqueta("Mensaje:"), area_texto("mensaje"), espacio(5), etiqueta("📊 Widgets de datos:"), etiqueta("Volumen:"), deslizante("volumen", 0, 100), etiqueta("Progreso:"), barra_progreso("progreso"), etiqueta("Activo:"), casilla("Activar", "activo"), espacio(5), etiqueta("🎨 Widgets de presentación:"), texto_enriquecido("**Texto** en *Markdown*"), separador(), cargando(), espacio(10), etiqueta("=================================="), boton("🎯 Saludar", &al_saludar), boton("📨 Enviar formulario", &al_enviar), espacio(10), etiqueta("📐 Layout anidado (fila dentro de columna):"), fila(etiqueta("[Izquierda]"), espacio(20), etiqueta("[Centro]"), espacio(20), etiqueta("[Derecha]")), espacio(10), etiqueta("📚 Pila (ZStack) — widgets superpuestos:"), pila(etiqueta("--- Fondo ---"), etiqueta("  *** Encima ***")), espacio(10), etiqueta("📜 Contenedor desplazable:"), desplazable(columna(etiqueta("Línea 1"), etiqueta("Línea 2"), etiqueta("Línea 3"), etiqueta("Línea 4"), etiqueta("Línea 5"))), espacio(10), separador(), etiqueta("Forja GUI v0.7 — Xilem 0.4"), etiqueta("=================================="))
 }
+
