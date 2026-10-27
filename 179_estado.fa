@@ -1,55 +1,54 @@
 /// Patrón State con Enum
 /// Conceptos: state, enum, máquina de estados, comportamiento dinámico
 /// Nivel: avanzado
-
 importar "std/io"
 
 // El patrón State permite que un objeto altere su comportamiento
 // cuando su estado interno cambia. Usamos un `enum` (tipo algebraico)
 // para modelar los estados.
-
 tipo EstadoSemafaro = Rojo | Amarillo | Verde
 
 clase Semaforo {
     estado_actual
 
     constructor() {
-        este.estado_actual = Rojo
+        self.estado_actual = Rojo
     }
-
     funcion cambiar_estado(nuevo_estado) {
-        escribir("  🚦 Cambiando de ${este.mostrar_estado_actual()} → ${este.nombre_estado(nuevo_estado)}")
-        este.estado_actual = nuevo_estado
+        escribir("  🚦 Cambiando de " + self.mostrar_estado_actual() + " → " + self.nombre_estado(nuevo_estado) + "")
+        self.estado_actual = nuevo_estado
     }
-
     funcion nombre_estado(estado) -> Texto {
         coincidir (estado) {
-            caso Rojo -> { retornar "🔴 Rojo" }
-            caso Amarillo -> { retornar "🟡 Amarillo" }
-            caso Verde -> { retornar "🟢 Verde" }
-        }
-    }
-
-    funcion mostrar_estado_actual() -> Texto {
-        retornar este.nombre_estado(este.estado_actual)
-    }
-
-    funcion siguiente_estado() {
-        coincidir (este.estado_actual) {
             caso Rojo -> {
-                este.cambiar_estado(Verde)
-            }
-            caso Verde -> {
-                este.cambiar_estado(Amarillo)
+                retornar "🔴 Rojo"
             }
             caso Amarillo -> {
-                este.cambiar_estado(Rojo)
+                retornar "🟡 Amarillo"
+            }
+            caso Verde -> {
+                retornar "🟢 Verde"
             }
         }
     }
-
+    funcion mostrar_estado_actual() -> Texto {
+        retornar self.nombre_estado(self.estado_actual)
+    }
+    funcion siguiente_estado() {
+        coincidir (self.estado_actual) {
+            caso Rojo -> {
+                self.cambiar_estado(Verde)
+            }
+            caso Verde -> {
+                self.cambiar_estado(Amarillo)
+            }
+            caso Amarillo -> {
+                self.cambiar_estado(Rojo)
+            }
+        }
+    }
     funcion accion() {
-        coincidir (este.estado_actual) {
+        coincidir (self.estado_actual) {
             caso Rojo -> {
                 escribir("  🛑 ¡ALTO! Los vehículos deben detenerse.")
             }
@@ -71,46 +70,48 @@ clase ReproductorMusica {
     cancion_actual
 
     constructor() {
-        este.estado = Detenido
-        este.cancion_actual = ""
+        self.estado = Detenido
+        self.cancion_actual = ""
     }
-
     funcion nombre_estado(est) -> Texto {
         coincidir (est) {
-            caso Detenido -> { retornar "⏹️ Detenido" }
-            caso Reproduciendo -> { retornar "▶️ Reproduciendo" }
-            caso Pausado -> { retornar "⏸️ Pausado" }
-        }
-    }
-
-    funcion mostrar_estado() {
-        escribir("  Estado: ${este.nombre_estado(este.estado)}")
-        si (este.cancion_actual != "") {
-            escribir("  Canción: '${este.cancion_actual}'")
-        }
-    }
-
-    funcion play(cancion) {
-        coincidir (este.estado) {
             caso Detenido -> {
-                este.cancion_actual = cancion
-                este.estado = Reproduciendo
-                escribir("  🎵 Reproduciendo '${cancion}'")
+                retornar "⏹️ Detenido"
+            }
+            caso Reproduciendo -> {
+                retornar "▶️ Reproduciendo"
             }
             caso Pausado -> {
-                este.estado = Reproduciendo
-                escribir("  ▶️ Reanudando '${este.cancion_actual}'")
+                retornar "⏸️ Pausado"
+            }
+        }
+    }
+    funcion mostrar_estado() {
+        escribir("  Estado: " + self.nombre_estado(self.estado) + "")
+        si (self.cancion_actual != "") {
+            escribir("  Canción: '" + self.cancion_actual + "'")
+        }
+    }
+    funcion play(cancion) {
+        coincidir (self.estado) {
+            caso Detenido -> {
+                self.cancion_actual = cancion
+                self.estado = Reproduciendo
+                escribir("  🎵 Reproduciendo '" + cancion + "'")
+            }
+            caso Pausado -> {
+                self.estado = Reproduciendo
+                escribir("  ▶️ Reanudando '" + self.cancion_actual + "'")
             }
             caso Reproduciendo -> {
                 escribir("  ℹ️ Ya está reproduciendo")
             }
         }
     }
-
     funcion pausar() {
-        coincidir (este.estado) {
+        coincidir (self.estado) {
             caso Reproduciendo -> {
-                este.estado = Pausado
+                self.estado = Pausado
                 escribir("  ⏸️ Reproducción pausada")
             }
             caso Pausado -> {
@@ -121,15 +122,14 @@ clase ReproductorMusica {
             }
         }
     }
-
     funcion detener() {
-        coincidir (este.estado) {
+        coincidir (self.estado) {
             caso Reproduciendo -> {
-                este.estado = Detenido
+                self.estado = Detenido
                 escribir("  ⏹️ Reproducción detenida")
             }
             caso Pausado -> {
-                este.estado = Detenido
+                self.estado = Detenido
                 escribir("  ⏹️ Reproducción detenida")
             }
             caso Detenido -> {
@@ -142,44 +142,35 @@ clase ReproductorMusica {
 funcion main() {
     escribir("=== PATRÓN STATE CON ENUM ===\n")
     escribir("El comportamiento cambia según el estado interno.\n")
-
     escribir("--- Semáforo ---")
     variable semaforo = nuevo Semaforo()
     semaforo.accion()
-
     semaforo.siguiente_estado()
     semaforo.accion()
-
     semaforo.siguiente_estado()
     semaforo.accion()
-
     semaforo.siguiente_estado()
     semaforo.accion()
-
     escribir("")
     escribir("--- Reproductor de Música ---")
     variable reproductor = nuevo ReproductorMusica()
     reproductor.mostrar_estado()
-
     escribir("")
     reproductor.play("Bohemian Rhapsody")
     reproductor.mostrar_estado()
-
     escribir("")
     reproductor.pausar()
     reproductor.mostrar_estado()
-
     escribir("")
     reproductor.play("")
     reproductor.mostrar_estado()
-
     escribir("")
     reproductor.detener()
     reproductor.mostrar_estado()
-
     escribir("")
     escribir("El patrón State organiza el comportamiento específico")
     escribir("de cada estado sin usar condicionales complejos.")
 }
 
 main()
+
