@@ -1,12 +1,28 @@
-// Ejemplo: Servidor Web HTTP
-// Uso: forja ejecutar ejemplos/217_servidor_web.fa
-#
+NOTA
+
+Para
+
+probar
+
+el
+
+servidor
+
+real
+
+descomentar
+
+iniciar(servidor)
+
+al
+
 // NOTA: Para probar el servidor real, descomentar iniciar(servidor) al final.
 // El servidor se ejecuta en un bucle infinito esperando conexiones.
 // La VM tiene un limite de 1M instrucciones, por lo que no se muestra
 // el servidor corriendo en este test rapido.
+final.importar
 
-importar "std/servidor_web"
+"std/servidor_web"
 
 funcion manejador_inicio(solicitud) {
     variable respuesta = nuevo RespuestaHTTP()
@@ -18,11 +34,9 @@ funcion manejador_inicio(solicitud) {
 
 funcion main() {
     imprimir("Creando servidor web en puerto 8080...")
-
     variable servidor = nuevo ServidorWeb(8080)
     get(servidor, "/", manejador_inicio)
     post(servidor, "/datos", manejador_inicio)
-
     imprimir("Servidor configurado correctamente!")
     imprimir("Rutas registradas:")
     variable rutas = servidor._rutas
@@ -38,9 +52,11 @@ funcion main() {
         }
         i = i + 1
     }
-
-    // Para iniciar el servidor real (bucle infinito), descomentar:
-    // iniciar(servidor)
+// Para iniciar el servidor real (bucle infinito), descomentar:
+// iniciar(servidor)
 }
 
 main()
+
+// Ejemplo: Servidor Web HTTP
+// Uso: forja ejecutar ejemplos/217_servidor_web.fa
