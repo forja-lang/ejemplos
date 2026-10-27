@@ -1,12 +1,10 @@
 /// Simulación Monte Carlo
 /// Conceptos: simulación, probabilidad, números aleatorios, estimación
 /// Nivel: avanzado
-
 importar "std/io"
 
 // La simulación Monte Carlo usa muestreo aleatorio repetido para
 // estimar resultados numéricos. Aquí estimamos áreas y probabilidades.
-
 funcion pseudo_aleatorio(semilla) -> Decimal {
     variable a = 1664525
     variable c = 1013904223
@@ -16,9 +14,11 @@ funcion pseudo_aleatorio(semilla) -> Decimal {
 
 funcion generar_punto() -> Decimal {
     variable t = tiempo_actual()
-    variable x = t - truncar(t / 10.0) * 10.0
-    si (x < 0) { x = -x }
-    x = x / 10.0
+    variable x = t - truncar(t / 10) * 10
+    si (x < 0) {
+        x = -x
+    }
+    x = x / 10
     retornar x
 }
 
@@ -26,15 +26,15 @@ funcion estimar_area_circulo(puntos_total) -> Decimal {
     variable dentro = 0
     variable i = 0
     mientras (i < puntos_total) {
-        variable x = generar_punto() * 2.0 - 1.0
-        variable y = generar_punto() * 2.0 - 1.0
-        si (x * x + y * y <= 1.0) {
+        variable x = generar_punto() * 2 - 1
+        variable y = generar_punto() * 2 - 1
+        si (x * x + y * y <= 1) {
             dentro = dentro + 1
         }
         i = i + 1
     }
     variable proporcion = dentro
-    variable area_estimada = 4.0 * proporcion / puntos_total
+    variable area_estimada = 4 * proporcion / puntos_total
     retornar area_estimada
 }
 
@@ -74,20 +74,18 @@ funcion estimar_area_bajo_curva(puntos_total) -> Decimal {
 funcion main() {
     escribir("=== SIMULACIÓN MONTE CARLO ===\n")
     escribir("Usando muestreo aleatorio para estimar valores.\n")
-
     escribir("--- 1. Estimar π (área del círculo) ---")
     variable estimacion_pi = estimar_pi_montecarlo(1000)
-    escribir("  π ≈ ${estimacion_pi}")
-
+    escribir("  π ≈ " + estimacion_pi + "")
     escribir("")
     escribir("--- 2. Probabilidad suma de dados = 7 ---")
     variable prob = probabilidad_suma_dados(1000)
-    escribir("  P(suma=7) ≈ ${prob} (esperado: ~0.1667)")
-
+    escribir("  P(suma=7) ≈ " + prob + " (esperado: ~0.1667)")
     escribir("")
     escribir("--- 3. Área bajo f(x)=x² en [0,1] ---")
     variable area = estimar_area_bajo_curva(1000)
-    escribir("  Área ≈ ${area} (esperado: 0.3333)")
+    escribir("  Área ≈ " + area + " (esperado: 0.3333)")
 }
 
 main()
+
