@@ -1,5 +1,4 @@
 // Test de atributos/anotaciones @test
-
 @test
 funcion prueba_suma() {
     asegurar(suma(2, 2) == 4)
@@ -8,3 +7,4 @@ funcion prueba_suma() {
 funcion main() {
     escribir("Atributos funcionan correctamente!")
 }
+
