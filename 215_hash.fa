@@ -9,13 +9,12 @@
 ///
 /// Ejecutar:
 ///   cargo run --bin forja -- ejecutar ejemplos\215_hash.fa
-
 importar "std/hash"
+
 importar "std/resultado"
 
 funcion probar_sha256_basico() {
     escribir_linea("═══ SHA-256 BÁSICO ═══")
-
     // Texto simple
     variable texto1 = "Hola Mundo"
     variable hash1 = hash.sha256(texto1)
@@ -24,9 +23,7 @@ funcion probar_sha256_basico() {
         escribir_linea("SHA-256: " + hash1.valor)
         escribir_linea("Longitud: " + longitud(hash1.valor) + " caracteres")
     }
-
     escribir_linea("")
-
     // Texto con caracteres especiales
     variable texto2 = "Forja™ — Lenguaje ★ educativo"
     variable hash2 = hash.sha256(texto2)
@@ -39,12 +36,10 @@ funcion probar_sha256_basico() {
 funcion probar_consistencia() {
     escribir_linea("")
     escribir_linea("═══ CONSISTENCIA ═══")
-
     // Mismo input debe producir mismo hash
     variable texto = "Forja es genial"
     variable hash_a = hash.sha256(texto)
     variable hash_b = hash.sha256(texto)
-
     si (tipo(hash_a) == "resultado_ok" && tipo(hash_b) == "resultado_ok") {
         escribir_linea("Texto: '" + texto + "'")
         escribir_linea("Hash A: " + hash_a.valor)
@@ -57,17 +52,12 @@ funcion probar_consistencia() {
 funcion probar_diferentes_inputs() {
     escribir_linea("")
     escribir_linea("═══ DIFERENTES INPUTS → DIFERENTES HASHES ═══")
-
     // Inputs similares producen hashes completamente diferentes (efecto avalancha)
-    variable inputs = [
-        "hola",
-        "Hola",       // mayúscula inicial
-        "hola!",       // signo de exclamación
-        "hola!",       // duplicado para probar consistencia
-        "hola mundo",
-        "hola  mundo"  // doble espacio
-    ]
-
+    // mayúscula inicial
+    // signo de exclamación
+    // duplicado para probar consistencia
+    // doble espacio
+    variable inputs = ["hola", "Hola", "hola!", "hola!", "hola mundo", "hola  mundo"]
     variable i = 0
     mientras (i < longitud(inputs)) {
         variable resultado = hash.sha256(inputs[i])
@@ -81,7 +71,6 @@ funcion probar_diferentes_inputs() {
 funcion probar_error_vacio() {
     escribir_linea("")
     escribir_linea("═══ MANEJO DE ERRORES ═══")
-
     // Cadena vacía debe retornar error
     variable resultado = hash.sha256("")
     si (tipo(resultado) == "resultado_error") {
@@ -94,7 +83,6 @@ funcion probar_error_vacio() {
 funcion probar_hex_como_se_espera() {
     escribir_linea("")
     escribir_linea("═══ VERIFICACIÓN DE HASH CONOCIDO ═══")
-
     // SHA-256 de "abc" (conocido): 
     // ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
     variable resultado = hash.sha256("abc")
@@ -111,15 +99,14 @@ funcion probar_hex_como_se_espera() {
 funcion main() {
     escribir_linea("=== MÓDULO HASH SHA-256 ===")
     escribir_linea("")
-
     probar_sha256_basico()
     probar_consistencia()
     probar_diferentes_inputs()
     probar_error_vacio()
     probar_hex_como_se_espera()
-
     escribir_linea("")
     escribir_linea("=== ¡Todas las pruebas completadas! ===")
 }
 
 main()
+
