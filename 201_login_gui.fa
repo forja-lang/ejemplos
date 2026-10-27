@@ -1,7 +1,6 @@
 // 🎓 Lección 201: Login con Interfaz Gráfica de Terminal (GUI)
 // Una aplicación de login con estilo "GUI" usando arte ASCII.
 // Muestra: clases, arrays, validación, bucles y entrada/salida.
-
 // ─── CLASE USUARIO ───
 // Almacena los datos de cada usuario del sistema
 clase Usuario {
@@ -11,10 +10,10 @@ clase Usuario {
     nombre_completo
 
     constructor() {
-        este.usuario = ""
-        este.contrasena = ""
-        este.rol = ""
-        este.nombre_completo = ""
+        self.usuario = ""
+        self.contrasena = ""
+        self.rol = ""
+        self.nombre_completo = ""
     }
 }
 
@@ -26,11 +25,10 @@ clase SistemaLogin {
     usuario_actual
 
     constructor() {
-        este.sesion_activa = falso
-        este.usuario_actual = -1
-        este.usuarios = []
+        self.sesion_activa = falso
+        self.usuario_actual = -1
+        self.usuarios = []
     }
-
     funcion inicializar() {
         // Creamos usuarios de prueba
         // Admin
@@ -39,44 +37,39 @@ clase SistemaLogin {
         admin.contrasena = "1234"
         admin.rol = "Administrador"
         admin.nombre_completo = "Carlos Pérez"
-        este.usuarios[longitud(este.usuarios)] = admin
-
+        self.usuarios[longitud(self.usuarios)] = admin
         // Usuario normal 1
         variable user1 = nuevo Usuario()
         user1.usuario = "juan"
         user1.contrasena = "abcd"
         user1.rol = "Usuario"
         user1.nombre_completo = "Juan García"
-        este.usuarios[longitud(este.usuarios)] = user1
-
+        self.usuarios[longitud(self.usuarios)] = user1
         // Usuario normal 2
         variable user2 = nuevo Usuario()
         user2.usuario = "maria"
         user2.contrasena = "maria2024"
         user2.rol = "Usuario"
         user2.nombre_completo = "María López"
-        este.usuarios[longitud(este.usuarios)] = user2
+        self.usuarios[longitud(self.usuarios)] = user2
     }
-
     funcion autenticar(usuario, contrasena) -> Entero {
-        para (variable i = 0; i < longitud(este.usuarios); i = i + 1) {
-            variable u = este.usuarios[i]
+        para (variable i = 0; i < longitud(self.usuarios); i = i + 1) {
+            variable u = self.usuarios[i]
             si (u.usuario == usuario && u.contrasena == contrasena) {
-                este.sesion_activa = verdadero
-                este.usuario_actual = i
+                self.sesion_activa = verdadero
+                self.usuario_actual = i
                 retornar i
             }
         }
         retornar -1
     }
-
     funcion obtener_usuario_actual() {
-        retornar este.usuarios[este.usuario_actual]
+        retornar self.usuarios[self.usuario_actual]
     }
 }
 
 // ─── FUNCIONES DE INTERFAZ ───
-
 // Limpia la pantalla mostrando líneas en blanco
 funcion limpiar_pantalla() {
     repetir (30) {
@@ -188,13 +181,11 @@ funcion mostrar_usuarios(sistema) {
     linea_horizontal()
     linea_con_texto("👥  USUARIOS DEL SISTEMA  👥")
     linea_con_texto("")
-    
     para (variable i = 0; i < longitud(sistema.usuarios); i = i + 1) {
         variable u = sistema.usuarios[i]
         variable info = (i + 1) + ". " + u.usuario + " (" + u.rol + ")"
         linea_con_texto(info)
     }
-    
     linea_con_texto("")
     linea_cierre()
     escribir("")
@@ -203,34 +194,27 @@ funcion mostrar_usuarios(sistema) {
 }
 
 // ─── PROGRAMA PRINCIPAL ───
-
 funcion main() {
     // Inicializar el sistema
     variable sistema = nuevo SistemaLogin()
     sistema.inicializar()
-
     // Variable de control del bucle principal
     variable salir = falso
     variable intentos_fallidos = 0
     constante MAX_INTENTOS = 3
-
     // ─── BUCLE PRINCIPAL DEL LOGIN ───
     mientras (!salir) {
-
         // --- PASO 1: PANTALLA DE BIENVENIDA ---
         mostrar_bienvenida()
-
         // --- PASO 2: FORMULARIO DE LOGIN ---
         mostrar_login()
-
         linea_con_texto("")
         linea_con_texto("Usuario:")
         linea_con_texto("")
         linea_cierre()
-
-        escribir("")  // Espacio para el cursor
+        escribir("")
+        // Espacio para el cursor
         variable usuario = leer()
-
         // Mostrar el formulario para contraseña
         limpiar_pantalla()
         mostrar_login()
@@ -240,10 +224,8 @@ funcion main() {
         linea_cierre()
         escribir("")
         variable contrasena = leer()
-
         // --- PASO 3: VALIDACIÓN ---
         variable resultado = sistema.autenticar(usuario, contrasena)
-
         si (resultado >= 0) {
             // Login exitoso
             variable u = sistema.obtener_usuario_actual()
@@ -251,22 +233,17 @@ funcion main() {
             escribir("")
             escribir("Presioná Enter para continuar...")
             variable _ = leer()
-
             // --- PASO 4: PANEL DE CONTROL (bucle interno) ---
             variable sesion_activa = verdadero
             mientras (sesion_activa) {
-
                 mostrar_panel(u.nombre_completo, u.rol)
                 escribir("Seleccioná una opción (1-5):")
                 variable opcion = leer()
-
                 si (opcion == "1") {
                     mostrar_perfil(u.usuario, u.nombre_completo, u.rol)
-
                 } sino {
                     si (opcion == "2") {
                         mostrar_usuarios(sistema)
-
                     } sino {
                         si (opcion == "3") {
                             limpiar_pantalla()
@@ -279,7 +256,6 @@ funcion main() {
                             escribir("")
                             escribir("Presioná Enter para continuar...")
                             variable _ = leer()
-
                         } sino {
                             si (opcion == "4") {
                                 sesion_activa = falso
@@ -295,7 +271,6 @@ funcion main() {
                                 escribir("")
                                 escribir("Presioná Enter para continuar...")
                                 variable _ = leer()
-
                             } sino {
                                 si (opcion == "5") {
                                     sesion_activa = falso
@@ -308,7 +283,6 @@ funcion main() {
                                     linea_con_texto("")
                                     linea_cierre()
                                     escribir("")
-
                                 } sino {
                                     // Opción inválida
                                     limpiar_pantalla()
@@ -327,7 +301,6 @@ funcion main() {
                     }
                 }
             }
-
         } sino {
             // Login fallido
             intentos_fallidos = intentos_fallidos + 1
@@ -335,7 +308,6 @@ funcion main() {
             escribir("")
             escribir("Intentos fallidos: " + intentos_fallidos + " de " + MAX_INTENTOS)
             escribir("")
-
             si (intentos_fallidos >= MAX_INTENTOS) {
                 limpiar_pantalla()
                 linea_horizontal()
@@ -355,7 +327,6 @@ funcion main() {
             }
         }
     }
-
     escribir("")
     escribir("Presioná Enter para salir...")
     variable _ = leer()
@@ -363,3 +334,4 @@ funcion main() {
 
 // Punto de entrada
 main()
+
