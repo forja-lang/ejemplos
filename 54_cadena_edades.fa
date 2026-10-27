@@ -1,8 +1,6 @@
 // 🎓 Lección 54: Clasificador de edades
-
 funcion clasificarEdad(edad: Entero) {
     escribir("Edad: " + edad)
-    
     si (edad < 0) {
         escribir("Edad inválida")
     } sino {
@@ -27,7 +25,12 @@ funcion clasificarEdad(edad: Entero) {
 }
 
 clasificarEdad(8)
+
 clasificarEdad(15)
+
 clasificarEdad(25)
+
 clasificarEdad(45)
+
 clasificarEdad(70)
+
