@@ -1,7 +1,6 @@
 /// Verificación de cobertura total (exhaustividad)
 /// Conceptos: coincidir, exhaustividad, cobertura total, seguridad en patrones
 /// Nivel: intermedio
-
 importar "std/io"
 
 // El compilador verifica que todos los casos estén cubiertos
@@ -10,10 +9,18 @@ tipo Estado = Activo | Inactivo | Suspenso | Baneado
 funcion mostrar_estado(e) -> Texto {
     // Si falta un caso, el compilador advierte
     coincidir (e) {
-        caso Activo -> { retornar "🟢 Usuario activo" }
-        caso Inactivo -> { retornar "⚪ Usuario inactivo" }
-        caso Suspenso -> { retornar "🟡 Usuario suspendido" }
-        caso Baneado -> { retornar "🔴 Usuario baneado" }
+        caso Activo -> {
+            retornar "🟢 Usuario activo"
+        }
+        caso Inactivo -> {
+            retornar "⚪ Usuario inactivo"
+        }
+        caso Suspenso -> {
+            retornar "🟡 Usuario suspendido"
+        }
+        caso Baneado -> {
+            retornar "🔴 Usuario baneado"
+        }
     }
 }
 
@@ -32,22 +39,20 @@ funcion procesar_pago(resultado) {
             escribir("  ❌ Tarjeta vencida")
         }
         caso Rechazada(motivo) -> {
-            escribir("  ❌ Rechazada: ${motivo}")
+            escribir("  ❌ Rechazada: " + motivo + "")
         }
     }
-    // El compilador garantiza que cubrimos todas las variantes
+// El compilador garantiza que cubrimos todas las variantes
 }
 
 funcion main() {
     escribir("=== Exhaustividad en Match ===\n")
     escribir("El compilador verifica que TODAS las variantes estén cubiertas.\n")
-
     escribir("Estados:")
-    escribir("  ${mostrar_estado(Activo)}")
-    escribir("  ${mostrar_estado(Inactivo)}")
-    escribir("  ${mostrar_estado(Suspenso)}")
-    escribir("  ${mostrar_estado(Baneado)}")
-
+    escribir("  " + mostrar_estado(Activo) + "")
+    escribir("  " + mostrar_estado(Inactivo) + "")
+    escribir("  " + mostrar_estado(Suspenso) + "")
+    escribir("  " + mostrar_estado(Baneado) + "")
     escribir("")
     escribir("Pagos:")
     procesar_pago(Exitosa)
@@ -57,3 +62,4 @@ funcion main() {
 }
 
 main()
+
