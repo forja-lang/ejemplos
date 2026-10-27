@@ -1,6 +1,5 @@
 // 🎓 Lección 18: Condicionales anidados
 // Podemos poner si dentro de otro si
-
 variable numero = 42
 
 si (numero > 0) {
@@ -23,6 +22,7 @@ si (numero > 0) {
 
 // Más ejemplos de anidación
 variable edad = 65
+
 si (edad >= 18) {
     si (edad >= 60) {
         escribir("Es adulto mayor")
@@ -32,3 +32,4 @@ si (edad >= 18) {
 } sino {
     escribir("Es menor de edad")
 }
+
