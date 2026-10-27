@@ -1,47 +1,43 @@
 /// Resultado<T, E> genérico manual
 /// Conceptos: implementación manual de Resultado, Ok, Error
 /// Nivel: avanzado
-
 importar "std/io"
 
 // Implementación manual del tipo Resultado<T, E>
 // (el lenguaje ya tiene Resultado built-in, esto es educativo)
-
 clase MiResultado<T, E> {
     exito
     valor_ok
     valor_error
-    
+
     constructor() {
-        este.exito = falso
-        este.valor_ok = nulo
-        este.valor_error = nulo
+        self.exito = falso
+        self.valor_ok = nulo
+        self.valor_error = nulo
     }
-    
     funcion es_ok() -> Booleano {
-        retornar este.exito
+        retornar self.exito
     }
-    
     funcion es_error() -> Booleano {
-        retornar no este.exito
+        retornar !self.exito
     }
 }
 
-funcion ok<T, E>(valor: T) -> MiResultado<T, E> {
-    variable r = nuevo MiResultado<T, E>()
+funcion ok<T, E>(valor: T) -> MiResultado {
+    variable r = nuevo MiResultado()
     r.exito = verdadero
     r.valor_ok = valor
     retornar r
 }
 
-funcion error<T, E>(err: E) -> MiResultado<T, E> {
-    variable r = nuevo MiResultado<T, E>()
+funcion error<T, E>(err: E) -> MiResultado {
+    variable r = nuevo MiResultado()
     r.exito = falso
     r.valor_error = err
     retornar r
 }
 
-funcion dividir(a, b) -> MiResultado<Entero, Texto> {
+funcion dividir(a, b) -> MiResultado {
     si (b == 0) {
         retornar error("División por cero")
     }
@@ -58,30 +54,25 @@ funcion procesar_resultado(r) {
 
 funcion main() {
     escribir("=== MiResultado<T, E> Manual ===\n")
-    
     variable r1 = dividir(10, 2)
     variable r2 = dividir(10, 0)
-    
     escribir("10 / 2:")
     procesar_resultado(r1)
-    
     escribir("")
     escribir("10 / 0:")
     procesar_resultado(r2)
-    
     escribir("")
-    
     // Múltiples operaciones
     variable operaciones = [dividir(20, 4), dividir(15, 3), dividir(5, 0), dividir(100, 10)]
     escribir("Resultados:")
     variable i = 0
     mientras (i < longitud(operaciones)) {
-        escribir("  Op ${i + 1}: ${operaciones[i].es_ok()}")
+        escribir("  Op " + i + 1 + ": " + operaciones[i].es_ok() + "")
         i = i + 1
     }
-    
     escribir("")
     escribir("MiResultado funciona con cualquier combinación de T y E")
 }
 
 main()
+
