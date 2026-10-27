@@ -1,12 +1,10 @@
 /// Patrón Singleton
 /// Conceptos: singleton, instancia única, variable global controlada, patrón de creación
 /// Nivel: intermedio
-
 importar "std/io"
 
 // El patrón Singleton garantiza que una clase tenga una única instancia
 // y proporciona un punto de acceso global a ella.
-
 clase Configuracion {
     // Variable estática que almacena la única instancia
     nombre_app
@@ -14,9 +12,9 @@ clase Configuracion {
     idioma
 
     constructor() {
-        este.nombre_app = ""
-        este.version = ""
-        este.idioma = ""
+        self.nombre_app = ""
+        self.version = ""
+        self.idioma = ""
     }
 }
 
@@ -39,22 +37,18 @@ funcion obtener_configuracion() {
 funcion main() {
     escribir("=== PATRÓN SINGLETON ===\n")
     escribir("Garantiza una única instancia de una clase.\n")
-
     escribir("Intentando obtener configuración (primera vez):")
     variable config1 = obtener_configuracion()
-    escribir("  App: ${config1.nombre_app} v${config1.version}")
-    escribir("  Idioma: ${config1.idioma}")
-
+    escribir("  App: " + config1.nombre_app + " v" + config1.version + "")
+    escribir("  Idioma: " + config1.idioma + "")
     escribir("")
     escribir("Modificando configuración...")
     config1.idioma = "en"
-
     escribir("")
     escribir("Intentando obtener configuración (segunda vez):")
     variable config2 = obtener_configuracion()
-    escribir("  App: ${config2.nombre_app} v${config2.version}")
-    escribir("  Idioma: ${config2.idioma}")
-
+    escribir("  App: " + config2.nombre_app + " v" + config2.version + "")
+    escribir("  Idioma: " + config2.idioma + "")
     escribir("")
     escribir("¿Son la misma instancia?")
     si (config1 == config2) {
@@ -62,7 +56,6 @@ funcion main() {
     } sino {
         escribir("  ❌ No, son objetos diferentes.")
     }
-
     escribir("")
     escribir("El Singleton es útil para:")
     escribir("  • Configuración global de la aplicación")
@@ -72,3 +65,4 @@ funcion main() {
 }
 
 main()
+
