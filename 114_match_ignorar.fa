@@ -1,7 +1,6 @@
 /// Patrón _ para ignorar
 /// Conceptos: coincidir, patrón ignorar (_), descartar valores, coincidencia parcial
 /// Nivel: básico
-
 importar "std/io"
 
 // El patrón _ ignora valores que no nos interesan
@@ -48,21 +47,19 @@ funcion manejar_evento(e) {
 funcion main() {
     escribir("=== Patrón _ para ignorar ===\n")
     escribir("El guión bajo _ ignora partes que no necesitamos.\n")
-
     escribir("Pagos:")
-    escribir("  ${resumen(Exitoso(500))}")
-    escribir("  ${resumen(Fallido("Sin fondos"))}")
-    escribir("  ${resumen(Pendiente)}")
-
+    escribir("  " + resumen(Exitoso(500)) + "")
+    escribir("  " + resumen(Fallido("Sin fondos")) + "")
+    escribir("  " + resumen(Pendiente) + "")
     escribir("")
     escribir("Eventos:")
     manejar_evento(Click(150, 300))
     manejar_evento(Tecla("Enter"))
     manejar_evento(Redimension(1920, 1080))
     manejar_evento(Enfoque)
-
     escribir("")
     escribir("El _ evita declarar variables que no se usan.")
 }
 
 main()
+
