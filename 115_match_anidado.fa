@@ -1,7 +1,6 @@
 /// Match dentro de match (anidado)
 /// Conceptos: coincidir anidado, patrones complejos, composición de coincidencia
 /// Nivel: avanzado
-
 importar "std/io"
 
 tipo Color = RGB(Entero, Entero, Entero) | HSL(Decimal, Decimal, Decimal) | Hex(Texto)
@@ -13,13 +12,13 @@ tipo Dibujo = FiguraColoreada(Figura, Color) | Grupo(Texto)
 funcion describir_color(c) -> Texto {
     coincidir (c) {
         caso RGB(r, g, b) -> {
-            retornar "RGB(${r}, ${g}, ${b})"
+            retornar "RGB(" + r + ", " + g + ", " + b + ")"
         }
         caso HSL(h, s, l) -> {
-            retornar "HSL(${h}, ${s}%, ${l}%)"
+            retornar "HSL(" + h + ", " + s + "%, " + l + "%)"
         }
         caso Hex(v) -> {
-            retornar "#${v}"
+            retornar "#" + v + ""
         }
     }
 }
@@ -27,13 +26,13 @@ funcion describir_color(c) -> Texto {
 funcion describir_figura(f) -> Texto {
     coincidir (f) {
         caso Circulo(r) -> {
-            retornar "Círculo radio=${r}"
+            retornar "Círculo radio=" + r + ""
         }
         caso Rectangulo(b, h) -> {
-            retornar "Rectángulo ${b}x${h}"
+            retornar "Rectángulo " + b + "x" + h + ""
         }
         caso Triangulo(b, h) -> {
-            retornar "Triángulo base=${b} altura=${h}"
+            retornar "Triángulo base=" + b + " altura=" + h + ""
         }
     }
 }
@@ -44,10 +43,10 @@ funcion analizar_dibujo(d) -> Texto {
         caso FiguraColoreada(fig, col) -> {
             variable desc_fig = describir_figura(fig)
             variable desc_col = describir_color(col)
-            retornar "🎨 ${desc_fig} en color ${desc_col}"
+            retornar "🎨 " + desc_fig + " en color " + desc_col + ""
         }
         caso Grupo(nombre) -> {
-            retornar "📁 Grupo: ${nombre}"
+            retornar "📁 Grupo: " + nombre + ""
         }
     }
 }
@@ -72,7 +71,7 @@ funcion area_total(dibujos) -> Entero {
                 }
             }
             caso Grupo(_) -> {
-                // Los grupos no aportan área directa
+            // Los grupos no aportan área directa
             }
         }
         i = i + 1
@@ -82,25 +81,17 @@ funcion area_total(dibujos) -> Entero {
 
 funcion main() {
     escribir("=== Match anidado ===\n")
-
-    variable dibujos = [
-        FiguraColoreada(Circulo(5), RGB(255, 0, 0)),
-        FiguraColoreada(Rectangulo(10, 20), HSL(120, 50, 50)),
-        FiguraColoreada(Triangulo(6, 8), Hex("FF8800")),
-        Grupo("Fondo")
-    ]
-
+    variable dibujos = [FiguraColoreada(Circulo(5), RGB(255, 0, 0)), FiguraColoreada(Rectangulo(10, 20), HSL(120, 50, 50)), FiguraColoreada(Triangulo(6, 8), Hex("FF8800")), Grupo("Fondo")]
     variable i = 0
     mientras (i < longitud(dibujos)) {
-        escribir("  ${analizar_dibujo(dibujos[i])}")
+        escribir("  " + analizar_dibujo(dibujos[i]) + "")
         i = i + 1
     }
-
     escribir("")
-    escribir("Área total: ${area_total(dibujos)} unidades cuadradas")
-
+    escribir("Área total: " + area_total(dibujos) + " unidades cuadradas")
     escribir("")
     escribir("El match anidado permite descomponer estructuras complejas.")
 }
 
 main()
+
