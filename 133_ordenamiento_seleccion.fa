@@ -1,7 +1,6 @@
 /// Selection sort
 /// Conceptos: ordenamiento selección, algoritmo clásico, arrays, mínimo
 /// Nivel: básico
-
 importar "std/io"
 
 funcion seleccion(arr) {
@@ -26,15 +25,13 @@ funcion seleccion(arr) {
 
 funcion main() {
     escribir("=== Selection Sort ===\n")
-
     variable numeros = [64, 25, 12, 22, 11, 90, 33]
-    escribir("Original: ${numeros}")
-
+    escribir("Original: " + numeros + "")
     numeros = seleccion(numeros)
-    escribir("Ordenado: ${numeros}")
-
+    escribir("Ordenado: " + numeros + "")
     escribir("")
     escribir("Selection sort encuentra el mínimo y lo coloca en su posición.")
 }
 
 main()
+
