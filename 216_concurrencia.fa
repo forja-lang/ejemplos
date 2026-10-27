@@ -12,10 +12,9 @@
 /// los patrones funcionarán en paralelo sin cambiar el código.
 ///
 /// Para probar: target\release\forja.exe run ejemplos/216_concurrencia.fa
-
 importar "std/io"
-importar "std/concurrencia"
 
+importar "std/concurrencia"
 
 funcion duplicar(valor) {
     retornar valor * 2
@@ -33,51 +32,43 @@ funcion tarea_rapida() {
     retornar 999
 }
 
-
 funcion main() {
     escribir("═══════════════════════════════════════════")
     escribir("  Concurrencia de Alto Nivel")
     escribir("═══════════════════════════════════════════")
-
     // --------------------------------------------------
     // 1. Pool de Workers
     // --------------------------------------------------
     escribir("\n── 1. Pool de Workers (API) ──\n")
-
     variable pool = pool_trabajadores(3, duplicar)
     variable tx_tareas = pool[0]
     variable rx_resultados = pool[1]
     escribir("Pool creado con 3 workers")
-    escribir("  tx_tareas tipo: ${tipo(tx_tareas)}")
-    escribir("  rx_resultados tipo: ${tipo(rx_resultados)}")
+    escribir("  tx_tareas tipo: " + tipo(tx_tareas) + "")
+    escribir("  rx_resultados tipo: " + tipo(rx_resultados) + "")
     escribir("")
-
     // --------------------------------------------------
     // 2. Uso directo (sin canales)
     // --------------------------------------------------
     escribir("── 2. Procesamiento directo ──\n")
-
     variable tareas = [10, 20, 30, 40, 50]
     escribir("Tareas: ")
     variable i = 0
     mientras (i < longitud(tareas)) {
-        escribir("  [${i}] ${tareas[i]} → ${duplicar(tareas[i])}")
+        escribir("  [" + i + "] " + tareas[i] + " → " + duplicar(tareas[i]) + "")
         i = i + 1
     }
     escribir("")
-
     // --------------------------------------------------
     // 3. Timeout
     // --------------------------------------------------
     escribir("── 3. Timeout ──\n")
-
     variable r1 = con_timeout(3000, tarea_rapida)
-    escribir("Resultado tarea rápida (timeout 3s): ${r1}")
+    escribir("Resultado tarea rápida (timeout 3s): " + r1 + "")
     si (r1.es_ok()) {
         escribir("  → Tarea completada a tiempo ✓")
     }
     escribir("")
-
     // --------------------------------------------------
     // FIN
     // --------------------------------------------------
@@ -87,3 +78,4 @@ funcion main() {
 }
 
 main()
+
