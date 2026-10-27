@@ -1,19 +1,23 @@
 // 🎓 Lección 28: Booleanos avanzados
 // Uso de valores verdadero y falso
-
 variable activo = verdadero
+
 variable conectado = falso
 
 // Asignar booleanos desde comparaciones
 variable esMayor = 10 > 5
+
 escribir("¿10 > 5?: " + esMayor)
 
 variable esIgual = 10 == 5
+
 escribir("¿10 == 5?: " + esIgual)
 
 // Booleanos en condiciones
 variable edad = 20
+
 variable tieneLicencia = verdadero
+
 variable puedeManejar = edad >= 18 && tieneLicencia
 
 si (puedeManejar) {
@@ -24,10 +28,13 @@ si (puedeManejar) {
 
 // Negación
 variable puertaAbierta = falso
+
 si (!puertaAbierta) {
     escribir("La puerta está cerrada")
 }
 
 // Nulo
 variable dato = nulo
+
 escribir("Valor nulo: " + dato)
+
