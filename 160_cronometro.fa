@@ -41,25 +41,21 @@ funcion correr_cronometro(tx_control, rx_respuesta) {
             otro {
                 esperar(1)
                 segundos = segundos + 1
-                escribir("
-  ⏱ " + formatear_tiempo(segundos) + "   ", false)
+                escribir("\r\n  ⏱ " + formatear_tiempo(segundos) + "   ", false)
             }
         }
     }
-    escribir("
-  ⏱ Tiempo final: " + formatear_tiempo(segundos) + "")
+    escribir("\r\n  ⏱ Tiempo final: " + formatear_tiempo(segundos) + "")
     tx_control.enviar("terminado")
 }
 
 funcion main() {
-    escribir("=== CRONÓMETRO CON HILOS ===
-")
+    escribir("=== CRONÓMETRO CON HILOS ===\r\n")
     escribir("Instrucciones:")
     escribir("  • El cronómetro corre en un hilo separado")
     escribir("  • Escribe 'p' para pausar/reanudar")
     escribir("  • Escribe 'r' para reiniciar")
-    escribir("  • Escribe 'q' para salir
-")
+    escribir("  • Escribe 'q' para salir\r\n")
     variable tx_main, rx_main = canal()
     variable tx_hilo, rx_hilo = canal()
     variable hilo_crono = hilo {
@@ -90,8 +86,7 @@ funcion main() {
         }
     }
     hilo_crono.unir()
-    escribir("
-Cronómetro finalizado.")
+    escribir("\r\nCronómetro finalizado.")
 }
 
 main()
