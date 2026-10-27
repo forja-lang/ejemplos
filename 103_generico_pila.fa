@@ -1,75 +1,65 @@
 /// Pila genérica (Stack)
 /// Conceptos: clase genérica <T>, estructura de datos, LIFO
 /// Nivel: intermedio
-
 importar "std/io"
 
 // Implementación de una pila (stack) genérica
-
 clase Pila<T> {
     elementos
-    
+
     constructor() {
-        este.elementos = []
+        self.elementos = []
     }
-    
     funcion apilar(valor: T) {
-        este.elementos = [valor] + este.elementos
+        self.elementos = [valor] + self.elementos
     }
-    
     funcion desapilar() -> Opcion<T> {
-        si (longitud(este.elementos) > 0) {
-            variable valor = este.elementos[0]
+        si (longitud(self.elementos) > 0) {
+            variable valor = self.elementos[0]
             // Desplazar elementos hacia la izquierda
             variable i = 0
             variable nueva = []
-            mientras (i < longitud(este.elementos) - 1) {
-                nueva = nueva + [este.elementos[i + 1]]
+            mientras (i < longitud(self.elementos) - 1) {
+                nueva = nueva + [self.elementos[i + 1]]
                 i = i + 1
             }
-            este.elementos = nueva
+            self.elementos = nueva
             retornar Algo(valor)
         }
         retornar Ninguno
     }
-    
     funcion cima() -> Opcion<T> {
-        si (longitud(este.elementos) > 0) {
-            retornar Algo(este.elementos[0])
+        si (longitud(self.elementos) > 0) {
+            retornar Algo(self.elementos[0])
         }
         retornar Ninguno
     }
-    
     funcion esta_vacia() -> Booleano {
-        retornar longitud(este.elementos) == 0
+        retornar longitud(self.elementos) == 0
     }
 }
 
 funcion main() {
     escribir("=== Pila Genérica <T> ===\n")
-    
     // Pila de enteros
-    variable pila_ints = nuevo Pila<Entero>()
+    variable pila_ints = nuevo Pila()
     pila_ints.apilar(10)
     pila_ints.apilar(20)
     pila_ints.apilar(30)
-    
-    escribir("Cima: ${pila_ints.cima()}")
-    escribir("Desapilar: ${pila_ints.desapilar()}")
-    escribir("Desapilar: ${pila_ints.desapilar()}")
-    escribir("¿Vacía? ${pila_ints.esta_vacia()}")
-    
+    escribir("Cima: " + pila_ints.cima() + "")
+    escribir("Desapilar: " + pila_ints.desapilar() + "")
+    escribir("Desapilar: " + pila_ints.desapilar() + "")
+    escribir("¿Vacía? " + pila_ints.esta_vacia() + "")
     escribir("")
-    
     // Pila de textos
-    variable pila_textos = nuevo Pila<Texto>()
+    variable pila_textos = nuevo Pila()
     pila_textos.apilar("A")
     pila_textos.apilar("B")
     pila_textos.apilar("C")
-    
-    mientras (no pila_textos.esta_vacia()) {
-        escribir("Elemento: ${pila_textos.desapilar()}")
+    mientras (!pila_textos.esta_vacia()) {
+        escribir("Elemento: " + pila_textos.desapilar() + "")
     }
 }
 
 main()
+
