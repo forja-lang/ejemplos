@@ -1,11 +1,9 @@
 /// Opcion básico
 /// Conceptos: Opcion<Entero>, Algo(), Ninguno(), valores opcionales
 /// Nivel: intermedio
-
 importar "std/io"
 
 // Opcion representa un valor que puede existir (Algo) o no (Ninguno)
-
 funcion buscar_en_lista(lista, objetivo) -> Opcion<Entero> {
     variable i = 0
     mientras (i < longitud(lista)) {
@@ -21,11 +19,14 @@ variable numeros = [10, 20, 30, 40, 50]
 
 // Buscar elementos que existen y que no
 variable encontrado = buscar_en_lista(numeros, 30)
+
 variable no_encontrado = buscar_en_lista(numeros, 99)
 
 escribir("=== Opcion Simple ===")
-escribir("Índice del 30: ${encontrado}")
-escribir("Índice del 99: ${no_encontrado}")
+
+escribir("Índice del 30: " + encontrado + "")
+
+escribir("Índice del 99: " + no_encontrado + "")
 
 // Opcion como retorno de función simple:
 funcion dividir_seguro(a, b) -> Opcion<Entero> {
@@ -35,5 +36,7 @@ funcion dividir_seguro(a, b) -> Opcion<Entero> {
     retornar Algo(a / b)
 }
 
-escribir("10 / 2 = ${dividir_seguro(10, 2)}")
-escribir("10 / 0 = ${dividir_seguro(10, 0)}")
+escribir("10 / 2 = " + dividir_seguro(10, 2) + "")
+
+escribir("10 / 0 = " + dividir_seguro(10, 0) + "")
+
