@@ -11,13 +11,16 @@
 // Ejecutar (con cargo): forja ejecutar ejemplos/204_login_final.fa
 // Ejecutar (nativa):    forja ejecutar --native ejemplos/204_login_final.fa
 //                        (requiere --features gui)
-
 importar "gui"
 
 // Funcion de validacion
 funcion validar(u: Texto, p: Texto) -> Texto {
-    si (u == "") { retornar "El usuario es obligatorio" }
-    si (p == "") { retornar "La contrasena es obligatoria" }
+    si (u == "") {
+        retornar "El usuario es obligatorio"
+    }
+    si (p == "") {
+        retornar "La contrasena es obligatoria"
+    }
     retornar "Bienvenido " + u
 }
 
@@ -26,22 +29,6 @@ funcion main() {
     variable usuario = ""
     variable contrasena = ""
     variable resultado = ""
-    
-    columna(
-        escribir("=================================="),
-        escribir("      INICIAR SESION"),
-        escribir("=================================="),
-        escribir(""),
-        escribir("Usuario:"),
-        entrada_texto("Ingrese su usuario"),
-        escribir(""),
-        escribir("Contrasena:"),
-        entrada_texto("Ingrese su contrasena"),
-        escribir(""),
-        boton("Ingresar", &validar),
-        escribir(""),
-        escribir(resultado),
-        escribir(""),
-        escribir("==================================")
-    )
+    columna(escribir("=================================="), escribir("      INICIAR SESION"), escribir("=================================="), escribir(""), escribir("Usuario:"), entrada_texto("Ingrese su usuario"), escribir(""), escribir("Contrasena:"), entrada_texto("Ingrese su contrasena"), escribir(""), boton("Ingresar", &validar), escribir(""), escribir(resultado), escribir(""), escribir("=================================="))
 }
+
