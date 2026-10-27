@@ -1,2 +1,4 @@
 escribir("test")
+
 escribir_linea("test linea")
+
