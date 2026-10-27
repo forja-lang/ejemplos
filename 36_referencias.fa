@@ -1,15 +1,18 @@
 // 🎓 Lección 36: Referencias (&)
 // Forja permite crear referencias (préstamos) con &
-
 variable original = 42
+
 variable referencia = &original
 
 escribir("Original: " + original)
+
 escribir("Referencia: " + referencia)
 
 // Cambiar original afecta la referencia? 
 original = 100
+
 escribir("Original cambiado: " + original)
+
 escribir("Referencia: " + referencia)
 
 // Préstamo en funciones
@@ -18,5 +21,8 @@ funcion mostrarValor(valor: Entero) {
 }
 
 variable dato = 99
+
 mostrarValor(dato)
+
 escribir("Dato sigue siendo: " + dato)
+
