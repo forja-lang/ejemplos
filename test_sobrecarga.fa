@@ -3,7 +3,10 @@ importar "std/matematica"
 
 // matematica tiene mcd(Entero, Entero) -> Entero
 variable a = mcd(12, 8)
+
 escribir_linea("mcd(12, 8) = " + a)
 
 variable b = mcd(100, 35)
+
 escribir_linea("mcd(100, 35) = " + b)
+
