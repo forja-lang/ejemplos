@@ -1,12 +1,10 @@
 /// Genéricos con rasgo bounds (restricciones)
 /// Conceptos: rasgo bound, restricción de tipo, don't care
 /// Nivel: avanzado
-
 importar "std/io"
 
 // Podemos restringir qué tipos pueden usarse con una función
 // genérica usando rasgo bounds
-
 rasgo Mostrable {
     funcion mostrar() -> Texto
 }
@@ -18,7 +16,7 @@ clase Persona {
 
 implementa Mostrable para Persona {
     funcion mostrar() -> Texto {
-        retornar "Persona: ${este.nombre} (${este.edad})"
+        retornar "Persona: " + self.nombre + " (" + self.edad + ")"
     }
 }
 
@@ -29,7 +27,7 @@ clase Producto {
 
 implementa Mostrable para Producto {
     funcion mostrar() -> Texto {
-        retornar "Producto: ${este.nombre} - $${este.precio}"
+        retornar "Producto: " + self.nombre + " - $" + self.precio + ""
     }
 }
 
@@ -48,32 +46,26 @@ funcion imprimir_lista<T>(lista) {
 
 funcion main() {
     escribir("=== Genéricos con Rasgo Bounds ===\n")
-    
     variable p1 = nuevo Persona()
     p1.nombre = "Ana"
     p1.edad = 30
-    
     variable p2 = nuevo Persona()
     p2.nombre = "Juan"
     p2.edad = 25
-    
     variable personas = [p1, p2]
     escribir("Personas:")
     imprimir_lista(personas)
-    
     escribir("")
-    
     variable prod1 = nuevo Producto()
     prod1.nombre = "Laptop"
     prod1.precio = 1200
-    
     variable prod2 = nuevo Producto()
     prod2.nombre = "Mouse"
     prod2.precio = 25
-    
     variable productos = [prod1, prod2]
     escribir("Productos:")
     imprimir_lista(productos)
 }
 
 main()
+
