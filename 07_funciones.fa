@@ -1,6 +1,5 @@
 // 🎓 Lección 7: Funciones
 // Las funciones agrupan código para reutilizarlo.
-
 funcion saludar(nombre: Texto) {
     escribir("Hola, " + nombre + "!")
 }
@@ -10,6 +9,10 @@ funcion despedir(nombre: Texto) {
 }
 
 saludar("Ana")
+
 saludar("Pedro")
+
 despedir("Ana")
+
 despedir("Pedro")
+
