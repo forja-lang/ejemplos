@@ -1,15 +1,17 @@
 // 🎓 Lección 69: Clase Rectángulo
-
 clase Rectangulo {
     ancho
     alto
 
     constructor() {
-        este.ancho = 1
-        este.alto = 1
+        self.ancho = 1
+        self.alto = 1
     }
 }
 
 variable r1 = nuevo Rectangulo()
+
 escribir(r1.ancho)
+
 escribir(r1.alto)
+
