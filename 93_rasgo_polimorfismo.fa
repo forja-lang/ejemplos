@@ -1,11 +1,9 @@
 /// Usar rasgo como tipo (polimorfismo)
 /// Conceptos: rasgo como tipo de parámetro, polimorfismo, abstracción
 /// Nivel: avanzado
-
 importar "std/io"
 
 // Los rasgos pueden usarse como tipos para lograr polimorfismo
-
 rasgo Sonido {
     funcion hacer_sonido() -> Texto
 }
@@ -16,7 +14,7 @@ clase Perro {
 
 implementa Sonido para Perro {
     funcion hacer_sonido() -> Texto {
-        retornar "${este.nombre} dice: ¡Guau guau!"
+        retornar "" + self.nombre + " dice: ¡Guau guau!"
     }
 }
 
@@ -26,7 +24,7 @@ clase Gato {
 
 implementa Sonido para Gato {
     funcion hacer_sonido() -> Texto {
-        retornar "${este.nombre} dice: ¡Miau!"
+        retornar "" + self.nombre + " dice: ¡Miau!"
     }
 }
 
@@ -36,7 +34,7 @@ clase Vaca {
 
 implementa Sonido para Vaca {
     funcion hacer_sonido() -> Texto {
-        retornar "${este.nombre} dice: ¡Muuuu!"
+        retornar "" + self.nombre + " dice: ¡Muuuu!"
     }
 }
 
@@ -47,23 +45,19 @@ funcion presentar_animal(animal) {
 
 funcion main() {
     escribir("=== Polimorfismo con Rasgos ===\n")
-    
     variable perro = nuevo Perro()
     perro.nombre = "Rex"
-    
     variable gato = nuevo Gato()
     gato.nombre = "Mishi"
-    
     variable vaca = nuevo Vaca()
     vaca.nombre = "Lola"
-    
     // La misma función funciona con cualquier animal
     presentar_animal(perro)
     presentar_animal(gato)
     presentar_animal(vaca)
-    
     escribir("")
     escribir("Todos implementan el rasgo Sonido")
 }
 
 main()
+
