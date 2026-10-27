@@ -1,7 +1,6 @@
 /// Lista simplemente enlazada
 /// Conceptos: lista enlazada, nodos, punteros, estructura dinámica
 /// Nivel: avanzado
-
 importar "std/io"
 
 clase Nodo {
@@ -9,8 +8,8 @@ clase Nodo {
     siguiente
 
     constructor() {
-        este.valor = 0
-        este.siguiente = nulo
+        self.valor = 0
+        self.siguiente = nulo
     }
 }
 
@@ -18,44 +17,37 @@ clase ListaEnlazada {
     cabeza
 
     constructor() {
-        este.cabeza = nulo
+        self.cabeza = nulo
     }
-
     funcion insertar(valor) {
         variable nuevo = nuevo Nodo()
         nuevo.valor = valor
-        nuevo.siguiente = este.cabeza
-        este.cabeza = nuevo
+        nuevo.siguiente = self.cabeza
+        self.cabeza = nuevo
     }
-
     funcion insertar_final(valor) {
         variable nuevo = nuevo Nodo()
         nuevo.valor = valor
         nuevo.siguiente = nulo
-
-        si (este.cabeza == nulo) {
-            este.cabeza = nuevo
+        si (self.cabeza == nulo) {
+            self.cabeza = nuevo
             retornar
         }
-
-        variable actual = este.cabeza
+        variable actual = self.cabeza
         mientras (actual.siguiente != nulo) {
             actual = actual.siguiente
         }
         actual.siguiente = nuevo
     }
-
     funcion eliminar(valor) -> Booleano {
-        si (este.cabeza == nulo) {
+        si (self.cabeza == nulo) {
             retornar falso
         }
-
-        si (este.cabeza.valor == valor) {
-            este.cabeza = este.cabeza.siguiente
+        si (self.cabeza.valor == valor) {
+            self.cabeza = self.cabeza.siguiente
             retornar verdadero
         }
-
-        variable actual = este.cabeza
+        variable actual = self.cabeza
         mientras (actual.siguiente != nulo) {
             si (actual.siguiente.valor == valor) {
                 actual.siguiente = actual.siguiente.siguiente
@@ -65,9 +57,8 @@ clase ListaEnlazada {
         }
         retornar falso
     }
-
     funcion buscar(valor) -> Booleano {
-        variable actual = este.cabeza
+        variable actual = self.cabeza
         mientras (actual != nulo) {
             si (actual.valor == valor) {
                 retornar verdadero
@@ -76,50 +67,44 @@ clase ListaEnlazada {
         }
         retornar falso
     }
-
     funcion mostrar() {
-        variable actual = este.cabeza
+        variable actual = self.cabeza
         variable elementos = []
         mientras (actual != nulo) {
             elementos[longitud(elementos)] = actual.valor
             actual = actual.siguiente
         }
-        escribir("  Lista: ${elementos}")
+        escribir("  Lista: " + elementos + "")
     }
 }
 
 funcion main() {
     escribir("=== Lista Simplemente Enlazada ===\n")
-
     variable lista = nuevo ListaEnlazada()
     lista.insertar(10)
     lista.insertar(20)
     lista.insertar(30)
     lista.insertar_final(5)
     lista.insertar_final(1)
-
     escribir("Después de insertar:")
     lista.mostrar()
-
     variable buscar = [20, 99]
     variable i = 0
     mientras (i < longitud(buscar)) {
         variable encontrado = lista.buscar(buscar[i])
-        escribir("  ¿${buscar[i]} está en la lista? ${encontrado}")
+        escribir("  ¿" + buscar[i] + " está en la lista? " + encontrado + "")
         i = i + 1
     }
-
     lista.eliminar(20)
     escribir("")
     escribir("Después de eliminar 20:")
     lista.mostrar()
-
     lista.eliminar(1)
     escribir("Después de eliminar 1:")
     lista.mostrar()
-
     escribir("")
     escribir("La lista enlazada permite inserción y eliminación eficiente O(1) al inicio.")
 }
 
 main()
+
