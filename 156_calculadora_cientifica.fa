@@ -1,13 +1,12 @@
 /// Calculadora Científica
 /// Conceptos: funciones matemáticas, operaciones, menú interactivo, precisión
 /// Nivel: intermedio
-
 importar "std/io"
+
 importar "std/matematica"
 
 // Calculadora científica interactiva que soporta operaciones básicas,
 // trigonometría, logaritmos, potencias y raíces.
-
 funcion menu_principal() -> Entero {
     escribir("")
     escribir("=== CALCULADORA CIENTÍFICA ===")
@@ -69,7 +68,7 @@ funcion ln_aprox(x) -> Decimal {
     variable suma = 0
     variable i = 0
     mientras (i < 20) {
-        suma = suma + (1.0 / (2 * i + 1)) * potencia(y, 2 * i + 1)
+        suma = suma + (1 / (2 * i + 1)) * potencia(y, 2 * i + 1)
         i = i + 1
     }
     retornar 2 * suma
@@ -81,7 +80,6 @@ funcion main() {
         opcion = menu_principal()
         variable a = 0
         variable b = 0
-
         si (opcion == 0) {
             escribir("¡Hasta luego!")
         } sino {
@@ -102,42 +100,76 @@ funcion main() {
                     }
                 }
             }
-
             variable resultado = 0
-            si (opcion == 1) { resultado = a + b }
-            si (opcion == 2) { resultado = a - b }
-            si (opcion == 3) { resultado = a * b }
+            si (opcion == 1) {
+                resultado
+                a
+                b
+            }
+            si (opcion == 2) {
+                resultado
+                a
+                b
+            }
+            si (opcion == 3) {
+                resultado
+                a
+                b
+            }
             si (opcion == 4) {
                 si (b == 0) {
                     escribir("  Error: División por cero.")
                     continuar
                 }
-                resultado = a / b
+                resultado
+                a
+                b
             }
-            si (opcion == 5) { resultado = potencia(a, b) }
+            si (opcion == 5) {
+                resultado
+                potencia(a, b)
+            }
             si (opcion == 6) {
                 si (a < 0) {
                     escribir("  Error: Raíz negativa.")
                     continuar
                 }
-                resultado = potencia(a, 0.5)
+                resultado
+                potencia(a, 0.5)
             }
-            si (opcion == 7) { resultado = seno_aprox(a) }
-            si (opcion == 8) { resultado = coseno_aprox(a) }
-            si (opcion == 9) { resultado = ln_aprox(a) / ln_aprox(10) }
-            si (opcion == 10) { resultado = ln_aprox(a) }
+            si (opcion == 7) {
+                resultado
+                seno_aprox(a)
+            }
+            si (opcion == 8) {
+                resultado
+                coseno_aprox(a)
+            }
+            si (opcion == 9) {
+                resultado
+                ln_aprox(a)
+                ln_aprox(10)
+            }
+            si (opcion == 10) {
+                resultado
+                ln_aprox(a)
+            }
             si (opcion == 11) {
                 si (a < 0) {
                     escribir("  Error: Factorial de número negativo.")
                     continuar
                 }
-                resultado = factorial(a)
+                resultado
+                factorial(a)
             }
-            si (opcion == 12) { resultado = abs(a) }
-
-            escribir("  Resultado: ${resultado}")
+            si (opcion == 12) {
+                resultado
+                abs(a)
+            }
+            escribir("  Resultado: " + resultado + "")
         }
     }
 }
 
 main()
+
