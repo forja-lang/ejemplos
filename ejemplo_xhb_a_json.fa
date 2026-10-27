@@ -1,13 +1,11 @@
-# Ejemplo: Convertir HomeBank XHB a JSON
-# Uso: 
-#   forja run ejemplos/ejemplo_xhb_a_json.fa
-#   forja run ejemplos/ejemplo_xhb_a_json.fa ARCHIVO_XHB=mi_presupuesto.xhb
+importar "std/xhb"
 
-importar std/xhb
-importar std/archivo
-importar std/env
+importar "std/archivo"
+
+importar "std/env"
 
 variable env_opt = obtener("ARCHIVO_XHB")
+
 variable ruta_archivo = "C:/Users/gaucho/Downloads/celis.xhb"
 
 coincidir (env_opt) {
@@ -15,10 +13,9 @@ coincidir (env_opt) {
         ruta_archivo = path
         escribir("📌 Archivo seleccionado dinámicamente: " + ruta_archivo + "\n")
     }
-    caso Ninguno() -> {
+    caso Ninguno -> {
         escribir("ℹ️ No se especificó la variable ARCHIVO_XHB.\n")
         escribir("  Cargando archivo por defecto: 'demo.xhb'...\n")
-
         variable existe = existe_archivo(ruta_archivo)
         si (existe == falso) {
             escribir("📄 Generando 'demo.xhb' de muestra en disco...\n")
@@ -37,7 +34,6 @@ coincidir (resultado) {
         escribir("✅ ¡ARCHIVO XHB CONVERTIDO A JSON EXITOSAMENTE!\n")
         escribir("----------------------------------------------------\n")
         escribir(json_texto)
-        
         variable ruta_json = ruta_archivo + ".json"
         variable res_guardar = escribir_archivo(ruta_json, json_texto)
         coincidir (res_guardar) {
@@ -54,3 +50,4 @@ coincidir (resultado) {
         escribir("   Detalle: " + err.mensaje + "\n")
     }
 }
+
