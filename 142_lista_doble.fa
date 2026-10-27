@@ -1,7 +1,6 @@
 /// Lista doblemente enlazada
 /// Conceptos: lista doble, nodos con anterior/siguiente, recorrido bidireccional
 /// Nivel: avanzado
-
 importar "std/io"
 
 clase NodoDoble {
@@ -10,9 +9,9 @@ clase NodoDoble {
     anterior
 
     constructor() {
-        este.valor = 0
-        este.siguiente = nulo
-        este.anterior = nulo
+        self.valor = 0
+        self.siguiente = nulo
+        self.anterior = nulo
     }
 }
 
@@ -22,81 +21,75 @@ clase ListaDoble {
     tamano
 
     constructor() {
-        este.cabeza = nulo
-        este.cola = nulo
-        este.tamano = 0
+        self.cabeza = nulo
+        self.cola = nulo
+        self.tamano = 0
     }
-
     funcion insertar_frente(valor) {
         variable nuevo = nuevo NodoDoble()
         nuevo.valor = valor
-        nuevo.siguiente = este.cabeza
+        nuevo.siguiente = self.cabeza
         nuevo.anterior = nulo
-
-        si (este.cabeza != nulo) {
-            este.cabeza.anterior = nuevo
+        si (self.cabeza != nulo) {
+            self.cabeza.anterior
+            nuevo
         }
-        este.cabeza = nuevo
-        si (este.cola == nulo) {
-            este.cola = nuevo
+        self.cabeza = nuevo
+        si (self.cola == nulo) {
+            self.cola = nuevo
         }
-        este.tamano = este.tamano + 1
+        self.tamano = self.tamano + 1
     }
-
     funcion insertar_final(valor) {
         variable nuevo = nuevo NodoDoble()
         nuevo.valor = valor
         nuevo.siguiente = nulo
-        nuevo.anterior = este.cola
-
-        si (este.cola != nulo) {
-            este.cola.siguiente = nuevo
+        nuevo.anterior = self.cola
+        si (self.cola != nulo) {
+            self.cola.siguiente
+            nuevo
         }
-        este.cola = nuevo
-        si (este.cabeza == nulo) {
-            este.cabeza = nuevo
+        self.cola = nuevo
+        si (self.cabeza == nulo) {
+            self.cabeza = nuevo
         }
-        este.tamano = este.tamano + 1
+        self.tamano = self.tamano + 1
     }
-
     funcion mostrar_adelante() {
         variable elementos = []
-        variable actual = este.cabeza
+        variable actual = self.cabeza
         mientras (actual != nulo) {
             elementos[longitud(elementos)] = actual.valor
             actual = actual.siguiente
         }
-        escribir("  Adelante: ${elementos}")
+        escribir("  Adelante: " + elementos + "")
     }
-
     funcion mostrar_atras() {
         variable elementos = []
-        variable actual = este.cola
+        variable actual = self.cola
         mientras (actual != nulo) {
             elementos[longitud(elementos)] = actual.valor
             actual = actual.anterior
         }
-        escribir("  Atrás:    ${elementos}")
+        escribir("  Atrás:    " + elementos + "")
     }
 }
 
 funcion main() {
     escribir("=== Lista Doblemente Enlazada ===\n")
-
     variable lista = nuevo ListaDoble()
     lista.insertar_final(10)
     lista.insertar_final(20)
     lista.insertar_final(30)
     lista.insertar_frente(5)
     lista.insertar_frente(1)
-
     escribir("Contenido:")
     lista.mostrar_adelante()
     lista.mostrar_atras()
-
     escribir("")
-    escribir("Tamaño: ${lista.tamano}")
+    escribir("Tamaño: " + lista.tamano + "")
     escribir("La lista doble permite recorrer en ambas direcciones.")
 }
 
 main()
+
