@@ -26,3 +26,4 @@ funcion main() {
     variable mensaje = p.aterrizar()
     escribir(mensaje)
 }
+
