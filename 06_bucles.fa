@@ -1,7 +1,7 @@
 // 🎓 Lección 6: Bucles (repeticiones)
-
 // 'mientras' repite mientras la condición sea verdadera:
 variable contador = 0
+
 mientras (contador < 3) {
     escribir("Vuelta: " + contador)
     contador = contador + 1
@@ -16,3 +16,4 @@ para (variable i = 0; i < 3; i = i + 1) {
 repetir (3) {
     escribir("Esto se repite 3 veces")
 }
+
