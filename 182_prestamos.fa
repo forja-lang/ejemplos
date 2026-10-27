@@ -1,38 +1,33 @@
 /// Referencias y Préstamos (&)
 /// Conceptos: referencias, préstamo, &, acceso compartido, evitar copias
 /// Nivel: avanzado
-
 importar "std/io"
 
 // Las referencias (&) permiten prestar acceso a un valor sin transferir
 // la propiedad (ownership). Múltiples partes pueden leer simultáneamente.
-
 clase Producto {
     nombre
     precio
     cantidad
 
     constructor() {
-        este.nombre = ""
-        este.precio = 0
-        este.cantidad = 0
+        self.nombre = ""
+        self.precio = 0
+        self.cantidad = 0
     }
-
     funcion init(nom, prec, cant) {
-        este.nombre = nom
-        este.precio = prec
-        este.cantidad = cant
+        self.nombre = nom
+        self.precio = prec
+        self.cantidad = cant
     }
-
     // Función que SOLO LEE usando prestamo implícito
     funcion mostrar() {
-        escribir("  Producto: ${este.nombre}")
-        escribir("    Precio: $${este.precio}")
-        escribir("    Stock: ${este.cantidad} unidades")
+        escribir("  Producto: " + self.nombre + "")
+        escribir("    Precio: $" + self.precio + "")
+        escribir("    Stock: " + self.cantidad + " unidades")
     }
-
     funcion valor_total() -> Entero {
-        retornar este.precio * este.cantidad
+        retornar self.precio * self.cantidad
     }
 }
 
@@ -61,7 +56,7 @@ funcion mostrar_inventario(productos) {
 }
 
 funcion aplicar_descuento(productos, porcentaje) {
-    escribir("  Aplicando descuento del ${porcentaje}%...")
+    escribir("  Aplicando descuento del " + porcentaje + "%...")
     variable i = 0
     mientras (i < longitud(productos)) {
         variable p = productos[i]
@@ -73,34 +68,26 @@ funcion aplicar_descuento(productos, porcentaje) {
 funcion main() {
     escribir("=== REFERENCIAS Y PRÉSTAMOS ===\n")
     escribir("Las referencias permiten acceder a datos sin tomar ownership.\n")
-
     variable p1 = nuevo Producto()
     p1.init("Laptop", 1200, 5)
     variable p2 = nuevo Producto()
     p2.init("Mouse", 25, 50)
     variable p3 = nuevo Producto()
     p3.init("Teclado", 80, 30)
-
     variable productos = [p1, p2, p3]
-
     // Préstamo para mostrar (solo lectura)
     mostrar_inventario(productos)
-
     escribir("")
-    escribir("Valor total del inventario: $${calcular_precio_total(productos)}")
-
+    escribir("Valor total del inventario: $" + calcular_precio_total(productos) + "")
     escribir("")
     escribir("--- Préstamo mutable (podemos modificar) ---")
     // Prestamos para modificar
     aplicar_descuento(productos, 10)
-
     escribir("")
     escribir("--- Inventario después del descuento ---")
     mostrar_inventario(productos)
-
     escribir("")
-    escribir("Nuevo valor total: $${calcular_precio_total(productos)}")
-
+    escribir("Nuevo valor total: $" + calcular_precio_total(productos) + "")
     escribir("")
     escribir("Conceptos clave:")
     escribir("  • & (préstamo): acceso temporal sin transferir ownership")
@@ -110,3 +97,4 @@ funcion main() {
 }
 
 main()
+
