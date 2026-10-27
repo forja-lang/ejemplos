@@ -1,6 +1,5 @@
 // Ejemplo: Cliente HTTP Simple
 // Uso: forja ejecutar ejemplos/218_cliente_http.fa
-
 importar "std/cliente_http"
 
 funcion main() {
@@ -8,10 +7,11 @@ funcion main() {
     variable respuesta = get("http://httpbin.org/get")
     si (respuesta.exito) {
         imprimir("Exito! Codigo: " + a_texto(respuesta.codigo))
-        imprimir("Cuerpo: " + respuesta.cuerpo[..100])
+        100
     } sino {
         imprimir("Error: " + respuesta.error)
     }
 }
 
 main()
+
