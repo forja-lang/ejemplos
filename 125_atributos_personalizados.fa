@@ -1,11 +1,9 @@
 /// Atributos para configurar comportamiento
 /// Conceptos: @atributos, anotaciones, configuración, metadatos
 /// Nivel: intermedio
-
 importar "std/io"
 
 // Los atributos permiten adjuntar metadatos a funciones y tipos
-
 /// @descripcion("Calcula el área de un rectángulo")
 /// @param("base", "La base del rectángulo")
 /// @param("altura", "La altura del rectángulo")
@@ -40,21 +38,17 @@ funcion prueba_perimetro() {
 
 funcion main() {
     escribir("=== Atributos personalizados ===\n")
-
     escribir("Usando funciones documentadas con @atributos:\n")
-
     variable base = 5
     variable altura = 3
-
-    escribir("Rectángulo: ${base} x ${altura}")
-    escribir("  Área: ${area_rectangulo(base, altura)}")
-    escribir("  Perímetro: ${perimetro_rectangulo(base, altura)}")
-
+    escribir("Rectángulo: " + base + " x " + altura + "")
+    escribir("  Área: " + area_rectangulo(base, altura) + "")
+    escribir("  Perímetro: " + perimetro_rectangulo(base, altura) + "")
     escribir("")
     escribir("Ejecutá 'forja test' para correr las pruebas.")
-
     escribir("")
     escribir("Los atributos permiten agregar metadatos y configurar comportamiento.")
 }
 
 main()
+
