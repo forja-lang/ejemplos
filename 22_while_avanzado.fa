@@ -1,8 +1,8 @@
 // 🎓 Lección 22: Bucle while avanzado
 // Usos prácticos del bucle 'mientras'
-
 // Contar hasta 5
 variable contador = 1
+
 mientras (contador <= 5) {
     escribir("Contador: " + contador)
     contador = contador + 1
@@ -10,6 +10,7 @@ mientras (contador <= 5) {
 
 // Potencias de 2
 variable base = 1
+
 mientras (base <= 32) {
     escribir("Potencia: " + base)
     base = base * 2
@@ -17,7 +18,9 @@ mientras (base <= 32) {
 
 // Validación simulada (sin leer())
 variable intentos = 0
+
 variable exito = falso
+
 mientras (intentos < 3 && !exito) {
     escribir("Intento " + (intentos + 1))
     intentos = intentos + 1
@@ -26,3 +29,4 @@ mientras (intentos < 3 && !exito) {
         escribir("¡Éxito en el intento " + intentos + "!")
     }
 }
+
