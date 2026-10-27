@@ -1,7 +1,7 @@
 // 🎓 Lección 16: Operadores lógicos
 // and (&&), or (||), not (!)
-
 variable x = 5
+
 variable y = 10
 
 // Y lógico (&&) - ambas deben ser verdadero
@@ -16,13 +16,17 @@ si (x > 0 || y < 0) {
 
 // NO lógico (!) - invierte el valor
 variable activo = falso
+
 si (!activo) {
     escribir("Está inactivo")
 }
 
 // Combinación
 variable edad = 20
+
 variable tienePermiso = verdadero
+
 si (edad >= 18 && tienePermiso) {
     escribir("Puede ingresar")
 }
+
