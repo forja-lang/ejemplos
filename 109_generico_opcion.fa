@@ -1,75 +1,74 @@
 /// Option<T> genérico manual
 /// Conceptos: implementación manual de Opcion, Some, Ninguno
 /// Nivel: avanzado
-
 importar "std/io"
 
 // Implementación manual del tipo Opcion<T>
 // (el lenguaje ya tiene Opcion<T> built-in, esto es educativo)
-
 clase MiOpcion<T> {
     tiene_valor
     valor
-    
+
     constructor() {
-        este.tiene_valor = falso
-        este.valor = nulo
+        self.tiene_valor = falso
+        self.valor = nulo
     }
-    
     funcion es_algo() -> Booleano {
-        retornar este.tiene_valor
+        retornar self.tiene_valor
     }
-    
     funcion es_Ninguno() -> Booleano {
-        retornar no este.tiene_valor
+        retornar !self.tiene_valor
     }
-    
     funcion obtener_valor() -> Opcion<T> {
-        si (este.tiene_valor) {
-            retornar Algo(este.valor)
+        si (self.tiene_valor) {
+            retornar Algo(self.valor)
         }
         retornar Ninguno
     }
 }
 
-funcion alguno<T>(valor: T) -> MiOpcion<T> {
-    variable opt = nuevo MiOpcion<T>()
+funcion alguno<T>(valor: T) -> MiOpcion {
+    variable opt = nuevo MiOpcion()
     opt.tiene_valor = verdadero
     opt.valor = valor
     retornar opt
 }
 
-funcion ninguno<T>() -> MiOpcion<T> {
-    retornar nuevo MiOpcion<T>()
+funcion ninguno<T>() -> MiOpcion {
+    retornar nuevo MiOpcion()
 }
 
 funcion main() {
     escribir("=== MiOpcion<T> Manual ===\n")
-    
     variable opt_entero = alguno(42)
     variable opt_texto = alguno("Hola")
-    variable opt_vacio = ninguno<Entero>()
-    
+    variable opt_vacio = ninguno()
     escribir("MiOpcion con 42:")
-    escribir("  ¿Es algo? ${opt_entero.es_algo()}")
-    escribir("  ¿Es Ninguno? ${opt_entero.es_Ninguno()}")
-    
+    escribir("  ¿Es algo? " + opt_entero.es_algo() + "")
+    escribir("  ¿Es Ninguno? " + opt_entero.es_Ninguno() + "")
     coincidir (opt_entero.obtener_valor()) {
-        caso Algo(v) -> escribir("  Valor: ${v}")
-        caso Ninguno -> escribir("  Sin valor")
+        caso Algo(v) -> {
+            escribir("  Valor: " + v + "")
+        }
+        caso Ninguno -> {
+            escribir("  Sin valor")
+        }
     }
-    
     escribir("")
     escribir("MiOpcion con \"Hola\":")
     coincidir (opt_texto.obtener_valor()) {
-        caso Algo(v) -> escribir("  Valor: ${v}")
-        caso Ninguno -> escribir("  Sin valor")
+        caso Algo(v) -> {
+            escribir("  Valor: " + v + "")
+        }
+        caso Ninguno -> {
+            escribir("  Sin valor")
+        }
     }
-    
     escribir("")
     escribir("MiOpcion vacío:")
-    escribir("  ¿Es algo? ${opt_vacio.es_algo()}")
-    escribir("  ¿Es Ninguno? ${opt_vacio.es_Ninguno()}")
+    escribir("  ¿Es algo? " + opt_vacio.es_algo() + "")
+    escribir("  ¿Es Ninguno? " + opt_vacio.es_Ninguno() + "")
 }
 
 main()
+
