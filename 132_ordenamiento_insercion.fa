@@ -1,7 +1,6 @@
 /// Insertion sort
 /// Conceptos: ordenamiento inserción, algoritmo clásico, arrays
 /// Nivel: básico
-
 importar "std/io"
 
 funcion insercion(arr) {
@@ -22,15 +21,13 @@ funcion insercion(arr) {
 
 funcion main() {
     escribir("=== Insertion Sort ===\n")
-
     variable numeros = [29, 10, 14, 37, 13, 33, 48, 22]
-    escribir("Original: ${numeros}")
-
+    escribir("Original: " + numeros + "")
     numeros = insercion(numeros)
-    escribir("Ordenado: ${numeros}")
-
+    escribir("Ordenado: " + numeros + "")
     escribir("")
     escribir("Insertion sort construye el array ordenado de a un elemento por vez.")
 }
 
 main()
+
