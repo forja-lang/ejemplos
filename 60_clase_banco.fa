@@ -1,15 +1,17 @@
 // 🎓 Lección 60: Clase Cuenta Bancaria
-
 clase CuentaBancaria {
     titular
     saldo
 
     constructor() {
-        este.titular = "Sin nombre"
-        este.saldo = 0
+        self.titular = "Sin nombre"
+        self.saldo = 0
     }
 }
 
 variable cuenta = nuevo CuentaBancaria()
+
 escribir(cuenta.titular)
+
 escribir(cuenta.saldo)
+
