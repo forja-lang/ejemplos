@@ -5,7 +5,6 @@
 //
 // Ejecutar: forja ejecutar ejemplos/202_login.fa
 // (auto-transpila, compila con cargo y abre la ventana)
-
 importar "gui"
 
 funcion main() {
@@ -27,3 +26,4 @@ funcion main() {
     escribir("  Validacion en tiempo real")
     escribir("==================================")
 }
+
