@@ -8,13 +8,11 @@
 //    forja ejecutar ejemplos/403_login_funcional.fa       ← consola
 //    forja ejecutar --native ejemplos/403_login_funcional.fa  ← ventana GUI
 // ─────────────────────────────────────────────────
-
 importar "gui"
 
 // ══════════════════════════════════════════════════
 //  Base de datos de usuarios
 // ══════════════════════════════════════════════════
-
 funcion buscar_usuario(usr, pass) -> Resultado {
     si (usr == "admin" && pass == "1234") {
         retornar Ok("Bienvenido Administrador")
@@ -37,11 +35,9 @@ funcion buscar_usuario(usr, pass) -> Resultado {
 // ══════════════════════════════════════════════════
 //  Función de login con usuarios hardcodeados
 // ══════════════════════════════════════════════════
-
 funcion main() {
     variable usuario = ""
     variable contrasena = ""
-
     escribir("==================================")
     escribir("         🔐 INICIAR SESIÓN")
     escribir("==================================")
@@ -50,16 +46,13 @@ funcion main() {
     escribir("")
     escribir("Ingresá tus datos:")
     escribir("")
-
     // En VM: pedimos input por consola
     // En GUI: entrada_texto() captura desde el campo
     usuario = leer("👤 Usuario: ")
     contrasena = leer("🔒 Contraseña: ")
-
     escribir("")
     escribir("Validando...")
     escribir("")
-
     // Validar
     variable resultado = buscar_usuario(usuario, contrasena)
     coincidir (resultado) {
@@ -70,17 +63,9 @@ funcion main() {
             escribir("❌ " + err)
         }
     }
-
     escribir("")
     escribir("==================================")
-
     // ─── En modo GUI (--native): mostrar ventana con los mismos datos ───
-    tema_material("#1565C0",
-        columna(
-            etiqueta("🔐 Login Forja"),
-            entrada_texto("usuario"),
-            entrada_texto("contrasena"),
-            boton_tonal("Ingresar", &main)
-        )
-    )
+    tema_material("#1565C0", columna(etiqueta("🔐 Login Forja"), entrada_texto("usuario"), entrada_texto("contrasena"), boton_tonal("Ingresar", &main)))
 }
+
