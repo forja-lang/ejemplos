@@ -1,12 +1,10 @@
 /// Desempaquetar Opcion con match
 /// Conceptos: coincidir, caso, patrones Algo/Ninguno, extraer valores
 /// Nivel: intermedio
-
 importar "std/io"
 
 // Para usar el valor dentro de un Opcion, debemos
 // desempaquetarlo con coincidir (pattern matching)
-
 funcion buscar_en_lista(lista, objetivo) -> Opcion<Entero> {
     variable i = 0
     mientras (i < longitud(lista)) {
@@ -21,24 +19,20 @@ funcion buscar_en_lista(lista, objetivo) -> Opcion<Entero> {
 funcion main() {
     variable numeros = [10, 20, 30, 40, 50]
     variable resultado = buscar_en_lista(numeros, 30)
-    
     escribir("=== Desempaquetar Opcion ===")
-    
     coincidir (resultado) {
         caso Algo(valor) -> {
-            escribir("Encontrado en índice: ${valor}")
+            escribir("Encontrado en índice: " + valor + "")
         }
         caso Ninguno -> {
             escribir("Valor no encontrado")
         }
     }
-    
     // Otro ejemplo:
     variable busqueda = buscar_en_lista(numeros, 99)
-    
     coincidir (busqueda) {
         caso Algo(valor) -> {
-            escribir("Encontrado: ${valor}")
+            escribir("Encontrado: " + valor + "")
         }
         caso Ninguno -> {
             escribir("El 99 no está en la lista")
@@ -47,3 +41,4 @@ funcion main() {
 }
 
 main()
+
