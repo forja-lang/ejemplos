@@ -1,11 +1,9 @@
 /// Combinar múltiples Opcion
 /// Conceptos: múltiples Some/Ninguno, composición, valores opcionales
 /// Nivel: intermedio
-
 importar "std/io"
 
 // Trabajar con múltiples valores opcionales simultáneamente
-
 funcion buscar_en_lista(lista, objetivo) -> Opcion<Entero> {
     variable i = 0
     mientras (i < longitud(lista)) {
@@ -34,22 +32,21 @@ funcion ultimo_elem(lista) -> Opcion<Entero> {
 
 funcion combinar_opciones(a, b) {
     escribir("Combinando opciones:")
-    
     coincidir (a) {
         caso Algo(va) -> {
             coincidir (b) {
                 caso Algo(vb) -> {
-                    escribir("  Ambos tienen valor: ${va} y ${vb}")
+                    escribir("  Ambos tienen valor: " + va + " y " + vb + "")
                 }
                 caso Ninguno -> {
-                    escribir("  Solo A tiene valor: ${va}")
+                    escribir("  Solo A tiene valor: " + va + "")
                 }
             }
         }
         caso Ninguno -> {
             coincidir (b) {
                 caso Algo(vb) -> {
-                    escribir("  Solo B tiene valor: ${vb}")
+                    escribir("  Solo B tiene valor: " + vb + "")
                 }
                 caso Ninguno -> {
                     escribir("  Ninguno tiene valor")
@@ -61,14 +58,11 @@ funcion combinar_opciones(a, b) {
 
 funcion main() {
     escribir("=== Combinar Opciones ===\n")
-    
     variable lista1 = [10, 20, 30]
     variable lista2 = []
-    
     variable a = primer_elem(lista1)
     variable b = ultimo_elem(lista1)
     variable c = primer_elem(lista2)
-    
     combinar_opciones(a, b)
     escribir("")
     combinar_opciones(a, c)
@@ -77,3 +71,4 @@ funcion main() {
 }
 
 main()
+
