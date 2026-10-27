@@ -1,18 +1,17 @@
 /// Patrón Strategy con Rasgos
 /// Conceptos: strategy, rasgos, algoritmos intercambiables, composición
 /// Nivel: avanzado
-
 importar "std/io"
 
 // El patrón Strategy permite definir una familia de algoritmos,
 // encapsularlos y hacerlos intercambiables en tiempo de ejecución.
-
 rasgo EstrategiaOrdenamiento {
     funcion ordenar(arr)
 }
 
 clase OrdenamientoBurbuja {
-    constructor() {}
+    constructor() {
+    }
 }
 
 implementa EstrategiaOrdenamiento para OrdenamientoBurbuja {
@@ -36,7 +35,8 @@ implementa EstrategiaOrdenamiento para OrdenamientoBurbuja {
 }
 
 clase OrdenamientoSeleccion {
-    constructor() {}
+    constructor() {
+    }
 }
 
 implementa EstrategiaOrdenamiento para OrdenamientoSeleccion {
@@ -62,7 +62,8 @@ implementa EstrategiaOrdenamiento para OrdenamientoSeleccion {
 }
 
 clase OrdenamientoRapido {
-    constructor() {}
+    constructor() {
+    }
 }
 
 funcion particion(arr, bajo, alto) -> Entero {
@@ -103,57 +104,49 @@ clase ContextoOrdenamiento {
     estrategia
 
     constructor() {
-        este.estrategia = nulo
+        self.estrategia = nulo
     }
-
     funcion set_estrategia(est) {
-        este.estrategia = est
+        self.estrategia = est
         escribir("  ⚙️ Estrategia cambiada")
     }
-
     funcion ejecutar_ordenamiento(arr) {
-        si (este.estrategia == nulo) {
+        si (self.estrategia == nulo) {
             escribir("  Error: No hay estrategia configurada.")
             retornar arr
         }
         escribir("  Ordenando con estrategia actual...")
-        retornar este.estrategia.ordenar(arr)
+        retornar self.estrategia.ordenar(arr)
     }
 }
 
 funcion main() {
     escribir("=== PATRÓN STRATEGY ===\n")
     escribir("Algoritmos intercambiables mediante rasgos.\n")
-
     variable contexto = nuevo ContextoOrdenamiento()
     variable datos = [64, 34, 25, 12, 22, 11, 90, 8]
-
-    escribir("Array original: ${datos}")
-
+    escribir("Array original: " + datos + "")
     // Usar Bubble Sort
     escribir("")
     escribir("1. Usando Bubble Sort:")
     contexto.set_estrategia(nuevo OrdenamientoBurbuja())
     variable datos1 = [64, 34, 25, 12, 22, 11, 90, 8]
     variable resultado1 = contexto.ejecutar_ordenamiento(datos1)
-    escribir("  Resultado: ${resultado1}")
-
+    escribir("  Resultado: " + resultado1 + "")
     // Usar Selection Sort
     escribir("")
     escribir("2. Usando Selection Sort:")
     contexto.set_estrategia(nuevo OrdenamientoSeleccion())
     variable datos2 = [64, 34, 25, 12, 22, 11, 90, 8]
     variable resultado2 = contexto.ejecutar_ordenamiento(datos2)
-    escribir("  Resultado: ${resultado2}")
-
+    escribir("  Resultado: " + resultado2 + "")
     // Usar Quick Sort
     escribir("")
     escribir("3. Usando Quick Sort:")
     contexto.set_estrategia(nuevo OrdenamientoRapido())
     variable datos3 = [64, 34, 25, 12, 22, 11, 90, 8]
     variable resultado3 = contexto.ejecutar_ordenamiento(datos3)
-    escribir("  Resultado: ${resultado3}")
-
+    escribir("  Resultado: " + resultado3 + "")
     escribir("")
     escribir("Ventajas del patrón Strategy:")
     escribir("  • Los algoritmos son intercambiables en tiempo de ejecución")
@@ -163,3 +156,4 @@ funcion main() {
 }
 
 main()
+
