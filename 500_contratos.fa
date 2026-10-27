@@ -1,8 +1,8 @@
 // ═══════════════════════════════════════════
 // Design by Contract — Ejemplo completo
 // ═══════════════════════════════════════════
-
 importar "std/io"
+
 importar "std/matematica"
 
 // ─── Función con contrato simple ───
@@ -41,24 +41,23 @@ clase Contador
     siempre valor >= 0, "El contador nunca es negativo"
     siempre valor <= 100, "El contador no excede el máximo"
 {
-    variable valor: Entero
-    
+    variable
+    valor: Entero
+
     constructor() {
-        este.valor = 0
+        self.valor = 0
     }
-    
     funcion incrementar()
-        requiere este.valor < 100, "El contador está al máximo"
-        asegura este.valor == anterior(este.valor) + 1
+        requiere self.valor < 100, "El contador está al máximo"
+        asegura self.valor == anterior(self.valor) + 1
     {
-        este.valor = este.valor + 1
+        self.valor = self.valor + 1
     }
-    
     funcion decrementar()
-        requiere este.valor > 0, "El contador está en cero"
-        asegura este.valor == anterior(este.valor) - 1
+        requiere self.valor > 0, "El contador está en cero"
+        asegura self.valor == anterior(self.valor) - 1
     {
-        este.valor = este.valor - 1
+        self.valor = self.valor - 1
     }
 }
 
@@ -66,25 +65,21 @@ clase Contador
 funcion main() {
     imprimir("═══ Tests de Contratos ═══")
     imprimir_linea()
-    
     // Test 1: Contrato que pasa
     imprimir("Test 1: dividir(10, 2) == 5")
     variable r1 = dividir(10, 2)
     asegurar_tests(r1 == 5, "dividir(10, 2) debería ser 5")
     imprimir("  ✓ OK: " + r1)
-    
     // Test 2: resultado en postcondición
     imprimir("Test 2: raiz_cuadrada_entera(25) == 5")
     variable r2 = raiz_cuadrada_entera(25)
     asegurar_tests(r2 == 5, "raíz de 25 debería ser 5")
     imprimir("  ✓ OK: " + r2)
-    
     // Test 3: anterior() en postcondición
     imprimir("Test 3: duplicar(7) == 14")
     variable r3 = duplicar(7)
     asegurar_tests(r3 == 14, "duplicar(7) debería ser 14")
     imprimir("  ✓ OK: " + r3)
-    
     // Test 4: Clase con invariante
     imprimir("Test 4: Contador con invariante")
     variable c = nuevo Contador()
@@ -93,7 +88,6 @@ funcion main() {
     c.incrementar()
     asegurar_tests(c.valor == 3, "El contador debería ser 3")
     imprimir("  ✓ OK: " + c.valor)
-    
     imprimir_linea()
     imprimir("Todos los tests pasaron ✅")
 }
@@ -105,3 +99,4 @@ funcion asegurar_tests(condicion, mensaje: Texto) {
 }
 
 main()
+
