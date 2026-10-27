@@ -1,19 +1,18 @@
 /// Patrón Visitor con Match
 /// Conceptos: visitor, match, separación de algoritmos y datos, type-safe
 /// Nivel: avanzado
-
 importar "std/io"
 
 // El patrón Visitor permite definir nuevas operaciones sobre una
 // estructura de objetos sin modificar las clases de esos objetos.
 // Usamos `coincidir` (match) para lograr un comportamiento similar.
-
 tipo Figura = Circulo(Entero) | Rectangulo(Entero, Entero) | Triangulo(Entero, Entero)
 
 funcion calcular_area(figura) -> Entero {
     coincidir (figura) {
         caso Circulo(r) -> {
-            retornar 3 * r * r  // π ≈ 3
+            retornar 3 * r * r
+        // π ≈ 3
         }
         caso Rectangulo(b, h) -> {
             retornar b * h
@@ -27,7 +26,8 @@ funcion calcular_area(figura) -> Entero {
 funcion calcular_perimetro(figura) -> Entero {
     coincidir (figura) {
         caso Circulo(r) -> {
-            retornar 2 * 3 * r  // 2πr ≈ 6r
+            retornar 2 * 3 * r
+        // 2πr ≈ 6r
         }
         caso Rectangulo(b, h) -> {
             retornar 2 * (b + h)
@@ -42,13 +42,13 @@ funcion calcular_perimetro(figura) -> Entero {
 funcion describir(figura) -> Texto {
     coincidir (figura) {
         caso Circulo(r) -> {
-            retornar "⭕ Círculo (radio=${r})"
+            retornar "⭕ Círculo (radio=" + r + ")"
         }
         caso Rectangulo(b, h) -> {
-            retornar "📐 Rectángulo (${b}×${h})"
+            retornar "📐 Rectángulo (" + b + "×" + h + ")"
         }
         caso Triangulo(b, h) -> {
-            retornar "🔺 Triángulo (base=${b}, altura=${h})"
+            retornar "🔺 Triángulo (base=" + b + ", altura=" + h + ")"
         }
     }
 }
@@ -70,23 +70,25 @@ funcion escalar(figura, factor) {
 funcion a_json(figura) -> Texto {
     coincidir (figura) {
         caso Circulo(r) -> {
-            retornar '{"tipo": "circulo", "radio": ${r}}'
+            retornar "{\"tipo\": \"circulo\", \"radio\": \${r}}"
         }
         caso Rectangulo(b, h) -> {
-            retornar '{"tipo": "rectangulo", "base": ${b}, "altura": ${h}}'
+            retornar "{\"tipo\": \"rectangulo\", \"base\": \${b}, \"altura\": \${h}}"
         }
         caso Triangulo(b, h) -> {
-            retornar '{"tipo": "triangulo", "base": ${b}, "altura": ${h}}'
+            retornar "{\"tipo\": \"triangulo\", \"base\": \${b}, \"altura\": \${h}}"
         }
     }
 }
 
 funcion raiz(S) -> Decimal {
-    si (S <= 0) { retornar 0 }
+    si (S <= 0) {
+        retornar 0
+    }
     variable x = S
     variable i = 0
     mientras (i < 20) {
-        x = (x + S / x) / 2.0
+        x = (x + S / x) / 2
         i = i + 1
     }
     retornar x
@@ -95,22 +97,13 @@ funcion raiz(S) -> Decimal {
 funcion main() {
     escribir("=== PATRÓN VISITOR ===")
     escribir("Operaciones separadas de la estructura de datos.\n")
-
-    variable figuras = [
-        Circulo(5),
-        Rectangulo(4, 6),
-        Triangulo(3, 8),
-        Circulo(10),
-        Rectangulo(7, 3)
-    ]
-
+    variable figuras = [Circulo(5), Rectangulo(4, 6), Triangulo(3, 8), Circulo(10), Rectangulo(7, 3)]
     escribir("--- Visitante 1: Descripción ---")
     variable i = 0
     mientras (i < longitud(figuras)) {
-        escribir("  ${describir(figuras[i])}")
+        escribir("  " + describir(figuras[i]) + "")
         i = i + 1
     }
-
     escribir("")
     escribir("--- Visitante 2: Área ---")
     variable area_total = 0
@@ -118,11 +111,10 @@ funcion main() {
     mientras (j < longitud(figuras)) {
         variable area = calcular_area(figuras[j])
         area_total = area_total + area
-        escribir("  Área ${j + 1}: ${area}")
+        escribir("  Área " + j + 1 + ": " + area + "")
         j = j + 1
     }
-    escribir("  Área total: ${area_total}")
-
+    escribir("  Área total: " + area_total + "")
     escribir("")
     escribir("--- Visitante 3: Perímetro ---")
     variable per_total = 0
@@ -130,31 +122,29 @@ funcion main() {
     mientras (k < longitud(figuras)) {
         variable per = calcular_perimetro(figuras[k])
         per_total = per_total + per
-        escribir("  Perímetro ${k + 1}: ${per}")
+        escribir("  Perímetro " + k + 1 + ": " + per + "")
         k = k + 1
     }
-    escribir("  Perímetro total: ${per_total}")
-
+    escribir("  Perímetro total: " + per_total + "")
     escribir("")
     escribir("--- Visitante 4: Escalar (×2) ---")
     variable l = 0
     mientras (l < longitud(figuras)) {
         variable fig_escalada = escalar(figuras[l], 2)
-        escribir("  ${describir(figuras[l])} → ${describir(fig_escalada)}")
+        escribir("  " + describir(figuras[l]) + " → " + describir(fig_escalada) + "")
         l = l + 1
     }
-
     escribir("")
     escribir("--- Visitante 5: JSON ---")
     variable m = 0
     mientras (m < longitud(figuras)) {
-        escribir("  ${a_json(figuras[m])}")
+        escribir("  " + a_json(figuras[m]) + "")
         m = m + 1
     }
-
     escribir("")
     escribir("Con `match` podemos añadir nuevas operaciones (visitantes)")
     escribir("sin modificar las variantes originales del tipo.")
 }
 
 main()
+
