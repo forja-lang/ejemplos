@@ -1,39 +1,34 @@
 /// Árbol binario genérico
 /// Conceptos: estructura de datos recursiva, árbol binario, genéricos
 /// Nivel: avanzado
-
 importar "std/io"
 
 // Implementación de un árbol binario de búsqueda genérico
-
 clase Nodo<T> {
     valor
     izquierdo
     derecho
-    
+
     constructor(valor: T) {
-        este.valor = valor
-        este.izquierdo = nulo
-        este.derecho = nulo
+        self.valor = valor
+        self.izquierdo = nulo
+        self.derecho = nulo
     }
 }
 
 clase ArbolBinario<T> {
     raiz
-    
+
     constructor() {
-        este.raiz = nulo
+        self.raiz = nulo
     }
-    
     funcion insertar(valor: T) {
         variable nuevo_nodo = nuevo Nodo(valor)
-        
-        si (este.raiz == nulo) {
-            este.raiz = nuevo_nodo
+        si (self.raiz == nulo) {
+            self.raiz = nuevo_nodo
             retornar
         }
-        
-        variable actual = este.raiz
+        variable actual = self.raiz
         mientras (verdadero) {
             si (valor < actual.valor) {
                 si (actual.izquierdo == nulo) {
@@ -50,9 +45,8 @@ clase ArbolBinario<T> {
             }
         }
     }
-    
     funcion buscar(valor: T) -> Booleano {
-        variable actual = este.raiz
+        variable actual = self.raiz
         mientras (actual != nulo) {
             si (valor == actual.valor) {
                 retornar verdadero
@@ -65,24 +59,22 @@ clase ArbolBinario<T> {
         }
         retornar falso
     }
-    
     funcion recorrer_en_orden() {
-        este._recorrer(este.raiz)
+        self._recorrer(self.raiz)
     }
-    
     funcion _recorrer(nodo) {
-        si (nodo == nulo) { retornar }
-        este._recorrer(nodo.izquierdo)
-        escribir("  ${nodo.valor}")
-        este._recorrer(nodo.derecho)
+        si (nodo == nulo) {
+            retornar
+        }
+        self._recorrer(nodo.izquierdo)
+        escribir("  " + nodo.valor + "")
+        self._recorrer(nodo.derecho)
     }
 }
 
 funcion main() {
     escribir("=== Árbol Binario Genérico ===\n")
-    
-    variable arbol = nuevo ArbolBinario<Entero>()
-    
+    variable arbol = nuevo ArbolBinario()
     // Insertar valores
     arbol.insertar(50)
     arbol.insertar(30)
@@ -91,14 +83,13 @@ funcion main() {
     arbol.insertar(40)
     arbol.insertar(60)
     arbol.insertar(80)
-    
     escribir("Árbol en orden:")
     arbol.recorrer_en_orden()
-    
     escribir("")
-    escribir("Buscar 40: ${arbol.buscar(40)}")
-    escribir("Buscar 90: ${arbol.buscar(90)}")
-    escribir("Buscar 20: ${arbol.buscar(20)}")
+    escribir("Buscar 40: " + arbol.buscar(40) + "")
+    escribir("Buscar 90: " + arbol.buscar(90) + "")
+    escribir("Buscar 20: " + arbol.buscar(20) + "")
 }
 
 main()
+
