@@ -1,26 +1,22 @@
 /// Patrón Command
 /// Conceptos: command, encapsulación, operaciones, deshacer, cola de comandos
 /// Nivel: avanzado
-
 importar "std/io"
 
 // El patrón Command encapsula una solicitud como un objeto,
 // permitiendo parametrizar clientes con diferentes solicitudes,
 // encolar operaciones y soportar operaciones reversibles (deshacer).
-
 clase Comando {
     nombre
     ejecutado
 
     constructor() {
-        este.nombre = ""
-        este.ejecutado = falso
+        self.nombre = ""
+        self.ejecutado = falso
     }
-
     funcion ejecutar(arg) {
         escribir("  (comando base - debe ser sobrescrito)")
     }
-
     funcion deshacer(arg) {
         escribir("  (deshacer base - debe ser sobrescrito)")
     }
@@ -32,23 +28,21 @@ clase ComandoSumar {
     valor_anterior
 
     constructor() {
-        este.nombre = "Sumar"
-        este.ejecutado = falso
-        este.valor_anterior = 0
+        self.nombre = "Sumar"
+        self.ejecutado = falso
+        self.valor_anterior = 0
     }
-
     funcion ejecutar(valor) {
-        este.valor_anterior = valor
-        escribir("  ➕ Sumando ${valor}")
-        este.ejecutado = verdadero
+        self.valor_anterior = valor
+        escribir("  ➕ Sumando " + valor + "")
+        self.ejecutado = verdadero
         retornar valor
     }
-
     funcion deshacer() {
-        si (este.ejecutado) {
-            escribir("  ↩️ Deshaciendo suma de ${este.valor_anterior}")
-            este.ejecutado = falso
-            retornar -este.valor_anterior
+        si (self.ejecutado) {
+            escribir("  ↩️ Deshaciendo suma de " + self.valor_anterior + "")
+            self.ejecutado = falso
+            retornar -self.valor_anterior
         }
         escribir("  ⚠️ Nada que deshacer")
         retornar 0
@@ -61,23 +55,21 @@ clase ComandoMultiplicar {
     factor_anterior
 
     constructor() {
-        este.nombre = "Multiplicar"
-        este.ejecutado = falso
-        este.factor_anterior = 0
+        self.nombre = "Multiplicar"
+        self.ejecutado = falso
+        self.factor_anterior = 0
     }
-
     funcion ejecutar(valor) {
-        este.factor_anterior = valor
-        escribir("  ✖️ Multiplicando por ${valor}")
-        este.ejecutado = verdadero
+        self.factor_anterior = valor
+        escribir("  ✖️ Multiplicando por " + valor + "")
+        self.ejecutado = verdadero
         retornar valor
     }
-
     funcion deshacer() {
-        si (este.ejecutado) {
-            escribir("  ↩️ Deshaciendo multiplicación por ${este.factor_anterior}")
-            este.ejecutado = falso
-            retornar 1.0 / este.factor_anterior
+        si (self.ejecutado) {
+            escribir("  ↩️ Deshaciendo multiplicación por " + self.factor_anterior + "")
+            self.ejecutado = falso
+            retornar 1 / self.factor_anterior
         }
         escribir("  ⚠️ Nada que deshacer")
         retornar 1
@@ -90,23 +82,21 @@ clase ComandoRestar {
     valor_anterior
 
     constructor() {
-        este.nombre = "Restar"
-        este.ejecutado = falso
-        este.valor_anterior = 0
+        self.nombre = "Restar"
+        self.ejecutado = falso
+        self.valor_anterior = 0
     }
-
     funcion ejecutar(valor) {
-        este.valor_anterior = valor
-        escribir("  ➖ Restando ${valor}")
-        este.ejecutado = verdadero
+        self.valor_anterior = valor
+        escribir("  ➖ Restando " + valor + "")
+        self.ejecutado = verdadero
         retornar -valor
     }
-
     funcion deshacer() {
-        si (este.ejecutado) {
-            escribir("  ↩️ Deshaciendo resta de ${este.valor_anterior}")
-            este.ejecutado = falso
-            retornar este.valor_anterior
+        si (self.ejecutado) {
+            escribir("  ↩️ Deshaciendo resta de " + self.valor_anterior + "")
+            self.ejecutado = falso
+            retornar self.valor_anterior
         }
         escribir("  ⚠️ Nada que deshacer")
         retornar 0
@@ -119,37 +109,34 @@ clase CalculadoraConComandos {
     indice_historial
 
     constructor() {
-        este.valor_actual = 0
-        este.historial = []
-        este.indice_historial = 0
+        self.valor_actual = 0
+        self.historial = []
+        self.indice_historial = 0
     }
-
     funcion ejecutar_comando(cmd, argumento) {
         variable cambio = cmd.ejecutar(argumento)
-        este.valor_actual = este.valor_actual + cambio
-        este.historial[este.indice_historial] = cmd
-        este.indice_historial = este.indice_historial + 1
-        escribir("  = Resultado: ${este.valor_actual}")
+        self.valor_actual = self.valor_actual + cambio
+        self.historial[self.indice_historial] = cmd
+        self.indice_historial = self.indice_historial + 1
+        escribir("  = Resultado: " + self.valor_actual + "")
     }
-
     funcion deshacer() {
-        si (este.indice_historial > 0) {
-            este.indice_historial = este.indice_historial - 1
-            variable cmd = este.historial[este.indice_historial]
+        si (self.indice_historial > 0) {
+            self.indice_historial = self.indice_historial - 1
+            variable cmd = self.historial[self.indice_historial]
             variable cambio = cmd.deshacer()
-            este.valor_actual = este.valor_actual + cambio
-            escribir("  = Resultado tras deshacer: ${este.valor_actual}")
+            self.valor_actual = self.valor_actual + cambio
+            escribir("  = Resultado tras deshacer: " + self.valor_actual + "")
         } sino {
             escribir("  ⚠️ No hay más operaciones para deshacer")
         }
     }
-
     funcion mostrar_historial() {
-        escribir("  Historial (${este.indice_historial} comandos):")
+        escribir("  Historial (" + self.indice_historial + " comandos):")
         variable i = 0
-        mientras (i < este.indice_historial) {
-            variable cmd = este.historial[i]
-            escribir("    ${i + 1}. ${cmd.nombre}")
+        mientras (i < self.indice_historial) {
+            variable cmd = self.historial[i]
+            escribir("    " + i + 1 + ". " + cmd.nombre + "")
             i = i + 1
         }
     }
@@ -158,26 +145,21 @@ clase CalculadoraConComandos {
 funcion main() {
     escribir("=== PATRÓN COMMAND ===\n")
     escribir("Encapsula operaciones como objetos con deshacer.\n")
-
     variable calc = nuevo CalculadoraConComandos()
-    escribir("Valor inicial: ${calc.valor_actual}")
-
+    escribir("Valor inicial: " + calc.valor_actual + "")
     escribir("")
     escribir("Ejecutando comandos:")
     calc.ejecutar_comando(nuevo ComandoSumar(), 10)
     calc.ejecutar_comando(nuevo ComandoMultiplicar(), 2)
     calc.ejecutar_comando(nuevo ComandoSumar(), 5)
     calc.ejecutar_comando(nuevo ComandoRestar(), 3)
-
     escribir("")
     escribir("Deshaciendo operaciones:")
     calc.deshacer()
     calc.deshacer()
     calc.deshacer()
-
     escribir("")
     calc.mostrar_historial()
-
     escribir("")
     escribir("El patrón Command es útil para:")
     escribir("  • Sistemas con operaciones deshacer/rehacer")
@@ -187,3 +169,4 @@ funcion main() {
 }
 
 main()
+
