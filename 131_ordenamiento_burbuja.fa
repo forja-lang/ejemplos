@@ -1,10 +1,9 @@
 /// Bubble sort
 /// Conceptos: ordenamiento burbuja, algoritmo clásico, arrays, intercambio
 /// Nivel: básico
-
 importar "std/io"
 
-funcion burbuja(arr) {
+funcion burbuja(mut arr) {
     variable n = longitud(arr)
     variable i = 0
     mientras (i < n - 1) {
@@ -24,15 +23,13 @@ funcion burbuja(arr) {
 
 funcion main() {
     escribir("=== Bubble Sort ===\n")
-
     variable numeros = [64, 34, 25, 12, 22, 11, 90]
-    escribir("Original: ${numeros}")
-
+    escribir("Original: " + numeros + "")
     numeros = burbuja(numeros)
-    escribir("Ordenado: ${numeros}")
-
+    escribir("Ordenado: " + numeros + "")
     escribir("")
     escribir("Bubble sort compara pares adyacentes y los intercambia si están desordenados.")
 }
 
 main()
+
