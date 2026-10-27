@@ -1,12 +1,11 @@
-# Ejemplo Dinámico: Lector y Validador de Archivos HomeBank XHB
-# Uso: 
-#   forja run ejemplos/ejemplo_xhb_dinamico.fa
+importar "std/xhb"
 
-importar std/xhb
-importar std/archivo
-importar std/env
+importar "std/archivo"
+
+importar "std/env"
 
 variable env_opt = obtener("ARCHIVO_XHB")
+
 variable ruta_archivo = "C:/Users/gaucho/Downloads/celis.xhb"
 
 coincidir (env_opt) {
@@ -14,10 +13,9 @@ coincidir (env_opt) {
         ruta_archivo = path
         escribir("📌 Archivo seleccionado dinámicamente: " + ruta_archivo + "\n")
     }
-    caso Ninguno() -> {
+    caso Ninguno -> {
         escribir("ℹ️ No se especificó la variable ARCHIVO_XHB.\n")
         escribir("  Cargando archivo por defecto: 'demo.xhb'...\n")
-
         variable existe = existe_archivo(ruta_archivo)
         si (existe == falso) {
             escribir("📄 Generando 'demo.xhb' de muestra en disco...\n")
@@ -35,14 +33,12 @@ coincidir (resultado) {
     caso Ok(doc) -> {
         escribir("✅ ¡ARCHIVO PARSEADO EXITOSAMENTE!\n")
         escribir("----------------------------------------------------\n")
-
         escribir("📌 Formato XHB Versión: " + doc["versiones"]["file"] + "\n")
         escribir("💱 Moneda [0]: " + doc["currencies"][0]["name"] + "\n")
         escribir("🏦 Cuenta [0]: " + doc["accounts"][0]["name"] + "\n")
         escribir("👤 Beneficiario [0]: " + doc["payees"][0]["name"] + "\n")
         escribir("💸 Operación [0] Concepto: " + doc["operations"][0]["wording"] + "\n")
         escribir("💸 Operación [0] Monto: " + doc["operations"][0]["amount"] + "\n")
-
         escribir("\n🔄 Probando Re-serialización Roundtrip...\n")
         variable res_serializar = serializar(doc)
         coincidir (res_serializar) {
@@ -59,3 +55,4 @@ coincidir (resultado) {
         escribir("   Detalle: " + err.mensaje + "\n")
     }
 }
+
