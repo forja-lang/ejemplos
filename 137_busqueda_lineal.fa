@@ -1,7 +1,6 @@
 /// Búsqueda lineal en array
 /// Conceptos: búsqueda lineal, arrays, recorrido secuencial, sin orden requerido
 /// Nivel: básico
-
 importar "std/io"
 
 funcion busqueda_lineal(arr, objetivo) -> Entero {
@@ -29,10 +28,8 @@ funcion contar_ocurrencias(arr, objetivo) -> Entero {
 
 funcion main() {
     escribir("=== Búsqueda Lineal ===\n")
-
     variable numeros = [45, 12, 78, 23, 56, 12, 89, 34, 12, 67]
-    escribir("Array: ${numeros}")
-
+    escribir("Array: " + numeros + "")
     variable busquedas = [12, 89, 99]
     variable i = 0
     mientras (i < longitud(busquedas)) {
@@ -40,15 +37,15 @@ funcion main() {
         variable pos = busqueda_lineal(numeros, target)
         variable count = contar_ocurrencias(numeros, target)
         si (pos >= 0) {
-            escribir("  ${target} → primera vez en índice ${pos}, aparece ${count} vez/veces")
+            escribir("  " + target + " → primera vez en índice " + pos + ", aparece " + count + " vez/veces")
         } sino {
-            escribir("  ${target} → no encontrado")
+            escribir("  " + target + " → no encontrado")
         }
         i = i + 1
     }
-
     escribir("")
     escribir("Búsqueda lineal: O(n), funciona con arrays desordenados.")
 }
 
 main()
+
