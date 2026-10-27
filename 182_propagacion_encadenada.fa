@@ -1,0 +1,58 @@
+importar "std/io"
+
+funcion validar_positivo(n) -> Resultado<Entero, Texto> {
+    si (n < 0) {
+        retornar Error("Valor negativo: " + n + "")
+    }
+    retornar Ok(n)
+}
+
+funcion dividir_seguro(a, b) -> Resultado<Entero, Texto> {
+    si (b == 0) {
+        retornar Error("División por cero")
+    }
+    retornar Ok(a / b)
+}
+
+funcion calcular(a, b, c) -> Resultado<Entero, Texto> {
+    variable x = validar_positivo(a)?
+    variable y = validar_positivo(b)?
+    variable z = validar_positivo(c)?
+    variable suma = x + y + z
+    variable promedio = dividir_seguro(suma, 3)?
+    retornar Ok(promedio)
+}
+
+funcion main() {
+    escribir("=== Propagación encadenada con ? ===")
+    variable ok = calcular(3, 6, 9)
+    coincidir (ok) {
+        caso Ok(v) -> {
+            escribir("Promedio válido: " + v + "")
+        }
+        caso Error(m) -> {
+            escribir("Error: " + m + "")
+        }
+    }
+    variable fallo1 = calcular(-1, 6, 9)
+    coincidir (fallo1) {
+        caso Ok(v) -> {
+            escribir("Promedio válido: " + v + "")
+        }
+        caso Error(m) -> {
+            escribir("Error: " + m + "")
+        }
+    }
+    variable fallo2 = calcular(3, -6, 9)
+    coincidir (fallo2) {
+        caso Ok(v) -> {
+            escribir("Promedio válido: " + v + "")
+        }
+        caso Error(m) -> {
+            escribir("Error: " + m + "")
+        }
+    }
+}
+
+main()
+
