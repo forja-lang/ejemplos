@@ -6,7 +6,6 @@
 //
 // NOTA: HTTP/2 sin TLS (h2c) requiere prior knowledge o upgrade HTTP/1.1
 // La mayoria de navegadores requieren TLS para HTTP/2
-
 importar "std/servidor_h2"
 
 funcion manejador_raiz(solicitud) {
@@ -68,7 +67,6 @@ funcion main() {
     put(servidor, "/echo", manejador_echo)
     eliminar(servidor, "/echo", manejador_echo)
     patch(servidor, "/echo", manejador_echo)
-
     imprimir("=== Servidor HTTP/2 (h2c) en http://localhost:9500/ ===")
     imprimir("Prueba: curl --http2-prior-knowledge http://localhost:9500/")
     imprimir("Prueba: curl --http2-prior-knowledge http://localhost:9500/json")
@@ -76,3 +74,4 @@ funcion main() {
 }
 
 main()
+
