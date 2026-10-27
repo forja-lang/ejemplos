@@ -1,44 +1,39 @@
 /// Patrón Observer con Canales
 /// Conceptos: observer, canales, concurrencia, eventos, publicación/suscripción
 /// Nivel: avanzado
-
 importar "std/io"
 
 // El patrón Observer define una dependencia uno-a-muchos entre objetos,
 // de modo que cuando un objeto cambia su estado, todos sus dependientes
 // son notificados automáticamente usando canales.
-
 clase Sujeto {
     estado
     observadores
     canal_emisor
 
     constructor() {
-        este.estado = 0
-        este.observadores = []
-        este.canal_emisor = nulo
+        self.estado = 0
+        self.observadores = []
+        self.canal_emisor = nulo
     }
-
     funcion agregar_observador(obs) {
-        variable n = longitud(este.observadores)
-        este.observadores[n] = obs
-        escribir("  👀 Observador agregado (total: ${n + 1})")
+        variable n = longitud(self.observadores)
+        self.observadores[n] = obs
+        escribir("  👀 Observador agregado (total: " + n + 1 + ")")
     }
-
     funcion notificar_todos() {
-        escribir("  📢 Notificando a ${longitud(este.observadores)} observadores...")
+        escribir("  📢 Notificando a " + longitud(self.observadores) + " observadores...")
         variable i = 0
-        mientras (i < longitud(este.observadores)) {
-            variable obs = este.observadores[i]
-            obs.emisor.enviar(este.estado)
+        mientras (i < longitud(self.observadores)) {
+            variable obs = self.observadores[i]
+            obs.emisor.enviar(self.estado)
             i = i + 1
         }
     }
-
     funcion cambiar_estado(nuevo_estado) {
-        este.estado = nuevo_estado
-        escribir("  🔄 Estado cambiado a: ${nuevo_estado}")
-        este.notificar_todos()
+        self.estado = nuevo_estado
+        escribir("  🔄 Estado cambiado a: " + nuevo_estado + "")
+        self.notificar_todos()
     }
 }
 
@@ -48,23 +43,21 @@ clase Observador {
     emisor
 
     constructor() {
-        este.nombre = ""
-        este.receptor = nulo
-        este.emisor = nulo
+        self.nombre = ""
+        self.receptor = nulo
+        self.emisor = nulo
     }
-
     funcion init(n) {
-        este.nombre = n
+        self.nombre = n
         variable t, r = canal()
-        este.emisor = t
-        este.receptor = r
+        self.emisor = t
+        self.receptor = r
     }
-
     funcion empezar_escuchar() {
         variable h = hilo {
             mientras (verdadero) {
-                variable mensaje = este.receptor.recibir()
-                escribir("  📬 ${este.nombre} recibió: estado = ${mensaje}")
+                variable mensaje = self.receptor.recibir()
+                escribir("  📬 " + self.nombre + " recibió: estado = " + mensaje + "")
             }
             retornar 0
         }
@@ -75,37 +68,29 @@ clase Observador {
 funcion main() {
     escribir("=== PATRÓN OBSERVER ===\n")
     escribir("Notifica cambios a múltiples observadores vía canales.\n")
-
     variable sujeto = nuevo Sujeto()
-
     variable obs1 = nuevo Observador()
     obs1.init("Observador-1")
     variable obs2 = nuevo Observador()
     obs2.init("Observador-2")
     variable obs3 = nuevo Observador()
     obs3.init("Observador-3")
-
     sujeto.agregar_observador(obs1)
     sujeto.agregar_observador(obs2)
     sujeto.agregar_observador(obs3)
-
     escribir("")
     variable h1 = obs1.empezar_escuchar()
     variable h2 = obs2.empezar_escuchar()
     variable h3 = obs3.empezar_escuchar()
-
     escribir("Cambiando estado del sujeto:")
     sujeto.cambiar_estado(10)
     esperar(0.2)
-
     escribir("")
     sujeto.cambiar_estado(25)
     esperar(0.2)
-
     escribir("")
     sujeto.cambiar_estado(42)
     esperar(0.2)
-
     escribir("")
     escribir("El patrón Observer es ideal para:")
     escribir("  • Interfaces de usuario (eventos de botones, cambios)")
@@ -114,3 +99,4 @@ funcion main() {
 }
 
 main()
+
