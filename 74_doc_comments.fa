@@ -3,7 +3,9 @@
 /// // Ejemplo
 /// `factorial(5)` retorna 120
 funcion factorial(n) {
-    si (n <= 1) { retornar 1 }
+    si (n <= 1) {
+        retornar 1
+    }
     retornar n * factorial(n - 1)
 }
 
@@ -18,4 +20,6 @@ funcion suma(a, b) {
 }
 
 escribir(factorial(5))
+
 saludar("Mundo")
+
