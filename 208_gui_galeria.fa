@@ -1,0 +1,107 @@
+// GUI Nativa — Galería de componentes con el diseño predeterminado Fluent (Windows 11)
+//
+// Muestra el grid responsivo (columnas elásticas, filas autosize), iconos SVG
+// reales (sin emojis), tipografía del tema y los widgets más usados para armar apps.
+//
+// Ejecutar: forja ejecutar --native ejemplos/208_gui_galeria.fa
+//
+// Para ver el mismo contenido con otros diseños, cambiá la primera línea del main:
+//   tema_fluent(...)              Fluent claro (este archivo)
+//   tema_fluent_oscuro(...)       Fluent oscuro
+//   tema_liquid_glass(...)        Liquid Glass claro
+//   tema_liquid_glass_oscuro(...) Liquid Glass oscuro
+importar "gui"
+
+funcion main() {
+    // Ventana: título, tamaño, icono, mínimo y comportamiento.
+    ventana("Galería de componentes — Forja", 1200, 860, "forge.ico", 900, 600, verdadero, verdadero)
+
+    variable nombre = ""
+    variable notificaciones = verdadero
+    variable volumen = 60
+    variable progreso = 40
+    variable estrellas = 3
+
+    tema_fluent(
+        desplazable(columna_con_gap([
+            barra_superior("Galería de componentes", [
+                boton_icono("search", &buscar),
+                boton_icono("settings", &configurar)
+            ]),
+
+            // ─── Grid responsivo: 3 columnas que se estiran con la ventana ───
+            grilla([
+                tarjeta(columna_con_gap([
+                    fila(icono_material("trending_up", 24, "primary"), titulo("Ventas")),
+                    cuerpo_grande("$12.400"),
+                    texto_color("+8% este mes", "primary")
+                ], 8, "start")),
+
+                tarjeta(columna_con_gap([
+                    fila(icono_material("trending_down", 24, "error"), titulo("Gastos")),
+                    cuerpo_grande("$7.850"),
+                    texto_color("-3% este mes", "error")
+                ], 8, "start")),
+
+                tarjeta(columna_con_gap([
+                    fila(icono_material("account_balance", 24, "secondary"), titulo("Balance")),
+                    cuerpo_grande("$4.550"),
+                    texto_color("Actualizado hoy", "on_surface_variant")
+                ], 8, "start")),
+
+                tarjeta(columna_con_gap([
+                    fila(icono_material("group", 24, "primary"), titulo("Usuarios")),
+                    cuerpo_grande("1.284"),
+                    texto_color("32 nuevos", "primary")
+                ], 8, "start")),
+
+                tarjeta(columna_con_gap([
+                    fila(icono_material("shopping_cart", 24, "tertiary"), titulo("Pedidos")),
+                    cuerpo_grande("318"),
+                    texto_color("12 pendientes", "on_surface_variant")
+                ], 8, "start")),
+
+                tarjeta(columna_con_gap([
+                    fila(icono_material("star", 24, "tertiary"), titulo("Valoración")),
+                    cuerpo_grande("4,6 / 5"),
+                    calificación(estrellas, 5, &calificar)
+                ], 8, "start"))
+            ], 3, 16),
+
+            separador(),
+
+            // ─── Formulario ───
+            titulo("Formulario"),
+            campo_texto("nombre", "Nombre completo"),
+            interruptor("Recibir notificaciones", "notificaciones"),
+            deslizante("volumen", 0, 100),
+
+            // ─── Indicadores ───
+            titulo("Indicadores"),
+            barra_progreso("progreso"),
+
+            // ─── Datos ───
+            titulo("Ventas por mes"),
+            gráfico_barras([120, 180, 150, 220, 260, 300], ["Ene", "Feb", "Mar", "Abr", "May", "Jun"]),
+
+            separador(),
+            boton_relleno("Guardar cambios", &guardar)
+        ], 16, "start"))
+    )
+}
+
+funcion guardar() {
+    escribir("Cambios guardados")
+}
+
+funcion buscar() {
+    escribir("Buscar")
+}
+
+funcion configurar() {
+    escribir("Configuración")
+}
+
+funcion calificar(valor: Texto) {
+    escribir("Valoración: " + valor)
+}
