@@ -92,6 +92,13 @@ funcion main() {
         escribir("\nTurno del Jugador " + turno + " (" + ficha + ")")
         variable fila = pedir_numero("Fila (1-3): ")
         variable col = pedir_numero("Columna (1-3): ")
+        // Sin entrada (EOF: CI, pipe cerrado) no se puede seguir jugando.
+        si (fila == nulo || col == nulo) {
+            escribir("
+Sin entrada (EOF). Fin del juego.")
+            jugando = falso
+            romper
+        }
         // Validar entrada
         mientras (fila < 1 || fila > 3 || col < 1 || col > 3 || tablero[fila - 1][col - 1] != " ") {
             escribir("  Casilla inválida u ocupada. Intenta de nuevo.")

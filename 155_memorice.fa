@@ -76,12 +76,25 @@ funcion main() {
     mientras (!todas_reveladas(reveladas)) {
         mostrar_tablero_oculto(cartas, reveladas)
         escribir("\nElige dos posiciones (1-16):")
-        variable p1 = pedir_numero("Primera carta: ") - 1
+        variable crudo1 = pedir_numero("Primera carta: ")
+        // Sin entrada (EOF: CI, pipe cerrado) no se puede seguir jugando.
+        si (crudo1 == nulo) {
+            escribir("
+Sin entrada (EOF). Fin del juego.")
+            romper
+        }
+        variable p1 = crudo1 - 1
         mientras (p1 < 0 || p1 >= 16 || reveladas[p1]) {
             escribir("  Posición inválida o ya revelada.")
             p1 = pedir_numero("Primera carta: ") - 1
         }
-        variable p2 = pedir_numero("Segunda carta: ") - 1
+        variable crudo2 = pedir_numero("Segunda carta: ")
+        si (crudo2 == nulo) {
+            escribir("
+Sin entrada (EOF). Fin del juego.")
+            romper
+        }
+        variable p2 = crudo2 - 1
         mientras (p2 < 0 || p2 >= 16 || reveladas[p2] || p2 == p1) {
             escribir("  Posición inválida, ya revelada o igual a la primera.")
             p2 = pedir_numero("Segunda carta: ") - 1

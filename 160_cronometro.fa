@@ -65,6 +65,14 @@ funcion main() {
     variable ejecutando = verdadero
     mientras (ejecutando) {
         variable comando = pedir_texto("Comando (p/r/q): ")
+        si (comando == nulo) {
+            // Sin entrada (EOF: CI, pipe cerrado) se detiene el cronómetro.
+            tx_main.enviar("detener")
+            escribir("
+Sin entrada (EOF). Fin del cronómetro.")
+            ejecutando = falso
+            romper
+        }
         si (comando == "q") {
             tx_main.enviar("detener")
             ejecutando = falso
