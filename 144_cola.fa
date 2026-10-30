@@ -1,6 +1,7 @@
 /// Cola (queue) FIFO
 /// Conceptos: cola, FIFO, encolar, desencolar, estructura de datos
 /// Nivel: intermedio
+
 importar "std/io"
 
 clase Cola<T> {
@@ -9,31 +10,44 @@ clase Cola<T> {
     constructor() {
         self.elementos = []
     }
+
     funcion encolar(valor: T) {
         self.elementos[longitud(self.elementos)] = valor
     }
+
     funcion desencolar() -> T {
         si (longitud(self.elementos) == 0) {
             retornar nulo
         }
-        variable valor = anon(self.elementos)
-        1
+        variable valor = self.elementos[0]
+        // Sin rebanadas: se reconstruye la cola sin el primero.
+        variable resto = []
+        variable i = 1
+        mientras (i < longitud(self.elementos)) {
+            resto[i - 1] = self.elementos[i]
+            i = i + 1
+        }
+        self.elementos = resto
         retornar valor
     }
+
     funcion frente() -> T {
         si (longitud(self.elementos) == 0) {
             retornar nulo
         }
         retornar self.elementos[0]
     }
+
     funcion esta_vacia() -> Booleano {
         retornar longitud(self.elementos) == 0
     }
+
     funcion tamano() -> Entero {
         retornar longitud(self.elementos)
     }
+
     funcion mostrar() {
-        escribir("  Cola: " + self.elementos + "  (frente: " + self.frente() + ")")
+        escribir("  Cola: ${self.elementos}  (frente: ${self.frente()})")
     }
 }
 
@@ -43,38 +57,43 @@ funcion simulacion_banco() {
     cola.encolar("Cliente 2")
     cola.encolar("Cliente 3")
     cola.encolar("Cliente 4")
+
     escribir("Llegan 4 clientes al banco:\n")
     cola.mostrar()
+
     escribir("")
     variable atendidos = 0
     mientras (!cola.esta_vacia()) {
         variable cliente = cola.desencolar()
-        escribir("  Atendiendo: " + cliente + "")
+        escribir("  Atendiendo: ${cliente}")
         atendidos = atendidos + 1
     }
-    escribir("\nSe atendieron " + atendidos + " clientes en orden de llegada.")
+    escribir("\nSe atendieron ${atendidos} clientes en orden de llegada.")
 }
 
 funcion main() {
     escribir("=== Cola (Queue FIFO) ===\n")
+
     variable cola = nuevo Cola()
     cola.encolar(10)
     cola.encolar(20)
     cola.encolar(30)
     cola.mostrar()
-    escribir("Desencolando: " + cola.desencolar() + "")
+
+    escribir("Desencolando: ${cola.desencolar()}")
     cola.mostrar()
     cola.encolar(40)
     cola.encolar(50)
     cola.mostrar()
-    escribir("Frente: " + cola.frente() + "")
-    escribir("Tamaño: " + cola.tamano() + "")
+    escribir("Frente: ${cola.frente()}")
+    escribir("Tamaño: ${cola.tamano()}")
+
     escribir("")
     escribir("Simulación de banco:")
     simulacion_banco()
+
     escribir("")
     escribir("La cola sigue el principio FIFO (First In, First Out).")
 }
 
 main()
-

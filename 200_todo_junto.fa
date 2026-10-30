@@ -309,9 +309,9 @@ funcion main() {
     // 8. Módulo matemática
     escribir("")
     escribir("--- 8. Funciones matemáticas ---")
-    escribir("  max(42, 100) = " + max(42, 100) + "")
-    escribir("  min(42, 100) = " + min(42, 100) + "")
-    escribir("  abs(-50) = " + abs(-50) + "")
+    escribir("  maximo(42, 100) = " + maximo(42, 100) + "")
+    escribir("  minimo(42, 100) = " + minimo(42, 100) + "")
+    escribir("  absoluto(-50) = " + absoluto(-50) + "")
     escribir("  es_par(7) = " + es_par(7) + "")
     // 9. Recursividad y algoritmos
     escribir("")

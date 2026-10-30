@@ -56,7 +56,7 @@ escribir(cociente)
 // Uso de stdlib (abs)
 variable num: Exacto = -42.5
 
-variable abs_num: Exacto = abs(num)
+variable abs_num: Exacto = absoluto(num)
 
 escribir("Absoluto de -42.5:")
 

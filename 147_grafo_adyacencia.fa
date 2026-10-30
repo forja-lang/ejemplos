@@ -45,8 +45,7 @@ clase GrafoMatriz {
             variable fila = "  " + self.vertices[j] + "  "
             variable k = 0
             mientras (k < self.tamano) {
-                k
-                1
+                k = k + 1
             }
             escribir("" + fila + "")
             j = j + 1

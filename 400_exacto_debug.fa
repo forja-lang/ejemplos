@@ -30,9 +30,9 @@ escribir("num < 0:")
 escribir(num < 0)
 
 // abs
-variable absoluto: Exacto = abs(num)
+variable absoluto: Exacto = absoluto(num)
 
-escribir("abs(num):")
+escribir("absoluto(num):")
 
 escribir(absoluto)
 

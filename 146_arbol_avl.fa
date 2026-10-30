@@ -2,6 +2,7 @@
 /// Conceptos: árbol AVL, balanceo, rotaciones, factor de equilibrio, BST balanceado
 /// Nivel: experto
 importar "std/io"
+importar "std/matematica"
 
 clase NodoAVL {
     valor
