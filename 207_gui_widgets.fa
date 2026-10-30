@@ -1,4 +1,4 @@
-// GUI Nativa — Demostración de Widgets
+// GUI Nativa — Demostración básica de widgets
 // Muestra: label, boton, text_input, progress_bar, slider, checkbox
 // Ejecutar: forja ejecutar --native ejemplos/207_gui_widgets.fa
 importar "gui"
@@ -9,10 +9,27 @@ funcion main() {
     variable volumen = 50
     variable activo = verdadero
     variable saludo = ""
-    columna(escribir("==========================="), escribir("    DEMO DE WIDGETS"), escribir("==========================="), escribir(""), escribir("Ingresa tu nombre:"), entrada_texto("nombre"), escribir(""), boton("Saludar", &saludar), escribir(saludo), escribir(""), escribir("Barra de progreso:"), barra_progreso(0.5), escribir(""), escribir("Casilla de verificacion:"), casilla("Acepto los terminos"), escribir(""), escribir("==========================="))
+
+    tema_fluent(
+        columna_con_gap([
+            titulo("Demo de widgets"),
+            separador(),
+            cuerpo_mediano("Ingresá tu nombre:"),
+            campo_texto("nombre", "Nombre"),
+            boton_relleno("Saludar", &saludar),
+            etiqueta_dinamica("saludo"),
+            separador(),
+            cuerpo_mediano("Progreso"),
+            barra_progreso("progreso"),
+            cuerpo_mediano("Volumen"),
+            deslizante("volumen", 0, 100),
+            casilla("Acepto los términos", "activo")
+        ], 16, "start")
+    )
 }
 
-funcion saludar(n: Texto) -> Texto {
-    retornar "Hola, " + n + "!"
+funcion saludar() {
+    // `escribir` escribe en la consola; el texto en pantalla se actualiza con
+    // etiqueta_dinamica("saludo") cuando el callback cambia la variable.
+    escribir("¡Hola!")
 }
-

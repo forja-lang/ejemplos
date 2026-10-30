@@ -14,7 +14,7 @@ funcion elegir_palabra() -> Texto {
 
 funcion mostrar_estado(palabra, adivinadas, incorrectas, intentos_restantes) {
     escribir("")
-    escribir("Palabra: ", false)
+    escribir("Palabra: ", falso)
     variable i = 0
     mientras (i < longitud(palabra)) {
         variable letra_actual = palabra[i]
@@ -27,9 +27,9 @@ funcion mostrar_estado(palabra, adivinadas, incorrectas, intentos_restantes) {
             j = j + 1
         }
         si (encontrada) {
-            escribir(letra_actual, false)
+            escribir(letra_actual, falso)
         } sino {
-            escribir("_ ", false)
+            escribir("_ ", falso)
         }
         i = i + 1
     }

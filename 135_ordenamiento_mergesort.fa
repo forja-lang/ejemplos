@@ -3,7 +3,7 @@
 /// Nivel: avanzado
 importar "std/io"
 
-funcion merge(arr, izquierda, medio, derecha) {
+funcion merge(mut arr, izquierda, medio, derecha) {
     variable n1 = medio - izquierda + 1
     variable n2 = derecha - medio
     variable arr_izq = []
@@ -43,7 +43,7 @@ funcion merge(arr, izquierda, medio, derecha) {
     }
 }
 
-funcion merge_sort(arr, izquierda, derecha) {
+funcion merge_sort(mut arr, izquierda, derecha) {
     si (izquierda < derecha) {
         variable medio = (izquierda + derecha) / 2
         merge_sort(arr, izquierda, medio)
@@ -52,7 +52,7 @@ funcion merge_sort(arr, izquierda, derecha) {
     }
 }
 
-funcion ordenar(arr) {
+funcion ordenar(mut arr) {
     merge_sort(arr, 0, longitud(arr) - 1)
     retornar arr
 }

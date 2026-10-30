@@ -5,7 +5,7 @@ importar "std/io"
 
 // Juego de memoria: se muestran cartas boca abajo y el jugador debe
 // encontrar los pares iguales recordando sus posiciones.
-funcion barajar(cartas) {
+funcion barajar(mut cartas) {
     variable n = longitud(cartas)
     variable i = 0
     mientras (i < n) {
@@ -32,14 +32,14 @@ funcion crear_tablero() {
     retornar cartas
 }
 
-funcion mostrar_tablero_oculto(cartas, reveladas) {
+funcion mostrar_tablero_oculto(mut cartas, reveladas) {
     escribir("")
     variable i = 0
     mientras (i < longitud(cartas)) {
         si (reveladas[i]) {
-            escribir(" " + cartas[i] + " ", false)
+            escribir(" " + cartas[i] + " ", falso)
         } sino {
-            escribir(" ? ", false)
+            escribir(" ? ", falso)
         }
         si ((i + 1) % 4 == 0) {
             escribir("")

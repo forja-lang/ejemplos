@@ -19,7 +19,7 @@ funcion main() {
     variable t = hilo {
         esperar(1)
         // timeout de 1 segundo
-        tx_timeout.enviar(true)
+        tx_timeout.enviar(verdadero)
         retornar 0
     }
     escribir("Esperando datos con timeout de 1 segundo...\n")

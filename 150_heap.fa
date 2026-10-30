@@ -69,9 +69,6 @@ clase MaxHeap {
         retornar self.tamano == 0
     }
     funcion mostrar() {
-        tamano
-        1
-        ""
         escribir("  Máximo: " + self.ver_max() + "")
     }
 }

@@ -3,7 +3,7 @@
 /// Nivel: avanzado
 importar "std/io"
 
-funcion particion(arr, bajo, alto) -> Entero {
+funcion particion(mut arr, bajo, alto) -> Entero {
     variable pivote = arr[alto]
     variable i = bajo - 1
     variable j = bajo
@@ -22,7 +22,7 @@ funcion particion(arr, bajo, alto) -> Entero {
     retornar i + 1
 }
 
-funcion quick_sort(arr, bajo, alto) {
+funcion quick_sort(mut arr, bajo, alto) {
     si (bajo < alto) {
         variable pi = particion(arr, bajo, alto)
         quick_sort(arr, bajo, pi - 1)
@@ -30,7 +30,7 @@ funcion quick_sort(arr, bajo, alto) {
     }
 }
 
-funcion ordenar(arr) {
+funcion ordenar(mut arr) {
     quick_sort(arr, 0, longitud(arr) - 1)
     retornar arr
 }

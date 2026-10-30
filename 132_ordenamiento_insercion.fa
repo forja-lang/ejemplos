@@ -3,7 +3,7 @@
 /// Nivel: básico
 importar "std/io"
 
-funcion insercion(arr) {
+funcion insercion(mut arr) {
     variable n = longitud(arr)
     variable i = 1
     mientras (i < n) {

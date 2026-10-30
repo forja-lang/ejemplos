@@ -5,7 +5,7 @@ importar "std/io"
 
 // Patrón worker pool: múltiples trabajadores compiten por tareas
 funcion trabajador(id, rx_tareas, tx_resultados) {
-    variable activo = true
+    variable activo = verdadero
     mientras (activo) {
         seleccionar {
             caso tarea = rx_tareas {
@@ -15,7 +15,7 @@ funcion trabajador(id, rx_tareas, tx_resultados) {
             }
             otro {
                 // Si no hay tareas, el trabajador descansa
-                activo = false
+                activo = falso
             }
         }
     }

@@ -5,7 +5,7 @@ importar "std/io"
 
 // Implementación de funciones estadísticas básicas:
 // media, mediana, moda, varianza, desviación estándar.
-funcion ordenar_array(arr) {
+funcion ordenar_array(mut arr) {
     variable n = longitud(arr)
     variable i = 0
     mientras (i < n) {
@@ -23,7 +23,7 @@ funcion ordenar_array(arr) {
     retornar arr
 }
 
-funcion media(arr) -> Decimal {
+funcion media(mut arr) -> Decimal {
     variable suma = 0
     variable i = 0
     variable n = longitud(arr)
@@ -37,7 +37,7 @@ funcion media(arr) -> Decimal {
     retornar 0
 }
 
-funcion mediana(arr) -> Decimal {
+funcion mediana(mut arr) -> Decimal {
     variable ordenado = ordenar_array(arr)
     variable n = longitud(ordenado)
     si (n > 0) {
@@ -50,7 +50,7 @@ funcion mediana(arr) -> Decimal {
     retornar 0
 }
 
-funcion moda(arr) {
+funcion moda(mut arr) {
     variable frecuencias = []
     variable valores = []
     variable max_freq = 0
@@ -83,7 +83,7 @@ funcion moda(arr) {
     retornar valores
 }
 
-funcion varianza(arr) -> Decimal {
+funcion varianza(mut arr) -> Decimal {
     variable prom = media(arr)
     variable suma = 0
     variable i = 0
@@ -99,7 +99,7 @@ funcion varianza(arr) -> Decimal {
     retornar 0
 }
 
-funcion desviacion_estandar(arr) -> Decimal {
+funcion desviacion_estandar(mut arr) -> Decimal {
     variable v = varianza(arr)
     // Raíz cuadrada manual usando el método de Newton
     si (v <= 0) {

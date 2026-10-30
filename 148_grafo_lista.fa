@@ -53,7 +53,7 @@ clase GrafoLista {
             i = i + 1
         }
     }
-    funcion tiene_ciclo_util(v, visitados, pila_rec) -> Booleano {
+    funcion tiene_ciclo_util(v, mut visitados, mut pila_rec) -> Booleano {
         visitados[v] = verdadero
         pila_rec[v] = verdadero
         variable actual = self.listas[v]

@@ -1,6 +1,7 @@
 /// Tabla hash (implementación manual)
 /// Conceptos: tabla hash, función hash, colisiones, encadenamiento, buckets
 /// Nivel: avanzado
+
 importar "std/io"
 
 clase ParHash {
@@ -9,9 +10,9 @@ clase ParHash {
     siguiente
 
     constructor(c, v) {
-        self.clave = c
-        self.valor = v
-        self.siguiente = nulo
+        este.clave = c
+        este.valor = v
+        este.siguiente = nulo
     }
 }
 
@@ -21,15 +22,16 @@ clase TablaHash {
     tamano
 
     constructor(cap) {
-        self.capacidad = cap
-        self.tamano = 0
-        self.buckets = []
+        este.capacidad = cap
+        este.tamano = 0
+        este.buckets = []
         variable i = 0
         mientras (i < cap) {
-            self.buckets[i] = nulo
+            este.buckets[i] = nulo
             i = i + 1
         }
     }
+
     funcion hash(clave) -> Entero {
         variable h = 0
         variable i = 0
@@ -40,28 +42,32 @@ clase TablaHash {
         si (h < 0) {
             h = -h
         }
-        retornar h % self.capacidad
+        retornar h % este.capacidad
     }
+
     funcion insertar(clave, valor) {
-        variable indice = self.hash(clave)
-        variable actual = self.buckets[indice]
+        variable indice = este.hash(clave)
+        variable actual = este.buckets[indice]
+
         // Buscar si ya existe la clave
         mientras (actual != nulo) {
             si (actual.clave == clave) {
-                actual.valor = valor
-                // actualizar
+                actual.valor = valor  // actualizar
                 retornar
             }
             actual = actual.siguiente
         }
+
         // Si no existe, agregar al inicio
         variable nuevo = nuevo ParHash(clave, valor)
-        nuevo.siguiente = self.buckets[indice]
-        tamano = self.tamano + 1
+        nuevo.siguiente = este.buckets[indice]
+        este.buckets[indice] = nuevo
+        este.tamano = este.tamano + 1
     }
+
     funcion obtener(clave) {
-        variable indice = self.hash(clave)
-        variable actual = self.buckets[indice]
+        variable indice = este.hash(clave)
+        variable actual = este.buckets[indice]
         mientras (actual != nulo) {
             si (actual.clave == clave) {
                 retornar actual.valor
@@ -70,18 +76,20 @@ clase TablaHash {
         }
         retornar nulo
     }
+
     funcion eliminar(clave) -> Booleano {
-        variable indice = self.hash(clave)
-        variable actual = self.buckets[indice]
+        variable indice = este.hash(clave)
+        variable actual = este.buckets[indice]
         variable previo = nulo
+
         mientras (actual != nulo) {
             si (actual.clave == clave) {
                 si (previo == nulo) {
-                    self.buckets[indice] = actual.siguiente
+                    este.buckets[indice] = actual.siguiente
                 } sino {
                     previo.siguiente = actual.siguiente
                 }
-                self.tamano = self.tamano - 1
+                este.tamano = este.tamano - 1
                 retornar verdadero
             }
             previo = actual
@@ -89,17 +97,19 @@ clase TablaHash {
         }
         retornar falso
     }
+
     funcion mostrar() {
-        escribir("Tabla Hash (" + self.tamano + " elementos):")
+        escribir("Tabla Hash (${este.tamano} elementos):")
         variable i = 0
-        mientras (i < self.capacidad) {
-            variable linea = "  [" + i + "]: "
-            variable actual = self.buckets[i]
+        mientras (i < este.capacidad) {
+            variable linea = "  [${i}]: "
+            variable actual = este.buckets[i]
             mientras (actual != nulo) {
-                actual.siguiente
+                linea = linea + "${actual.clave}=${actual.valor} → "
+                actual = actual.siguiente
             }
             linea = linea + "∅"
-            escribir("" + linea + "")
+            escribir("${linea}")
             i = i + 1
         }
     }
@@ -107,29 +117,32 @@ clase TablaHash {
 
 funcion main() {
     escribir("=== Tabla Hash ===\n")
+
     variable ht = nuevo TablaHash(8)
     ht.insertar("nombre", "Ana")
     ht.insertar("edad", "28")
     ht.insertar("ciudad", "Buenos Aires")
     ht.insertar("profesion", "Ingeniera")
     // Forzar colisión con clave de mismo hash
-    ht.insertar("nombre", "Carlos")
-    // actualiza
+    ht.insertar("nombre", "Carlos")  // actualiza
     ht.insertar("pais", "Argentina")
+
     ht.mostrar()
+
     escribir("")
     escribir("Búsquedas:")
-    escribir("  nombre → " + ht.obtener("nombre") + "")
-    escribir("  edad → " + ht.obtener("edad") + "")
-    escribir("  inexistente → " + ht.obtener("xyz") + "")
+    escribir("  nombre → ${ht.obtener("nombre")}")
+    escribir("  edad → ${ht.obtener("edad")}")
+    escribir("  inexistente → ${ht.obtener("xyz")}")
+
     ht.eliminar("edad")
     escribir("")
     escribir("Después de eliminar 'edad':")
-    escribir("  edad → " + ht.obtener("edad") + "")
+    escribir("  edad → ${ht.obtener("edad")}")
     ht.mostrar()
+
     escribir("")
     escribir("Tabla hash: inserciones y búsquedas O(1) promedio.")
 }
 
 main()
-

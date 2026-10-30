@@ -52,7 +52,7 @@ clase GrafoMatriz {
             j = j + 1
         }
     }
-    funcion dfs(inicio, visitados) {
+    funcion dfs(inicio, mut visitados) {
         visitados[inicio] = verdadero
         escribir("  Visitando: " + self.vertices[inicio] + "")
         variable i = 0

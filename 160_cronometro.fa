@@ -41,7 +41,7 @@ funcion correr_cronometro(tx_control, rx_respuesta) {
             otro {
                 esperar(1)
                 segundos = segundos + 1
-                escribir("\r\n  ⏱ " + formatear_tiempo(segundos) + "   ", false)
+                escribir("\r\n  ⏱ " + formatear_tiempo(segundos) + "   ", falso)
             }
         }
     }

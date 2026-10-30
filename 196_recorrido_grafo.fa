@@ -45,7 +45,7 @@ clase Grafo {
         self.dfs_recursivo(inicio, visitados)
         escribir("")
     }
-    funcion dfs_recursivo(nodo, visitados) {
+    funcion dfs_recursivo(nodo, mut visitados) {
         visitados[nodo] = verdadero
         escribir("" + nodo + " ", falso)
         variable i = 0

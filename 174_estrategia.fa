@@ -6,7 +6,7 @@ importar "std/io"
 // El patrón Strategy permite definir una familia de algoritmos,
 // encapsularlos y hacerlos intercambiables en tiempo de ejecución.
 rasgo EstrategiaOrdenamiento {
-    funcion ordenar(arr)
+    funcion ordenar(mut arr)
 }
 
 clase OrdenamientoBurbuja {
@@ -15,7 +15,7 @@ clase OrdenamientoBurbuja {
 }
 
 implementa EstrategiaOrdenamiento para OrdenamientoBurbuja {
-    funcion ordenar(arr) {
+    funcion ordenar(mut arr) {
         variable n = longitud(arr)
         variable i = 0
         mientras (i < n) {
@@ -40,7 +40,7 @@ clase OrdenamientoSeleccion {
 }
 
 implementa EstrategiaOrdenamiento para OrdenamientoSeleccion {
-    funcion ordenar(arr) {
+    funcion ordenar(mut arr) {
         variable n = longitud(arr)
         variable i = 0
         mientras (i < n - 1) {
@@ -66,7 +66,7 @@ clase OrdenamientoRapido {
     }
 }
 
-funcion particion(arr, bajo, alto) -> Entero {
+funcion particion(mut arr, bajo, alto) -> Entero {
     variable pivote = arr[alto]
     variable i = bajo - 1
     variable j = bajo
@@ -85,7 +85,7 @@ funcion particion(arr, bajo, alto) -> Entero {
     retornar i + 1
 }
 
-funcion quicksort_rec(arr, bajo, alto) {
+funcion quicksort_rec(mut arr, bajo, alto) {
     si (bajo < alto) {
         variable pi = particion(arr, bajo, alto)
         quicksort_rec(arr, bajo, pi - 1)
@@ -94,7 +94,7 @@ funcion quicksort_rec(arr, bajo, alto) {
 }
 
 implementa EstrategiaOrdenamiento para OrdenamientoRapido {
-    funcion ordenar(arr) {
+    funcion ordenar(mut arr) {
         quicksort_rec(arr, 0, longitud(arr) - 1)
         retornar arr
     }
@@ -110,7 +110,7 @@ clase ContextoOrdenamiento {
         self.estrategia = est
         escribir("  ⚙️ Estrategia cambiada")
     }
-    funcion ejecutar_ordenamiento(arr) {
+    funcion ejecutar_ordenamiento(mut arr) {
         si (self.estrategia == nulo) {
             escribir("  Error: No hay estrategia configurada.")
             retornar arr

@@ -102,10 +102,10 @@ clase GrafoPonderado {
         escribir("  Matriz de adyacencia:")
         variable i = 0
         mientras (i < self.num_nodos) {
-            escribir("    ", false)
+            escribir("    ", falso)
             variable j = 0
             mientras (j < self.num_nodos) {
-                escribir("" + self.matriz_adyacencia[i][j] + " ", false)
+                escribir("" + self.matriz_adyacencia[i][j] + " ", falso)
                 j = j + 1
             }
             escribir("")
@@ -139,7 +139,7 @@ funcion main() {
     escribir("Distancias más cortas desde el nodo " + origen + ":")
     variable i = 0
     mientras (i < grafo.num_nodos) {
-        escribir("  Hasta " + i + ": " + distancias[i] + "", false)
+        escribir("  Hasta " + i + ": " + distancias[i] + "", falso)
         si (distancias[i] < INFINITO) {
             variable ruta = grafo.reconstruir_ruta(previos, i)
             escribir("  (ruta: " + ruta + ")")

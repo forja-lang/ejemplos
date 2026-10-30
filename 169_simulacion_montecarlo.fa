@@ -5,7 +5,7 @@ importar "std/io"
 
 // La simulación Monte Carlo usa muestreo aleatorio repetido para
 // estimar resultados numéricos. Aquí estimamos áreas y probabilidades.
-funcion pseudo_aleatorio(semilla) -> Decimal {
+funcion pseudo_aleatorio(mut semilla) -> Decimal {
     variable a = 1664525
     variable c = 1013904223
     semilla = (a * semilla + c)
