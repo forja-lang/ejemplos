@@ -12,17 +12,17 @@ clase NodoArbol {
     derecho
 
     constructor() {
-        self.valor = 0
-        self.izquierdo = nulo
-        self.derecho = nulo
+        este.valor = 0
+        este.izquierdo = nulo
+        este.derecho = nulo
     }
     funcion init(val) {
-        self.valor = val
-        self.izquierdo = nulo
-        self.derecho = nulo
+        este.valor = val
+        este.izquierdo = nulo
+        este.derecho = nulo
     }
     funcion es_hoja() -> Booleano {
-        retornar self.izquierdo == nulo && self.derecho == nulo
+        retornar este.izquierdo == nulo && este.derecho == nulo
     }
 }
 
@@ -30,17 +30,17 @@ clase ArbolBinario {
     raiz
 
     constructor() {
-        self.raiz = nulo
+        este.raiz = nulo
     }
     funcion insertar(valor) {
         variable nuevo = nuevo NodoArbol()
         nuevo.init(valor)
-        si (self.raiz == nulo) {
-            self.raiz = nuevo
+        si (este.raiz == nulo) {
+            este.raiz = nuevo
             retornar
         }
         variable cola = []
-        cola[0] = self.raiz
+        cola[0] = este.raiz
         variable idx = 0
         variable len = 1
         mientras (idx < len) {
@@ -91,11 +91,11 @@ clase ArbolBinario {
     }
     // BFS - por niveles
     funcion bfs() {
-        si (self.raiz == nulo) {
+        si (este.raiz == nulo) {
             retornar
         }
         variable cola = []
-        cola[0] = self.raiz
+        cola[0] = este.raiz
         variable idx = 0
         variable len = 1
         mientras (idx < len) {
@@ -116,8 +116,8 @@ clase ArbolBinario {
         si (nodo == nulo) {
             retornar 0
         }
-        variable alt_izq = self.altura(nodo.izquierdo)
-        variable alt_der = self.altura(nodo.derecho)
+        variable alt_izq = este.altura(nodo.izquierdo)
+        variable alt_der = este.altura(nodo.derecho)
         si (alt_izq > alt_der) {
             retornar alt_izq + 1
         }
@@ -127,7 +127,7 @@ clase ArbolBinario {
         si (nodo == nulo) {
             retornar 0
         }
-        retornar 1 + self.contar_nodos(nodo.izquierdo) + self.contar_nodos(nodo.derecho)
+        retornar 1 + este.contar_nodos(nodo.izquierdo) + este.contar_nodos(nodo.derecho)
     }
 }
 

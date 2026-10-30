@@ -8,34 +8,34 @@ clase Pila<T> {
     elementos
 
     constructor() {
-        self.elementos = []
+        este.elementos = []
     }
     funcion apilar(valor: T) {
-        self.elementos = [valor] + self.elementos
+        este.elementos = [valor] + este.elementos
     }
     funcion desapilar() -> Opcion<T> {
-        si (longitud(self.elementos) > 0) {
-            variable valor = self.elementos[0]
+        si (longitud(este.elementos) > 0) {
+            variable valor = este.elementos[0]
             // Desplazar elementos hacia la izquierda
             variable i = 0
             variable nueva = []
-            mientras (i < longitud(self.elementos) - 1) {
-                nueva = nueva + [self.elementos[i + 1]]
+            mientras (i < longitud(este.elementos) - 1) {
+                nueva = nueva + [este.elementos[i + 1]]
                 i = i + 1
             }
-            self.elementos = nueva
+            este.elementos = nueva
             retornar Algo(valor)
         }
         retornar Ninguno
     }
     funcion cima() -> Opcion<T> {
-        si (longitud(self.elementos) > 0) {
-            retornar Algo(self.elementos[0])
+        si (longitud(este.elementos) > 0) {
+            retornar Algo(este.elementos[0])
         }
         retornar Ninguno
     }
     funcion esta_vacia() -> Booleano {
-        retornar longitud(self.elementos) == 0
+        retornar longitud(este.elementos) == 0
     }
 }
 

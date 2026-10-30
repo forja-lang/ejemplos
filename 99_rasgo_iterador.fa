@@ -13,16 +13,16 @@ clase IteradorLista {
     posicion
 
     constructor(lista) {
-        self.elementos = lista
-        self.posicion = 0
+        este.elementos = lista
+        este.posicion = 0
     }
 }
 
 implementa Iterador para IteradorLista {
     funcion siguiente() -> Opcion<Entero> {
-        si (self.posicion < longitud(self.elementos)) {
-            variable valor = self.elementos[self.posicion]
-            self.posicion = self.posicion + 1
+        si (este.posicion < longitud(este.elementos)) {
+            variable valor = este.elementos[este.posicion]
+            este.posicion = este.posicion + 1
             retornar Algo(valor)
         }
         retornar Ninguno

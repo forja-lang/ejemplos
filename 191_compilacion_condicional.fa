@@ -54,33 +54,33 @@ clase ConfiguracionCompilacion {
     features
 
     constructor() {
-        self.debug_mode = falso
-        self.platform = ""
-        self.optimizacion_nivel = 0
-        self.features = []
+        este.debug_mode = falso
+        este.platform = ""
+        este.optimizacion_nivel = 0
+        este.features = []
     }
     funcion init(debug, plat, optim) {
-        self.debug_mode = debug
-        self.platform = plat
-        self.optimizacion_nivel = optim
+        este.debug_mode = debug
+        este.platform = plat
+        este.optimizacion_nivel = optim
         si (MODO_DEBUG) {
-            self.features[0] = "logging"
-            self.features[1] = "assertions"
-            self.features[2] = "trazas"
+            este.features[0] = "logging"
+            este.features[1] = "assertions"
+            este.features[2] = "trazas"
         } sino {
-            self.features[0] = "optimizado"
-            self.features[1] = "produccion"
+            este.features[0] = "optimizado"
+            este.features[1] = "produccion"
         }
     }
     funcion mostrar() {
         escribir("  Configuración de compilación:")
-        escribir("    Debug mode: " + self.debug_mode + "")
-        escribir("    Plataforma: " + self.platform + "")
-        escribir("    Optimización: nivel " + self.optimizacion_nivel + "")
+        escribir("    Debug mode: " + este.debug_mode + "")
+        escribir("    Plataforma: " + este.platform + "")
+        escribir("    Optimización: nivel " + este.optimizacion_nivel + "")
         escribir("    Features activas:")
         variable i = 0
-        mientras (i < longitud(self.features)) {
-            escribir("      - " + self.features[i] + "")
+        mientras (i < longitud(este.features)) {
+            escribir("      - " + este.features[i] + "")
             i = i + 1
         }
     }

@@ -10,10 +10,10 @@ clase Usuario {
     nombre_completo
 
     constructor() {
-        self.usuario = ""
-        self.contrasena = ""
-        self.rol = ""
-        self.nombre_completo = ""
+        este.usuario = ""
+        este.contrasena = ""
+        este.rol = ""
+        este.nombre_completo = ""
     }
 }
 
@@ -25,9 +25,9 @@ clase SistemaLogin {
     usuario_actual
 
     constructor() {
-        self.sesion_activa = falso
-        self.usuario_actual = -1
-        self.usuarios = []
+        este.sesion_activa = falso
+        este.usuario_actual = -1
+        este.usuarios = []
     }
     funcion inicializar() {
         // Creamos usuarios de prueba
@@ -37,35 +37,35 @@ clase SistemaLogin {
         admin.contrasena = "1234"
         admin.rol = "Administrador"
         admin.nombre_completo = "Carlos Pérez"
-        self.usuarios[longitud(self.usuarios)] = admin
+        este.usuarios[longitud(este.usuarios)] = admin
         // Usuario normal 1
         variable user1 = nuevo Usuario()
         user1.usuario = "juan"
         user1.contrasena = "abcd"
         user1.rol = "Usuario"
         user1.nombre_completo = "Juan García"
-        self.usuarios[longitud(self.usuarios)] = user1
+        este.usuarios[longitud(este.usuarios)] = user1
         // Usuario normal 2
         variable user2 = nuevo Usuario()
         user2.usuario = "maria"
         user2.contrasena = "maria2024"
         user2.rol = "Usuario"
         user2.nombre_completo = "María López"
-        self.usuarios[longitud(self.usuarios)] = user2
+        este.usuarios[longitud(este.usuarios)] = user2
     }
     funcion autenticar(usuario, contrasena) -> Entero {
-        para (variable i = 0; i < longitud(self.usuarios); i = i + 1) {
-            variable u = self.usuarios[i]
+        para (variable i = 0; i < longitud(este.usuarios); i = i + 1) {
+            variable u = este.usuarios[i]
             si (u.usuario == usuario && u.contrasena == contrasena) {
-                self.sesion_activa = verdadero
-                self.usuario_actual = i
+                este.sesion_activa = verdadero
+                este.usuario_actual = i
                 retornar i
             }
         }
         retornar -1
     }
     funcion obtener_usuario_actual() {
-        retornar self.usuarios[self.usuario_actual]
+        retornar este.usuarios[este.usuario_actual]
     }
 }
 

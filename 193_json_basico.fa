@@ -11,18 +11,18 @@ clase JSONParser {
     posicion
 
     constructor() {
-        self.texto = ""
-        self.posicion = 0
+        este.texto = ""
+        este.posicion = 0
     }
     funcion init(texto_json) {
-        self.texto = texto_json
-        self.posicion = 0
+        este.texto = texto_json
+        este.posicion = 0
     }
     funcion saltar_espacios() {
-        mientras (self.posicion < longitud(self.texto)) {
-            variable c = self.texto[self.posicion]
+        mientras (este.posicion < longitud(este.texto)) {
+            variable c = este.texto[este.posicion]
             si (c == " " || c == "\\n" || c == "\\t" || c == "\\r") {
-                self.posicion = self.posicion + 1
+                este.posicion = este.posicion + 1
             } sino {
                 retornar
             }
@@ -30,51 +30,51 @@ clase JSONParser {
     }
     funcion parsear() {
         self.saltar_espacios()
-        si (self.posicion >= longitud(self.texto)) {
+        si (este.posicion >= longitud(este.texto)) {
             retornar nulo
         }
-        variable c = self.texto[self.posicion]
+        variable c = este.texto[este.posicion]
         si (c == "{") {
-            retornar self.parsear_objeto()
+            retornar este.parsear_objeto()
         }
         si (c == "[") {
-            retornar self.parsear_array()
+            retornar este.parsear_array()
         }
         si (c == "\"") {
-            retornar self.parsear_string()
+            retornar este.parsear_string()
         }
-        retornar self.parsear_numero()
+        retornar este.parsear_numero()
     }
     funcion parsear_objeto() {
         variable obj = []
-        self.posicion = self.posicion + 1
+        este.posicion = este.posicion + 1
         // saltar '{'
         mientras (verdadero) {
             self.saltar_espacios()
-            si (self.posicion >= longitud(self.texto)) {
+            si (este.posicion >= longitud(este.texto)) {
                 retornar obj
             }
-            si (self.texto[self.posicion] == "}") {
-                self.posicion = self.posicion + 1
+            si (este.texto[este.posicion] == "}") {
+                este.posicion = este.posicion + 1
                 retornar obj
             }
             // Parsear key
-            variable clave = self.parsear_string()
+            variable clave = este.parsear_string()
             self.saltar_espacios()
-            si (self.texto[self.posicion] == ":") {
-                self.posicion = self.posicion + 1
+            si (este.texto[este.posicion] == ":") {
+                este.posicion = este.posicion + 1
             }
             // Parsear value
-            variable valor = self.parsear()
+            variable valor = este.parsear()
             // Almacenar en formato clave-valor
             variable idx = longitud(obj)
-            obj[idx] = clave + ":" + self.valor_a_texto(valor)
+            obj[idx] = clave + ":" + este.valor_a_texto(valor)
             self.saltar_espacios()
-            si (self.texto[self.posicion] == ",") {
-                self.posicion = self.posicion + 1
+            si (este.texto[este.posicion] == ",") {
+                este.posicion = este.posicion + 1
             } sino {
-                si (self.texto[self.posicion] == "}") {
-                    self.posicion = self.posicion + 1
+                si (este.texto[este.posicion] == "}") {
+                    este.posicion = este.posicion + 1
                     retornar obj
                 }
             }
@@ -83,26 +83,26 @@ clase JSONParser {
     }
     funcion parsear_array() {
         variable arr = []
-        self.posicion = self.posicion + 1
+        este.posicion = este.posicion + 1
         // saltar '['
         mientras (verdadero) {
             self.saltar_espacios()
-            si (self.posicion >= longitud(self.texto)) {
+            si (este.posicion >= longitud(este.texto)) {
                 retornar arr
             }
-            si (self.texto[self.posicion] == "]") {
-                self.posicion = self.posicion + 1
+            si (este.texto[este.posicion] == "]") {
+                este.posicion = este.posicion + 1
                 retornar arr
             }
-            variable valor = self.parsear()
+            variable valor = este.parsear()
             variable idx = longitud(arr)
             arr[idx] = valor
             self.saltar_espacios()
-            si (self.texto[self.posicion] == ",") {
-                self.posicion = self.posicion + 1
+            si (este.texto[este.posicion] == ",") {
+                este.posicion = este.posicion + 1
             } sino {
-                si (self.texto[self.posicion] == "]") {
-                    self.posicion = self.posicion + 1
+                si (este.texto[este.posicion] == "]") {
+                    este.posicion = este.posicion + 1
                     retornar arr
                 }
             }
@@ -110,20 +110,20 @@ clase JSONParser {
         retornar arr
     }
     funcion parsear_string() -> Texto {
-        self.posicion = self.posicion + 1
+        este.posicion = este.posicion + 1
         // saltar '"'
         variable resultado = ""
-        mientras (self.posicion < longitud(self.texto)) {
-            variable c = self.texto[self.posicion]
+        mientras (este.posicion < longitud(este.texto)) {
+            variable c = este.texto[este.posicion]
             si (c == "\"") {
-                self.posicion = self.posicion + 1
+                este.posicion = este.posicion + 1
                 retornar
                 resultado
             }
             si (c == "\\\\") {
-                self.posicion = self.posicion + 1
-                si (self.posicion < longitud(self.texto)) {
-                    variable esc = self.texto[self.posicion]
+                este.posicion = este.posicion + 1
+                si (este.posicion < longitud(este.texto)) {
+                    variable esc = este.texto[este.posicion]
                     si (esc == "n") {
                         resultado
                         resultado
@@ -150,20 +150,20 @@ clase JSONParser {
                 resultado
                 c
             }
-            self.posicion = self.posicion + 1
+            este.posicion = este.posicion + 1
         }
         retornar
         resultado
     }
     funcion parsear_numero() -> Texto {
         variable resultado = ""
-        mientras (self.posicion < longitud(self.texto)) {
-            variable c = self.texto[self.posicion]
+        mientras (este.posicion < longitud(este.texto)) {
+            variable c = este.texto[este.posicion]
             si ((c >= "0" && c <= "9") || c == "-" || c == "." || c == "e" || c == "E") {
                 resultado
                 resultado
                 c
-                self.posicion = self.posicion + 1
+                este.posicion = este.posicion + 1
             } sino {
                 retornar
                 resultado

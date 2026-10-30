@@ -11,29 +11,29 @@ clase Complejo {
     imag
 
     constructor() {
-        self.real = 0
-        self.imag = 0
+        este.real = 0
+        este.imag = 0
     }
     funcion init(r, i) {
-        self.real = r
-        self.imag = i
+        este.real = r
+        este.imag = i
     }
     funcion suma(otro) {
         variable resultado = nuevo Complejo()
-        resultado.init(self.real + otro.real, self.imag + otro.imag)
+        resultado.init(este.real + otro.real, este.imag + otro.imag)
         retornar
         resultado
     }
     funcion resta(otro) {
         variable resultado = nuevo Complejo()
-        resultado.init(self.real - otro.real, self.imag - otro.imag)
+        resultado.init(este.real - otro.real, este.imag - otro.imag)
         retornar
         resultado
     }
     funcion multiplicacion(otro) {
         // (a + bi)(c + di) = (ac - bd) + (ad + bc)i
-        variable r = self.real * otro.real - self.imag * otro.imag
-        variable i = self.real * otro.imag + self.imag * otro.real
+        variable r = este.real * otro.real - este.imag * otro.imag
+        variable i = este.real * otro.imag + este.imag * otro.real
         variable resultado = nuevo Complejo()
         resultado.init(r, i)
         retornar
@@ -48,7 +48,7 @@ clase Complejo {
         }
         variable conjugado = nuevo Complejo()
         conjugado.init(otro.real, -otro.imag)
-        variable num = self.multiplicacion(conjugado)
+        variable num = este.multiplicacion(conjugado)
         variable r = num.real / denom
         variable i = num.imag / denom
         variable resultado = nuevo Complejo()
@@ -57,19 +57,19 @@ clase Complejo {
         resultado
     }
     funcion modulo() -> Decimal {
-        retornar raiz(self.real * self.real + self.imag * self.imag)
+        retornar raiz(este.real * este.real + este.imag * este.imag)
     }
     funcion conjugado() {
         variable resultado = nuevo Complejo()
-        resultado.init(self.real, -self.imag)
+        resultado.init(este.real, -este.imag)
         retornar
         resultado
     }
     funcion a_texto() -> Texto {
-        si (self.imag >= 0) {
-            retornar "" + self.real + " + " + self.imag + "i"
+        si (este.imag >= 0) {
+            retornar "" + este.real + " + " + este.imag + "i"
         } sino {
-            retornar "" + self.real + " - " + (-self.imag) + "i"
+            retornar "" + este.real + " - " + (-este.imag) + "i"
         }
     }
 }

@@ -12,10 +12,10 @@ clase NodoAVL {
     derecho
 
     constructor(val) {
-        self.valor = val
-        self.altura = 1
-        self.izquierdo = nulo
-        self.derecho = nulo
+        este.valor = val
+        este.altura = 1
+        este.izquierdo = nulo
+        este.derecho = nulo
     }
 }
 
@@ -23,7 +23,7 @@ clase ArbolAVL {
     raiz
 
     constructor() {
-        self.raiz = nulo
+        este.raiz = nulo
     }
     funcion altura(nodo) -> Entero {
         si (nodo == nulo) {
@@ -35,15 +35,15 @@ clase ArbolAVL {
         si (nodo == nulo) {
             retornar 0
         }
-        retornar self.altura(nodo.izquierdo) - self.altura(nodo.derecho)
+        retornar este.altura(nodo.izquierdo) - este.altura(nodo.derecho)
     }
     funcion rotar_derecha(y) {
         variable x = y.izquierdo
         variable T2 = x.derecho
         x.derecho = y
         y.izquierdo = T2
-        y.altura = 1 + maximo(self.altura(y.izquierdo), self.altura(y.derecho))
-        x.altura = 1 + maximo(self.altura(x.izquierdo), self.altura(x.derecho))
+        y.altura = 1 + maximo(este.altura(y.izquierdo), este.altura(y.derecho))
+        x.altura = 1 + maximo(este.altura(x.izquierdo), este.altura(x.derecho))
         retornar x
     }
     funcion rotar_izquierda(x) {
@@ -51,8 +51,8 @@ clase ArbolAVL {
         variable T2 = y.izquierdo
         y.izquierdo = x
         x.derecho = T2
-        x.altura = 1 + maximo(self.altura(x.izquierdo), self.altura(x.derecho))
-        y.altura = 1 + maximo(self.altura(y.izquierdo), self.altura(y.derecho))
+        x.altura = 1 + maximo(este.altura(x.izquierdo), este.altura(x.derecho))
+        y.altura = 1 + maximo(este.altura(y.izquierdo), este.altura(y.derecho))
         retornar y
     }
     funcion maximo(a, b) -> Entero {
@@ -66,40 +66,40 @@ clase ArbolAVL {
             retornar nuevo NodoAVL(valor)
         }
         si (valor < nodo.valor) {
-            nodo.izquierdo = self.insertar(nodo.izquierdo, valor)
+            nodo.izquierdo = este.insertar(nodo.izquierdo, valor)
         } sino {
             si (valor > nodo.valor) {
-                nodo.derecho = self.insertar(nodo.derecho, valor)
+                nodo.derecho = este.insertar(nodo.derecho, valor)
             } sino {
                 retornar nodo
             // valores duplicados no permitidos
             }
         }
-        nodo.altura = 1 + self.maximo(self.altura(nodo.izquierdo), self.altura(nodo.derecho))
-        variable bal = self.balance(nodo)
+        nodo.altura = 1 + este.maximo(este.altura(nodo.izquierdo), este.altura(nodo.derecho))
+        variable bal = este.balance(nodo)
         // Rotaciones para balancear
         // Caso izquierda-izquierda
         si (bal > 1 && valor < nodo.izquierdo.valor) {
-            retornar self.rotar_derecha(nodo)
+            retornar este.rotar_derecha(nodo)
         }
         // Caso derecha-derecha
         si (bal < -1 && valor > nodo.derecho.valor) {
-            retornar self.rotar_izquierda(nodo)
+            retornar este.rotar_izquierda(nodo)
         }
         // Caso izquierda-derecha
         si (bal > 1 && valor > nodo.izquierdo.valor) {
-            nodo.izquierdo = self.rotar_izquierda(nodo.izquierdo)
-            retornar self.rotar_derecha(nodo)
+            nodo.izquierdo = este.rotar_izquierda(nodo.izquierdo)
+            retornar este.rotar_derecha(nodo)
         }
         // Caso derecha-izquierda
         si (bal < -1 && valor < nodo.derecho.valor) {
-            nodo.derecho = self.rotar_derecha(nodo.derecho)
-            retornar self.rotar_izquierda(nodo)
+            nodo.derecho = este.rotar_derecha(nodo.derecho)
+            retornar este.rotar_izquierda(nodo)
         }
         retornar nodo
     }
     funcion agregar(valor) {
-        self.raiz = self.insertar(self.raiz, valor)
+        este.raiz = este.insertar(este.raiz, valor)
     }
     funcion mostrar(nodo, nivel) {
         si (nodo != nulo) {

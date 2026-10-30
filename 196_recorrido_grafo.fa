@@ -10,35 +10,35 @@ clase Grafo {
     adyacencia
 
     constructor() {
-        self.num_nodos = 0
-        self.adyacencia = []
+        este.num_nodos = 0
+        este.adyacencia = []
     }
     funcion init(n) {
-        self.num_nodos = n
-        self.adyacencia = []
+        este.num_nodos = n
+        este.adyacencia = []
         variable i = 0
         mientras (i < n) {
-            self.adyacencia[i] = []
+            este.adyacencia[i] = []
             i = i + 1
         }
     }
     funcion agregar_arista(origen, destino) {
         // Grafo no dirigido
-        variable idx_origen = longitud(self.adyacencia[origen])
-        self.adyacencia[idx_origen] = destino
-        variable idx_destino = longitud(self.adyacencia[destino])
-        self.adyacencia[idx_destino] = origen
+        variable idx_origen = longitud(este.adyacencia[origen])
+        este.adyacencia[idx_origen] = destino
+        variable idx_destino = longitud(este.adyacencia[destino])
+        este.adyacencia[idx_destino] = origen
     }
     funcion agregar_arista_dirigida(origen, destino) {
         // Grafo dirigido
-        variable idx = longitud(self.adyacencia[origen])
-        self.adyacencia[idx] = destino
+        variable idx = longitud(este.adyacencia[origen])
+        este.adyacencia[idx] = destino
     }
     funcion dfs(inicio) {
         escribir("DFS desde nodo " + inicio + ": ")
         variable visitados = []
         variable i = 0
-        mientras (i < self.num_nodos) {
+        mientras (i < este.num_nodos) {
             visitados[i] = falso
             i = i + 1
         }
@@ -49,8 +49,8 @@ clase Grafo {
         visitados[nodo] = verdadero
         escribir("" + nodo + " ")
         variable i = 0
-        mientras (i < longitud(self.adyacencia[nodo])) {
-            variable vecino = self.adyacencia[nodo][i]
+        mientras (i < longitud(este.adyacencia[nodo])) {
+            variable vecino = este.adyacencia[nodo][i]
             si (!visitados[vecino]) {
                 self.dfs_recursivo(vecino, visitados)
             }
@@ -61,7 +61,7 @@ clase Grafo {
         escribir("BFS desde nodo " + inicio + ": ")
         variable visitados = []
         variable i = 0
-        mientras (i < self.num_nodos) {
+        mientras (i < este.num_nodos) {
             visitados[i] = falso
             i = i + 1
         }
@@ -75,8 +75,8 @@ clase Grafo {
             idx = idx + 1
             escribir("" + nodo + " ")
             variable j = 0
-            mientras (j < longitud(self.adyacencia[nodo])) {
-                variable vecino = self.adyacencia[nodo][j]
+            mientras (j < longitud(este.adyacencia[nodo])) {
+                variable vecino = este.adyacencia[nodo][j]
                 si (!visitados[vecino]) {
                     visitados[vecino] = verdadero
                     cola[len] = vecino
@@ -91,7 +91,7 @@ clase Grafo {
         // Verificar si existe camino entre dos nodos usando DFS
         variable visitados = []
         variable i = 0
-        mientras (i < self.num_nodos) {
+        mientras (i < este.num_nodos) {
             visitados[i] = falso
             i = i + 1
         }
@@ -108,8 +108,8 @@ clase Grafo {
             si (!visitados[nodo]) {
                 visitados[nodo] = verdadero
                 variable j = 0
-                mientras (j < longitud(self.adyacencia[nodo])) {
-                    variable vecino = self.adyacencia[nodo][j]
+                mientras (j < longitud(este.adyacencia[nodo])) {
+                    variable vecino = este.adyacencia[nodo][j]
                     si (!visitados[vecino]) {
                         pila[len] = vecino
                         len = len + 1
@@ -121,14 +121,14 @@ clase Grafo {
         retornar falso
     }
     funcion mostrar() {
-        escribir("Grafo (" + self.num_nodos + " nodos):")
+        escribir("Grafo (" + este.num_nodos + " nodos):")
         variable i = 0
-        mientras (i < self.num_nodos) {
+        mientras (i < este.num_nodos) {
             escribir("  " + i + " → [")
             variable j = 0
-            mientras (j < longitud(self.adyacencia[i])) {
-                escribir("" + self.adyacencia[i][j] + "")
-                si (j < longitud(self.adyacencia[i]) - 1) {
+            mientras (j < longitud(este.adyacencia[i])) {
+                escribir("" + este.adyacencia[i][j] + "")
+                si (j < longitud(este.adyacencia[i]) - 1) {
                     escribir(", ")
                 }
                 j = j + 1

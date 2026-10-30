@@ -12,9 +12,9 @@ clase Configuracion {
     idioma
 
     constructor() {
-        self.nombre_app = ""
-        self.version = ""
-        self.idioma = ""
+        este.nombre_app = ""
+        este.version = ""
+        este.idioma = ""
     }
 }
 

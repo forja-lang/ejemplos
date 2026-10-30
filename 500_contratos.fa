@@ -45,19 +45,19 @@ clase Contador
     valor: Entero
 
     constructor() {
-        self.valor = 0
+        este.valor = 0
     }
     funcion incrementar()
-        requiere self.valor < 100, "El contador está al máximo"
-        asegura self.valor == anterior(self.valor) + 1
+        requiere este.valor < 100, "El contador está al máximo"
+        asegura este.valor == anterior(este.valor) + 1
     {
-        self.valor = self.valor + 1
+        este.valor = este.valor + 1
     }
     funcion decrementar()
-        requiere self.valor > 0, "El contador está en cero"
-        asegura self.valor == anterior(self.valor) - 1
+        requiere este.valor > 0, "El contador está en cero"
+        asegura este.valor == anterior(este.valor) - 1
     {
-        self.valor = self.valor - 1
+        este.valor = este.valor - 1
     }
 }
 

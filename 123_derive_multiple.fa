@@ -11,9 +11,9 @@ clase Persona {
     ciudad
 
     constructor() {
-        self.nombre = ""
-        self.edad = 0
-        self.ciudad = ""
+        este.nombre = ""
+        este.edad = 0
+        este.ciudad = ""
     }
 }
 
@@ -27,9 +27,9 @@ clase Coche {
     anio
 
     constructor() {
-        self.marca = ""
-        self.modelo = ""
-        self.anio = 0
+        este.marca = ""
+        este.modelo = ""
+        este.anio = 0
     }
 }
 

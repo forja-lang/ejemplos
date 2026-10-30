@@ -61,12 +61,12 @@ clase BenchmarkSuite {
     contador
 
     constructor() {
-        self.resultados = []
-        self.contador = 0
+        este.resultados = []
+        este.contador = 0
     }
     funcion agregar_prueba(nombre, iteraciones, funcion) {
         escribir("")
-        escribir("Prueba #" + self.contador + 1 + ": " + nombre + "")
+        escribir("Prueba #" + este.contador + 1 + ": " + nombre + "")
         variable inicio = tiempo_actual()
         variable i = 0
         mientras (i < iteraciones) {
@@ -75,8 +75,8 @@ clase BenchmarkSuite {
         }
         variable fin = tiempo_actual()
         variable tiempo = fin - inicio
-        self.resultados[self.contador] = tiempo
-        self.contador = self.contador + 1
+        este.resultados[este.contador] = tiempo
+        este.contador = este.contador + 1
         escribir("  Total: " + tiempo + " ms para " + iteraciones + " iteraciones")
         retornar
         tiempo
@@ -85,17 +85,17 @@ clase BenchmarkSuite {
         escribir("")
         escribir("=== RESUMEN DE BENCHMARK ===")
         variable i = 0
-        mientras (i < self.contador) {
-            escribir("  Prueba #" + i + 1 + ": " + self.resultados[i] + " ms")
+        mientras (i < este.contador) {
+            escribir("  Prueba #" + i + 1 + ": " + este.resultados[i] + " ms")
             i = i + 1
         }
         // Encontrar el más rápido
-        variable mas_rapido = self.resultados[0]
+        variable mas_rapido = este.resultados[0]
         variable idx_rapido = 0
         variable j = 1
-        mientras (j < self.contador) {
-            si (self.resultados[j] < mas_rapido) {
-                mas_rapido = self.resultados[j]
+        mientras (j < este.contador) {
+            si (este.resultados[j] < mas_rapido) {
+                mas_rapido = este.resultados[j]
                 idx_rapido = j
             }
             j = j + 1

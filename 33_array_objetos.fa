@@ -4,8 +4,8 @@ clase Cancion {
     artista
 
     constructor() {
-        self.titulo = "Desconocido"
-        self.artista = "Anónimo"
+        este.titulo = "Desconocido"
+        este.artista = "Anónimo"
     }
 }
 

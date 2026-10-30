@@ -11,15 +11,15 @@ clase MiResultado<T, E> {
     valor_error
 
     constructor() {
-        self.exito = falso
-        self.valor_ok = nulo
-        self.valor_error = nulo
+        este.exito = falso
+        este.valor_ok = nulo
+        este.valor_error = nulo
     }
     funcion es_ok() -> Booleano {
-        retornar self.exito
+        retornar este.exito
     }
     funcion es_error() -> Booleano {
-        retornar !self.exito
+        retornar !este.exito
     }
 }
 

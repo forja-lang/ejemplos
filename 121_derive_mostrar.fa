@@ -11,9 +11,9 @@ clase Producto {
     stock
 
     constructor() {
-        self.nombre = "Genérico"
-        self.precio = 0
-        self.stock = 0
+        este.nombre = "Genérico"
+        este.precio = 0
+        este.stock = 0
     }
 }
 
@@ -24,9 +24,9 @@ clase Usuario {
     email
 
     constructor() {
-        self.id = 0
-        self.nombre = ""
-        self.email = ""
+        este.id = 0
+        este.nombre = ""
+        este.email = ""
     }
 }
 

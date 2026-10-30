@@ -9,17 +9,17 @@ clase Par<T, U> {
     segundo
 
     constructor(primero: T, segundo: U) {
-        self.primero = primero
-        self.segundo = segundo
+        este.primero = primero
+        este.segundo = segundo
     }
     funcion obtener_primero() -> T {
-        retornar self.primero
+        retornar este.primero
     }
     funcion obtener_segundo() -> U {
-        retornar self.segundo
+        retornar este.segundo
     }
     funcion intercambiar() -> Par {
-        retornar nuevo Par(self.segundo, self.primero)
+        retornar nuevo Par(este.segundo, este.primero)
     }
 }
 

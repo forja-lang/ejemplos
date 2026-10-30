@@ -12,11 +12,11 @@ clase Semaforo {
     estado_actual
 
     constructor() {
-        self.estado_actual = Rojo
+        este.estado_actual = Rojo
     }
     funcion cambiar_estado(nuevo_estado) {
-        escribir("  🚦 Cambiando de " + self.mostrar_estado_actual() + " → " + self.nombre_estado(nuevo_estado) + "")
-        self.estado_actual = nuevo_estado
+        escribir("  🚦 Cambiando de " + este.mostrar_estado_actual() + " → " + este.nombre_estado(nuevo_estado) + "")
+        este.estado_actual = nuevo_estado
     }
     funcion nombre_estado(estado) -> Texto {
         coincidir (estado) {
@@ -32,10 +32,10 @@ clase Semaforo {
         }
     }
     funcion mostrar_estado_actual() -> Texto {
-        retornar self.nombre_estado(self.estado_actual)
+        retornar este.nombre_estado(este.estado_actual)
     }
     funcion siguiente_estado() {
-        coincidir (self.estado_actual) {
+        coincidir (este.estado_actual) {
             caso Rojo -> {
                 self.cambiar_estado(Verde)
             }
@@ -48,7 +48,7 @@ clase Semaforo {
         }
     }
     funcion accion() {
-        coincidir (self.estado_actual) {
+        coincidir (este.estado_actual) {
             caso Rojo -> {
                 escribir("  🛑 ¡ALTO! Los vehículos deben detenerse.")
             }
@@ -70,8 +70,8 @@ clase ReproductorMusica {
     cancion_actual
 
     constructor() {
-        self.estado = Detenido
-        self.cancion_actual = ""
+        este.estado = Detenido
+        este.cancion_actual = ""
     }
     funcion nombre_estado(est) -> Texto {
         coincidir (est) {
@@ -87,21 +87,21 @@ clase ReproductorMusica {
         }
     }
     funcion mostrar_estado() {
-        escribir("  Estado: " + self.nombre_estado(self.estado) + "")
-        si (self.cancion_actual != "") {
-            escribir("  Canción: '" + self.cancion_actual + "'")
+        escribir("  Estado: " + este.nombre_estado(este.estado) + "")
+        si (este.cancion_actual != "") {
+            escribir("  Canción: '" + este.cancion_actual + "'")
         }
     }
     funcion play(cancion) {
-        coincidir (self.estado) {
+        coincidir (este.estado) {
             caso Detenido -> {
-                self.cancion_actual = cancion
-                self.estado = Reproduciendo
+                este.cancion_actual = cancion
+                este.estado = Reproduciendo
                 escribir("  🎵 Reproduciendo '" + cancion + "'")
             }
             caso Pausado -> {
-                self.estado = Reproduciendo
-                escribir("  ▶️ Reanudando '" + self.cancion_actual + "'")
+                este.estado = Reproduciendo
+                escribir("  ▶️ Reanudando '" + este.cancion_actual + "'")
             }
             caso Reproduciendo -> {
                 escribir("  ℹ️ Ya está reproduciendo")
@@ -109,9 +109,9 @@ clase ReproductorMusica {
         }
     }
     funcion pausar() {
-        coincidir (self.estado) {
+        coincidir (este.estado) {
             caso Reproduciendo -> {
-                self.estado = Pausado
+                este.estado = Pausado
                 escribir("  ⏸️ Reproducción pausada")
             }
             caso Pausado -> {
@@ -123,13 +123,13 @@ clase ReproductorMusica {
         }
     }
     funcion detener() {
-        coincidir (self.estado) {
+        coincidir (este.estado) {
             caso Reproduciendo -> {
-                self.estado = Detenido
+                este.estado = Detenido
                 escribir("  ⏹️ Reproducción detenida")
             }
             caso Pausado -> {
-                self.estado = Detenido
+                este.estado = Detenido
                 escribir("  ⏹️ Reproducción detenida")
             }
             caso Detenido -> {

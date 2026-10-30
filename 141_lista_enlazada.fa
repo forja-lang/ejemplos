@@ -8,8 +8,8 @@ clase Nodo {
     siguiente
 
     constructor() {
-        self.valor = 0
-        self.siguiente = nulo
+        este.valor = 0
+        este.siguiente = nulo
     }
 }
 
@@ -17,37 +17,37 @@ clase ListaEnlazada {
     cabeza
 
     constructor() {
-        self.cabeza = nulo
+        este.cabeza = nulo
     }
     funcion insertar(valor) {
         variable nuevo = nuevo Nodo()
         nuevo.valor = valor
-        nuevo.siguiente = self.cabeza
-        self.cabeza = nuevo
+        nuevo.siguiente = este.cabeza
+        este.cabeza = nuevo
     }
     funcion insertar_final(valor) {
         variable nuevo = nuevo Nodo()
         nuevo.valor = valor
         nuevo.siguiente = nulo
-        si (self.cabeza == nulo) {
-            self.cabeza = nuevo
+        si (este.cabeza == nulo) {
+            este.cabeza = nuevo
             retornar
         }
-        variable actual = self.cabeza
+        variable actual = este.cabeza
         mientras (actual.siguiente != nulo) {
             actual = actual.siguiente
         }
         actual.siguiente = nuevo
     }
     funcion eliminar(valor) -> Booleano {
-        si (self.cabeza == nulo) {
+        si (este.cabeza == nulo) {
             retornar falso
         }
-        si (self.cabeza.valor == valor) {
-            self.cabeza = self.cabeza.siguiente
+        si (este.cabeza.valor == valor) {
+            este.cabeza = este.cabeza.siguiente
             retornar verdadero
         }
-        variable actual = self.cabeza
+        variable actual = este.cabeza
         mientras (actual.siguiente != nulo) {
             si (actual.siguiente.valor == valor) {
                 actual.siguiente = actual.siguiente.siguiente
@@ -58,7 +58,7 @@ clase ListaEnlazada {
         retornar falso
     }
     funcion buscar(valor) -> Booleano {
-        variable actual = self.cabeza
+        variable actual = este.cabeza
         mientras (actual != nulo) {
             si (actual.valor == valor) {
                 retornar verdadero
@@ -68,7 +68,7 @@ clase ListaEnlazada {
         retornar falso
     }
     funcion mostrar() {
-        variable actual = self.cabeza
+        variable actual = este.cabeza
         variable elementos = []
         mientras (actual != nulo) {
             elementos[longitud(elementos)] = actual.valor

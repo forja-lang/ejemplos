@@ -13,16 +13,16 @@ clase Pajaro {
     nombre
 
     constructor() {
-        self.nombre = "Sin nombre"
+        este.nombre = "Sin nombre"
     }
 }
 
 implementa Volador para Pajaro {
     funcion volar() {
-        escribir("" + self.nombre + " está volando...")
+        escribir("" + este.nombre + " está volando...")
     }
     funcion aterrizar() -> Texto {
-        retornar "" + self.nombre + " aterrizó exitosamente"
+        retornar "" + este.nombre + " aterrizó exitosamente"
     }
 }
 
@@ -30,16 +30,16 @@ clase Avion {
     modelo
 
     constructor() {
-        self.modelo = "Boeing 747"
+        este.modelo = "Boeing 747"
     }
 }
 
 implementa Volador para Avion {
     funcion volar() {
-        escribir("" + self.modelo + " despegando...")
+        escribir("" + este.modelo + " despegando...")
     }
     funcion aterrizar() -> Texto {
-        retornar "" + self.modelo + " aterrizó en pista 27"
+        retornar "" + este.modelo + " aterrizó en pista 27"
     }
 }
 

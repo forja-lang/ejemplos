@@ -25,10 +25,10 @@ clase DecoradorNotificador {
     encapsulado
 
     constructor() {
-        self.encapsulado = nulo
+        este.encapsulado = nulo
     }
     funcion init(notificador) {
-        self.encapsulado = notificador
+        este.encapsulado = notificador
     }
 }
 
@@ -36,10 +36,10 @@ clase DecoradorSMS {
     encapsulado
 
     constructor() {
-        self.encapsulado = nulo
+        este.encapsulado = nulo
     }
     funcion init(notificador) {
-        self.encapsulado = notificador
+        este.encapsulado = notificador
     }
 }
 
@@ -54,10 +54,10 @@ clase DecoradorSlack {
     encapsulado
 
     constructor() {
-        self.encapsulado = nulo
+        este.encapsulado = nulo
     }
     funcion init(notificador) {
-        self.encapsulado = notificador
+        este.encapsulado = notificador
     }
 }
 
@@ -72,10 +72,10 @@ clase DecoradorPush {
     encapsulado
 
     constructor() {
-        self.encapsulado = nulo
+        este.encapsulado = nulo
     }
     funcion init(notificador) {
-        self.encapsulado = notificador
+        este.encapsulado = notificador
     }
 }
 

@@ -30,16 +30,16 @@ clase AdaptadorFahrenheitCelsius {
     sistema_legacy
 
     constructor() {
-        self.sistema_legacy = nulo
+        este.sistema_legacy = nulo
     }
     funcion init(sistema) {
-        self.sistema_legacy = sistema
+        este.sistema_legacy = sistema
     }
 }
 
 implementa SistemaTemperatura para AdaptadorFahrenheitCelsius {
     funcion obtener_temperatura_c() -> Entero {
-        variable temp_f = self.sistema_legacy.obtener_temperatura_f()
+        variable temp_f = este.sistema_legacy.obtener_temperatura_f()
         // Fórmula: (°F - 32) × 5/9 = °C
         variable temp_c = (temp_f - 32) * 5 / 9
         retornar temp_c
@@ -73,16 +73,16 @@ clase AdaptadorPulgadasCm {
     sistema_legacy
 
     constructor() {
-        self.sistema_legacy = nulo
+        este.sistema_legacy = nulo
     }
     funcion init(sistema) {
-        self.sistema_legacy = sistema
+        este.sistema_legacy = sistema
     }
 }
 
 implementa SistemaLongitud para AdaptadorPulgadasCm {
     funcion obtener_longitud_cm() -> Entero {
-        variable pulgadas = self.sistema_legacy.obtener_longitud_pulgadas()
+        variable pulgadas = este.sistema_legacy.obtener_longitud_pulgadas()
         // 1 pulgada = 2.54 cm
         variable cm = pulgadas * 254 / 100
         retornar cm

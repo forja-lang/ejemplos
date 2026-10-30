@@ -11,8 +11,8 @@ clase Persona {
     edad
 
     constructor() {
-        self.nombre = "Ana"
-        self.edad = 30
+        este.nombre = "Ana"
+        este.edad = 30
     }
 }
 
@@ -22,8 +22,8 @@ clase Producto {
     precio
 
     constructor() {
-        self.nombre = "Laptop"
-        self.precio = 1200
+        este.nombre = "Laptop"
+        este.precio = 1200
     }
 }
 

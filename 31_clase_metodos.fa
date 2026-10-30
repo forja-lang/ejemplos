@@ -4,8 +4,8 @@ clase Producto {
     precio
 
     constructor() {
-        self.nombre = "Producto Genérico"
-        self.precio = 100
+        este.nombre = "Producto Genérico"
+        este.precio = 100
     }
 }
 

@@ -4,8 +4,8 @@ clase Rectangulo {
     alto
 
     constructor() {
-        self.ancho = 1
-        self.alto = 1
+        este.ancho = 1
+        este.alto = 1
     }
 }
 

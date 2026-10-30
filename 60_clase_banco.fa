@@ -4,8 +4,8 @@ clase CuentaBancaria {
     saldo
 
     constructor() {
-        self.titular = "Sin nombre"
-        self.saldo = 0
+        este.titular = "Sin nombre"
+        este.saldo = 0
     }
 }
 

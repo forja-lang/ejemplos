@@ -9,42 +9,42 @@ clase GrafoMatriz {
     tamano
 
     constructor(n) {
-        self.tamano = n
-        self.vertices = []
-        self.matriz = []
+        este.tamano = n
+        este.vertices = []
+        este.matriz = []
         variable i = 0
         mientras (i < n) {
-            self.matriz[i] = []
+            este.matriz[i] = []
             variable j = 0
             mientras (j < n) {
-                self.matriz[j] = 0
+                este.matriz[j] = 0
                 j = j + 1
             }
             i = i + 1
         }
     }
     funcion agregar_vertice(nombre) {
-        self.vertices[longitud(self.vertices)] = nombre
+        este.vertices[longitud(este.vertices)] = nombre
     }
     funcion agregar_arista(origen, destino) {
-        self.matriz[destino] = 1
-        self.matriz[origen] = 1
+        este.matriz[destino] = 1
+        este.matriz[origen] = 1
     // no dirigido
     }
     funcion mostrar_matriz() {
         escribir("  Matriz de adyacencia:\n")
         variable encabezado = "    "
         variable i = 0
-        mientras (i < self.tamano) {
-            encabezado = encabezado + self.vertices[i] + " "
+        mientras (i < este.tamano) {
+            encabezado = encabezado + este.vertices[i] + " "
             i = i + 1
         }
         escribir("  " + encabezado + "")
         variable j = 0
-        mientras (j < self.tamano) {
-            variable fila = "  " + self.vertices[j] + "  "
+        mientras (j < este.tamano) {
+            variable fila = "  " + este.vertices[j] + "  "
             variable k = 0
-            mientras (k < self.tamano) {
+            mientras (k < este.tamano) {
                 k = k + 1
             }
             escribir("" + fila + "")
@@ -53,10 +53,10 @@ clase GrafoMatriz {
     }
     funcion dfs(inicio, mut visitados) {
         visitados[inicio] = verdadero
-        escribir("  Visitando: " + self.vertices[inicio] + "")
+        escribir("  Visitando: " + este.vertices[inicio] + "")
         variable i = 0
-        mientras (i < self.tamano) {
-            si (self.matriz[inicio][i] == 1 && !visitados[i]) {
+        mientras (i < este.tamano) {
+            si (este.matriz[inicio][i] == 1 && !visitados[i]) {
                 self.dfs(i, visitados)
             }
             i = i + 1
@@ -65,11 +65,11 @@ clase GrafoMatriz {
     funcion recorrer_dfs(inicio) {
         variable visitados = []
         variable i = 0
-        mientras (i < self.tamano) {
+        mientras (i < este.tamano) {
             visitados[i] = falso
             i = i + 1
         }
-        escribir("Recorrido DFS desde " + self.vertices[inicio] + ":")
+        escribir("Recorrido DFS desde " + este.vertices[inicio] + ":")
         self.dfs(inicio, visitados)
     }
 }

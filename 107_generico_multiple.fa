@@ -14,12 +14,12 @@ clase Tripla<T, U, V> {
     tercero
 
     constructor(a: T, b: U, c: V) {
-        self.primero = a
-        self.segundo = b
-        self.tercero = c
+        este.primero = a
+        este.segundo = b
+        este.tercero = c
     }
     funcion mostrar() {
-        escribir("(" + self.primero + ", " + self.segundo + ", " + self.tercero + ")")
+        escribir("(" + este.primero + ", " + este.segundo + ", " + este.tercero + ")")
     }
 }
 
@@ -33,8 +33,8 @@ clase Par<T, U> {
     segundo
 
     constructor(a: T, b: U) {
-        self.primero = a
-        self.segundo = b
+        este.primero = a
+        este.segundo = b
     }
 }
 

@@ -7,40 +7,40 @@ clase Cola<T> {
     elementos
 
     constructor() {
-        self.elementos = []
+        este.elementos = []
     }
     funcion encolar(valor: T) {
-        self.elementos[longitud(self.elementos)] = valor
+        este.elementos[longitud(este.elementos)] = valor
     }
     funcion desencolar() -> T {
-        si (longitud(self.elementos) == 0) {
+        si (longitud(este.elementos) == 0) {
             retornar nulo
         }
-        variable valor = self.elementos[0]
+        variable valor = este.elementos[0]
         // Sin rebanadas: se reconstruye la cola sin el primero.
         variable resto = []
         variable i = 1
-        mientras (i < longitud(self.elementos)) {
-            resto[i - 1] = self.elementos[i]
+        mientras (i < longitud(este.elementos)) {
+            resto[i - 1] = este.elementos[i]
             i = i + 1
         }
-        self.elementos = resto
+        este.elementos = resto
         retornar valor
     }
     funcion frente() -> T {
-        si (longitud(self.elementos) == 0) {
+        si (longitud(este.elementos) == 0) {
             retornar nulo
         }
-        retornar self.elementos[0]
+        retornar este.elementos[0]
     }
     funcion esta_vacia() -> Booleano {
-        retornar longitud(self.elementos) == 0
+        retornar longitud(este.elementos) == 0
     }
     funcion tamano() -> Entero {
-        retornar longitud(self.elementos)
+        retornar longitud(este.elementos)
     }
     funcion mostrar() {
-        escribir("  Cola: " + self.elementos + "  (frente: " + self.frente() + ")")
+        escribir("  Cola: " + este.elementos + "  (frente: " + este.frente() + ")")
     }
 }
 

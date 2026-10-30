@@ -21,17 +21,17 @@ clase Avion {
     horas_vuelo
 
     constructor() {
-        self.modelo = "Desconocido"
-        self.horas_vuelo = 0
+        este.modelo = "Desconocido"
+        este.horas_vuelo = 0
     }
 }
 
 implementa Volador para Avion {
     funcion volar() {
-        escribir("" + self.modelo + ": Volando...")
+        escribir("" + este.modelo + ": Volando...")
     }
     funcion aterrizar() -> Texto {
-        retornar "" + self.modelo + ": Aterrizando..."
+        retornar "" + este.modelo + ": Aterrizando..."
     }
 }
 

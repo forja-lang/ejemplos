@@ -9,15 +9,15 @@ clase Persona {
     edad
 
     constructor() {
-        self.nombre = "Carlos"
-        self.edad = 28
+        este.nombre = "Carlos"
+        este.edad = 28
     }
     funcion saludar() {
-        retornar "Hola, soy " + self.nombre
+        retornar "Hola, soy " + este.nombre
     }
     funcion cumplir_anios() {
-        self.edad = self.edad + 1
-        retornar self.edad
+        este.edad = este.edad + 1
+        retornar este.edad
     }
 }
 
@@ -40,8 +40,8 @@ clase Producto {
     precio
 
     constructor() {
-        self.nombre = "Genérico"
-        self.precio = 0
+        este.nombre = "Genérico"
+        este.precio = 0
     }
 }
 

@@ -10,9 +10,9 @@ clase Nodo<T> {
     derecho
 
     constructor(valor: T) {
-        self.valor = valor
-        self.izquierdo = nulo
-        self.derecho = nulo
+        este.valor = valor
+        este.izquierdo = nulo
+        este.derecho = nulo
     }
 }
 
@@ -20,15 +20,15 @@ clase ArbolBinario<T> {
     raiz
 
     constructor() {
-        self.raiz = nulo
+        este.raiz = nulo
     }
     funcion insertar(valor: T) {
         variable nuevo_nodo = nuevo Nodo(valor)
-        si (self.raiz == nulo) {
-            self.raiz = nuevo_nodo
+        si (este.raiz == nulo) {
+            este.raiz = nuevo_nodo
             retornar
         }
-        variable actual = self.raiz
+        variable actual = este.raiz
         mientras (verdadero) {
             si (valor < actual.valor) {
                 si (actual.izquierdo == nulo) {
@@ -46,7 +46,7 @@ clase ArbolBinario<T> {
         }
     }
     funcion buscar(valor: T) -> Booleano {
-        variable actual = self.raiz
+        variable actual = este.raiz
         mientras (actual != nulo) {
             si (valor == actual.valor) {
                 retornar verdadero
@@ -60,7 +60,7 @@ clase ArbolBinario<T> {
         retornar falso
     }
     funcion recorrer_en_orden() {
-        self._recorrer(self.raiz)
+        self._recorrer(este.raiz)
     }
     funcion _recorrer(nodo) {
         si (nodo == nulo) {

@@ -12,12 +12,12 @@ clase GrafoPonderado {
     matriz_adyacencia
 
     constructor() {
-        self.num_nodos = 0
-        self.matriz_adyacencia = []
+        este.num_nodos = 0
+        este.matriz_adyacencia = []
     }
     funcion init(n) {
-        self.num_nodos = n
-        self.matriz_adyacencia = []
+        este.num_nodos = n
+        este.matriz_adyacencia = []
         variable i = 0
         mientras (i < n) {
             variable fila = []
@@ -26,20 +26,19 @@ clase GrafoPonderado {
                 fila[j] = 0
                 j = j + 1
             }
-            self.matriz_adyacencia[i] = fila
+            este.matriz_adyacencia[i] = fila
             i = i + 1
         }
     }
     funcion agregar_arista(origen, destino, peso) {
-        // No dirigido: se escribe en ambos sentidos de la matriz
-        self.matriz_adyacencia[origen][destino] = peso
-        self.matriz_adyacencia[destino][origen] = peso
+        este.matriz_adyacencia[origen][destino] = peso
+        este.matriz_adyacencia[destino][origen] = peso
     }
     funcion encontrar_minimo(distancias, visitados) -> Entero {
         variable min = INFINITO
         variable min_idx = -1
         variable i = 0
-        mientras (i < self.num_nodos) {
+        mientras (i < este.num_nodos) {
             si (!visitados[i] && distancias[i] < min) {
                 min = distancias[i]
                 min_idx = i
@@ -53,7 +52,7 @@ clase GrafoPonderado {
         variable visitados = []
         variable previos = []
         variable i = 0
-        mientras (i < self.num_nodos) {
+        mientras (i < este.num_nodos) {
             distancias[i] = INFINITO
             visitados[i] = falso
             previos[i] = -1
@@ -61,16 +60,16 @@ clase GrafoPonderado {
         }
         distancias[origen] = 0
         variable j = 0
-        mientras (j < self.num_nodos - 1) {
-            variable u = self.encontrar_minimo(distancias, visitados)
+        mientras (j < este.num_nodos - 1) {
+            variable u = este.encontrar_minimo(distancias, visitados)
             si (u == -1) {
                 continuar
             }
             visitados[u] = verdadero
             variable v = 0
-            mientras (v < self.num_nodos) {
-                si (!visitados[v] && self.matriz_adyacencia[u][v] > 0 && distancias[u] != INFINITO && distancias[u] + self.matriz_adyacencia[u][v] < distancias[v]) {
-                    distancias[v] = distancias[u] + self.matriz_adyacencia[u][v]
+            mientras (v < este.num_nodos) {
+                si (!visitados[v] && este.matriz_adyacencia[u][v] > 0 && distancias[u] != INFINITO && distancias[u] + este.matriz_adyacencia[u][v] < distancias[v]) {
+                    distancias[v] = distancias[u] + este.matriz_adyacencia[u][v]
                     previos[v] = u
                 }
                 v = v + 1
@@ -101,11 +100,11 @@ clase GrafoPonderado {
     funcion mostrar_matriz() {
         escribir("  Matriz de adyacencia:")
         variable i = 0
-        mientras (i < self.num_nodos) {
+        mientras (i < este.num_nodos) {
             escribir("    ")
             variable j = 0
-            mientras (j < self.num_nodos) {
-                escribir("" + self.matriz_adyacencia[i][j] + " ")
+            mientras (j < este.num_nodos) {
+                escribir("" + este.matriz_adyacencia[i][j] + " ")
                 j = j + 1
             }
             escribir("")
@@ -168,3 +167,4 @@ funcion main() {
 
 main()
 
+// No dirigido: se escribe en ambos sentidos de la matriz

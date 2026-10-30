@@ -89,10 +89,10 @@ clase Calculadora {
     factor
 
     constructor() {
-        self.factor = 0
+        este.factor = 0
     }
     funcion init(f) {
-        self.factor = f
+        este.factor = f
     }
 }
 

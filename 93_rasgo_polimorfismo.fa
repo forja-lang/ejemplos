@@ -14,7 +14,7 @@ clase Perro {
 
 implementa Sonido para Perro {
     funcion hacer_sonido() -> Texto {
-        retornar "" + self.nombre + " dice: ¡Guau guau!"
+        retornar "" + este.nombre + " dice: ¡Guau guau!"
     }
 }
 
@@ -24,7 +24,7 @@ clase Gato {
 
 implementa Sonido para Gato {
     funcion hacer_sonido() -> Texto {
-        retornar "" + self.nombre + " dice: ¡Miau!"
+        retornar "" + este.nombre + " dice: ¡Miau!"
     }
 }
 
@@ -34,7 +34,7 @@ clase Vaca {
 
 implementa Sonido para Vaca {
     funcion hacer_sonido() -> Texto {
-        retornar "" + self.nombre + " dice: ¡Muuuu!"
+        retornar "" + este.nombre + " dice: ¡Muuuu!"
     }
 }
 

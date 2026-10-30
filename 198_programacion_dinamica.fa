@@ -19,21 +19,21 @@ clase FibonacciMemo {
     memo
 
     constructor() {
-        self.memo = []
+        este.memo = []
         variable i = 0
         mientras (i < 100) {
-            self.memo[i] = -1
+            este.memo[i] = -1
             i = i + 1
         }
-        self.memo[0] = 0
-        self.memo[1] = 1
+        este.memo[0] = 0
+        este.memo[1] = 1
     }
     funcion calcular(n) -> Entero {
-        si (self.memo[n] != -1) {
-            retornar self.memo[n]
+        si (este.memo[n] != -1) {
+            retornar este.memo[n]
         }
-        self.memo[n] = self.calcular(n - 1) + self.calcular(n - 2)
-        retornar self.memo[n]
+        este.memo[n] = este.calcular(n - 1) + este.calcular(n - 2)
+        retornar este.memo[n]
     }
 }
 

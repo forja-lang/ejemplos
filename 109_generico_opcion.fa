@@ -10,18 +10,18 @@ clase MiOpcion<T> {
     valor
 
     constructor() {
-        self.tiene_valor = falso
-        self.valor = nulo
+        este.tiene_valor = falso
+        este.valor = nulo
     }
     funcion es_algo() -> Booleano {
-        retornar self.tiene_valor
+        retornar este.tiene_valor
     }
     funcion es_Ninguno() -> Booleano {
-        retornar !self.tiene_valor
+        retornar !este.tiene_valor
     }
     funcion obtener_valor() -> Opcion<T> {
-        si (self.tiene_valor) {
-            retornar Algo(self.valor)
+        si (este.tiene_valor) {
+            retornar Algo(este.valor)
         }
         retornar Ninguno
     }

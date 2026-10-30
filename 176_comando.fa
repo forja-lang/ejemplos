@@ -11,8 +11,8 @@ clase Comando {
     ejecutado
 
     constructor() {
-        self.nombre = ""
-        self.ejecutado = falso
+        este.nombre = ""
+        este.ejecutado = falso
     }
     funcion ejecutar(arg) {
         escribir("  (comando base - debe ser sobrescrito)")
@@ -28,21 +28,21 @@ clase ComandoSumar {
     valor_anterior
 
     constructor() {
-        self.nombre = "Sumar"
-        self.ejecutado = falso
-        self.valor_anterior = 0
+        este.nombre = "Sumar"
+        este.ejecutado = falso
+        este.valor_anterior = 0
     }
     funcion ejecutar(valor) {
-        self.valor_anterior = valor
+        este.valor_anterior = valor
         escribir("  ➕ Sumando " + valor + "")
-        self.ejecutado = verdadero
+        este.ejecutado = verdadero
         retornar valor
     }
     funcion deshacer() {
-        si (self.ejecutado) {
-            escribir("  ↩️ Deshaciendo suma de " + self.valor_anterior + "")
-            self.ejecutado = falso
-            retornar -self.valor_anterior
+        si (este.ejecutado) {
+            escribir("  ↩️ Deshaciendo suma de " + este.valor_anterior + "")
+            este.ejecutado = falso
+            retornar -este.valor_anterior
         }
         escribir("  ⚠️ Nada que deshacer")
         retornar 0
@@ -55,21 +55,21 @@ clase ComandoMultiplicar {
     factor_anterior
 
     constructor() {
-        self.nombre = "Multiplicar"
-        self.ejecutado = falso
-        self.factor_anterior = 0
+        este.nombre = "Multiplicar"
+        este.ejecutado = falso
+        este.factor_anterior = 0
     }
     funcion ejecutar(valor) {
-        self.factor_anterior = valor
+        este.factor_anterior = valor
         escribir("  ✖️ Multiplicando por " + valor + "")
-        self.ejecutado = verdadero
+        este.ejecutado = verdadero
         retornar valor
     }
     funcion deshacer() {
-        si (self.ejecutado) {
-            escribir("  ↩️ Deshaciendo multiplicación por " + self.factor_anterior + "")
-            self.ejecutado = falso
-            retornar 1 / self.factor_anterior
+        si (este.ejecutado) {
+            escribir("  ↩️ Deshaciendo multiplicación por " + este.factor_anterior + "")
+            este.ejecutado = falso
+            retornar 1 / este.factor_anterior
         }
         escribir("  ⚠️ Nada que deshacer")
         retornar 1
@@ -82,21 +82,21 @@ clase ComandoRestar {
     valor_anterior
 
     constructor() {
-        self.nombre = "Restar"
-        self.ejecutado = falso
-        self.valor_anterior = 0
+        este.nombre = "Restar"
+        este.ejecutado = falso
+        este.valor_anterior = 0
     }
     funcion ejecutar(valor) {
-        self.valor_anterior = valor
+        este.valor_anterior = valor
         escribir("  ➖ Restando " + valor + "")
-        self.ejecutado = verdadero
+        este.ejecutado = verdadero
         retornar -valor
     }
     funcion deshacer() {
-        si (self.ejecutado) {
-            escribir("  ↩️ Deshaciendo resta de " + self.valor_anterior + "")
-            self.ejecutado = falso
-            retornar self.valor_anterior
+        si (este.ejecutado) {
+            escribir("  ↩️ Deshaciendo resta de " + este.valor_anterior + "")
+            este.ejecutado = falso
+            retornar este.valor_anterior
         }
         escribir("  ⚠️ Nada que deshacer")
         retornar 0
@@ -109,33 +109,33 @@ clase CalculadoraConComandos {
     indice_historial
 
     constructor() {
-        self.valor_actual = 0
-        self.historial = []
-        self.indice_historial = 0
+        este.valor_actual = 0
+        este.historial = []
+        este.indice_historial = 0
     }
     funcion ejecutar_comando(cmd, argumento) {
         variable cambio = cmd.ejecutar(argumento)
-        self.valor_actual = self.valor_actual + cambio
-        self.historial[self.indice_historial] = cmd
-        self.indice_historial = self.indice_historial + 1
-        escribir("  = Resultado: " + self.valor_actual + "")
+        este.valor_actual = este.valor_actual + cambio
+        este.historial[este.indice_historial] = cmd
+        este.indice_historial = este.indice_historial + 1
+        escribir("  = Resultado: " + este.valor_actual + "")
     }
     funcion deshacer() {
-        si (self.indice_historial > 0) {
-            self.indice_historial = self.indice_historial - 1
-            variable cmd = self.historial[self.indice_historial]
+        si (este.indice_historial > 0) {
+            este.indice_historial = este.indice_historial - 1
+            variable cmd = este.historial[este.indice_historial]
             variable cambio = cmd.deshacer()
-            self.valor_actual = self.valor_actual + cambio
-            escribir("  = Resultado tras deshacer: " + self.valor_actual + "")
+            este.valor_actual = este.valor_actual + cambio
+            escribir("  = Resultado tras deshacer: " + este.valor_actual + "")
         } sino {
             escribir("  ⚠️ No hay más operaciones para deshacer")
         }
     }
     funcion mostrar_historial() {
-        escribir("  Historial (" + self.indice_historial + " comandos):")
+        escribir("  Historial (" + este.indice_historial + " comandos):")
         variable i = 0
-        mientras (i < self.indice_historial) {
-            variable cmd = self.historial[i]
+        mientras (i < este.indice_historial) {
+            variable cmd = este.historial[i]
             escribir("    " + i + 1 + ". " + cmd.nombre + "")
             i = i + 1
         }

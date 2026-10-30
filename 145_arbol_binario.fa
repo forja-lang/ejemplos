@@ -9,9 +9,9 @@ clase NodoArbol {
     derecho
 
     constructor(val) {
-        self.valor = val
-        self.izquierdo = nulo
-        self.derecho = nulo
+        este.valor = val
+        este.izquierdo = nulo
+        este.derecho = nulo
     }
 }
 
@@ -19,23 +19,23 @@ clase ArbolBinario {
     raiz
 
     constructor() {
-        self.raiz = nulo
+        este.raiz = nulo
     }
     funcion insertar(nodo, valor) {
         si (nodo == nulo) {
             retornar nuevo NodoArbol(valor)
         }
         si (valor < nodo.valor) {
-            nodo.izquierdo = self.insertar(nodo.izquierdo, valor)
+            nodo.izquierdo = este.insertar(nodo.izquierdo, valor)
         } sino {
             si (valor > nodo.valor) {
-                nodo.derecho = self.insertar(nodo.derecho, valor)
+                nodo.derecho = este.insertar(nodo.derecho, valor)
             }
         }
         retornar nodo
     }
     funcion agregar(valor) {
-        self.raiz = self.insertar(self.raiz, valor)
+        este.raiz = este.insertar(este.raiz, valor)
     }
     funcion buscar(nodo, valor) -> Booleano {
         si (nodo == nulo) {
@@ -45,12 +45,12 @@ clase ArbolBinario {
             retornar verdadero
         }
         si (valor < nodo.valor) {
-            retornar self.buscar(nodo.izquierdo, valor)
+            retornar este.buscar(nodo.izquierdo, valor)
         }
-        retornar self.buscar(nodo.derecho, valor)
+        retornar este.buscar(nodo.derecho, valor)
     }
     funcion contiene(valor) -> Booleano {
-        retornar self.buscar(self.raiz, valor)
+        retornar este.buscar(este.raiz, valor)
     }
     funcion inorder(nodo) {
         si (nodo != nulo) {

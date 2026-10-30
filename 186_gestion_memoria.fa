@@ -12,41 +12,41 @@ clase BloqueMemoria {
     datos
 
     constructor() {
-        self.id = 0
-        self.tamano = 0
-        self.datos = []
+        este.id = 0
+        este.tamano = 0
+        este.datos = []
     }
     funcion init(nuevo_id, tam) {
-        self.id = nuevo_id
-        self.tamano = tam
+        este.id = nuevo_id
+        este.tamano = tam
         // Simular asignación de memoria (heap)
         escribir("  📦 BLOQUE #" + nuevo_id + ": Asignados " + tam + " bytes en HEAP")
         variable i = 0
         mientras (i < tam) {
-            self.datos[i] = 0
+            este.datos[i] = 0
             i = i + 1
         }
     }
     funcion escribir_dato(posicion, valor) {
-        si (posicion >= 0 && posicion < self.tamano) {
-            self.datos[posicion] = valor
-            escribir("  ✏️  BLOQUE #" + self.id + "[" + posicion + "] = " + valor + "")
+        si (posicion >= 0 && posicion < este.tamano) {
+            este.datos[posicion] = valor
+            escribir("  ✏️  BLOQUE #" + este.id + "[" + posicion + "] = " + valor + "")
         } sino {
-            escribir("  ⚠️ ERROR: Desbordamiento de buffer en BLOQUE #" + self.id + "")
+            escribir("  ⚠️ ERROR: Desbordamiento de buffer en BLOQUE #" + este.id + "")
         }
     }
     funcion leer_dato(posicion) -> Entero {
-        si (posicion >= 0 && posicion < self.tamano) {
-            retornar self.datos[posicion]
+        si (posicion >= 0 && posicion < este.tamano) {
+            retornar este.datos[posicion]
         }
-        escribir("  ⚠️ ERROR: Acceso fuera de límites en BLOQUE #" + self.id + "")
+        escribir("  ⚠️ ERROR: Acceso fuera de límites en BLOQUE #" + este.id + "")
         retornar -1
     }
     funcion liberar() {
-        si (self.tamano > 0) {
-            escribir("  🗑️ BLOQUE #" + self.id + ": Liberados " + self.tamano + " bytes del HEAP")
-            self.tamano = 0
-            self.datos = []
+        si (este.tamano > 0) {
+            escribir("  🗑️ BLOQUE #" + este.id + ": Liberados " + este.tamano + " bytes del HEAP")
+            este.tamano = 0
+            este.datos = []
         }
     }
 }

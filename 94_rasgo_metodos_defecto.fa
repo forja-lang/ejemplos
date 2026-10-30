@@ -17,13 +17,13 @@ clase Persona {
     nombre
 
     funcion obtener_nombre() -> Texto {
-        retornar self.nombre
+        retornar este.nombre
     }
     funcion saludar() {
-        escribir("Hola, soy " + self.obtener_nombre() + "!")
+        escribir("Hola, soy " + este.obtener_nombre() + "!")
     }
     funcion despedirse() {
-        escribir("" + self.obtener_nombre() + " dice: ¡Chau!")
+        escribir("" + este.obtener_nombre() + " dice: ¡Chau!")
     }
 }
 
@@ -31,13 +31,13 @@ clase Robot {
     codigo
 
     funcion obtener_nombre() -> Texto {
-        retornar "Robot-" + self.codigo + ""
+        retornar "Robot-" + este.codigo + ""
     }
     funcion saludar() {
-        escribir("" + self.obtener_nombre() + ": SISTEMA INICIADO. Hola, humano.")
+        escribir("" + este.obtener_nombre() + ": SISTEMA INICIADO. Hola, humano.")
     }
     funcion despedirse() {
-        escribir("" + self.obtener_nombre() + " dice: ¡Chau!")
+        escribir("" + este.obtener_nombre() + " dice: ¡Chau!")
     }
 }
 

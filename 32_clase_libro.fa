@@ -5,9 +5,9 @@ clase Libro {
     disponible
 
     constructor() {
-        self.titulo = "Sin título"
-        self.autor = "Sin autor"
-        self.disponible = verdadero
+        este.titulo = "Sin título"
+        este.autor = "Sin autor"
+        este.disponible = verdadero
     }
 }
 

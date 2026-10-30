@@ -12,26 +12,26 @@ clase Sujeto {
     canal_emisor
 
     constructor() {
-        self.estado = 0
-        self.observadores = []
-        self.canal_emisor = nulo
+        este.estado = 0
+        este.observadores = []
+        este.canal_emisor = nulo
     }
     funcion agregar_observador(obs) {
-        variable n = longitud(self.observadores)
-        self.observadores[n] = obs
+        variable n = longitud(este.observadores)
+        este.observadores[n] = obs
         escribir("  👀 Observador agregado (total: " + n + 1 + ")")
     }
     funcion notificar_todos() {
-        escribir("  📢 Notificando a " + longitud(self.observadores) + " observadores...")
+        escribir("  📢 Notificando a " + longitud(este.observadores) + " observadores...")
         variable i = 0
-        mientras (i < longitud(self.observadores)) {
-            variable obs = self.observadores[i]
-            obs.emisor.enviar(self.estado)
+        mientras (i < longitud(este.observadores)) {
+            variable obs = este.observadores[i]
+            obs.emisor.enviar(este.estado)
             i = i + 1
         }
     }
     funcion cambiar_estado(nuevo_estado) {
-        self.estado = nuevo_estado
+        este.estado = nuevo_estado
         escribir("  🔄 Estado cambiado a: " + nuevo_estado + "")
         self.notificar_todos()
     }
@@ -43,21 +43,21 @@ clase Observador {
     emisor
 
     constructor() {
-        self.nombre = ""
-        self.receptor = nulo
-        self.emisor = nulo
+        este.nombre = ""
+        este.receptor = nulo
+        este.emisor = nulo
     }
     funcion init(n) {
-        self.nombre = n
+        este.nombre = n
         variable t, r = canal()
-        self.emisor = t
-        self.receptor = r
+        este.emisor = t
+        este.receptor = r
     }
     funcion empezar_escuchar() {
         variable h = hilo {
             mientras (verdadero) {
-                variable mensaje = self.receptor.recibir()
-                escribir("  📬 " + self.nombre + " recibió: estado = " + mensaje + "")
+                variable mensaje = este.receptor.recibir()
+                escribir("  📬 " + este.nombre + " recibió: estado = " + mensaje + "")
             }
             retornar 0
         }

@@ -19,20 +19,20 @@ clase Punto {
     y
 
     constructor() {
-        self.x = 0
-        self.y = 0
+        este.x = 0
+        este.y = 0
     }
     funcion init(px, py) {
-        self.x = px
-        self.y = py
+        este.x = px
+        este.y = py
     }
     funcion mover(dx, dy) {
-        self.x = self.x + dx
-        self.y = self.y + dy
-        escribir("  📍 Punto movido a (" + self.x + ", " + self.y + ")")
+        este.x = este.x + dx
+        este.y = este.y + dy
+        escribir("  📍 Punto movido a (" + este.x + ", " + este.y + ")")
     }
     funcion mostrar() {
-        escribir("  📌 Posición: (" + self.x + ", " + self.y + ")")
+        escribir("  📌 Posición: (" + este.x + ", " + este.y + ")")
     }
 }
 

@@ -14,17 +14,17 @@ clase Persona {
     edad
 
     constructor() {
-        self.nombre = ""
-        self.edad = 0
+        este.nombre = ""
+        este.edad = 0
     }
 }
 
 implementa Comparable para Persona {
     funcion comparar_con(otro) -> Entero {
-        si (self.edad < otro.edad) {
+        si (este.edad < otro.edad) {
             retornar -1
         }
-        si (self.edad > otro.edad) {
+        si (este.edad > otro.edad) {
             retornar 1
         }
         retornar 0
@@ -36,17 +36,17 @@ clase Producto {
     precio
 
     constructor() {
-        self.nombre = ""
-        self.precio = 0
+        este.nombre = ""
+        este.precio = 0
     }
 }
 
 implementa Comparable para Producto {
     funcion comparar_con(otro) -> Entero {
-        si (self.precio < otro.precio) {
+        si (este.precio < otro.precio) {
             retornar -1
         }
-        si (self.precio > otro.precio) {
+        si (este.precio > otro.precio) {
             retornar 1
         }
         retornar 0

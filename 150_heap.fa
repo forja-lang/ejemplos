@@ -8,8 +8,8 @@ clase MaxHeap {
     tamano
 
     constructor() {
-        self.elementos = []
-        self.tamano = 0
+        este.elementos = []
+        este.tamano = 0
     }
     funcion padre(i) -> Entero {
         retornar (i - 1) / 2
@@ -21,27 +21,27 @@ clase MaxHeap {
         retornar 2 * i + 2
     }
     funcion intercambiar(i, j) {
-        variable temp = self.elementos[i]
-        self.elementos[i] = self.elementos[j]
-        self.elementos[j] = temp
+        variable temp = este.elementos[i]
+        este.elementos[i] = este.elementos[j]
+        este.elementos[j] = temp
     }
     funcion encolar(valor) {
-        self.elementos[self.tamano] = valor
-        self.tamano = self.tamano + 1
-        variable i = self.tamano - 1
-        mientras (i > 0 && self.elementos[self.padre(i)] < self.elementos[i]) {
-            self.intercambiar(i, self.padre(i))
-            i = self.padre(i)
+        este.elementos[este.tamano] = valor
+        este.tamano = este.tamano + 1
+        variable i = este.tamano - 1
+        mientras (i > 0 && este.elementos[este.padre(i)] < este.elementos[i]) {
+            self.intercambiar(i, este.padre(i))
+            i = este.padre(i)
         }
     }
     funcion hundir(i) {
         variable mayor = i
-        variable izq = self.hijo_izquierdo(i)
-        variable der = self.hijo_derecho(i)
-        si (izq < self.tamano && self.elementos[izq] > self.elementos[mayor]) {
+        variable izq = este.hijo_izquierdo(i)
+        variable der = este.hijo_derecho(i)
+        si (izq < este.tamano && este.elementos[izq] > este.elementos[mayor]) {
             mayor = izq
         }
-        si (der < self.tamano && self.elementos[der] > self.elementos[mayor]) {
+        si (der < este.tamano && este.elementos[der] > este.elementos[mayor]) {
             mayor = der
         }
         si (mayor != i) {
@@ -50,26 +50,26 @@ clase MaxHeap {
         }
     }
     funcion desencolar() -> Entero {
-        si (self.tamano == 0) {
+        si (este.tamano == 0) {
             retornar nulo
         }
-        variable maximo = self.elementos[0]
-        self.elementos[0] = self.elementos[self.tamano - 1]
-        self.tamano = self.tamano - 1
+        variable maximo = este.elementos[0]
+        este.elementos[0] = este.elementos[este.tamano - 1]
+        este.tamano = este.tamano - 1
         self.hundir(0)
         retornar maximo
     }
     funcion ver_max() -> Entero {
-        si (self.tamano == 0) {
+        si (este.tamano == 0) {
             retornar nulo
         }
-        retornar self.elementos[0]
+        retornar este.elementos[0]
     }
     funcion esta_vacia() -> Booleano {
-        retornar self.tamano == 0
+        retornar este.tamano == 0
     }
     funcion mostrar() {
-        escribir("  Máximo: " + self.ver_max() + "")
+        escribir("  Máximo: " + este.ver_max() + "")
     }
 }
 

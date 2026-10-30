@@ -12,13 +12,13 @@ clase Numero {
     valor
 
     constructor(valor) {
-        self.valor = valor
+        este.valor = valor
     }
 }
 
 implementa Comparador para Numero {
     funcion es_mayor(self: Entero, otro: Entero) -> Booleano {
-        retornar self > otro
+        retornar este > otro
     }
 }
 

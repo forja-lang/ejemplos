@@ -16,7 +16,7 @@ clase Persona {
 
 implementa Mostrable para Persona {
     funcion mostrar() -> Texto {
-        retornar "Persona: " + self.nombre + " (" + self.edad + ")"
+        retornar "Persona: " + este.nombre + " (" + este.edad + ")"
     }
 }
 
@@ -27,7 +27,7 @@ clase Producto {
 
 implementa Mostrable para Producto {
     funcion mostrar() -> Texto {
-        retornar "Producto: " + self.nombre + " - $" + self.precio + ""
+        retornar "Producto: " + este.nombre + " - $" + este.precio + ""
     }
 }
 

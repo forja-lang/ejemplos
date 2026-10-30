@@ -37,47 +37,47 @@ clase AnalizadorDatos {
     tamano
 
     constructor() {
-        self.nombre = ""
-        self.datos = []
-        self.tamano = 0
+        este.nombre = ""
+        este.datos = []
+        este.tamano = 0
     }
     funcion init(nom, arr) {
-        self.nombre = nom
-        self.datos = arr
-        self.tamano = longitud(arr)
+        este.nombre = nom
+        este.datos = arr
+        este.tamano = longitud(arr)
     }
     funcion calcular_suma() -> Entero {
         variable suma = 0
         variable i = 0
-        mientras (i < self.tamano) {
-            suma = suma + self.datos[i]
+        mientras (i < este.tamano) {
+            suma = suma + este.datos[i]
             i = i + 1
         }
         retornar suma
     }
     funcion calcular_maximo() -> Entero {
-        si (self.tamano == 0) {
+        si (este.tamano == 0) {
             retornar 0
         }
-        variable max = self.datos[0]
+        variable max = este.datos[0]
         variable i = 1
-        mientras (i < self.tamano) {
-            si (self.datos[i] > max) {
-                max = self.datos[i]
+        mientras (i < este.tamano) {
+            si (este.datos[i] > max) {
+                max = este.datos[i]
             }
             i = i + 1
         }
         retornar max
     }
     funcion calcular_minimo() -> Entero {
-        si (self.tamano == 0) {
+        si (este.tamano == 0) {
             retornar 0
         }
-        variable min = self.datos[0]
+        variable min = este.datos[0]
         variable i = 1
-        mientras (i < self.tamano) {
-            si (self.datos[i] < min) {
-                min = self.datos[i]
+        mientras (i < este.tamano) {
+            si (este.datos[i] < min) {
+                min = este.datos[i]
             }
             i = i + 1
         }
@@ -87,24 +87,24 @@ clase AnalizadorDatos {
         coincidir (op) {
             caso Sumar -> {
                 variable i = 0
-                mientras (i < self.tamano) {
-                    self.datos[i] = self.datos[i] + valor
+                mientras (i < este.tamano) {
+                    este.datos[i] = este.datos[i] + valor
                     i = i + 1
                 }
                 retornar Exito(0, "Suma aplicada: +" + valor + "")
             }
             caso Restar -> {
                 variable i = 0
-                mientras (i < self.tamano) {
-                    self.datos[i] = self.datos[i] - valor
+                mientras (i < este.tamano) {
+                    este.datos[i] = este.datos[i] - valor
                     i = i + 1
                 }
                 retornar Exito(0, "Resta aplicada: -" + valor + "")
             }
             caso Multiplicar -> {
                 variable i = 0
-                mientras (i < self.tamano) {
-                    self.datos[i] = self.datos[i] * valor
+                mientras (i < este.tamano) {
+                    este.datos[i] = este.datos[i] * valor
                     i = i + 1
                 }
                 retornar Exito(0, "Multiplicación aplicada: ×" + valor + "")
@@ -114,8 +114,8 @@ clase AnalizadorDatos {
                     retornar Error("División por cero")
                 }
                 variable i = 0
-                mientras (i < self.tamano) {
-                    self.datos[i] = self.datos[i] / valor
+                mientras (i < este.tamano) {
+                    este.datos[i] = este.datos[i] / valor
                     i = i + 1
                 }
                 retornar Exito(0, "División aplicada: ÷" + valor + "")
@@ -126,18 +126,18 @@ clase AnalizadorDatos {
 
 implementa Analizable para AnalizadorDatos {
     funcion analizar() -> ResultadoAnalisis {
-        si (self.tamano == 0) {
+        si (este.tamano == 0) {
             retornar Error("No hay datos para analizar")
         }
-        variable suma = self.calcular_suma()
-        variable max = self.calcular_maximo()
-        variable min = self.calcular_minimo()
-        variable promedio = suma / self.tamano
-        variable reporte = "Suma=" + suma + ", Promedio=" + promedio + ", Max=" + max + ", Min=" + min + ", N=" + self.tamano + ""
+        variable suma = este.calcular_suma()
+        variable max = este.calcular_maximo()
+        variable min = este.calcular_minimo()
+        variable promedio = suma / este.tamano
+        variable reporte = "Suma=" + suma + ", Promedio=" + promedio + ", Max=" + max + ", Min=" + min + ", N=" + este.tamano + ""
         retornar Exito(suma, reporte)
     }
     funcion nombre() -> Texto {
-        retornar self.nombre
+        retornar este.nombre
     }
 }
 

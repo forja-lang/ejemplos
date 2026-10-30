@@ -104,19 +104,19 @@ clase ContextoOrdenamiento {
     estrategia
 
     constructor() {
-        self.estrategia = nulo
+        este.estrategia = nulo
     }
     funcion set_estrategia(est) {
-        self.estrategia = est
+        este.estrategia = est
         escribir("  ⚙️ Estrategia cambiada")
     }
     funcion ejecutar_ordenamiento(mut arr) {
-        si (self.estrategia == nulo) {
+        si (este.estrategia == nulo) {
             escribir("  Error: No hay estrategia configurada.")
             retornar arr
         }
         escribir("  Ordenando con estrategia actual...")
-        retornar self.estrategia.ordenar(arr)
+        retornar este.estrategia.ordenar(arr)
     }
 }
 

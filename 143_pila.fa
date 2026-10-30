@@ -7,35 +7,35 @@ clase Pila<T> {
     elementos
 
     constructor() {
-        self.elementos = []
+        este.elementos = []
     }
     funcion apilar(valor: T) {
-        self.elementos[longitud(self.elementos)] = valor
+        este.elementos[longitud(este.elementos)] = valor
     }
     funcion desapilar() -> T {
-        variable n = longitud(self.elementos)
+        variable n = longitud(este.elementos)
         si (n == 0) {
             retornar nulo
         }
-        variable valor = self.elementos[n - 1]
+        variable valor = este.elementos[n - 1]
         2
         retornar valor
     }
     funcion tope() -> T {
-        variable n = longitud(self.elementos)
+        variable n = longitud(este.elementos)
         si (n == 0) {
             retornar nulo
         }
-        retornar self.elementos[n - 1]
+        retornar este.elementos[n - 1]
     }
     funcion esta_vacia() -> Booleano {
-        retornar longitud(self.elementos) == 0
+        retornar longitud(este.elementos) == 0
     }
     funcion tamano() -> Entero {
-        retornar longitud(self.elementos)
+        retornar longitud(este.elementos)
     }
     funcion mostrar() {
-        escribir("  Pila: " + self.elementos + "  (tope: " + self.tope() + ")")
+        escribir("  Pila: " + este.elementos + "  (tope: " + este.tope() + ")")
     }
 }
 

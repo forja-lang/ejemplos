@@ -11,23 +11,23 @@ clase Producto {
     cantidad
 
     constructor() {
-        self.nombre = ""
-        self.precio = 0
-        self.cantidad = 0
+        este.nombre = ""
+        este.precio = 0
+        este.cantidad = 0
     }
     funcion init(nom, prec, cant) {
-        self.nombre = nom
-        self.precio = prec
-        self.cantidad = cant
+        este.nombre = nom
+        este.precio = prec
+        este.cantidad = cant
     }
     // Función que SOLO LEE usando prestamo implícito
     funcion mostrar() {
-        escribir("  Producto: " + self.nombre + "")
-        escribir("    Precio: $" + self.precio + "")
-        escribir("    Stock: " + self.cantidad + " unidades")
+        escribir("  Producto: " + este.nombre + "")
+        escribir("    Precio: $" + este.precio + "")
+        escribir("    Stock: " + este.cantidad + " unidades")
     }
     funcion valor_total() -> Entero {
-        retornar self.precio * self.cantidad
+        retornar este.precio * este.cantidad
     }
 }
 

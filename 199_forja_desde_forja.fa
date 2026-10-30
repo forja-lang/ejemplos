@@ -13,14 +13,14 @@ clase Token {
     linea
 
     constructor() {
-        self.tipo = ""
-        self.valor = ""
-        self.linea = 0
+        este.tipo = ""
+        este.valor = ""
+        este.linea = 0
     }
     funcion init(t, v, l) {
-        self.tipo = t
-        self.valor = v
-        self.linea = l
+        este.tipo = t
+        este.valor = v
+        este.linea = l
     }
 }
 
@@ -31,64 +31,63 @@ clase Lexer {
     tokens
 
     constructor() {
-        self.codigo = ""
-        self.posicion = 0
-        self.linea = 1
-        self.tokens = []
+        este.codigo = ""
+        este.posicion = 0
+        este.linea = 1
+        este.tokens = []
     }
     funcion init(cod) {
-        self.codigo = cod
-        self.posicion = 0
-        self.linea = 1
-        self.tokens = []
+        este.codigo = cod
+        este.posicion = 0
+        este.linea = 1
+        este.tokens = []
         self.tokenizar()
     }
     funcion tokenizar() {
-        mientras (self.posicion < longitud(self.codigo)) {
-            variable c = self.codigo[self.posicion]
+        mientras (este.posicion < longitud(este.codigo)) {
+            variable c = este.codigo[este.posicion]
             si (c == " " || c == "\\t") {
-                self.posicion = self.posicion + 1
+                este.posicion = este.posicion + 1
                 continuar
             }
             si (c == "\\n") {
-                self.linea = self.linea + 1
-                self.posicion = self.posicion + 1
+                este.linea = este.linea + 1
+                este.posicion = este.posicion + 1
                 continuar
             }
             // Comentarios
-            si (c == "/" && self.posicion + 1 < longitud(self.codigo) && self.codigo[self.posicion + 1] == "/") {
-                mientras (self.posicion < longitud(self.codigo) && self.codigo[self.posicion] != "\\n") {
-                    self.posicion = self.posicion + 1
+            si (c == "/" && este.posicion + 1 < longitud(este.codigo) && este.codigo[este.posicion + 1] == "/") {
+                mientras (este.posicion < longitud(este.codigo) && este.codigo[este.posicion] != "\\n") {
+                    este.posicion = este.posicion + 1
                 }
                 continuar
             }
             // Números
             si (c >= "0" && c <= "9") {
                 variable num = ""
-                mientras (self.posicion < longitud(self.codigo) && self.codigo[self.posicion] >= "0" && self.codigo[self.posicion] <= "9") {
-                    num = num + self.codigo[self.posicion]
-                    self.posicion = self.posicion + 1
+                mientras (este.posicion < longitud(este.codigo) && este.codigo[este.posicion] >= "0" && este.codigo[este.posicion] <= "9") {
+                    num = num + este.codigo[este.posicion]
+                    este.posicion = este.posicion + 1
                 }
-                variable idx = longitud(self.tokens)
-                self.tokens[idx] = nuevo Token()
-                self.tokens[idx].init("NUMERO", num, self.linea)
+                variable idx = longitud(este.tokens)
+                este.tokens[idx] = nuevo Token()
+                este.tokens[idx].init("NUMERO", num, este.linea)
                 continuar
             }
             // Identificadores y palabras clave
             si ((c >= "a" && c <= "z") || (c >= "A" && c <= "Z") || c == "_") {
                 variable ident = ""
-                mientras (self.posicion < longitud(self.codigo) && ((self.codigo[self.posicion] >= "a" && self.codigo[self.posicion] <= "z") || (self.codigo[self.posicion] >= "A" && self.codigo[self.posicion] <= "Z") || (self.codigo[self.posicion] >= "0" && self.codigo[self.posicion] <= "9") || self.codigo[self.posicion] == "_")) {
-                    ident = ident + self.codigo[self.posicion]
-                    self.posicion = self.posicion + 1
+                mientras (este.posicion < longitud(este.codigo) && ((este.codigo[este.posicion] >= "a" && este.codigo[este.posicion] <= "z") || (este.codigo[este.posicion] >= "A" && este.codigo[este.posicion] <= "Z") || (este.codigo[este.posicion] >= "0" && este.codigo[este.posicion] <= "9") || este.codigo[este.posicion] == "_")) {
+                    ident = ident + este.codigo[este.posicion]
+                    este.posicion = este.posicion + 1
                 }
                 variable tipo = "IDENTIFICADOR"
                 si (ident == "escribir" || ident == "variable" || ident == "si" || ident == "sino" || ident == "mientras" || ident == "funcion" || ident == "retornar") {
-                    tipo
-                    "PALABRA_CLAVE"
+                    tipo = "PALABRA_CLAVE"
                 }
-                variable idx2 = longitud(self.tokens)
-                self.tokens[idx2] = nuevo Token()
-                self.tokens[idx2].init(tipo, ident, self.linea)
+                variable idx2 = longitud(este.tokens)
+                este.tokens[idx2] = nuevo Token()
+                este.tokens[idx2].init(tipo, ident, este.linea)
                 continuar
             }
             // Símbolos
@@ -98,19 +97,19 @@ clase Lexer {
             mientras (s < longitud(simbolos)) {
                 variable sym = simbolos[s]
                 si (longitud(sym) == 2) {
-                    si (self.posicion + 1 < longitud(self.codigo) && self.codigo[self.posicion] == sym[0] && self.codigo[self.posicion + 1] == sym[1]) {
-                        variable idx3 = longitud(self.tokens)
-                        self.tokens[idx3] = nuevo Token()
-                        self.tokens[idx3].init("OPERADOR", sym, self.linea)
-                        self.posicion = self.posicion + 2
+                    si (este.posicion + 1 < longitud(este.codigo) && este.codigo[este.posicion] == sym[0] && este.codigo[este.posicion + 1] == sym[1]) {
+                        variable idx3 = longitud(este.tokens)
+                        este.tokens[idx3] = nuevo Token()
+                        este.tokens[idx3].init("OPERADOR", sym, este.linea)
+                        este.posicion = este.posicion + 2
                         encontrado = verdadero
                     }
                 } sino {
-                    si (self.codigo[self.posicion] == sym[0]) {
-                        variable idx4 = longitud(self.tokens)
-                        self.tokens[idx4] = nuevo Token()
-                        self.tokens[idx4].init("SIMBOLO", sym, self.linea)
-                        self.posicion = self.posicion + 1
+                    si (este.codigo[este.posicion] == sym[0]) {
+                        variable idx4 = longitud(este.tokens)
+                        este.tokens[idx4] = nuevo Token()
+                        este.tokens[idx4].init("SIMBOLO", sym, este.linea)
+                        este.posicion = este.posicion + 1
                         encontrado = verdadero
                     }
                 }
@@ -120,16 +119,16 @@ clase Lexer {
                 s = s + 1
             }
             si (!encontrado) {
-                escribir("  ⚠️ Error léxico: carácter '" + c + "' en línea " + self.linea + "")
-                self.posicion = self.posicion + 1
+                escribir("  ⚠️ Error léxico: carácter '" + c + "' en línea " + este.linea + "")
+                este.posicion = este.posicion + 1
             }
         }
     }
     funcion mostrar_tokens() {
         escribir("  Tokens generados:")
         variable i = 0
-        mientras (i < longitud(self.tokens)) {
-            variable t = self.tokens[i]
+        mientras (i < longitud(este.tokens)) {
+            variable t = este.tokens[i]
             escribir("    [" + t.tipo + ": '" + t.valor + "']")
             i = i + 1
         }
@@ -141,7 +140,7 @@ clase MiniEjecutor {
     variables
 
     constructor() {
-        self.variables = []
+        este.variables = []
     }
     funcion ejecutar(tokens) {
         escribir("  Ejecutando programa MiniForja...\n")
@@ -166,8 +165,8 @@ clase MiniEjecutor {
                 // saltar =
                 variable valor = tokens[i].valor
                 // Almacenar variable
-                variable idx = longitud(self.variables)
-                self.variables[idx] = nombre + ":" + valor
+                variable idx = longitud(este.variables)
+                este.variables[idx] = nombre + ":" + valor
                 escribir("  📦 Variable '" + nombre + "' = " + valor + "")
             }
             i = i + 1

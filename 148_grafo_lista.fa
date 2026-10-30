@@ -9,9 +9,9 @@ clase NodoAdy {
     siguiente
 
     constructor(v, p) {
-        self.vertice = v
-        self.peso = p
-        self.siguiente = nulo
+        este.vertice = v
+        este.peso = p
+        este.siguiente = nulo
     }
 }
 
@@ -21,32 +21,32 @@ clase GrafoLista {
     tamano
 
     constructor(n) {
-        self.tamano = n
-        self.vertices = []
-        self.listas = []
+        este.tamano = n
+        este.vertices = []
+        este.listas = []
         variable i = 0
         mientras (i < n) {
-            self.listas[i] = nulo
+            este.listas[i] = nulo
             i = i + 1
         }
     }
     funcion agregar_vertice(nombre) {
-        self.vertices[longitud(self.vertices)] = nombre
+        este.vertices[longitud(este.vertices)] = nombre
     }
     funcion agregar_arista(origen, destino, peso) {
         // Agregar al inicio de la lista (dirigido de origen a destino)
         variable nodo = nuevo NodoAdy(destino, peso)
-        nodo.siguiente = self.listas[origen]
-        self.listas[origen] = nodo
+        nodo.siguiente = este.listas[origen]
+        este.listas[origen] = nodo
     }
     funcion mostrar_listas() {
         escribir("  Listas de adyacencia:\n")
         variable i = 0
-        mientras (i < self.tamano) {
-            variable linea = "  " + self.vertices[i] + ": "
-            variable actual = self.listas[i]
+        mientras (i < este.tamano) {
+            variable linea = "  " + este.vertices[i] + ": "
+            variable actual = este.listas[i]
             mientras (actual != nulo) {
-                linea = linea + self.vertices[actual.vertice] + "(" + actual.peso + ") → "
+                linea = linea + este.vertices[actual.vertice] + "(" + actual.peso + ") → "
                 actual = actual.siguiente
             }
             linea = linea + "∅"
@@ -57,10 +57,10 @@ clase GrafoLista {
     funcion tiene_ciclo_util(v, mut visitados, mut pila_rec) -> Booleano {
         visitados[v] = verdadero
         pila_rec[v] = verdadero
-        variable actual = self.listas[v]
+        variable actual = este.listas[v]
         mientras (actual != nulo) {
             si (!visitados[actual.vertice]) {
-                si (self.tiene_ciclo_util(actual.vertice, visitados, pila_rec)) {
+                si (este.tiene_ciclo_util(actual.vertice, visitados, pila_rec)) {
                     retornar verdadero
                 }
             } sino {
@@ -77,15 +77,15 @@ clase GrafoLista {
         variable visitados = []
         variable pila_rec = []
         variable i = 0
-        mientras (i < self.tamano) {
+        mientras (i < este.tamano) {
             visitados[i] = falso
             pila_rec[i] = falso
             i = i + 1
         }
         variable j = 0
-        mientras (j < self.tamano) {
+        mientras (j < este.tamano) {
             si (!visitados[j]) {
-                si (self.tiene_ciclo_util(j, visitados, pila_rec)) {
+                si (este.tiene_ciclo_util(j, visitados, pila_rec)) {
                     retornar verdadero
                 }
             }

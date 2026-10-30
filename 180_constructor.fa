@@ -17,37 +17,37 @@ clase Computadora {
     incluye_mouse
 
     constructor() {
-        self.procesador = ""
-        self.ram_gb = 0
-        self.almacenamiento_gb = 0
-        self.tarjeta_grafica = ""
-        self.sistema_operativo = ""
-        self.incluye_monitor = falso
-        self.incluye_teclado = falso
-        self.incluye_mouse = falso
+        este.procesador = ""
+        este.ram_gb = 0
+        este.almacenamiento_gb = 0
+        este.tarjeta_grafica = ""
+        este.sistema_operativo = ""
+        este.incluye_monitor = falso
+        este.incluye_teclado = falso
+        este.incluye_mouse = falso
     }
     funcion describir() -> Texto {
         variable desc = "Computadora:\n"
         desc
         "  RAM: "
-        self.ram_gb
+        este.ram_gb
         " GB\n"
-        desc = desc + "  Almacenamiento: " + self.almacenamiento_gb + " GB\n"
-        si (self.tarjeta_grafica != "") {
-            desc = desc + "  GPU: " + self.tarjeta_grafica + "\n"
+        desc = desc + "  Almacenamiento: " + este.almacenamiento_gb + " GB\n"
+        si (este.tarjeta_grafica != "") {
+            desc = desc + "  GPU: " + este.tarjeta_grafica + "\n"
         }
         desc
         "  Incluye:"
-        si (self.incluye_monitor) {
+        si (este.incluye_monitor) {
             desc = desc + " monitor"
         }
-        si (self.incluye_teclado) {
+        si (este.incluye_teclado) {
             desc = desc + " teclado"
         }
-        si (self.incluye_mouse) {
+        si (este.incluye_mouse) {
             desc = desc + " mouse"
         }
-        si (!self.incluye_monitor && !self.incluye_teclado && !self.incluye_mouse) {
+        si (!este.incluye_monitor && !este.incluye_teclado && !este.incluye_mouse) {
             desc = desc + " (solo CPU)"
         }
         retornar desc
@@ -58,51 +58,51 @@ clase BuilderComputadora {
     computadora
 
     constructor() {
-        self.computadora = nuevo Computadora()
+        este.computadora = nuevo Computadora()
     }
     funcion con_procesador(procesador) {
-        self.computadora.procesador
+        este.computadora.procesador
         procesador
-        retornar self
+        retornar este
     }
     funcion con_ram(gb) {
-        self.computadora.ram_gb
+        este.computadora.ram_gb
         gb
-        retornar self
+        retornar este
     }
     funcion con_almacenamiento(gb) {
-        self.computadora.almacenamiento_gb
+        este.computadora.almacenamiento_gb
         gb
-        retornar self
+        retornar este
     }
     funcion con_tarjeta_grafica(gpu) {
-        self.computadora.tarjeta_grafica
+        este.computadora.tarjeta_grafica
         gpu
-        retornar self
+        retornar este
     }
     funcion con_sistema_operativo(so) {
-        self.computadora.sistema_operativo
+        este.computadora.sistema_operativo
         so
-        retornar self
+        retornar este
     }
     funcion con_monitor() {
-        self.computadora.incluye_monitor
+        este.computadora.incluye_monitor
         verdadero
-        retornar self
+        retornar este
     }
     funcion con_teclado() {
-        self.computadora.incluye_teclado
+        este.computadora.incluye_teclado
         verdadero
-        retornar self
+        retornar este
     }
     funcion con_mouse() {
-        self.computadora.incluye_mouse
+        este.computadora.incluye_mouse
         verdadero
-        retornar self
+        retornar este
     }
     funcion construir() {
-        variable pc = self.computadora
-        self.computadora = nuevo Computadora()
+        variable pc = este.computadora
+        este.computadora = nuevo Computadora()
         // Reset para próximo uso
         retornar pc
     }

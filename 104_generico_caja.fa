@@ -9,16 +9,16 @@ clase Caja<T> {
     contenido
 
     constructor(valor: T) {
-        self.contenido = valor
+        este.contenido = valor
     }
     funcion obtener() -> T {
-        retornar self.contenido
+        retornar este.contenido
     }
     funcion establecer(nuevo_valor: T) {
-        self.contenido = nuevo_valor
+        este.contenido = nuevo_valor
     }
     funcion transformar(funcion_transformar) {
-        self.contenido = funcion_transformar(self.contenido)
+        este.contenido = funcion_transformar(este.contenido)
     }
 }
 

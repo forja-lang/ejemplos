@@ -5,8 +5,8 @@ clase Persona {
     edad
 
     constructor() {
-        self.nombre = "Ana"
-        self.edad = 25
+        este.nombre = "Ana"
+        este.edad = 25
     }
 }
 

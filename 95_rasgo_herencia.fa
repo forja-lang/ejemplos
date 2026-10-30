@@ -19,24 +19,24 @@ clase Perro {
     nombre
 
     constructor() {
-        self.nombre = "Firulais"
+        este.nombre = "Firulais"
     }
 }
 
 implementa Mascota para Perro {
     // Métodos de Animal
     funcion hacer_sonido() -> Texto {
-        retornar "" + self.nombre + ": ¡Guau!"
+        retornar "" + este.nombre + ": ¡Guau!"
     }
     funcion dormir() -> Texto {
-        retornar "" + self.nombre + ": Zzz..."
+        retornar "" + este.nombre + ": Zzz..."
     }
     // Métodos de Mascota
     funcion jugar() -> Texto {
-        retornar "" + self.nombre + " juega con la pelota"
+        retornar "" + este.nombre + " juega con la pelota"
     }
     funcion obtener_nombre() -> Texto {
-        retornar self.nombre
+        retornar este.nombre
     }
 }
 
@@ -44,22 +44,22 @@ clase Gato {
     nombre
 
     constructor() {
-        self.nombre = "Bigotes"
+        este.nombre = "Bigotes"
     }
 }
 
 implementa Mascota para Gato {
     funcion hacer_sonido() -> Texto {
-        retornar "" + self.nombre + ": ¡Miau!"
+        retornar "" + este.nombre + ": ¡Miau!"
     }
     funcion dormir() -> Texto {
-        retornar "" + self.nombre + ": ronronea durmiendo"
+        retornar "" + este.nombre + ": ronronea durmiendo"
     }
     funcion jugar() -> Texto {
-        retornar "" + self.nombre + " juega con un ovillo"
+        retornar "" + este.nombre + " juega con un ovillo"
     }
     funcion obtener_nombre() -> Texto {
-        retornar self.nombre
+        retornar este.nombre
     }
 }
 

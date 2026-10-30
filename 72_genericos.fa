@@ -20,10 +20,10 @@ clase Caja<T> {
     contenido
 
     constructor(valor: T) {
-        self.contenido = valor
+        este.contenido = valor
     }
     funcion obtener() {
-        retornar self.contenido
+        retornar este.contenido
     }
 }
 

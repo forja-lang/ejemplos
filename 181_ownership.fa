@@ -11,24 +11,24 @@ clase Recurso {
     activo
 
     constructor() {
-        self.id = 0
-        self.activo = verdadero
+        este.id = 0
+        este.activo = verdadero
     }
     funcion init(nuevo_id) {
-        self.id = nuevo_id
-        self.activo = verdadero
-        escribir("  🔨 Recurso #" + self.id + ": CREADO")
+        este.id = nuevo_id
+        este.activo = verdadero
+        escribir("  🔨 Recurso #" + este.id + ": CREADO")
     }
     funcion usar() {
-        si (self.activo) {
-            escribir("  🔧 Recurso #" + self.id + ": en uso...")
+        si (este.activo) {
+            escribir("  🔧 Recurso #" + este.id + ": en uso...")
         } sino {
-            escribir("  ⚠️ Recurso #" + self.id + ": ¡YA NO ESTÁ DISPONIBLE!")
+            escribir("  ⚠️ Recurso #" + este.id + ": ¡YA NO ESTÁ DISPONIBLE!")
         }
     }
     funcion liberar() {
-        self.activo = falso
-        escribir("  🗑️ Recurso #" + self.id + ": LIBERADO")
+        este.activo = falso
+        escribir("  🗑️ Recurso #" + este.id + ": LIBERADO")
     }
 }
 
