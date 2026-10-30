@@ -1,7 +1,7 @@
 // Test: exacto directo entre dos Exactos literales
 variable a: Exacto = 1
 
-variable b: Exacto = 0.9
+variable b: Exacto = 9e-1
 
 variable r: Exacto = a - b
 

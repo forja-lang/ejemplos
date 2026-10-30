@@ -2,16 +2,15 @@
 /// Conceptos: std/cliente_h2, multiplexación, prioridades, frames
 /// Nivel: experto
 importar "std/io"
+
 importar "std/cliente_h2"
 
 funcion main() {
     escribir("=== CLIENTE HTTP/2 ===\n")
     escribir("Una sola conexión TCP, varias peticiones en paralelo (streams).")
     escribir("")
-
     variable url = "http://localhost:8081/estado"
     escribir("  cliente_h2.obtener(" + url + ") ...")
-
     variable respuesta = cliente_h2.obtener(url)
     coincidir (respuesta) {
         caso Ok(r) -> {
@@ -24,7 +23,6 @@ funcion main() {
             escribir("  (normal si no hay servidor h2c escuchando)")
         }
     }
-
     escribir("")
     escribir("Ventajas frente a HTTP/1.1:")
     escribir("  • multiplexación: muchos streams por conexión")
@@ -40,3 +38,4 @@ funcion main() {
 }
 
 main()
+

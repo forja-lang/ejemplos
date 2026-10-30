@@ -2,13 +2,13 @@
 /// Conceptos: UDP, datagramas, std/sockets (udp_*)
 /// Nivel: avanzado
 importar "std/io"
+
 importar "std/sockets"
 
 funcion main() {
     escribir("=== ECO UDP ===\n")
     escribir("UDP no tiene conexión: cada datagrama lleva su destino.")
     escribir("")
-
     variable puerto = 9090
     escribir("  udp_escuchar(" + puerto + ") ...")
     variable servidor = sockets.udp_escuchar(puerto)
@@ -25,7 +25,6 @@ funcion main() {
             escribir("  ⚠️ no se pudo abrir el puerto: " + e.mensaje)
         }
     }
-
     escribir("")
     escribir("Diferencias con TCP:")
     escribir("  TCP: conectar → enviar/recibir → cerrar (flujo ordenado)")
@@ -38,3 +37,4 @@ funcion main() {
 }
 
 main()
+

@@ -18,7 +18,7 @@ escribir(x / y)
 // Test abs
 importar "std/matematica"
 
-variable num: Exacto = -42.5
+variable num: Exacto = -425e-1
 
 escribir("num:")
 

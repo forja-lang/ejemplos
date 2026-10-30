@@ -2,13 +2,13 @@
 /// Conceptos: std/websocket, handshake, frames de texto
 /// Nivel: avanzado
 importar "std/io"
+
 importar "std/websocket"
 
 funcion main() {
     escribir("=== CLIENTE WEBSOCKET ===\n")
     escribir("Un WebSocket empieza con un handshake HTTP y sigue con frames.")
     escribir("")
-
     variable url = "ws://localhost:8080/chat"
     escribir("  conectar(" + url + ") ...")
     variable cliente = websocket.conectar(url)
@@ -19,8 +19,12 @@ funcion main() {
             websocket.enviar_texto(ws, "hola")
             variable respuesta = websocket.recibir(ws)
             coincidir (respuesta) {
-                caso Ok(msg) -> escribir("  <- " + msg)
-                caso Error(e) -> escribir("  ⚠️ " + e.mensaje)
+                caso Ok(msg) -> {
+                    escribir("  <- " + msg)
+                }
+                caso Error(e) -> {
+                    escribir("  ⚠️ " + e.mensaje)
+                }
             }
             websocket.cerrar(ws)
         }
@@ -29,7 +33,6 @@ funcion main() {
             escribir("  (normal si no hay servidor escuchando)")
         }
     }
-
     escribir("")
     escribir("Tipos de frame (clase FrameWebSocket):")
     escribir("  es_texto()   → frame de texto")
@@ -45,3 +48,4 @@ funcion main() {
 }
 
 main()
+

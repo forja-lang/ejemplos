@@ -2,16 +2,15 @@
 /// Conceptos: std/servidor_h2, rutas, frames, prioridad de streams
 /// Nivel: experto
 importar "std/io"
+
 importar "std/servidor_h2"
 
 funcion main() {
     escribir("=== SERVIDOR HTTP/2 (h2c) ===\n")
     escribir("HTTP/2 multiplexa varios streams sobre una sola conexión TCP.")
     escribir("")
-
     variable puerto = 8081
     variable servidor = nuevo ServidorH2(puerto)
-
     // Rutas: mismo esquema que HTTP/1.1, pero cada petición viaja en su stream.
     servidor_h2.obtener(servidor, "/", func(peticion, respuesta) {
         servidor_h2.html(respuesta, "<h1>Hola por HTTP/2</h1>")
@@ -22,7 +21,6 @@ funcion main() {
     servidor_h2.enviar(servidor, "/datos", func(peticion, respuesta) {
         servidor_h2.texto_plano(respuesta, "creado")
     })
-
     escribir("  Servidor configurado en el puerto " + puerto + "")
     escribir("  Rutas: GET / · GET /estado · POST /datos")
     escribir("")
@@ -39,3 +37,4 @@ funcion main() {
 }
 
 main()
+

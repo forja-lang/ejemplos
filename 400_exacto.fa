@@ -3,7 +3,7 @@
 importar "std/matematica"
 
 // Declaración básica
-variable precio: Exacto = 19.99
+variable precio: Exacto = 1999e-2
 
 escribir("Precio:")
 
@@ -34,7 +34,7 @@ escribir(pi_exacto)
 // Resta de exactos
 variable x: Exacto = 1
 
-variable y: Exacto = 0.9
+variable y: Exacto = 9e-1
 
 variable resta: Exacto = x - y
 
@@ -54,7 +54,7 @@ escribir("10 / 3 =")
 escribir(cociente)
 
 // Uso de stdlib (abs)
-variable num: Exacto = -42.5
+variable num: Exacto = -425e-1
 
 variable abs_num: Exacto = absoluto(num)
 
@@ -63,9 +63,9 @@ escribir("Absoluto de -42.5:")
 escribir(abs_num)
 
 // Comparación de exactos
-variable a: Exacto = 0.1
+variable a: Exacto = 1e-1
 
-variable b: Exacto = 0.2
+variable b: Exacto = 2e-1
 
 variable suma: Exacto = a + b
 
@@ -101,7 +101,7 @@ escribir("exacto_desde_texto('-3.14'):")
 escribir(desde_negativo)
 
 // redondear_exacto
-variable valor_redondear: Exacto = 123.4567
+variable valor_redondear: Exacto = 1234567e-4
 
 variable redondeado: Exacto = redondear_exacto(valor_redondear, 2)
 

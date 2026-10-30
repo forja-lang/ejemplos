@@ -20,7 +20,7 @@ funcion generar_setter(campo: Texto) -> Texto {
 }
 
 // Genera una clase completa a partir de una lista de campos.
-funcion generar_clase(nombre: Texto, campos: Arreglo<Texto>) -> Texto {
+funcion generar_clase(nombre: Texto, campos: Arreglo) -> Texto {
     variable codigo = "clase " + nombre + " {\n"
     variable i = 0
     mientras (i < longitud(campos)) {
@@ -47,13 +47,10 @@ funcion generar_clase(nombre: Texto, campos: Arreglo<Texto>) -> Texto {
 funcion main() {
     escribir("=== METAPROGRAMACIÓN ===\n")
     escribir("Forja genera código Forja a partir de datos.\n")
-
     variable campos = ["nombre", "edad", "ciudad"]
     variable codigo = generar_clase("Persona", campos)
-
     escribir("Código generado:")
     escribir(codigo)
-
     escribir("")
     escribir("Líneas generadas: " + (lineas(codigo)) + "")
     escribir("Caracteres: " + longitud(codigo) + "")
@@ -78,3 +75,4 @@ funcion lineas(texto: Texto) -> Entero {
 }
 
 main()
+

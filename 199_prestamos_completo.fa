@@ -17,7 +17,6 @@ funcion demo_ownership() {
     // ❌ 'original' ya no es válido: fue movido.
     // escribir("" + original)   // Error: variable fue movida
     escribir("  ✔ El ownership se transfiere al asignar\n")
-
     // Prestar (&) NO mueve: el dueño sigue siendo el original.
     variable datos = [10, 20, 30]
     variable prestado = &datos
@@ -39,7 +38,7 @@ funcion demo_prestamo_inmutable() {
     variable c = &contador
     escribir("  a = " + a + ", b = " + b + ", c = " + c + "")
     escribir("  ✔ Todos leen el mismo valor a la vez")
-    // Los préstamos a, b y c se liberan al salir de la función.
+// Los préstamos a, b y c se liberan al salir de la función.
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -120,3 +119,4 @@ funcion main() {
 }
 
 main()
+

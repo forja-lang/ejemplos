@@ -2,14 +2,13 @@
 /// Conceptos: std/servidor_web, rutas, middlewares, respuestas
 /// Nivel: avanzado
 importar "std/io"
+
 importar "std/servidor_web"
 
 funcion main() {
     escribir("=== SERVIDOR WEB ===\n")
-
     variable puerto = 8080
     variable servidor = nuevo ServidorWeb(puerto)
-
     // Rutas: cada una asocia un método y una ruta a un manejador.
     servidor_web.obtener(servidor, "/", func(peticion, respuesta) {
         servidor_web.html(respuesta, "<h1>Hola desde Forja</h1>")
@@ -20,13 +19,11 @@ funcion main() {
     servidor_web.enviar(servidor, "/saludo", func(peticion, respuesta) {
         servidor_web.texto_plano(respuesta, "creado")
     })
-
     // Middleware global: se ejecuta antes de cada manejador.
     servidor_web.usar(servidor, func(peticion, respuesta, siguiente) {
         siguiente()
     })
     servidor_web.habilitar_cors(servidor)
-
     escribir("  Servidor configurado en el puerto " + puerto + "")
     escribir("  Rutas registradas:")
     escribir("    GET  /         → html")
@@ -42,3 +39,4 @@ funcion main() {
 }
 
 main()
+

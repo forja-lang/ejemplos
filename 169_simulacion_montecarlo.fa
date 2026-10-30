@@ -2,6 +2,7 @@
 /// Conceptos: simulación, probabilidad, números aleatorios, estimación
 /// Nivel: avanzado
 importar "std/io"
+
 importar "std/matematica"
 
 // La simulación Monte Carlo usa muestreo aleatorio repetido para

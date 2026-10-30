@@ -10,7 +10,9 @@ funcion mostrar_por_referencia(prestado valor: Entero) {
 }
 
 escribir("Original: " + original)
+
 mostrar_por_referencia(&original)
+
 mostrar_por_referencia(&original)
 
 // Un préstamo guardado en una variable vive hasta el final del ámbito.
@@ -18,12 +20,14 @@ funcion demo_prestamo() {
     variable dato = 7
     variable referencia = &dato
     escribir("  referencia = " + referencia)
-    // dato = 8   // ❌ el comprobador de préstamos lo rechaza:
-    //            //    "No se puede modificar 'dato' porque tiene 1 préstamo"
+// dato = 8   // ❌ el comprobador de préstamos lo rechaza:
+//            //    "No se puede modificar 'dato' porque tiene 1 préstamo"
 }
 
 escribir("")
+
 escribir("Préstamo guardado en una variable:")
+
 demo_prestamo()
 
 // Para modificar hace falta un préstamo mutable (&mut), que es exclusivo:
@@ -34,12 +38,20 @@ funcion sumar_uno(mut valor: Entero) {
 }
 
 variable contador = 10
+
 escribir("")
+
 escribir("Préstamo mutable:")
+
 sumar_uno(contador)
 
 escribir("")
+
 escribir("Resumen:")
+
 escribir("  &x      → préstamo inmutable (sólo leer)")
+
 escribir("  &mut x  → préstamo mutable (modificar), exclusivo")
+
 escribir("  un préstamo activo impide modificar la variable original")
+

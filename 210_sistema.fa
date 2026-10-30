@@ -2,15 +2,14 @@
 /// Conceptos: std/sistema, variables de entorno, Opcion, Resultado
 /// Nivel: intermedio
 importar "std/io"
+
 importar "std/sistema"
 
 funcion main() {
     escribir("=== MÓDULO SISTEMA ===\n")
-
     escribir("  Sistema operativo: " + sistema.sistema_operativo())
     escribir("  Versión de Forja:  " + sistema.version_forja())
     escribir("  Tiempo (ms):       " + sistema.tiempo_ms())
-
     // directorio_actual() devuelve un Resultado
     variable dir = sistema.directorio_actual()
     coincidir (dir) {
@@ -21,7 +20,6 @@ funcion main() {
             escribir("  Directorio actual: error (" + e.mensaje + ")")
         }
     }
-
     // variable_entorno() devuelve una Opcion
     variable path = sistema.variable_entorno("PATH")
     coincidir (path) {
@@ -32,7 +30,6 @@ funcion main() {
             escribir("  PATH no definido")
         }
     }
-
     variable inexistente = sistema.variable_entorno("FORJA_VARIABLE_QUE_NO_EXISTE")
     coincidir (inexistente) {
         caso Algo(valor) -> {
@@ -42,7 +39,6 @@ funcion main() {
             escribir("  Variable de prueba: no definida (correcto)")
         }
     }
-
     escribir("")
     escribir("  Argumentos del programa: " + longitud(sistema.argumentos()) + "")
     escribir("")
@@ -52,3 +48,4 @@ funcion main() {
 }
 
 main()
+

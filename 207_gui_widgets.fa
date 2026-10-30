@@ -9,23 +9,7 @@ funcion main() {
     variable volumen = 50
     variable activo = verdadero
     variable saludo = ""
-
-    tema_fluent(
-        columna_con_gap([
-            titulo("Demo de widgets"),
-            separador(),
-            cuerpo_mediano("Ingresá tu nombre:"),
-            campo_texto("nombre", "Nombre"),
-            boton_relleno("Saludar", &saludar),
-            etiqueta_dinamica("saludo"),
-            separador(),
-            cuerpo_mediano("Progreso"),
-            barra_progreso("progreso"),
-            cuerpo_mediano("Volumen"),
-            deslizante("volumen", 0, 100),
-            casilla("Acepto los términos", "activo")
-        ], 16, "start")
-    )
+    tema_fluent(columna_con_gap([titulo("Demo de widgets"), separador(), cuerpo_mediano("Ingresá tu nombre:"), campo_texto("nombre", "Nombre"), boton_relleno("Saludar", &saludar), etiqueta_dinamica("saludo"), separador(), cuerpo_mediano("Progreso"), barra_progreso("progreso"), cuerpo_mediano("Volumen"), deslizante("volumen", 0, 100), casilla("Acepto los términos", "activo")], 16, "start"))
 }
 
 funcion saludar() {
@@ -33,3 +17,4 @@ funcion saludar() {
     // etiqueta_dinamica("saludo") cuando el callback cambia la variable.
     escribir("¡Hola!")
 }
+

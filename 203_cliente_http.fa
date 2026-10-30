@@ -2,16 +2,15 @@
 /// Conceptos: std/cliente_http, GET/POST, Resultado, cabeceras
 /// Nivel: avanzado
 importar "std/io"
+
 importar "std/cliente_http"
 
 funcion main() {
     escribir("=== CLIENTE HTTP ===\n")
     escribir("Se hace un GET a un host de ejemplo.")
     escribir("Sin red el error se maneja igual: el Resultado lo exige.\n")
-
     variable url = "http://example.com/"
     escribir("GET " + url)
-
     variable respuesta = obtener(url)
     coincidir (respuesta) {
         caso Ok(r) -> {
@@ -25,7 +24,6 @@ funcion main() {
             escribir("  (esperado si no hay red o el host no resuelve)")
         }
     }
-
     escribir("")
     escribir("API del módulo std/cliente_http:")
     escribir("  obtener(url)              → GET")
@@ -40,3 +38,4 @@ funcion main() {
 }
 
 main()
+

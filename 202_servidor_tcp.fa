@@ -2,6 +2,7 @@
 /// Conceptos: sockets, servidor, escuchar, aceptar, eco
 /// Nivel: avanzado
 importar "std/io"
+
 importar "std/sockets"
 
 // Atiende un cliente ya aceptado: lee, responde y cierra.
@@ -13,7 +14,9 @@ funcion atender(cliente) {
             escribir("  <- cliente: " + texto)
             sockets.enviar(cliente, "eco: " + texto)
         }
-        caso Error(e) -> escribir("  error al recibir: " + e.mensaje)
+        caso Error(e) -> {
+            escribir("  error al recibir: " + e.mensaje)
+        }
     }
     sockets.cerrar(cliente)
 }
@@ -22,7 +25,6 @@ funcion main() {
     escribir("=== Servidor TCP ===\n")
     escribir("Se abre un socket de escucha y se muestra el estado.")
     escribir("El bucle de aceptación se omite para no bloquear la demo.\n")
-
     variable puerto = 8080
     escribir("  escuchar(" + puerto + ") ...")
     variable servidor = sockets.escuchar(puerto)
@@ -38,7 +40,6 @@ funcion main() {
             escribir("  (normal si el puerto está ocupado o no hay red)")
         }
     }
-
     escribir("")
     escribir("API del módulo std/sockets:")
     escribir("  escuchar(puerto)      → servidor")
@@ -49,3 +50,4 @@ funcion main() {
 }
 
 main()
+
