@@ -67,7 +67,7 @@ clase ArbolBinario {
         si (nodo == nulo) {
             retornar
         }
-        escribir("  " + nodo.valor + " ", falso)
+        escribir("  " + nodo.valor + " ")
         self.dfs_preorden(nodo.izquierdo)
         self.dfs_preorden(nodo.derecho)
     }
@@ -77,7 +77,7 @@ clase ArbolBinario {
             retornar
         }
         self.dfs_inorden(nodo.izquierdo)
-        escribir("  " + nodo.valor + " ", falso)
+        escribir("  " + nodo.valor + " ")
         self.dfs_inorden(nodo.derecho)
     }
     // DFS - Postorden (izquierdo → derecho → raíz)
@@ -87,7 +87,7 @@ clase ArbolBinario {
         }
         self.dfs_postorden(nodo.izquierdo)
         self.dfs_postorden(nodo.derecho)
-        escribir("  " + nodo.valor + " ", falso)
+        escribir("  " + nodo.valor + " ")
     }
     // BFS - por niveles
     funcion bfs() {
@@ -101,7 +101,7 @@ clase ArbolBinario {
         mientras (idx < len) {
             variable actual = cola[idx]
             idx = idx + 1
-            escribir("  " + actual.valor + " ", falso)
+            escribir("  " + actual.valor + " ")
             si (actual.izquierdo != nulo) {
                 cola[len] = actual.izquierdo
                 len = len + 1

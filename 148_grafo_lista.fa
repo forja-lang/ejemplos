@@ -46,7 +46,8 @@ clase GrafoLista {
             variable linea = "  " + self.vertices[i] + ": "
             variable actual = self.listas[i]
             mientras (actual != nulo) {
-                actual.siguiente
+                linea = linea + self.vertices[actual.vertice] + "(" + actual.peso + ") → "
+                actual = actual.siguiente
             }
             linea = linea + "∅"
             escribir("" + linea + "")

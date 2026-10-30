@@ -76,7 +76,7 @@ funcion prueba_json() {
 
     # ─── 2. STRINGIFICAR ─────────────────────────────────────────────────
     imprimir("")
-    imprimir("--- 2. stringificar ---")
+    imprimir("--- 2. serializar ---")
 
     # Mapa a JSON
     variable mapa = {}
@@ -84,7 +84,7 @@ funcion prueba_json() {
     mapa["edad"] = 28
     mapa["activo"] = falso
     mapa["notas"] = [85, 90, 78]
-    variable res_str = json.stringificar(mapa)
+    variable res_str = json.serializar(mapa)
     coincidir (res_str) {
         caso Ok(texto) -> {
             imprimir("  ✓ Mapa stringificado: " + texto)
@@ -96,7 +96,7 @@ funcion prueba_json() {
 
     # Array a JSON
     variable lista = [1, 2, "tres", verdadero, nulo]
-    variable res_lista = json.stringificar(lista)
+    variable res_lista = json.serializar(lista)
     coincidir (res_lista) {
         caso Ok(texto) -> {
             imprimir("  ✓ Array stringificado: " + texto)
@@ -107,7 +107,7 @@ funcion prueba_json() {
     }
 
     # Valores simples
-    variable res_num = json.stringificar(42)
+    variable res_num = json.serializar(42)
     coincidir (res_num) {
         caso Ok(texto) -> {
             imprimir("  ✓ Número stringificado: " + texto)
@@ -117,7 +117,7 @@ funcion prueba_json() {
         }
     }
 
-    variable res_text = json.stringificar("Hola Mundo")
+    variable res_text = json.serializar("Hola Mundo")
     coincidir (res_text) {
         caso Ok(texto) -> {
             imprimir("  ✓ Texto stringificado: " + texto)
@@ -127,7 +127,7 @@ funcion prueba_json() {
         }
     }
 
-    variable res_bool = json.stringificar(verdadero)
+    variable res_bool = json.serializar(verdadero)
     coincidir (res_bool) {
         caso Ok(texto) -> {
             imprimir("  ✓ Booleano stringificado: " + texto)

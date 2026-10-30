@@ -37,9 +37,9 @@ funcion mostrar_tablero_oculto(mut cartas, reveladas) {
     variable i = 0
     mientras (i < longitud(cartas)) {
         si (reveladas[i]) {
-            escribir(" " + cartas[i] + " ", falso)
+            escribir(" " + cartas[i] + " ")
         } sino {
-            escribir(" ? ", falso)
+            escribir(" ? ")
         }
         si ((i + 1) % 4 == 0) {
             escribir("")

@@ -14,7 +14,7 @@ funcion elegir_palabra() -> Texto {
 
 funcion mostrar_estado(palabra, adivinadas, incorrectas, intentos_restantes) {
     escribir("")
-    escribir("Palabra: ", falso)
+    escribir("Palabra: ")
     variable i = 0
     mientras (i < longitud(palabra)) {
         variable letra_actual = palabra[i]
@@ -27,9 +27,9 @@ funcion mostrar_estado(palabra, adivinadas, incorrectas, intentos_restantes) {
             j = j + 1
         }
         si (encontrada) {
-            escribir(letra_actual, falso)
+            escribir(letra_actual)
         } sino {
-            escribir("_ ", falso)
+            escribir("_ ")
         }
         i = i + 1
     }
@@ -80,7 +80,7 @@ funcion main() {
         mostrar_estado(palabra, adivinadas, incorrectas, intentos_restantes)
         escribir("")
         variable entrada = pedir_texto("Ingresa una letra: ")
-        letra = mayuscula(entrada[0])
+        letra = a_mayusculas(entrada[0])
         si (ya_adivinada(letra, adivinadas)) {
             escribir("  Ya adivinaste esa letra!")
             continuar

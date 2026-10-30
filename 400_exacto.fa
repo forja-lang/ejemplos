@@ -115,26 +115,26 @@ escribir("redondear_exacto(123.4567, 0):")
 
 escribir(redondeado_cero)
 
-// exacto_pow
+// exacto_potencia
 variable base_pow: Exacto = 2
 
 variable exp_pow: Exacto = 3
 
-variable pow_result: Exacto = exacto_pow(base_pow, exp_pow)
+variable pow_result: Exacto = exacto_potencia(base_pow, exp_pow)
 
-escribir("exacto_pow(2.0, 3.0):")
+escribir("exacto_potencia(2.0, 3.0):")
 
 escribir(pow_result)
 
-variable pow_result2: Exacto = exacto_pow(5, 0)
+variable pow_result2: Exacto = exacto_potencia(5, 0)
 
-escribir("exacto_pow(5.0, 0.0):")
+escribir("exacto_potencia(5.0, 0.0):")
 
 escribir(pow_result2)
 
-variable pow_result3: Exacto = exacto_pow(3, 10)
+variable pow_result3: Exacto = exacto_potencia(3, 10)
 
-escribir("exacto_pow(3.0, 10.0) = 59049:")
+escribir("exacto_potencia(3.0, 10.0) = 59049:")
 
 escribir(pow_result3)
 

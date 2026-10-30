@@ -31,9 +31,9 @@ clase GrafoPonderado {
         }
     }
     funcion agregar_arista(origen, destino, peso) {
-        self.matriz_adyacencia[destino] = peso
-        self.matriz_adyacencia[origen] = peso
-    // No dirigido
+        // No dirigido: se escribe en ambos sentidos de la matriz
+        self.matriz_adyacencia[origen][destino] = peso
+        self.matriz_adyacencia[destino][origen] = peso
     }
     funcion encontrar_minimo(distancias, visitados) -> Entero {
         variable min = INFINITO
@@ -102,10 +102,10 @@ clase GrafoPonderado {
         escribir("  Matriz de adyacencia:")
         variable i = 0
         mientras (i < self.num_nodos) {
-            escribir("    ", falso)
+            escribir("    ")
             variable j = 0
             mientras (j < self.num_nodos) {
-                escribir("" + self.matriz_adyacencia[i][j] + " ", falso)
+                escribir("" + self.matriz_adyacencia[i][j] + " ")
                 j = j + 1
             }
             escribir("")
@@ -139,7 +139,7 @@ funcion main() {
     escribir("Distancias más cortas desde el nodo " + origen + ":")
     variable i = 0
     mientras (i < grafo.num_nodos) {
-        escribir("  Hasta " + i + ": " + distancias[i] + "", falso)
+        escribir("  Hasta " + i + ": " + distancias[i] + "")
         si (distancias[i] < INFINITO) {
             variable ruta = grafo.reconstruir_ruta(previos, i)
             escribir("  (ruta: " + ruta + ")")

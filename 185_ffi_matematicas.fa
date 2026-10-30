@@ -22,43 +22,31 @@ funcion ffi_sqrt(x) -> Decimal {
     variable resultado = x
     variable i = 0
     mientras (i < 20) {
-        anon(resultado + x / resultado)
-        2
+        resultado = (resultado + x / resultado) / 2
         i = i + 1
     }
     escribir("  📐 FFI math.sqrt(" + x + ") = " + resultado + "")
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion ffi_sin(grados) -> Decimal {
     variable rad = grados * 3.1415926535 / 180
     // Serie de Taylor (simula sin() nativa)
     variable resultado = rad - (rad * rad * rad) / 6
-    resultado
-    anon(rad * rad * rad * rad * rad)
-    120
-    resultado
-    anon(rad * rad * rad * rad * rad * rad * rad)
-    5040
+    resultado = resultado + (rad * rad * rad * rad * rad) / 120
+    resultado = resultado - (rad * rad * rad * rad * rad * rad * rad) / 5040
     escribir("  📐 FFI math.sin(" + grados + "°) = " + resultado + "")
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion ffi_cos(grados) -> Decimal {
     variable rad = grados * 3.1415926535 / 180
     // Serie de Taylor (simula cos() nativa)
     variable resultado = 1 - (rad * rad) / 2
-    resultado
-    anon(rad * rad * rad * rad)
-    24
-    resultado
-    anon(rad * rad * rad * rad * rad * rad)
-    720
+    resultado = resultado + (rad * rad * rad * rad) / 24
+    resultado = resultado - (rad * rad * rad * rad * rad * rad) / 720
     escribir("  📐 FFI math.cos(" + grados + "°) = " + resultado + "")
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion ffi_log(x) -> Decimal {
@@ -71,17 +59,12 @@ funcion ffi_log(x) -> Decimal {
     variable termino = (x - 1) / (x + 1)
     variable i = 0
     mientras (i < 20) {
-        resultado
-        anon(1 / (2 * i + 1))
-        potencia(termino, 2 * i + 1)
+        resultado = resultado + potencia(termino, 2 * i + 1) / (2 * i + 1)
         i = i + 1
     }
-    resultado
-    2
-    resultado
+    resultado = 2 * resultado
     escribir("  📐 FFI math.log(" + x + ") = " + resultado + "")
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion ffi_pow(base, exp) -> Decimal {
@@ -92,14 +75,11 @@ funcion ffi_pow(base, exp) -> Decimal {
     }
     variable i = 0
     mientras (i < exp) {
-        resultado
-        resultado
-        base
+        resultado = resultado * base
         i = i + 1
     }
     escribir("  📐 FFI math.pow(" + base + ", " + exp + ") = " + resultado + "")
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion ffi_tan(grados) -> Decimal {
@@ -111,8 +91,7 @@ funcion ffi_tan(grados) -> Decimal {
     }
     variable resultado = s / c
     escribir("  📐 FFI math.tan(" + grados + "°) = " + resultado + "")
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion ffi_abs(x) -> Decimal {

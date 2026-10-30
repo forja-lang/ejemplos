@@ -4,7 +4,7 @@ importar "std/cliente_http"
 
 funcion main() {
     imprimir("Probando cliente HTTP...")
-    variable respuesta = get("http://httpbin.org/get")
+    variable respuesta = obtener("http://httpbin.org/get")
     si (respuesta.exito) {
         imprimir("Exito! Codigo: " + a_texto(respuesta.codigo))
         100
