@@ -1,22 +1,51 @@
-funcion manejar_cliente(cliente) {
-    escribir("  ─────────────────────────")
-    variable info = sockets.obtener_info(cliente)
-    variable bienvenida = "Bienvenido al servidor Forja!\r\n" + "Envíame un mensaje y te lo devolveré (eco).\r\n" + "Escribe 'salir' para desconectarte.\r\n> "
-    variable envio = sockets.enviar(cliente, bienvenida)
-    mientras (verdadero) {
-        variable datos = sockets.recibir(cliente, sockets.BUFFER_TAMANO)
+/// Servidor TCP con sockets
+/// Conceptos: sockets, servidor, escuchar, aceptar, eco
+/// Nivel: avanzado
+importar "std/io"
+importar "std/sockets"
+
+// Atiende un cliente ya aceptado: lee, responde y cierra.
+// (No se llama en la demo para no quedarse esperando conexiones.)
+funcion atender(cliente) {
+    variable datos = sockets.recibir(cliente, 1024)
+    coincidir (datos) {
+        caso Ok(texto) -> {
+            escribir("  <- cliente: " + texto)
+            sockets.enviar(cliente, "eco: " + texto)
+        }
+        caso Error(e) -> escribir("  error al recibir: " + e.mensaje)
     }
-    variable cerrar_res = sockets.cerrar(cliente)
-    escribir("")
+    sockets.cerrar(cliente)
 }
 
 funcion main() {
-    escribir("╔══════════════════════════════════════╗")
-    escribir("║       Servidor TCP Eco - Forja       ║")
-    escribir("╚══════════════════════════════════════╝")
+    escribir("=== Servidor TCP ===\n")
+    escribir("Se abre un socket de escucha y se muestra el estado.")
+    escribir("El bucle de aceptación se omite para no bloquear la demo.\n")
+
+    variable puerto = 8080
+    escribir("  escuchar(" + puerto + ") ...")
+    variable servidor = sockets.escuchar(puerto)
+    coincidir (servidor) {
+        caso Ok(socket) -> {
+            escribir("  ✔ escuchando en el puerto " + puerto + "")
+            escribir("  El servidor atendería cada conexión con atender(cliente).")
+            sockets.cerrar(socket)
+            escribir("  ✔ socket cerrado")
+        }
+        caso Error(e) -> {
+            escribir("  ⚠️ no se pudo abrir el puerto: " + e.mensaje)
+            escribir("  (normal si el puerto está ocupado o no hay red)")
+        }
+    }
+
     escribir("")
-    variable resultado = sockets.escuchar(8080)
+    escribir("API del módulo std/sockets:")
+    escribir("  escuchar(puerto)      → servidor")
+    escribir("  aceptar(servidor)     → cliente")
+    escribir("  recibir(cliente, n)   → texto")
+    escribir("  enviar(cliente, dato) → bytes enviados")
+    escribir("  cerrar(socket)        → booleano")
 }
 
 main()
-

@@ -1,62 +1,44 @@
-NOTA
-
-Para
-
-probar
-
-el
-
-servidor
-
-real
-
-descomentar
-
-iniciar(servidor)
-
-al
-
-// NOTA: Para probar el servidor real, descomentar iniciar(servidor) al final.
-// El servidor se ejecuta en un bucle infinito esperando conexiones.
-// La VM tiene un limite de 1M instrucciones, por lo que no se muestra
-// el servidor corriendo en este test rapido.
-final.importar
-
-"std/servidor_web"
-
-funcion manejador_inicio(solicitud) {
-    variable respuesta = nuevo RespuestaHTTP()
-    respuesta.cuerpo = "<h1>Hola desde Forja!</h1>"
-    respuesta.tipo_contenido = "text/html; charset=utf-8"
-    respuesta.cabeceras["Content-Type"] = respuesta.tipo_contenido
-    retornar respuesta
-}
+/// Servidor web HTTP
+/// Conceptos: std/servidor_web, rutas, middlewares, respuestas
+/// Nivel: avanzado
+importar "std/io"
+importar "std/servidor_web"
 
 funcion main() {
-    imprimir("Creando servidor web en puerto 8080...")
-    variable servidor = nuevo ServidorWeb(8080)
-    get(servidor, "/", manejador_inicio)
-    post(servidor, "/datos", manejador_inicio)
-    imprimir("Servidor configurado correctamente!")
-    imprimir("Rutas registradas:")
-    variable rutas = servidor._rutas
-    variable metodos = claves_mapa(rutas)
-    variable i = 0
-    mientras (i < longitud(metodos)) {
-        variable m = metodos[i]
-        variable rutas_m = claves_mapa(rutas[m])
-        variable j = 0
-        mientras (j < longitud(rutas_m)) {
-            imprimir("  " + m + " " + rutas_m[j])
-            j = j + 1
-        }
-        i = i + 1
-    }
-// Para iniciar el servidor real (bucle infinito), descomentar:
-// iniciar(servidor)
+    escribir("=== SERVIDOR WEB ===\n")
+
+    variable puerto = 8080
+    variable servidor = nuevo ServidorWeb(puerto)
+
+    // Rutas: cada una asocia un método y una ruta a un manejador.
+    servidor_web.obtener(servidor, "/", func(peticion, respuesta) {
+        servidor_web.html(respuesta, "<h1>Hola desde Forja</h1>")
+    })
+    servidor_web.obtener(servidor, "/estado", func(peticion, respuesta) {
+        servidor_web.texto_plano(respuesta, "ok")
+    })
+    servidor_web.enviar(servidor, "/saludo", func(peticion, respuesta) {
+        servidor_web.texto_plano(respuesta, "creado")
+    })
+
+    // Middleware global: se ejecuta antes de cada manejador.
+    servidor_web.usar(servidor, func(peticion, respuesta, siguiente) {
+        siguiente()
+    })
+    servidor_web.habilitar_cors(servidor)
+
+    escribir("  Servidor configurado en el puerto " + puerto + "")
+    escribir("  Rutas registradas:")
+    escribir("    GET  /         → html")
+    escribir("    GET  /estado   → texto")
+    escribir("    POST /saludo   → texto")
+    escribir("")
+    escribir("  iniciar(servidor) queda fuera de la demo: bloquea")
+    escribir("  esperando peticiones, y aquí no hay nadie escuchando.")
+    escribir("")
+    escribir("  En un programa real:")
+    escribir("    servidor_web.iniciar(servidor)   // bucle de aceptación")
+    escribir("    servidor_web.detener(servidor)   // apagado ordenado")
 }
 
 main()
-
-// Ejemplo: Servidor Web HTTP
-// Uso: forja ejecutar ejemplos/217_servidor_web.fa

@@ -1,77 +1,41 @@
-// Ejemplo 220: Servidor HTTP/2 (h2c)
-//
-// Uso: forja run ejemplos/220_servidor_h2.fa
-// Luego: curl --http2-prior-knowledge http://localhost:9500/
-// O navegar con navegador que soporte h2c (pocos)
-//
-// NOTA: HTTP/2 sin TLS (h2c) requiere prior knowledge o upgrade HTTP/1.1
-// La mayoria de navegadores requieren TLS para HTTP/2
+/// Servidor HTTP/2 (h2c)
+/// Conceptos: std/servidor_h2, rutas, frames, prioridad de streams
+/// Nivel: experto
+importar "std/io"
 importar "std/servidor_h2"
 
-funcion manejador_raiz(solicitud) {
-    variable resp = nuevo RespuestaH2()
-    resp.codigo = 200
-    resp.tipo_contenido = "text/html; charset=utf-8"
-    resp.cuerpo = "<h1>Hola desde HTTP/2!</h1><p>Bienvenido a Forja H2</p>"
-    retornar resp
-}
-
-funcion manejador_json(solicitud) {
-    variable resp = nuevo RespuestaH2()
-    resp.codigo = 200
-    resp.tipo_contenido = "application/json"
-    resp.cuerpo = "{ \"mensaje\": \"Hola HTTP/2\", \"stream_id\": " + a_texto(solicitud.stream_id) + " }"
-    retornar resp
-}
-
-funcion manejador_echo(solicitud) {
-    variable resp = nuevo RespuestaH2()
-    resp.codigo = 200
-    resp.tipo_contenido = "text/plain"
-    resp.cuerpo = "Metodo: " + solicitud.metodo + "\nRuta: " + solicitud.ruta + "\nStream: " + a_texto(solicitud.stream_id)
-    retornar resp
-}
-
-funcion manejador_usuario(solicitud) {
-    variable resp = nuevo RespuestaH2()
-    resp.codigo = 200
-    resp.tipo_contenido = "text/html; charset=utf-8"
-    variable id = solicitud.params_ruta["id"]
-    resp.cuerpo = "<h1>Perfil de Usuario</h1><p>ID: " + id + "</p>"
-    retornar resp
-}
-
-funcion manejador_404(solicitud) {
-    variable resp = nuevo RespuestaH2()
-    resp.codigo = 404
-    resp.tipo_contenido = "text/plain"
-    resp.cuerpo = "Ruta no encontrada: " + solicitud.metodo + " " + solicitud.ruta
-    retornar resp
-}
-
-funcion manejador_500(solicitud) {
-    variable resp = nuevo RespuestaH2()
-    resp.codigo = 500
-    resp.tipo_contenido = "text/plain"
-    resp.cuerpo = "Error interno del servidor"
-    retornar resp
-}
-
 funcion main() {
-    variable servidor = nuevo ServidorH2(9500)
-    get(servidor, "/", manejador_raiz)
-    get(servidor, "/json", manejador_json)
-    get(servidor, "/echo", manejador_echo)
-    get(servidor, "/usuario/:id", manejador_usuario)
-    post(servidor, "/echo", manejador_echo)
-    put(servidor, "/echo", manejador_echo)
-    eliminar(servidor, "/echo", manejador_echo)
-    patch(servidor, "/echo", manejador_echo)
-    imprimir("=== Servidor HTTP/2 (h2c) en http://localhost:9500/ ===")
-    imprimir("Prueba: curl --http2-prior-knowledge http://localhost:9500/")
-    imprimir("Prueba: curl --http2-prior-knowledge http://localhost:9500/json")
-    iniciar(servidor)
+    escribir("=== SERVIDOR HTTP/2 (h2c) ===\n")
+    escribir("HTTP/2 multiplexa varios streams sobre una sola conexión TCP.")
+    escribir("")
+
+    variable puerto = 8081
+    variable servidor = nuevo ServidorH2(puerto)
+
+    // Rutas: mismo esquema que HTTP/1.1, pero cada petición viaja en su stream.
+    servidor_h2.obtener(servidor, "/", func(peticion, respuesta) {
+        servidor_h2.html(respuesta, "<h1>Hola por HTTP/2</h1>")
+    })
+    servidor_h2.obtener(servidor, "/estado", func(peticion, respuesta) {
+        servidor_h2.texto_plano(respuesta, "ok")
+    })
+    servidor_h2.enviar(servidor, "/datos", func(peticion, respuesta) {
+        servidor_h2.texto_plano(respuesta, "creado")
+    })
+
+    escribir("  Servidor configurado en el puerto " + puerto + "")
+    escribir("  Rutas: GET / · GET /estado · POST /datos")
+    escribir("")
+    escribir("  iniciar(servidor) queda fuera de la demo: bloquea")
+    escribir("  esperando conexiones.")
+    escribir("")
+    escribir("Frames de HTTP/2:")
+    escribir("  SETTINGS · HEADERS · DATA · WINDOW_UPDATE · RST_STREAM · GOAWAY")
+    escribir("  cada frame lleva flags (END_STREAM, END_HEADERS, ACK, …)")
+    escribir("")
+    escribir("Multiplexación:")
+    escribir("  varios streams (id impar) comparten una conexión;")
+    escribir("  el receptor reensambla cada stream por separado.")
 }
 
 main()
-

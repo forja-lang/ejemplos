@@ -17,8 +17,8 @@ importar "gui"
 
 // Callback para incrementar contador
 funcion incrementar(n: Texto) -> Texto {
-    variable val = convertir(n, Entero) + 1
-    retornar convertir(val, Texto)
+    variable val = a_entero(n) + 1
+    retornar a_texto(val)
 }
 
 funcion main() {

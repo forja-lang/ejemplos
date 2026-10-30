@@ -1,147 +1,80 @@
-/// Metaprogramación: Código que genera código
-/// Conceptos: metaprogramación, generación de código, reflexión, macros
-/// Nivel: experto
+/// Metaprogramación: generar código Forja desde Forja
+/// Conceptos: metaprogramación, construcción de texto, generación de código
+/// Nivel: avanzado
 importar "std/io"
 
-// La metaprogramación consiste en escribir programas que
-// generan, analizan o transforman otros programas (o sí mismos).
-// Esto incluye macros, templates y generación de código.
-// NOTA: Este ejemplo demuestra el CONCEPTO de metaprogramación
-// mediante funciones que generan código Forja como texto.
-funcion generar_getter_setter(nombre_propiedad, tipo) -> Texto {
-    // Genera código de getter y setter para una propiedad
-    variable getter = "  funcion obtener_" + nombre_propiedad + "() -> " + tipo + " {\n" + getter = getter + "        retornar este." + nombre_propiedad + "\n" + getter = getter + "    }"
-    variable setter = "  fijar_" + nombre_propiedad + "(valor: " + tipo + ") {\n" + setter = setter + "        este." + nombre_propiedad + " = valor\n" + setter = setter + "    }"
-    retornar "" + getter + "\n    " + setter + ""
-}
-
-funcion generar_clase(nombre, propiedades) -> Texto {
-    // Genera una clase completa a partir de una lista de propiedades
-    variable codigo = "clase " + nombre + " {\n"
-    // Declaraciones
-    variable i = 0
-    mientras (i < longitud(propiedades)) {
-        variable prop = propiedades[i]
-        codigo = codigo + "    " + prop + "\n" + i = i + 1
-    }
-    // Constructor vacío
-    codigo = codigo + "\n    constructor() {\n"
-    variable j = 0
-    mientras (j < longitud(propiedades)) {
-        variable prop = propiedades[j]
-        codigo = codigo + "        este." + prop + " = 0\n" + j = j + 1
-    }
+// Genera el código de un getter para un campo.
+funcion generar_getter(campo: Texto) -> Texto {
+    variable codigo = "    funcion obtener_" + campo + "() {\n"
+    codigo = codigo + "        retornar self." + campo + "\n"
     codigo = codigo + "    }\n"
-    // Métodos generados
-    variable k = 0
-    mientras (k < longitud(propiedades)) {
-        variable prop = propiedades[k]
-        codigo = codigo + "\n    " + generar_getter_setter(prop, "Entero")
-        k = k + 1
-    }
-    codigo = codigo + "\n}"
     retornar codigo
 }
 
-funcion generar_estructura_repetitiva(patron, veces) -> Texto {
-    // Genera código repetitivo para evitar escribirlo manualmente
-    variable resultado = ""
-    variable i = 0
-    mientras (i < veces) {
-        variable reemplazo = "#{i}"
-        variable linea = patron
-        // Reemplazar #{i} por el número de iteración
-        // (simulación de template)
-        resultado
-        resultado
-        "    caso " + i + " -> { retornar \"valor_" + i + "\" }\n" + i = i + 1
-    }
-    retornar
-    resultado
+// Genera el código de un setter para un campo.
+funcion generar_setter(campo: Texto) -> Texto {
+    variable codigo = "    funcion fijar_" + campo + "(valor) {\n"
+    codigo = codigo + "        self." + campo + " = valor\n"
+    codigo = codigo + "    }\n"
+    retornar codigo
 }
 
-funcion evaluar_expresion(expr) -> Entero {
-    // Evaluador de expresiones simple (meta: analizar código como datos)
-    // Soporta: número, suma, resta
-    variable resultado = 0
-    variable operador = "+"
-    variable num_actual = 0
+// Genera una clase completa a partir de una lista de campos.
+funcion generar_clase(nombre: Texto, campos: Arreglo<Texto>) -> Texto {
+    variable codigo = "clase " + nombre + " {\n"
     variable i = 0
-    mientras (i < longitud(expr)) {
-        variable c = expr[i]
-        si (c >= "0" && c <= "9") {
-            num_actual = num_actual * 10 + (c - 48)
-        } sino {
-            si (c == "+" || c == "-") {
-                si (operador == "+") {
-                    resultado
-                    resultado
-                    num_actual
-                } sino {
-                    resultado
-                    resultado
-                    num_actual
-                }
-                num_actual = 0
-                operador = c
-            }
-        }
+    mientras (i < longitud(campos)) {
+        codigo = codigo + "    " + campos[i] + "\n"
         i = i + 1
     }
-    si (operador == "+") {
-        resultado
-        resultado
-        num_actual
-    } sino {
-        resultado
-        resultado
-        num_actual
+    codigo = codigo + "\n    constructor() {\n"
+    variable j = 0
+    mientras (j < longitud(campos)) {
+        codigo = codigo + "        self." + campos[j] + " = nulo\n"
+        j = j + 1
     }
-    retornar
-    resultado
+    codigo = codigo + "    }\n\n"
+    variable k = 0
+    mientras (k < longitud(campos)) {
+        codigo = codigo + generar_getter(campos[k])
+        codigo = codigo + generar_setter(campos[k])
+        k = k + 1
+    }
+    codigo = codigo + "}"
+    retornar codigo
 }
 
 funcion main() {
     escribir("=== METAPROGRAMACIÓN ===\n")
-    escribir("Código que genera código.\n")
-    escribir("--- 1. Generación de clases ---")
-    variable propiedades = ["x", "y", "z"]
-    variable codigo_clase = generar_clase("Punto3D", propiedades)
-    escribir("  Código generado para clase Punto3D:")
-    escribir("  --------------------------------")
-    escribir(codigo_clase)
-    escribir("  --------------------------------")
+    escribir("Forja genera código Forja a partir de datos.\n")
+
+    variable campos = ["nombre", "edad", "ciudad"]
+    variable codigo = generar_clase("Persona", campos)
+
+    escribir("Código generado:")
+    escribir(codigo)
+
     escribir("")
-    escribir("--- 2. Generación de patrones repetitivos ---")
-    escribir("  Match generado para 5 casos:")
-    variable patron_match = generar_estructura_repetitiva("caso", 5)
-    escribir(patron_match)
-    escribir("--- 3. Evaluación de expresiones (código como datos) ---")
-    variable expr1 = "10 + 20 + 30"
-    variable expr2 = "100 - 25 + 15"
-    variable expr3 = "5 + 10 - 3 + 8"
-    escribir("  '" + expr1 + "' = " + evaluar_expresion(expr1) + "")
-    escribir("  '" + expr2 + "' = " + evaluar_expresion(expr2) + "")
-    escribir("  '" + expr3 + "' = " + evaluar_expresion(expr3) + "")
+    escribir("Líneas generadas: " + (lineas(codigo)) + "")
+    escribir("Caracteres: " + longitud(codigo) + "")
     escribir("")
-    escribir("--- 4. Plantillas de código ---")
-    variable plantilla = "funcion operacion_#{i}() { retornar #{i} * 2 }"
-    escribir("  Plantilla: " + plantilla + "")
-    escribir("  Generando 3 funciones:")
-    variable f = 0
-    mientras (f < 3) {
-        variable func_gen = "  funcion operacion_" + f + "() { retornar " + f + " * 2 }"
-        escribir(func_gen)
-        f = f + 1
+    escribir("Ventajas:")
+    escribir("  • Menos código repetitivo a mano")
+    escribir("  • El patrón se define una sola vez")
+    escribir("  • Fácil de auditar: el texto generado se puede imprimir")
+}
+
+// Cuenta las líneas de un texto (sin depender de la stdlib).
+funcion lineas(texto: Texto) -> Entero {
+    variable n = 1
+    variable i = 0
+    mientras (i < longitud(texto)) {
+        si (texto[i] == "\n") {
+            n = n + 1
+        }
+        i = i + 1
     }
-    escribir("")
-    escribir("Usos de la metaprogramación:")
-    escribir("  • Generar código boilerplate automáticamente")
-    escribir("  • Crear DSLs (Domain Specific Languages)")
-    escribir("  • Implementar aspectos transversales (logging, serialización)")
-    escribir("  • Optimizaciones en tiempo de compilación")
-    escribir("  • Generar adaptadores para APIs externas")
+    retornar n
 }
 
 main()
-

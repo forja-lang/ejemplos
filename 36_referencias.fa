@@ -1,28 +1,45 @@
 // 🎓 Lección 36: Referencias (&)
-// Forja permite crear referencias (préstamos) con &
+// Forja permite prestar valores con &
+//
+// Un préstamo **inmutable** (&) sirve para leer sin copiar. Mientras el
+// préstamo está activo, la variable original no se puede modificar.
 variable original = 42
 
-variable referencia = &original
-
-escribir("Original: " + original)
-
-escribir("Referencia: " + referencia)
-
-// Cambiar original afecta la referencia? 
-original = 100
-
-escribir("Original cambiado: " + original)
-
-escribir("Referencia: " + referencia)
-
-// Préstamo en funciones
-funcion mostrarValor(valor: Entero) {
-    escribir("Valor recibido: " + valor)
+funcion mostrar_por_referencia(prestado valor: Entero) {
+    escribir("  por referencia: " + valor)
 }
 
-variable dato = 99
+escribir("Original: " + original)
+mostrar_por_referencia(&original)
+mostrar_por_referencia(&original)
 
-mostrarValor(dato)
+// Un préstamo guardado en una variable vive hasta el final del ámbito.
+funcion demo_prestamo() {
+    variable dato = 7
+    variable referencia = &dato
+    escribir("  referencia = " + referencia)
+    // dato = 8   // ❌ el comprobador de préstamos lo rechaza:
+    //            //    "No se puede modificar 'dato' porque tiene 1 préstamo"
+}
 
-escribir("Dato sigue siendo: " + dato)
+escribir("")
+escribir("Préstamo guardado en una variable:")
+demo_prestamo()
 
+// Para modificar hace falta un préstamo mutable (&mut), que es exclusivo:
+// no puede convivir con otro préstamo.
+funcion sumar_uno(mut valor: Entero) {
+    valor = valor + 1
+    escribir("  dentro: " + valor)
+}
+
+variable contador = 10
+escribir("")
+escribir("Préstamo mutable:")
+sumar_uno(contador)
+
+escribir("")
+escribir("Resumen:")
+escribir("  &x      → préstamo inmutable (sólo leer)")
+escribir("  &mut x  → préstamo mutable (modificar), exclusivo")
+escribir("  un préstamo activo impide modificar la variable original")

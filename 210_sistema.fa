@@ -1,54 +1,54 @@
-// 🎓 Lección 210: Módulo Sistema — Información del SO y entorno
-//
-// Demostración del módulo std/sistema:
-//   - Argumentos de línea de comandos
-//   - Variables de entorno
-//   - Directorio actual
-//   - Timestamp en milisegundos
-//   - Sistema operativo y versión
+/// Módulo sistema: información del SO y del entorno
+/// Conceptos: std/sistema, variables de entorno, Opcion, Resultado
+/// Nivel: intermedio
 importar "std/io"
-
 importar "std/sistema"
 
-escribir("═══════════════════════════════════════")
+funcion main() {
+    escribir("=== MÓDULO SISTEMA ===\n")
 
-escribir("  Módulo Sistema — Información del SO")
+    escribir("  Sistema operativo: " + sistema.sistema_operativo())
+    escribir("  Versión de Forja:  " + sistema.version_forja())
+    escribir("  Tiempo (ms):       " + sistema.tiempo_ms())
 
-escribir("═══════════════════════════════════════")
+    // directorio_actual() devuelve un Resultado
+    variable dir = sistema.directorio_actual()
+    coincidir (dir) {
+        caso Ok(ruta) -> {
+            escribir("  Directorio actual: " + ruta)
+        }
+        caso Error(e) -> {
+            escribir("  Directorio actual: error (" + e.mensaje + ")")
+        }
+    }
 
-escribir("")
+    // variable_entorno() devuelve una Opcion
+    variable path = sistema.variable_entorno("PATH")
+    coincidir (path) {
+        caso Algo(valor) -> {
+            escribir("  PATH definido (" + longitud(valor) + " caracteres)")
+        }
+        caso Ninguno -> {
+            escribir("  PATH no definido")
+        }
+    }
 
-// ─── 1. Argumentos de línea de comandos ──────
-escribir("📋 Argumentos de línea de comandos:")
+    variable inexistente = sistema.variable_entorno("FORJA_VARIABLE_QUE_NO_EXISTE")
+    coincidir (inexistente) {
+        caso Algo(valor) -> {
+            escribir("  (inesperado) " + valor)
+        }
+        caso Ninguno -> {
+            escribir("  Variable de prueba: no definida (correcto)")
+        }
+    }
 
-variable args = sistema.argumentos()
-
-variable i = 0
-
-mientras (i < longitud(args)) {
-    escribir("  [" + a_texto(i) + "] " + args[i])
-    i = i + 1
+    escribir("")
+    escribir("  Argumentos del programa: " + longitud(sistema.argumentos()) + "")
+    escribir("")
+    escribir("Opcion y Resultado obligan a manejar los dos casos:")
+    escribir("  variable_entorno → Opcion (Algo / Ninguno)")
+    escribir("  directorio_actual → Resultado (Ok / Error)")
 }
 
-escribir("")
-
-// ─── 2. Variable de entorno ──────────────────
-escribir("🌐 Variables de entorno:")
-
-// Leer PATH (funciona en Windows, Linux, macOS)
-variable path_val = sistema.variable_entorno("PATH")
-
-hacer_coincidir(path_val)
-
-(v)
-
-caso
-
-Ninguno
-
-// Leer USERNAME (Windows) o USER (Linux/Mac)
-// Variable que no existe (demostración de Ninguno)
-// ─── 3. Directorio actual ────────────────────
-// ─── 4. Timestamp en milisegundos ────────────
-// Medir cuánto tarda una operación simple
-// ─── 5. Sistema operativo y versión ──────────
+main()

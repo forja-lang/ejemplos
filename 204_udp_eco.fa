@@ -1,78 +1,40 @@
-constante PUERTO_SERVER = 9090
-
-constante PUERTO_CLIENTE = 9091
-
-constante HOST_LOCAL = "127.0.0.1"
-
-constante NUM_MENSAJES = 3
-
-funcion servidor_udp(tx_confirmacion) {
-    escribir("  [Servidor UDP] Iniciando en puerto " + a_texto(PUERTO_SERVER) + "...")
-    variable socket = sockets.udp_escuchar(PUERTO_SERVER)
-    variable i = 0
-    mientras (i < NUM_MENSAJES) {
-        variable datos = sockets.udp_recibir(socket)
-        escribir("  [Servidor UDP] Recibido: " + datos)
-        sockets.udp_enviar(socket, HOST_LOCAL, PUERTO_CLIENTE, "eco: " + datos)
-        i = i + 1
-    }
-    tx_confirmacion.enviar("servidor listo")
-}
-
-funcion cliente_udp(rx_confirmacion) {
-    escribir("  [Cliente UDP] Iniciando en puerto " + a_texto(PUERTO_CLIENTE) + "...")
-    variable socket = sockets.udp_escuchar(PUERTO_CLIENTE)
-    variable i = 0
-    mientras (i < NUM_MENSAJES) {
-        sockets.udp_enviar(socket, HOST_LOCAL, PUERTO_SERVER, "mensaje " + a_texto(i))
-        variable respuesta = sockets.udp_recibir(socket)
-        escribir("  [Cliente UDP] Respuesta: " + respuesta)
-        i = i + 1
-    }
-    rx_confirmacion.enviar("cliente listo")
-}
+/// Eco UDP
+/// Conceptos: UDP, datagramas, std/sockets (udp_*)
+/// Nivel: avanzado
+importar "std/io"
+importar "std/sockets"
 
 funcion main() {
-    escribir("╔══════════════════════════════════════╗")
-    escribir("║     Comunicación UDP - Forja         ║")
-    escribir("╚══════════════════════════════════════╝")
+    escribir("=== ECO UDP ===\n")
+    escribir("UDP no tiene conexión: cada datagrama lleva su destino.")
     escribir("")
-    escribir("Protocolo: UDP (sin conexión)")
-    escribir("Servidor:  puerto " + a_texto(PUERTO_SERVER))
-    escribir("Cliente:   puerto " + a_texto(PUERTO_CLIENTE))
-    escribir("Mensajes:  " + a_texto(NUM_MENSAJES))
-    escribir("")
-    escribir("── Iniciando ───────────────────────────")
-    escribir("")
-    variable tx_servidor, rx_servidor = canal()
-    variable tx_cliente, rx_cliente = canal()
-    variable h_servidor = hilo {
-        servidor_udp(tx_servidor)
-        retornar 0
+
+    variable puerto = 9090
+    escribir("  udp_escuchar(" + puerto + ") ...")
+    variable servidor = sockets.udp_escuchar(puerto)
+    coincidir (servidor) {
+        caso Ok(socket) -> {
+            escribir("  ✔ socket UDP abierto en el puerto " + puerto + "")
+            escribir("  El eco haría:")
+            escribir("    datos = udp_recibir(socket, 1024)")
+            escribir("    udp_enviar(socket, datos, origen, puerto_origen)")
+            sockets.cerrar(socket)
+            escribir("  ✔ socket cerrado")
+        }
+        caso Error(e) -> {
+            escribir("  ⚠️ no se pudo abrir el puerto: " + e.mensaje)
+        }
     }
-    esperar(0.2)
-    variable h_cliente = hilo {
-        cliente_udp(tx_cliente)
-        retornar 0
-    }
-    h_servidor.unir()
-    h_cliente.unir()
+
     escribir("")
-    escribir("── Resumen ─────────────────────────────")
+    escribir("Diferencias con TCP:")
+    escribir("  TCP: conectar → enviar/recibir → cerrar (flujo ordenado)")
+    escribir("  UDP: udp_enviar / udp_recibir (sin conexión, sin orden)")
     escribir("")
-    escribir("✓ Comunicación UDP completada")
-    escribir("  Se enviaron y recibieron " + a_texto(NUM_MENSAJES) + " datagramas")
-    escribir("")
-    escribir("Características de UDP demostradas:")
-    escribir("  • udp_escuchar()  - crear socket en un puerto")
-    escribir("  • udp_enviar()    - enviar datagrama a destino")
-    escribir("  • udp_recibir()   - recibir datagrama completo")
-    escribir("  • Sin conexión    - no hay handshake previo")
-    escribir("  • Bidireccional   - ambos lados pueden enviar/recibir")
-    escribir("")
-    escribir("Nota: UDP no garantiza entrega ni orden. Para")
-    escribir("comunicación confiable, usa TCP (ejemplos 202, 203).")
+    escribir("API UDP de std/sockets:")
+    escribir("  udp_escuchar(puerto)")
+    escribir("  udp_enviar(socket, datos, direccion, puerto)")
+    escribir("  udp_recibir(socket, tamano)")
 }
 
 main()
-

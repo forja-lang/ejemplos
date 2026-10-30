@@ -1,68 +1,42 @@
-constante HOST = "httpbin.org"
-
-constante PUERTO = 80
-
-constante TIMEOUT_SEGUNDOS = 10
-
-funcion construir_solicitud(host, ruta) {
-    variable solicitud = "GET " + ruta + " HTTP/1.1\r\n" + "Host: " + host + "\r\n" + "User-Agent: Forja-Sockets/1.0\r\n" + "Accept: application/json\r\n" + "Connection: close\r\n" + "\r\n"
-    retornar solicitud
-}
-
-funcion recibir_respuesta(socket) {
-    variable respuesta = ""
-    variable intentos_maximos = 100
-    variable intento = 0
-    mientras (intento < intentos_maximos) {
-        variable resultado = sockets.recibir(socket, sockets.BUFFER_TAMANO)
-        intento = intento + 1
-    }
-    retornar Ok(respuesta)
-}
-
-funcion mostrar_respuesta(respuesta) {
-    escribir("")
-    escribir("── Respuesta HTTP ──────────────────────")
-    escribir("Total: " + a_texto(longitud(respuesta)) + " bytes")
-    escribir("")
-    escribir(respuesta)
-    escribir("────────────────────────────────────────")
-}
-
-funcion probar_solicitud_json() {
-    escribir("")
-    escribir("── Solicitud GET /json ─────────────────")
-    variable resultado = sockets.conectar(HOST, PUERTO)
-}
-
-funcion probar_conexion_con_timeout() {
-    escribir("")
-    escribir("── Conexión con timeout ───────────────")
-    escribir("Intentando conectar a " + HOST + ":" + a_texto(PUERTO) + " con timeout de " + a_texto(TIMEOUT_SEGUNDOS * 1000) + "ms")
-    variable resultado = sockets.conectar_con_timeout(HOST, PUERTO, TIMEOUT_SEGUNDOS * 1000)
-}
-
-funcion probar_puerto_invalido() {
-    escribir("")
-    escribir("── Manejo de errores: puerto inválido ─")
-    escribir("Intentando conectar a " + HOST + ":99999 (puerto inválido)...")
-    variable resultado = sockets.conectar(HOST, 99999)
-}
+/// Cliente HTTP
+/// Conceptos: std/cliente_http, GET/POST, Resultado, cabeceras
+/// Nivel: avanzado
+importar "std/io"
+importar "std/cliente_http"
 
 funcion main() {
-    escribir("╔══════════════════════════════════════╗")
-    escribir("║    Cliente HTTP - Forja std/sockets  ║")
-    escribir("╚══════════════════════════════════════╝")
+    escribir("=== CLIENTE HTTP ===\n")
+    escribir("Se hace un GET a un host de ejemplo.")
+    escribir("Sin red el error se maneja igual: el Resultado lo exige.\n")
+
+    variable url = "http://example.com/"
+    escribir("GET " + url)
+
+    variable respuesta = obtener(url)
+    coincidir (respuesta) {
+        caso Ok(r) -> {
+            escribir("  código:  " + r.codigo)
+            escribir("  estado:  " + r.status)
+            escribir("  cuerpo:  " + longitud(r.cuerpo) + " caracteres")
+            escribir("  exito:   " + r.exito)
+        }
+        caso Error(e) -> {
+            escribir("  ⚠️ no se pudo conectar: " + e.mensaje)
+            escribir("  (esperado si no hay red o el host no resuelve)")
+        }
+    }
+
     escribir("")
-    escribir("Demostración del módulo std/sockets")
-    escribir("usando la API pública con prefijo sockets.")
+    escribir("API del módulo std/cliente_http:")
+    escribir("  obtener(url)              → GET")
+    escribir("  enviar(url, cuerpo)       → POST")
+    escribir("  actualizar(url, cuerpo)   → PUT")
+    escribir("  modificar_parcial(url, c) → PATCH")
+    escribir("  eliminar(url)             → DELETE")
     escribir("")
-    probar_solicitud_json()
-    probar_conexion_con_timeout()
-    probar_puerto_invalido()
-    escribir("")
-    escribir("Ejecución completada.")
+    escribir("Todas devuelven Resultado<RespuestaCliente, ErrorHTTP>:")
+    escribir("  Ok(respuesta) → codigo, status, cabeceras, cuerpo")
+    escribir("  Error(e)      → e.mensaje, e.codigo")
 }
 
 main()
-

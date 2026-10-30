@@ -63,7 +63,7 @@ funcion main() {
     // 3. Timeout
     // --------------------------------------------------
     escribir("── 3. Timeout ──\n")
-    variable r1 = con_timeout(3000, tarea_rapida)
+    variable r1 = con_timeout_async(3000, tarea_rapida)
     escribir("Resultado tarea rápida (timeout 3s): " + r1 + "")
     si (r1.es_ok()) {
         escribir("  → Tarea completada a tiempo ✓")
