@@ -107,7 +107,8 @@ funcion calcular_lento(calc, valores) {
         calc.factor
         i = i + 1
     }
-    retornar resultado
+    retornar
+    resultado
 }
 
 funcion calcular_rapido(calc, valores) {
@@ -122,7 +123,8 @@ funcion calcular_rapido(calc, valores) {
         factor_local
         i = i + 1
     }
-    retornar resultado
+    retornar
+    resultado
 }
 
 funcion main() {

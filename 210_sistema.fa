@@ -23,7 +23,7 @@ funcion main() {
     // variable_entorno() devuelve una Opcion
     variable path = sistema.variable_entorno("PATH")
     coincidir (path) {
-        caso Alguno(valor) -> {
+        caso Algo(valor) -> {
             escribir("  PATH definido (" + longitud(valor) + " caracteres)")
         }
         caso Ninguno -> {
@@ -32,7 +32,7 @@ funcion main() {
     }
     variable inexistente = sistema.variable_entorno("FORJA_VARIABLE_QUE_NO_EXISTE")
     coincidir (inexistente) {
-        caso Alguno(valor) -> {
+        caso Algo(valor) -> {
             escribir("  (inesperado) " + valor)
         }
         caso Ninguno -> {

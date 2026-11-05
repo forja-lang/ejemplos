@@ -79,7 +79,8 @@ funcion main() {
         variable crudo1 = pedir_numero("Primera carta: ")
         // Sin entrada (EOF: CI, pipe cerrado) no se puede seguir jugando.
         si (crudo1 == nulo) {
-            escribir("\r\nSin entrada (EOF). Fin del juego.")
+            escribir("
+Sin entrada (EOF). Fin del juego.")
             romper
         }
         variable p1 = crudo1 - 1
@@ -89,7 +90,8 @@ funcion main() {
         }
         variable crudo2 = pedir_numero("Segunda carta: ")
         si (crudo2 == nulo) {
-            escribir("\r\nSin entrada (EOF). Fin del juego.")
+            escribir("
+Sin entrada (EOF). Fin del juego.")
             romper
         }
         variable p2 = crudo2 - 1

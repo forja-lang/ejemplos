@@ -24,13 +24,15 @@ funcion main() {
     variable h_fib = hilo {
         variable resultado = fib(20)
         escribir("  🧵 Hilo fib: fibonacci(20) calculado")
-        retornar resultado
+        retornar
+        resultado
     }
     // Hilo que calcula factorial
     variable h_fact = hilo {
         variable resultado = factorial(10)
         escribir("  🧵 Hilo fact: factorial(10) calculado")
-        retornar resultado
+        retornar
+        resultado
     }
     // Hilo que suma números
     variable h_suma = hilo {

@@ -33,9 +33,9 @@ funcion ultimo_elem(lista) -> Opcion<Entero> {
 funcion combinar_opciones(a, b) {
     escribir("Combinando opciones:")
     coincidir (a) {
-        caso Alguno(va) -> {
+        caso Algo(va) -> {
             coincidir (b) {
-                caso Alguno(vb) -> {
+                caso Algo(vb) -> {
                     escribir("  Ambos tienen valor: " + va + " y " + vb + "")
                 }
                 caso Ninguno -> {
@@ -45,7 +45,7 @@ funcion combinar_opciones(a, b) {
         }
         caso Ninguno -> {
             coincidir (b) {
-                caso Alguno(vb) -> {
+                caso Algo(vb) -> {
                     escribir("  Solo B tiene valor: " + vb + "")
                 }
                 caso Ninguno -> {

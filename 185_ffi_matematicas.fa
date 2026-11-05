@@ -27,7 +27,8 @@ funcion ffi_sqrt(x) -> Decimal {
         i = i + 1
     }
     escribir("  📐 FFI math.sqrt(" + x + ") = " + resultado + "")
-    retornar resultado
+    retornar
+    resultado
 }
 
 funcion ffi_sin(grados) -> Decimal {
@@ -41,7 +42,8 @@ funcion ffi_sin(grados) -> Decimal {
     anon(rad * rad * rad * rad * rad * rad * rad)
     5040
     escribir("  📐 FFI math.sin(" + grados + "°) = " + resultado + "")
-    retornar resultado
+    retornar
+    resultado
 }
 
 funcion ffi_cos(grados) -> Decimal {
@@ -55,7 +57,8 @@ funcion ffi_cos(grados) -> Decimal {
     anon(rad * rad * rad * rad * rad * rad)
     720
     escribir("  📐 FFI math.cos(" + grados + "°) = " + resultado + "")
-    retornar resultado
+    retornar
+    resultado
 }
 
 funcion ffi_log(x) -> Decimal {
@@ -78,7 +81,8 @@ funcion ffi_log(x) -> Decimal {
     2
     resultado
     escribir("  📐 FFI math.log(" + x + ") = " + resultado + "")
-    retornar resultado
+    retornar
+    resultado
 }
 
 funcion ffi_pow(base, exp) -> Decimal {
@@ -95,7 +99,8 @@ funcion ffi_pow(base, exp) -> Decimal {
         i = i + 1
     }
     escribir("  📐 FFI math.pow(" + base + ", " + exp + ") = " + resultado + "")
-    retornar resultado
+    retornar
+    resultado
 }
 
 funcion ffi_tan(grados) -> Decimal {
@@ -107,7 +112,8 @@ funcion ffi_tan(grados) -> Decimal {
     }
     variable resultado = s / c
     escribir("  📐 FFI math.tan(" + grados + "°) = " + resultado + "")
-    retornar resultado
+    retornar
+    resultado
 }
 
 funcion ffi_abs(x) -> Decimal {

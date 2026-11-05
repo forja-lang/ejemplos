@@ -68,7 +68,8 @@ funcion main() {
         si (comando == nulo) {
             // Sin entrada (EOF: CI, pipe cerrado) se detiene el cronómetro.
             tx_main.enviar("detener")
-            escribir("\r\nSin entrada (EOF). Fin del cronómetro.")
+            escribir("
+Sin entrada (EOF). Fin del cronómetro.")
             ejecutando = falso
             romper
         }

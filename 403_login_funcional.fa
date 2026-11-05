@@ -2,11 +2,11 @@
 //  Login App Funcional — Anda en VM y en GUI nativa
 //
 //  - En la VM: muestra todo por consola con escribir()
-//  - Con FORJA_BACKEND=nativo: abre ventana GUI con Xilem
+//  - Con --native: abre ventana GUI con Xilem
 //
 //  Ejecutar:
 //    forja ejecutar ejemplos/403_login_funcional.fa       ← consola
-//    FORJA_BACKEND=nativo forja ejecutar ejemplos/403_login_funcional.fa  ← ventana GUI
+//    forja ejecutar --native ejemplos/403_login_funcional.fa  ← ventana GUI
 // ─────────────────────────────────────────────────
 importar "gui"
 
@@ -65,7 +65,7 @@ funcion main() {
     }
     escribir("")
     escribir("==================================")
-    // ─── En modo GUI (FORJA_BACKEND=nativo): mostrar ventana con los mismos datos ───
+    // ─── En modo GUI (--native): mostrar ventana con los mismos datos ───
     tema_material("#1565C0", columna(etiqueta("🔐 Login Forja"), entrada_texto("usuario"), entrada_texto("contrasena"), boton_tonal("Ingresar", &main)))
 }
 

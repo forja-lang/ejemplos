@@ -115,7 +115,8 @@ funcion reemplazar_patron(texto, buscar, reemplazo) -> Texto {
             i = i + 1
         }
     }
-    retornar resultado
+    retornar
+    resultado
 }
 
 funcion main() {

@@ -174,5 +174,3 @@ funcion main() {
     escribir_linea("=== ¡Todas las pruebas completadas! ===")
 }
 
-main()
-

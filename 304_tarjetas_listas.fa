@@ -1,5 +1,5 @@
 // Ejemplo: Tarjetas, Listas y Tablas Material You
-// Requiere: cargo run --features gui --bin forja -- compilar
+// Requiere: forja build --features gui
 importar "gui"
 
 funcion main() {

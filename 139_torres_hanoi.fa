@@ -23,7 +23,8 @@ funcion contar_movimientos(n) -> Entero {
         2
         i = i + 1
     }
-    retornar resultado
+    retornar
+    resultado
     1
 }
 
