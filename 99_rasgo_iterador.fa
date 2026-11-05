@@ -4,7 +4,7 @@
 importar "std/io"
 
 // Implementación del patrón Iterator usando rasgos
-rasgo Iterador<T> {
+rasgo Iterador {
     funcion siguiente() -> Opcion<T>
 }
 

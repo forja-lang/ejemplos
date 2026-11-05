@@ -15,8 +15,8 @@ funcion factorial(n) -> Entero {
 funcion aproximar_e(terminos) -> Decimal {
     // El término 1/n! se acumula de forma incremental: calcular 20! en Entero
     // desborda los 48 bits del tipo, así que no se hace nunca.
-    variable e = 1.0
-    variable termino = 1.0
+    variable e = 1
+    variable termino = 1
     variable i = 1
     mientras (i <= terminos) {
         termino = termino / i
