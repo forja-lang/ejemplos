@@ -9,7 +9,7 @@ variable env_opt = obtener("ARCHIVO_XHB")
 variable ruta_archivo = "C:/Users/gaucho/Downloads/celis.xhb"
 
 coincidir (env_opt) {
-    caso Algo(path) -> {
+    caso Alguno(path) -> {
         ruta_archivo = path
         escribir("📌 Archivo seleccionado dinámicamente: " + ruta_archivo + "\n")
     }

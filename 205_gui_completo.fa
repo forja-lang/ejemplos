@@ -1,6 +1,6 @@
 // GUI Completa — Demo de todos los widgets Forja + Xilem
 //
-// Ejecutar: forja ejecutar --native ejemplos/205_gui_completo.fa
+// Ejecutar: FORJA_BACKEND=nativo forja ejecutar ejemplos/205_gui_completo.fa
 //            (requiere --features gui)
 //
 // O transpilar: forja transpilar ejemplos/205_gui_completo.fa

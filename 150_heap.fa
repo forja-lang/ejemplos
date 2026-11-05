@@ -87,8 +87,7 @@ funcion heap_sort(arr) {
         heap.desencolar()
         j = j + 1
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion main() {

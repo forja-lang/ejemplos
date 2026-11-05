@@ -39,8 +39,7 @@ funcion cifrar_cesar(texto, desplazamiento) -> Texto {
         }
         i = i + 1
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion descifrar_cesar(texto, desplazamiento) -> Texto {
@@ -88,8 +87,7 @@ funcion cifrar_cesar_mejorado(texto, desplazamiento) -> Texto {
         }
         i = i + 1
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion fuerza_bruta_cesar(texto_cifrado) {

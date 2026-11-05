@@ -47,7 +47,7 @@ funcion main() {
     escribir("  ¿Es algo? " + opt_entero.es_algo() + "")
     escribir("  ¿Es Ninguno? " + opt_entero.es_Ninguno() + "")
     coincidir (opt_entero.obtener_valor()) {
-        caso Algo(v) -> {
+        caso Alguno(v) -> {
             escribir("  Valor: " + v + "")
         }
         caso Ninguno -> {
@@ -57,7 +57,7 @@ funcion main() {
     escribir("")
     escribir("MiOpcion con \"Hola\":")
     coincidir (opt_texto.obtener_valor()) {
-        caso Algo(v) -> {
+        caso Alguno(v) -> {
             escribir("  Valor: " + v + "")
         }
         caso Ninguno -> {

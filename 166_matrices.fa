@@ -52,8 +52,7 @@ funcion suma_matrices(a, b) {
         }
         i = i + 1
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion resta_matrices(a, b) {
@@ -71,8 +70,7 @@ funcion resta_matrices(a, b) {
         }
         i = i + 1
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion multiplicar_matrices(a, b) {
@@ -101,8 +99,7 @@ funcion multiplicar_matrices(a, b) {
         }
         i = i + 1
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion transponer_matriz(m) {
@@ -119,8 +116,7 @@ funcion transponer_matriz(m) {
         }
         i = i + 1
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion determinante_2x2(m) -> Entero {

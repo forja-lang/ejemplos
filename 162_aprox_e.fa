@@ -34,8 +34,7 @@ funcion aproximar_e_limite(n) -> Decimal {
         base
         i = i + 1
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion calcular_error(aprox, real) -> Decimal {

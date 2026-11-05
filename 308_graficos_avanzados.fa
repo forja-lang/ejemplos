@@ -1,5 +1,5 @@
 // Ejemplo 308: Gráficos y Componentes Avanzados
-// Requiere: forja build --features gui
+// Requiere: cargo run --features gui --bin forja -- compilar
 importar "gui"
 
 funcion main() {

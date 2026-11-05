@@ -9,7 +9,7 @@
 //   - AppState con variables del codigo Forja
 //
 // Ejecutar (con cargo): forja ejecutar ejemplos/204_login_final.fa
-// Ejecutar (nativa):    forja ejecutar --native ejemplos/204_login_final.fa
+// Ejecutar (nativa):    FORJA_BACKEND=nativo forja ejecutar ejemplos/204_login_final.fa
 //                        (requiere --features gui)
 importar "gui"
 

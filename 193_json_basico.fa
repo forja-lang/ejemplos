@@ -117,8 +117,7 @@ clase JSONParser {
             variable c = este.texto[este.posicion]
             si (c == "\"") {
                 este.posicion = este.posicion + 1
-                retornar
-                resultado
+                retornar resultado
             }
             si (c == "\\\\") {
                 este.posicion = este.posicion + 1
@@ -152,8 +151,7 @@ clase JSONParser {
             }
             este.posicion = este.posicion + 1
         }
-        retornar
-        resultado
+        retornar resultado
     }
     funcion parsear_numero() -> Texto {
         variable resultado = ""
@@ -165,12 +163,10 @@ clase JSONParser {
                 c
                 este.posicion = este.posicion + 1
             } sino {
-                retornar
-                resultado
+                retornar resultado
             }
         }
-        retornar
-        resultado
+        retornar resultado
     }
     funcion valor_a_texto(valor) -> Texto {
         retornar valor
@@ -216,8 +212,7 @@ funcion serializar_a_json(datos, profundidad) -> Texto {
         resultado
         datos
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion main() {

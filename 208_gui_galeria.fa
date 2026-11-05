@@ -3,7 +3,7 @@
 // Muestra el grid responsivo (columnas elásticas, filas autosize), iconos SVG
 // reales (sin emojis), tipografía del tema y los widgets más usados para armar apps.
 //
-// Ejecutar: forja ejecutar --native ejemplos/208_gui_galeria.fa
+// Ejecutar: FORJA_BACKEND=nativo forja ejecutar ejemplos/208_gui_galeria.fa
 //
 // Para ver el mismo contenido con otros diseños, cambiá la primera línea del main:
 //   tema_fluent(...)              Fluent claro (este archivo)

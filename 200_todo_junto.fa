@@ -195,8 +195,7 @@ funcion filtrar(arr, condicion) {
         }
         i = i + 1
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion transformar(arr, transformacion) {
@@ -207,8 +206,7 @@ funcion transformar(arr, transformacion) {
         transformacion(arr[i])
         i = i + 1
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion es_par(n) -> Booleano {

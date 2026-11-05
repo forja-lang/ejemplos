@@ -15,8 +15,7 @@ funcion calcular() -> Entero {
         i
         i = i + 1
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 /// Función asincrónica con parámetros

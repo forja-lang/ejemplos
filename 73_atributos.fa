@@ -1,4 +1,8 @@
 // Test de atributos/anotaciones @test
+funcion suma(a, b) -> Entero {
+    retornar a + b
+}
+
 @test
 funcion prueba_suma() {
     asegurar(suma(2, 2) == 4)

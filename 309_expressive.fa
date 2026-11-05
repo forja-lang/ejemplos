@@ -1,5 +1,5 @@
 // Ejemplo 309: Material You Expressive
-// Requiere: forja build --features gui
+// Requiere: cargo run --features gui --bin forja -- compilar
 importar "gui"
 
 funcion main() {

@@ -21,14 +21,12 @@ clase Complejo {
     funcion suma(otro) {
         variable resultado = nuevo Complejo()
         resultado.init(este.real + otro.real, este.imag + otro.imag)
-        retornar
-        resultado
+        retornar resultado
     }
     funcion resta(otro) {
         variable resultado = nuevo Complejo()
         resultado.init(este.real - otro.real, este.imag - otro.imag)
-        retornar
-        resultado
+        retornar resultado
     }
     funcion multiplicacion(otro) {
         // (a + bi)(c + di) = (ac - bd) + (ad + bc)i
@@ -36,8 +34,7 @@ clase Complejo {
         variable i = este.real * otro.imag + este.imag * otro.real
         variable resultado = nuevo Complejo()
         resultado.init(r, i)
-        retornar
-        resultado
+        retornar resultado
     }
     funcion division(otro) {
         // (a + bi) / (c + di) = (a+bi)(c-di) / (c²+d²)
@@ -53,8 +50,7 @@ clase Complejo {
         variable i = num.imag / denom
         variable resultado = nuevo Complejo()
         resultado.init(r, i)
-        retornar
-        resultado
+        retornar resultado
     }
     funcion modulo() -> Decimal {
         retornar raiz(este.real * este.real + este.imag * este.imag)
@@ -62,8 +58,7 @@ clase Complejo {
     funcion conjugado() {
         variable resultado = nuevo Complejo()
         resultado.init(este.real, -este.imag)
-        retornar
-        resultado
+        retornar resultado
     }
     funcion a_texto() -> Texto {
         si (este.imag >= 0) {
