@@ -10,7 +10,7 @@ funcion main() {
     variable slider_val = "50"
     variable texto_val = ""
     variable rating_val = "3"
-    andamio(barra_superior("🎨 Forja Storybook", [boton_icono("☀️", &toggle_tema_cb), boton_icono("⚙️", &ajustes_cb)]), fila([riel_navegacion([item_navegacion("🔘", "Botones"), item_navegacion("⌨️", "Inputs"), item_navegacion("🃏", "Tarjetas"), item_navegacion("💬", "Feedback"), item_navegacion("🧭", "Navegación"), item_navegacion("📊", "Indicadores"), item_navegacion("👤", "Avatares"), item_navegacion("📈", "Gráficos"), item_navegacion("🎭", "Expressive"), item_navegacion("🏃", "Motion"), item_navegacion("📐", "Layout")], pagina, &cambiar_pagina_cb), desplazable(columna(texto_grande(titulo_categoria(pagina)), espacio(4), separador(), espacio(8), si { … }))]))
+    andamio(barra_superior("🎨 Forja Storybook", [boton_icono("☀️", &toggle_tema_cb), boton_icono("⚙️", &ajustes_cb)]), fila([riel_navegacion([item_navegacion("🔘", "Botones"), item_navegacion("⌨️", "Inputs"), item_navegacion("🃏", "Tarjetas"), item_navegacion("💬", "Feedback"), item_navegacion("🧭", "Navegación"), item_navegacion("📊", "Indicadores"), item_navegacion("👤", "Avatares"), item_navegacion("📈", "Gráficos"), item_navegacion("🎭", "Expressive"), item_navegacion("🏃", "Motion"), item_navegacion("📐", "Layout")], pagina, &cambiar_pagina_cb), desplazable(columna(texto_grande(titulo_categoria(pagina)), espacio(4), separador(), espacio(8), si { etiqueta("") }))]))
 }
 
 funcion titulo_categoria(p: Entero) -> Texto {
