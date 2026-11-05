@@ -94,8 +94,7 @@ funcion main() {
         variable col = pedir_numero("Columna (1-3): ")
         // Sin entrada (EOF: CI, pipe cerrado) no se puede seguir jugando.
         si (fila == nulo || col == nulo) {
-            escribir("
-Sin entrada (EOF). Fin del juego.")
+            escribir("\r\nSin entrada (EOF). Fin del juego.")
             jugando = falso
             romper
         }
