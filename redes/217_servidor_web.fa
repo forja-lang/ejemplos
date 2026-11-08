@@ -10,10 +10,10 @@ funcion main() {
     variable puerto = 8080
     variable servidor = nuevo ServidorWeb(puerto)
     // Rutas: cada una asocia un método y una ruta a un manejador.
-    servidor_web.obtener(servidor, "/", func(peticion, respuesta) {
+    servidor_web.registrar_obtener(servidor, "/", func(peticion, respuesta) {
         servidor_web.html(respuesta, "<h1>Hola desde Forja</h1>")
     })
-    servidor_web.obtener(servidor, "/estado", func(peticion, respuesta) {
+    servidor_web.registrar_obtener(servidor, "/estado", func(peticion, respuesta) {
         servidor_web.texto_plano(respuesta, "ok")
     })
     servidor_web.enviar(servidor, "/saludo", func(peticion, respuesta) {

@@ -11,7 +11,7 @@ funcion main() {
     escribir("Sin red el error se maneja igual: el Resultado lo exige.\n")
     variable url = "http://example.com/"
     escribir("GET " + url)
-    variable respuesta = obtener(url)
+    variable respuesta = obtener_recurso(url)
     coincidir (respuesta) {
         caso Ok(r) -> {
             escribir("  código:  " + r.codigo)
@@ -26,7 +26,7 @@ funcion main() {
     }
     escribir("")
     escribir("API del módulo std/cliente_http:")
-    escribir("  obtener(url)              → GET")
+    escribir("  obtener_recurso(url)      → GET")
     escribir("  enviar(url, cuerpo)       → POST")
     escribir("  actualizar(url, cuerpo)   → PUT")
     escribir("  modificar_parcial(url, c) → PATCH")

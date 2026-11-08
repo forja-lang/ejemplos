@@ -43,8 +43,8 @@ funcion main() {
     escribir("p1 = (" + p1.x + ", " + p1.y + ")")
     escribir("p2 = (" + p2.x + ", " + p2.y + ")")
     escribir("p3 = (" + p3.x + ", " + p3.y + ")")
-    escribir("¿p1 == p2? " + p1 == p2 + "")
-    escribir("¿p1 == p3? " + p1 == p3 + "")
+    escribir("¿p1 == p2? " + a_texto(p1 == p2))
+    escribir("¿p1 == p3? " + a_texto(p1 == p3))
     escribir("")
     escribir("Colores:")
     variable c1 = nuevo ColorRGB()
@@ -57,7 +57,7 @@ funcion main() {
     c2.b = 0
     escribir("c1: " + c1 + "")
     escribir("c2: " + c2 + "")
-    escribir("¿c1 == c2? " + c1 == c2 + "")
+    escribir("¿c1 == c2? " + a_texto(c1 == c2))
 }
 
 main()

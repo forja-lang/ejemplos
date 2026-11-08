@@ -10,8 +10,8 @@ funcion main() {
     escribir("Una sola conexión TCP, varias peticiones en paralelo (streams).")
     escribir("")
     variable url = "http://localhost:8081/estado"
-    escribir("  cliente_h2.obtener(" + url + ") ...")
-    variable respuesta = cliente_h2.obtener(url)
+    escribir("  cliente_h2.obtener_recurso(" + url + ") ...")
+    variable respuesta = cliente_h2.obtener_recurso(url)
     coincidir (respuesta) {
         caso Ok(r) -> {
             escribir("  código: " + r.codigo)
