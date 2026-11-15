@@ -20,6 +20,12 @@ funcion fibonacci(n: Entero) -> Entero {
     retornar fibonacci(n - 1) + fibonacci(n - 2)
 }
 
+// `mapa_async` recibe una función de primer nivel (las declaraciones dentro de
+// otra función no entran en el ámbito global).
+funcion duplicar(x) {
+    retornar x * 2
+}
+
 funcion main() {
     escribir("=== Ejemplo de Paralelismo con Async/Await ===")
     escribir("")
@@ -59,9 +65,6 @@ funcion main() {
     // ── 3. Usando mapa_async de stdlib ──
     escribir("")
     escribir("--- 3. Usando mapa_async de stdlib ---")
-    funcion duplicar(x) {
-        retornar x * 2
-    }
     variable lista = [1, 2, 3, 4, 5]
     variable resultados = mapa_async(lista, duplicar)
     variable i = 0

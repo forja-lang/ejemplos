@@ -5,42 +5,36 @@ importar "std/io"
 
 // Implementación del cifrado César: desplaza cada letra del alfabeto
 // un número fijo de posiciones. Uno de los métodos de cifrado más antiguos.
+// Desplaza un código dentro de un alfabeto de `base` a `base+modulo-1`,
+// sin salirse del rango aunque el desplazamiento sea negativo.
+funcion desplazar(valor, modulo, desplazamiento) -> Entero {
+    variable d = (valor + desplazamiento) % modulo
+    si (d < 0) {
+        d = d + modulo
+    }
+    retornar d
+}
+
 funcion cifrar_cesar(texto, desplazamiento) -> Texto {
     variable resultado = ""
     variable i = 0
     mientras (i < longitud(texto)) {
         variable c = texto[i]
-        variable codigo = 0
+        variable codigo = a_codigo(c)
+        variable cifrado = codigo
         // Mayúsculas (A-Z: 65-90)
-        si (c >= "A" && c <= "Z") {
-            codigo = (c - 65 + desplazamiento) % 26
-            si (codigo < 0) {
-                codigo = codigo + 26
-            }
-            resultado
-            resultado
-            caracter(65 + codigo)
+        si (codigo >= 65 && codigo <= 90) {
+            cifrado = 65 + desplazar(codigo - 65, 26, desplazamiento)
         } sino {
             // Minúsculas (a-z: 97-122)
-            si (c >= "a" && c <= "z") {
-                codigo = (c - 97 + desplazamiento) % 26
-                si (codigo < 0) {
-                    codigo = codigo + 26
-                }
-                resultado
-                resultado
-                caracter(97 + codigo)
-            } sino {
-                // Otros caracteres se dejan igual
-                resultado
-                resultado
-                c
+            si (codigo >= 97 && codigo <= 122) {
+                cifrado = 97 + desplazar(codigo - 97, 26, desplazamiento)
             }
         }
+        resultado = resultado + a_caracter(cifrado)
         i = i + 1
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion descifrar_cesar(texto, desplazamiento) -> Texto {
@@ -53,43 +47,23 @@ funcion cifrar_cesar_mejorado(texto, desplazamiento) -> Texto {
     variable i = 0
     mientras (i < longitud(texto)) {
         variable c = texto[i]
-        si (c >= "A" && c <= "Z") {
-            variable codigo = (c - 65 + desplazamiento) % 26
-            si (codigo < 0) {
-                codigo = codigo + 26
-            }
-            resultado
-            resultado
-            caracter(65 + codigo)
+        variable codigo = a_codigo(c)
+        variable cifrado = codigo
+        si (codigo >= 65 && codigo <= 90) {
+            cifrado = 65 + desplazar(codigo - 65, 26, desplazamiento)
         } sino {
-            si (c >= "a" && c <= "z") {
-                variable codigo = (c - 97 + desplazamiento) % 26
-                si (codigo < 0) {
-                    codigo = codigo + 26
-                }
-                resultado
-                resultado
-                caracter(97 + codigo)
+            si (codigo >= 97 && codigo <= 122) {
+                cifrado = 97 + desplazar(codigo - 97, 26, desplazamiento)
             } sino {
-                si (c >= "0" && c <= "9") {
-                    variable codigo = (c - 48 + desplazamiento) % 10
-                    si (codigo < 0) {
-                        codigo = codigo + 10
-                    }
-                    resultado
-                    resultado
-                    caracter(48 + codigo)
-                } sino {
-                    resultado
-                    resultado
-                    c
+                si (codigo >= 48 && codigo <= 57) {
+                    cifrado = 48 + desplazar(codigo - 48, 10, desplazamiento)
                 }
             }
         }
+        resultado = resultado + a_caracter(cifrado)
         i = i + 1
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion fuerza_bruta_cesar(texto_cifrado) {

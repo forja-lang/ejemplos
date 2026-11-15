@@ -8,21 +8,19 @@ importar "std/cliente_http"
 funcion main() {
     escribir("=== CLIENTE HTTP ===\n")
     escribir("Se hace un GET a un host de ejemplo.")
-    escribir("Sin red el error se maneja igual: el Resultado lo exige.\n")
+    escribir("Sin red el error se maneja con el campo 'exito'.\n")
     variable url = "http://example.com/"
     escribir("GET " + url)
-    variable respuesta = obtener_recurso(url)
-    coincidir (respuesta) {
-        caso Ok(r) -> {
-            escribir("  código:  " + r.codigo)
-            escribir("  estado:  " + r.status)
-            escribir("  cuerpo:  " + longitud(r.cuerpo) + " caracteres")
-            escribir("  exito:   " + r.exito)
-        }
-        caso Error(e) -> {
-            escribir("  ⚠️ no se pudo conectar: " + e.mensaje)
-            escribir("  (esperado si no hay red o el host no resuelve)")
-        }
+    # La API devuelve una `RespuestaCliente` (no un Resultado): los fallos de
+    # conexión llegan con codigo = 0 y exito = falso.
+    variable r = obtener_recurso(url)
+    si (r.exito) {
+        escribir("  código:  " + r.codigo)
+        escribir("  estado:  " + r.status)
+        escribir("  cuerpo:  " + longitud(r.cuerpo) + " caracteres")
+    } sino {
+        escribir("  ⚠️ no se pudo conectar: " + a_texto(r.cuerpo))
+        escribir("  (esperado si no hay red o el host no resuelve)")
     }
     escribir("")
     escribir("API del módulo std/cliente_http:")
@@ -32,9 +30,9 @@ funcion main() {
     escribir("  modificar_parcial(url, c) → PATCH")
     escribir("  eliminar(url)             → DELETE")
     escribir("")
-    escribir("Todas devuelven Resultado<RespuestaCliente, ErrorHTTP>:")
-    escribir("  Ok(respuesta) → codigo, status, cabeceras, cuerpo")
-    escribir("  Error(e)      → e.mensaje, e.codigo")
+    escribir("Todas devuelven una RespuestaCliente:")
+    escribir("  exito = verdadero → codigo, status, cabeceras, cuerpo")
+    escribir("  exito = falso     → codigo 0 y cuerpo con el motivo")
 }
 
 main()
