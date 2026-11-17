@@ -163,13 +163,11 @@ funcion mostrar_notificacion_accion_cb(valor: Texto) -> Texto {
 //  Muestra los ~200 componentes organizados en 11 categorías
 //  con preview en vivo, controles editables y toggle de tema.
 // ═══════════════════════════════════════════════════════════════════
-//  Ejecutar (nativo):
-//    forja-gui ejemplos/900_storybook.fa
-//    forja-gui --dark ejemplos/900_storybook.fa
-//    forja-gui --tema #FF5722 ejemplos/900_storybook.fa
-//  Compilar y ejecutar:
-//    cargo build --features gui
-//    cargo run --bin forja --features gui -- ejemplo ejemplos/900_storybook.fa
+//  Ejecutar (nativo): con `destino: nativo` en forja.yaml
+//    forja ejecutar ejemplos/gui/900_storybook.fa
+//  Ejecutable autónomo (sin Rust ni Cargo, usa forja-rt-gui):
+//    forja compilar ejemplos/gui/900_storybook.fa storybook.exe
+//    ./storybook.exe
 // ═══════════════════════════════════════════════════════════════════
 // ═══════════════════════════════════════════════════════════════════
 //  FUNCIÓN PRINCIPAL

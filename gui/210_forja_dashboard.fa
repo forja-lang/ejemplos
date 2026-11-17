@@ -4,10 +4,10 @@
 //  Demuestra: formularios, validacion, sliders, checkboxes, layouts
 // ═══════════════════════════════════════════════════════════════════
 //
-//  Ejecutar (nativo):  forja ejecutar --native ejemplos/210_forja_dashboard.fa
+//  Ejecutar (nativo):  forja ejecutar ejemplos/210_forja_dashboard.fa
 //  Ejecutar (normal):  forja ejecutar ejemplos/210_forja_dashboard.fa
 //
-//  Requiere: cargo build --features gui
+//  Requiere: Rust (la primera vez compila Xilem)
 //
 // ═══════════════════════════════════════════════════════════════════
 importar "gui"

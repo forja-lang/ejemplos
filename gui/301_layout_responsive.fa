@@ -4,9 +4,9 @@
 //             caja_relativa, flex_layout
 // ═══════════════════════════════════════════════════════════════════
 //
-//  Ejecutar (nativo): forja ejecutar --native ejemplos/301_layout_responsive.fa
+//  Ejecutar (nativo): forja ejecutar ejemplos/301_layout_responsive.fa
 //
-//  Requiere: cargo build --features gui
+//  Requiere: Rust (la primera vez compila Xilem)
 //
 //  NOTA: La detección automática del tamaño de ventana se añadirá
 //        en una versión futura. Por ahora, window_size se inicializa
@@ -15,14 +15,14 @@
 // ═══════════════════════════════════════════════════════════════════
 importar "gui"
 
-// Callback para incrementar contador
-funcion incrementar(n: Texto) -> Texto {
-    variable val = a_entero(n) + 1
-    retornar a_texto(val)
+// Callback sin argumentos: la GUI llama y lee/escribe el global.
+variable contador = 0
+funcion incrementar() -> Texto {
+    contador = contador + 1
+    retornar a_texto(contador)
 }
 
 funcion main() {
-    variable contador = 0
     // ═══════════════════════════════════════════════
     //  HEADER
     // ═══════════════════════════════════════════════

@@ -1,0 +1,70 @@
+# Configuración de Forja.
+# Se crea automáticamente si no existe; editá este archivo para cambiar
+# el comportamiento. La CLI no usa flags.
+# Los booleanos se escriben: verdadero | falso
+
+# Motor de ejecución: rapido = VM canónica; jit = tiered; todas = medir todas. Valores: rapido | vm | jit | todas
+motor: rapido
+
+# Cómo ejecutar: maquina = VM; ensamblador = ASM nativo; nativo = GUI/AOT. Valores: maquina | ensamblador | nativo
+destino: maquina  # corre con forja-rt-gui: fuente Forja, sin Rust ni Cargo
+
+# Iteraciones que usa `forja medir` cuando no se indica una cantidad.
+iteraciones: 100
+
+# Memoiza funciones puras recursivas en LLVM/AOT. Acelera mucho; desactivala para medir el cálculo real. Valores: verdadero | falso
+memoizacion: verdadero
+
+# Modo estricto de tipos y ownership: convierte advertencias en errores. Valores: verdadero | falso
+estricto: falso
+
+# Verifica `requiere`/`asegura`/invariantes en runtime. Valores: verdadero | falso
+contratos: verdadero
+
+# Incluye la pila de llamadas en errores de runtime. Valores: verdadero | falso
+pila: falso
+
+# Chequeo de rango en arreglos (LLVM/AOT). Desactivarlo vectoriza mejor pero un índice fuera de rango es UB. Valores: verdadero | falso
+verificar_rangos: verdadero
+
+# Atajos aritméticos inseguros: división por cero => inf y sin chequeos. Sólo benchmarks. Valores: verdadero | falso
+matematica_rapida: falso
+
+# Perfilado PGO: recoger = medir; usar = aplicar un perfil guardado; vacío = desactivado. Valores: '' | recoger | usar
+perfil: ''
+
+# Recarga módulos en caliente (hot reload) para destino nativo/GUI. Valores: verdadero | falso
+recarga: falso
+
+# Hosts permitidos por el sandbox de red; vacío = sin red. Separalos por coma.
+permitir_red: ''
+
+# Puertos permitidos por el sandbox de red; vacío = sin restricción. Separalos por coma.
+permitir_puertos: ''
+
+# Tamaño máximo del archivo fuente que la CLI acepta leer, en MB.
+max_archivo_mb: 10
+
+# Arquitectura objetivo para ASM; vacío = plataforma actual. Valores: '' | x86_64-windows | x86_64-linux | arm64 | riscv64
+arquitectura: ''
+
+# Muestra la ventana de consola en ejecutables GUI. Valores: verdadero | falso
+consola: falso
+
+# `forja formatear` sólo verifica, no reescribe archivos. Valores: verdadero | falso
+verificar_formato: falso
+
+# El linter trata las advertencias como errores. Valores: verdadero | falso
+lint_estricto: falso
+
+# Nivel de detalle de los diagnósticos. Valores: '' | detallado | depuracion | traza
+nivel: ''
+
+# Emite los diagnósticos en JSON. Valores: verdadero | falso
+json: falso
+
+# Usa colores ANSI en la salida. Valores: verdadero | falso
+color: verdadero
+
+# Puerto TCP del servidor local del registry de paquetes.
+puerto_registry: 8787

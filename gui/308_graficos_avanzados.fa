@@ -1,5 +1,5 @@
 // Ejemplo 308: Gráficos y Componentes Avanzados
-// Requiere: forja build --features gui
+// Requiere: Rust (la primera vez compila Xilem)
 importar "gui"
 
 funcion main() {

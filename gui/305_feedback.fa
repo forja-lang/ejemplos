@@ -7,60 +7,90 @@ variable mostrar_snackbar = falso
 funcion main() {
     variable mostrar_hoja = falso
     variable seleccion_menu = 0
-    verdadero
-    espacio(16)
-    texto_mediano("Tooltip:")
-    espacio(8)
-    información(boton_icono("❓", &ayuda), "Haz clic para obtener ayuda")
-    espacio(16)
-    texto_mediano("Menú:")
-    espacio(8)
-    menú_desplegable(["Opción 1", "Opción 2", "Opción 3"], seleccion_menu, &seleccionar)
+    
+    columna(
+        texto_grande("Feedback y Superposiciones"),
+        espacio(16),
+        
+        texto_mediano("Diálogos:"),
+        espacio(8),
+        boton_relleno("Mostrar Alerta", &mostrar_alerta),
+        espacio(8),
+        boton_tonal("Diálogo Confirmación", &mostrar_confirmacion),
+        
+        espacio(16),
+        texto_mediano("Bottom Sheets:"),
+        espacio(8),
+        boton_tonal("Abrir Hoja Inferior", &abrir_hoja),
+        
+        espacio(16),
+        texto_mediano("Snackbar:"),
+        espacio(8),
+        boton_relleno("Mostrar Notificación", &mostrar_notificacion),
+        
+        espacio(16),
+        si (mostrar_snackbar == verdadero) {
+            notificación_accion("Archivo guardado correctamente", "Deshacer", &deshacer)
+        },
+        
+        espacio(16),
+        texto_mediano("Tooltip:"),
+        espacio(8),
+        información(boton_icono("❓", &ayuda), "Haz clic para obtener ayuda"),
+        
+        espacio(16),
+        texto_mediano("Menú:"),
+        espacio(8),
+        menú_desplegable(("Opción 1", "Opción 2", "Opción 3"), seleccion_menu, &seleccionar)
+    )
 }
 
-funcion mostrar_alerta(valor: Texto) -> Texto {
+funcion mostrar_alerta() -> Texto {
     dialogo_alerta("Bienvenido", "Este es un diálogo de alerta Material You")
-    retornar valor
+    retornar ""
 }
 
-funcion mostrar_confirmacion(valor: Texto) -> Texto {
+funcion mostrar_confirmacion() -> Texto {
     dialogo_confirmacion("¿Eliminar?", "Esta acción no se puede deshacer", &confirmar_eliminar, &cancelar_eliminar)
-    retornar valor
+    retornar ""
 }
 
-funcion confirmar_eliminar(valor: Texto) -> Texto {
+funcion confirmar_eliminar() -> Texto {
     notificación("Elemento eliminado")
-    retornar valor
+    retornar ""
 }
 
-funcion cancelar_eliminar(valor: Texto) -> Texto {
+funcion cancelar_eliminar() -> Texto {
     notificación("Operación cancelada")
-    retornar valor
+    retornar ""
 }
 
-funcion abrir_hoja(valor: Texto) -> Texto {
-    hoja_inferior(columna([texto_mediano("Opciones"), espacio(8), boton_relleno("Cerrar", &cerrar_hoja)]), "true")
-    retornar valor
+funcion abrir_hoja() -> Texto {
+    hoja_inferior(columna((
+        texto_mediano("Opciones"),
+        espacio(8),
+        boton_relleno("Cerrar", &cerrar_hoja)
+    )), "true")
+    retornar ""
 }
 
-funcion cerrar_hoja(valor: Texto) -> Texto {
-    retornar valor
+funcion cerrar_hoja() -> Texto {
+    retornar ""
 }
 
-funcion mostrar_notificacion(valor: Texto) -> Texto {
+funcion mostrar_notificacion() -> Texto {
     mostrar_snackbar = verdadero
-    retornar valor
+    retornar ""
 }
 
-funcion deshacer(valor: Texto) -> Texto {
+funcion deshacer() -> Texto {
     retornar "Acción deshecha"
 }
 
-funcion ayuda(valor: Texto) -> Texto {
+funcion ayuda() -> Texto {
     retornar "Ayuda mostrada"
 }
 
-funcion seleccionar(valor: Texto) -> Texto {
-    retornar valor
+funcion seleccionar() -> Texto {
+    retornar ""
 }
-

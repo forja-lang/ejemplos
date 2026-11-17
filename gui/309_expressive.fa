@@ -1,5 +1,5 @@
 // Ejemplo 309: Material You Expressive
-// Requiere: forja build --features gui
+// Requiere: Rust (la primera vez compila Xilem)
 importar "gui"
 
 funcion main() {
