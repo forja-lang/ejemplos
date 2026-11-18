@@ -20,9 +20,7 @@ si (resultado == 42) {
     escribir("nums[0] NO es 42")
 }
 
-resultado
-
-42
+resultado = 42
 
 si (resultado == 42) {
     escribir("El número 42 se encontró")
