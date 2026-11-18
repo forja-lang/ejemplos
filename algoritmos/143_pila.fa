@@ -18,7 +18,13 @@ clase Pila<T> {
             retornar nulo
         }
         variable valor = este.elementos[n - 1]
-        2
+        variable resto = []
+        variable i = 0
+        mientras (i < n - 1) {
+            resto[i] = este.elementos[i]
+            i = i + 1
+        }
+        este.elementos = resto
         retornar valor
     }
     funcion tope() -> T {
