@@ -18,14 +18,10 @@ funcion contar_movimientos(n) -> Entero {
     variable resultado = 1
     variable i = 1
     mientras (i <= n) {
-        resultado
-        resultado
-        2
+        resultado = resultado * 2
         i = i + 1
     }
-    retornar
-    resultado
-    1
+    retornar resultado - 1
 }
 
 funcion main() {
