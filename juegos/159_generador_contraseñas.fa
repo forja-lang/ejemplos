@@ -2,6 +2,19 @@
 /// Conceptos: aleatoriedad, strings, criterios de seguridad, validación
 /// Nivel: básico
 importar "std/io"
+importar "std/sistema"
+
+// Con stdin vacío `leer()` devuelve `nulo` y el juego no tiene de dónde sacar
+// una jugada: termina, como cualquier programa que se queda sin entrada.
+funcion pedir_numero_o_fin(mensaje) {
+    escribir(mensaje)
+    variable entrada = leer()
+    si (entrada == nulo) {
+        salir(0)
+    }
+    retornar a_numero(entrada)
+}
+
 
 // Generador de contraseñas seguras con criterios configurables:
 // longitud, inclusión de mayúsculas, minúsculas, números y símbolos.
@@ -153,14 +166,14 @@ funcion evaluar_fortaleza(contraseña) -> Texto {
 
 funcion main() {
     escribir("=== GENERADOR DE CONTRASEÑAS SEGURAS ===\n")
-    variable largo = pedir_numero("Longitud deseada (8-32): ")
+    variable largo = pedir_numero_o_fin("Longitud deseada (8-32): ")
     mientras (largo < 8 || largo > 32) {
         escribir("  La longitud debe estar entre 8 y 32.")
-        largo = pedir_numero("Longitud deseada (8-32): ")
+        largo = pedir_numero_o_fin("Longitud deseada (8-32): ")
     }
-    variable cant = pedir_numero("Cuantas contraseñas generar? (1-10): ")
+    variable cant = pedir_numero_o_fin("Cuantas contraseñas generar? (1-10): ")
     mientras (cant < 1 || cant > 10) {
-        cant = pedir_numero("Cuantas contraseñas generar? (1-10): ")
+        cant = pedir_numero_o_fin("Cuantas contraseñas generar? (1-10): ")
     }
     escribir("\nGenerando " + cant + " contraseñas de " + largo + " caracteres...\n")
     variable i = 0

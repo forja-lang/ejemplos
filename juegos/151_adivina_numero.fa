@@ -2,6 +2,19 @@
 /// Conceptos: entrada/salida, aleatoriedad, bucles, condicionales, números aleatorios
 /// Nivel: básico
 importar "std/io"
+importar "std/sistema"
+
+// Con stdin vacío `leer()` devuelve `nulo` y el juego no tiene de dónde sacar
+// una jugada: termina, como cualquier programa que se queda sin entrada.
+funcion pedir_numero_o_fin(mensaje) {
+    escribir(mensaje)
+    variable entrada = leer()
+    si (entrada == nulo) {
+        salir(0)
+    }
+    retornar a_numero(entrada)
+}
+
 
 // El clásico juego de adivinar un número secreto entre 1 y 100.
 // El programa genera un número aleatorio y el jugador debe adivinarlo
@@ -26,7 +39,7 @@ funcion jugar() {
     variable adivinado = falso
     mientras (!adivinado) {
         escribir("")
-        variable entrada = pedir_numero("Tu adivinanza: ")
+        variable entrada = pedir_numero_o_fin("Tu adivinanza: ")
         intentos = intentos + 1
         si (entrada < secreto) {
             escribir("  ¡Más alto! El número es MAYOR.")

@@ -2,6 +2,19 @@
 /// Conceptos: entrada/salida, enumeraciones (match), condicionales, aleatoriedad
 /// Nivel: básico
 importar "std/io"
+importar "std/sistema"
+
+// Con stdin vacío `leer()` devuelve `nulo` y el juego no tiene de dónde sacar
+// una jugada: termina, como cualquier programa que se queda sin entrada.
+funcion pedir_numero_o_fin(mensaje) {
+    escribir(mensaje)
+    variable entrada = leer()
+    si (entrada == nulo) {
+        salir(0)
+    }
+    retornar a_numero(entrada)
+}
+
 
 // Implementación del clásico juego Piedra, Papel o Tijera.
 // El jugador se enfrenta a la computadora en duels de 3 rondas.
@@ -35,10 +48,10 @@ funcion generar_jugada_computadora() -> Mano {
 
 funcion leer_jugada_usuario() -> Mano {
     escribir("Elige: (1) Piedra, (2) Papel, (3) Tijera")
-    variable op = pedir_numero("Opción: ")
+    variable op = pedir_numero_o_fin("Opción: ")
     mientras (op < 1 || op > 3) {
         escribir("Opción inválida. Intenta de nuevo.")
-        op = pedir_numero("Opción: ")
+        op = pedir_numero_o_fin("Opción: ")
     }
     si (op == 1) {
         retornar Piedra
