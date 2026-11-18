@@ -12,7 +12,7 @@ funcion generar_caracter_aleatorio(inicio, fin) -> Texto {
     si (codigo > fin) {
         codigo = inicio + (codigo % rango)
     }
-    retornar caracter(codigo)
+    retornar a_caracter(codigo)
 }
 
 funcion mezclar_array(mut arr) {

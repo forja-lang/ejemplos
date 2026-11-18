@@ -15,6 +15,7 @@
 importar "std/io"
 
 importar "std/concurrencia"
+importar "std/resultado"
 
 funcion duplicar(valor) {
     retornar valor * 2
@@ -65,7 +66,7 @@ funcion main() {
     escribir("── 3. Timeout ──\n")
     variable r1 = con_timeout_async(3000, tarea_rapida)
     escribir("Resultado tarea rápida (timeout 3s): " + r1 + "")
-    si (r1.es_ok()) {
+    si (es_ok(r1)) {
         escribir("  → Tarea completada a tiempo ✓")
     }
     escribir("")

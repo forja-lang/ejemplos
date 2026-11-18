@@ -74,6 +74,17 @@ funcion ln_aprox(x) -> Decimal {
     retornar 2 * suma
 }
 
+funcion factorial_de(n) -> Entero {
+    si (n <= 1) { retornar 1 }
+    variable r = 1
+    variable i = 2
+    mientras (i <= n) {
+        r = r * i
+        i = i + 1
+    }
+    retornar r
+}
+
 funcion main() {
     variable opcion = -1
     mientras (opcion != 0) {
@@ -100,72 +111,37 @@ funcion main() {
                     }
                 }
             }
-            variable resultado = 0
-            si (opcion == 1) {
-                resultado
-                a
-                b
-            }
-            si (opcion == 2) {
-                resultado
-                a
-                b
-            }
-            si (opcion == 3) {
-                resultado
-                a
-                b
-            }
+            variable resultado = 0.0
+            si (opcion == 1) { resultado = a + b }
+            si (opcion == 2) { resultado = a - b }
+            si (opcion == 3) { resultado = a * b }
             si (opcion == 4) {
                 si (b == 0) {
                     escribir("  Error: División por cero.")
                     continuar
                 }
-                resultado
-                a
-                b
+                resultado = a / b
             }
-            si (opcion == 5) {
-                resultado
-                potencia(a, b)
-            }
+            si (opcion == 5) { resultado = potencia(a, b) }
             si (opcion == 6) {
                 si (a < 0) {
                     escribir("  Error: Raíz negativa.")
                     continuar
                 }
-                resultado
-                potencia(a, 0.5)
+                resultado = potencia(a, 0.5)
             }
-            si (opcion == 7) {
-                resultado
-                seno_aprox(a)
-            }
-            si (opcion == 8) {
-                resultado
-                coseno_aprox(a)
-            }
-            si (opcion == 9) {
-                resultado
-                ln_aprox(a)
-                ln_aprox(10)
-            }
-            si (opcion == 10) {
-                resultado
-                ln_aprox(a)
-            }
+            si (opcion == 7) { resultado = seno_aprox(a) }
+            si (opcion == 8) { resultado = coseno_aprox(a) }
+            si (opcion == 9) { resultado = ln_aprox(a) / ln_aprox(10) }
+            si (opcion == 10) { resultado = ln_aprox(a) }
             si (opcion == 11) {
                 si (a < 0) {
                     escribir("  Error: Factorial de número negativo.")
                     continuar
                 }
-                resultado
-                factorial(a)
+                resultado = factorial_de(a)
             }
-            si (opcion == 12) {
-                resultado
-                abs(a)
-            }
+            si (opcion == 12) { resultado = absoluto(a) }
             escribir("  Resultado: " + resultado + "")
         }
     }
