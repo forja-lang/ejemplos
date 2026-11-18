@@ -92,7 +92,7 @@ funcion frecuencia_letras(texto) {
         variable c = texto[j]
         variable k = 0
         mientras (k < 26) {
-            si (c == letras[k] || c == mayuscula(letras[k])) {
+            si (c == letras[k] || c == letras[k].a_mayusculas()) {
                 frecuencias[k] = frecuencias[k] + 1
                 total_letras = total_letras + 1
             }
