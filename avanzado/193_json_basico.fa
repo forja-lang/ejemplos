@@ -117,60 +117,44 @@ clase JSONParser {
             variable c = este.texto[este.posicion]
             si (c == "\"") {
                 este.posicion = este.posicion + 1
-                retornar
-                resultado
+                retornar resultado
             }
             si (c == "\\\\") {
                 este.posicion = este.posicion + 1
                 si (este.posicion < longitud(este.texto)) {
                     variable esc = este.texto[este.posicion]
                     si (esc == "n") {
-                        resultado
-                        resultado
-                        "\n"
+                        resultado = resultado + "\n"
                     }
                     si (esc == "t") {
-                        resultado
-                        resultado
-                        "\t"
+                        resultado = resultado + "\t"
                     }
                     si (esc == "\\\\") {
-                        resultado
-                        resultado
-                        "\\"
+                        resultado = resultado + "\\"
                     }
                     si (esc == "\"") {
-                        resultado
-                        resultado
-                        "\""
+                        resultado = resultado + "\""
                     }
                 }
             } sino {
-                resultado
-                resultado
-                c
+                resultado = resultado + c
             }
             este.posicion = este.posicion + 1
         }
-        retornar
-        resultado
+        retornar resultado
     }
     funcion parsear_numero() -> Texto {
         variable resultado = ""
         mientras (este.posicion < longitud(este.texto)) {
             variable c = este.texto[este.posicion]
             si ((c >= "0" && c <= "9") || c == "-" || c == "." || c == "e" || c == "E") {
-                resultado
-                resultado
-                c
+                resultado = resultado + c
                 este.posicion = este.posicion + 1
             } sino {
-                retornar
-                resultado
+                retornar resultado
             }
         }
-        retornar
-        resultado
+        retornar resultado
     }
     funcion valor_a_texto(valor) -> Texto {
         retornar valor
@@ -186,38 +170,22 @@ funcion serializar_a_json(datos, profundidad) -> Texto {
         i = i + 1
     }
     si (tipo_de(datos) == "Array") {
-        resultado
-        "[\n"
+        resultado = "[\n"
         variable j = 0
         mientras (j < longitud(datos)) {
-            resultado
-            resultado
-            tabs
-            "  "
-            resultado
-            resultado
-            serializar_a_json(datos[j], profundidad + 1)
+            resultado = resultado + tabs + "  "
+            resultado = resultado + serializar_a_json(datos[j], profundidad + 1)
             si (j < longitud(datos) - 1) {
-                resultado
-                resultado
-                ","
+                resultado = resultado + ","
             }
-            resultado
-            resultado
-            "\n"
+            resultado = resultado + "\n"
             j = j + 1
         }
-        resultado
-        resultado
-        tabs
-        "]"
+        resultado = resultado + tabs + "]"
     } sino {
-        resultado
-        resultado
-        datos
+        resultado = resultado + datos
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion main() {
