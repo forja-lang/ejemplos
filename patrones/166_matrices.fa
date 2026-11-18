@@ -45,15 +45,12 @@ funcion suma_matrices(a, b) {
     mientras (i < filas) {
         variable j = 0
         mientras (j < columnas) {
-            resultado[i][j]
-            a[i][j]
-            b[i][j]
+            resultado[i][j] = a[i][j] + b[i][j]
             j = j + 1
         }
         i = i + 1
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion resta_matrices(a, b) {
@@ -64,15 +61,12 @@ funcion resta_matrices(a, b) {
     mientras (i < filas) {
         variable j = 0
         mientras (j < columnas) {
-            resultado[i][j]
-            a[i][j]
-            b[i][j]
+            resultado[i][j] = a[i][j] - b[i][j]
             j = j + 1
         }
         i = i + 1
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion multiplicar_matrices(a, b) {
@@ -95,14 +89,12 @@ funcion multiplicar_matrices(a, b) {
                 suma = suma + a[i][k] * b[k][j]
                 k = k + 1
             }
-            resultado[i][j]
-            suma
+            resultado[i][j] = suma
             j = j + 1
         }
         i = i + 1
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion transponer_matriz(m) {
@@ -113,14 +105,12 @@ funcion transponer_matriz(m) {
     mientras (i < filas) {
         variable j = 0
         mientras (j < columnas) {
-            resultado[j][i]
-            m[i][j]
+            resultado[j][i] = m[i][j]
             j = j + 1
         }
         i = i + 1
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion determinante_2x2(m) -> Entero {
