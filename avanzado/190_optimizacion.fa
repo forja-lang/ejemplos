@@ -101,14 +101,10 @@ funcion calcular_lento(calc, valores) {
     variable i = 0
     mientras (i < longitud(valores)) {
         // ❌ Acceso a calc.factor en cada iteración
-        resultado
-        resultado
-        valores[i]
-        calc.factor
+        resultado = resultado + valores[i] * calc.factor
         i = i + 1
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion calcular_rapido(calc, valores) {
@@ -117,14 +113,10 @@ funcion calcular_rapido(calc, valores) {
     // ✅ Cachear en variable local
     variable i = 0
     mientras (i < longitud(valores)) {
-        resultado
-        resultado
-        valores[i]
-        factor_local
+        resultado = resultado + valores[i] * factor_local
         i = i + 1
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion main() {
