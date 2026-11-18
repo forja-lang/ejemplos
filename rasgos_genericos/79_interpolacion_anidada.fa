@@ -14,21 +14,23 @@ variable idioma = "español"
 variable edad = 17
 
 // String dentro de interpolación:
-escribir("" + nombre + " es " + edad >= 18 ? "mayor" : "menor" + " de edad")
+escribir(nombre + " dice: \"" + "Hola mundo" + "\"")
+
+escribir(nombre + " es " + (edad >= 18 ? "mayor" : "menor") + " de edad")
 
 // Combinación de múltiples expresiones:
 variable a = 5
 
 variable b = 3
 
-escribir("Operaciones: suma=" + a + b + ", resta=" + a - b + ", mul=" + a * b + "")
+escribir("Operaciones: suma=" + (a + b) + ", resta=" + (a - b) + ", mul=" + (a * b) + "")
 
 // Formato condicional:
 variable puntaje = 85
 
 variable nota = ""
 
-escribir("Puntaje: " + puntaje + " - " + puntaje >= 60 ? "Aprobado" : "Desaprobado" + "")
+escribir("Puntaje: " + puntaje + " - " + (puntaje >= 60 ? "Aprobado" : "Desaprobado") + "")
 
 // Sin anidación real de ${}, pero con lógica inline:
 funcion maximo(x, y) {
