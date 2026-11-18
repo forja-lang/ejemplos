@@ -31,8 +31,9 @@ clase ListaDoble {
         nuevo.siguiente = este.cabeza
         nuevo.anterior = nulo
         si (este.cabeza != nulo) {
-            este.cabeza.anterior
-            nuevo
+            variable cabeza_actual = este.cabeza
+            cabeza_actual.anterior = nuevo
+            este.cabeza = cabeza_actual
         }
         este.cabeza = nuevo
         si (este.cola == nulo) {
@@ -46,8 +47,9 @@ clase ListaDoble {
         nuevo.siguiente = nulo
         nuevo.anterior = este.cola
         si (este.cola != nulo) {
-            este.cola.siguiente
-            nuevo
+            variable cola_actual = este.cola
+            cola_actual.siguiente = nuevo
+            este.cola = cola_actual
         }
         este.cola = nuevo
         si (este.cabeza == nulo) {
