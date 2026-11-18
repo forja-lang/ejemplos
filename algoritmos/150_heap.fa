@@ -69,6 +69,16 @@ clase MaxHeap {
         retornar este.tamano == 0
     }
     funcion mostrar() {
+        variable texto = ""
+        variable i = 0
+        mientras (i < este.tamano) {
+            si (i > 0) {
+                texto = texto + ","
+            }
+            texto = texto + este.elementos[i]
+            i = i + 1
+        }
+        escribir("  Heap: [" + texto + "]")
         escribir("  Máximo: " + este.ver_max() + "")
     }
 }
@@ -83,12 +93,10 @@ funcion heap_sort(arr) {
     variable resultado = []
     variable j = 0
     mientras (!heap.esta_vacia()) {
-        resultado[j]
-        heap.desencolar()
+        resultado[j] = heap.desencolar()
         j = j + 1
     }
-    retornar
-    resultado
+    retornar resultado
 }
 
 funcion main() {
