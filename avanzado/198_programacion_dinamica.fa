@@ -90,22 +90,18 @@ funcion mochila_dp(capacidad, pesos, valores, n) -> Entero {
         variable peso = 0
         mientras (peso <= capacidad) {
             si (objeto == 0 || peso == 0) {
-                dp[objeto][peso]
-                0
+                dp[objeto][peso] = 0
             } sino {
                 si (pesos[objeto - 1] <= peso) {
                     variable incluir = valores[objeto - 1] + dp[objeto - 1][peso - pesos[objeto - 1]]
                     variable excluir = dp[objeto - 1][peso]
                     si (incluir > excluir) {
-                        dp[objeto][peso]
-                        incluir
+                        dp[objeto][peso] = incluir
                     } sino {
-                        dp[objeto][peso]
-                        excluir
+                        dp[objeto][peso] = excluir
                     }
                 } sino {
-                    dp[objeto][peso]
-                    dp[objeto - 1][peso]
+                    dp[objeto][peso] = dp[objeto - 1][peso]
                 }
             }
             peso = peso + 1
@@ -138,7 +134,7 @@ funcion main() {
     escribir("  Items: (peso, valor)")
     variable i = 0
     mientras (i < n_items) {
-        escribir("    " + i + 1 + ": (" + pesos[i] + ", " + valores[i] + ")")
+        escribir("    " + (i + 1) + ": (" + pesos[i] + ", " + valores[i] + ")")
         i = i + 1
     }
     escribir("  Capacidad: " + capacidad + "")
